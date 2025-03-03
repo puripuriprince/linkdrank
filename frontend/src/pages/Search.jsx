@@ -12,6 +12,8 @@ export default function Search() {
   const suggestionsCarouselRef = useRef(null);
   // Current slide index for people carousel
   const [currentSlide, setCurrentSlide] = useState(0);
+  // Window width state
+  const [windowWidth, setWindowWidth] = useState(0);
 
   // Example quick tag data with more extensive suggestions
   const quickTags = [
@@ -30,7 +32,7 @@ export default function Search() {
     { label: 'Psychology majors in HR leadership' },
   ];
 
-  // Example "CRACKDDDD People" data
+  // Example "CRACKDDDD People" data with extra fake people
   const people = [
     {
       name: 'Lucas Miranda',
@@ -72,13 +74,111 @@ export default function Search() {
       linkedin: '#',
       photoUrl: 'https://via.placeholder.com/60',
     },
+    // Additional fake people:
+    {
+      name: 'Alice Smith',
+      role: 'Developer at Tech Corp',
+      location: 'Toronto, Canada',
+      edu: 'University of Toronto',
+      linkedin: 'https://www.linkedin.com/in/alicesmith/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Bob Johnson',
+      role: 'Data Scientist',
+      location: 'New York, USA',
+      edu: 'NYU',
+      linkedin: 'https://www.linkedin.com/in/bobjohnson/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Carol Williams',
+      role: 'Product Manager',
+      location: 'San Francisco, USA',
+      edu: 'Stanford University',
+      linkedin: 'https://www.linkedin.com/in/carolwilliams/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'David Brown',
+      role: 'UX Designer',
+      location: 'London, UK',
+      edu: 'Imperial College',
+      linkedin: 'https://www.linkedin.com/in/davidbrown/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Emma Davis',
+      role: 'Marketing Specialist',
+      location: 'Sydney, Australia',
+      edu: 'University of Sydney',
+      linkedin: 'https://www.linkedin.com/in/emmadavis/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Frank Miller',
+      role: 'Software Engineer',
+      location: 'Berlin, Germany',
+      edu: 'TU Berlin',
+      linkedin: 'https://www.linkedin.com/in/frankmiller/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Grace Lee',
+      role: 'Research Scientist',
+      location: 'Seoul, South Korea',
+      edu: 'KAIST',
+      linkedin: 'https://www.linkedin.com/in/gracelee/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Henry Wilson',
+      role: 'Entrepreneur',
+      location: 'San Jose, USA',
+      edu: 'UC Berkeley',
+      linkedin: 'https://www.linkedin.com/in/henrywilson/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Ivy Turner',
+      role: 'UX Researcher',
+      location: 'Boston, USA',
+      edu: 'MIT',
+      linkedin: 'https://www.linkedin.com/in/ivyturner/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Jackie Martinez',
+      role: 'Business Analyst',
+      location: 'Madrid, Spain',
+      edu: 'IE Business School',
+      linkedin: 'https://www.linkedin.com/in/jackiemartinez/',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
   ];
 
-  // Create a tripled array for suggestions
-  const tripleTags = [...quickTags, ...quickTags, ...quickTags];
+  // Initialize window width on component mount
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    
+    // Add event listener for window resize
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup function
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // Create a doubled array for people to ensure continuous sliding
   const doublePeople = [...people, ...people, ...people];
+
+  // Create a tripled array for suggestions
+  const tripleTags = [...quickTags, ...quickTags, ...quickTags];
 
   // For clock-like carousel, we use useEffect to handle the timing and sliding
   useEffect(() => {
@@ -134,6 +234,13 @@ export default function Search() {
   const handleSearch = () => {
     console.log('Searching for:', searchText, 'Personalized:', personalized);
     // Insert your search logic here...
+  };
+
+  // Calculate transform value to start flush with left edge
+  const calculateTransform = () => {
+    const cardWidth = 305; // 300px width + 5px margin
+    const screenOffset = windowWidth;
+    return `translateX(calc(-${currentSlide * cardWidth}px))`;
   };
 
   return (
@@ -227,18 +334,18 @@ export default function Search() {
           </div>
         </div>
 
-        {/* "CRACKDDDD People" Clock-like Carousel */}
-        <div className="w-full mt-8 py-4 bg-transparent overflow-hidden">
+        {/* "CRACKDDDD People" Clock-like Carousel - Edge to Edge */}
+        <div className="w-full mt-8 py-4 bg-transparent">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
             CRACKDDDD People <span className="text-orange-500">🔥</span>
           </h2>
           
-          {/* Carousel Container */}
-          <div className="relative max-w-6xl mx-auto overflow-hidden">
+          {/* Carousel Container - Full Width with no padding */}
+          <div className="relative w-full overflow-hidden">
             <div 
               ref={peopleCarouselRef}
               className="flex transition-transform duration-1500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 320}px)` }}
+              style={{ transform: calculateTransform() }}
             >
               {/* Render people multiple times for continuous sliding */}
               {doublePeople.map((person, idx) => (
@@ -250,7 +357,7 @@ export default function Search() {
                     }
                     console.log("Clicked", person.name);
                   }}
-                  className="min-w-[300px] w-[300px] mx-2.5 bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
+                  className="min-w-[300px] w-[300px] mx-[2.5px] bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
                 >
                   <img
                     src={person.photoUrl}
