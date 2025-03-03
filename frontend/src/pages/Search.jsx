@@ -1,107 +1,223 @@
-import React, { useState } from 'react';
-import api from '../services/api';
-import { useUser } from '../context/UserContext';
-import ProfileCard from '../components/ProfileCard';
-import ProfileComparison from '../components/ProfileComparison';
-import SearchForm from '../components/SearchForm';
-import LoadingSpinner from '../components/LoadingSpinner';
+import React, { useState, useEffect, useRef } from 'react';
+// Import the separate NetworkGraphBackground component
+import NetworkGraphBackground from './NetworkGraphBackground';  // Adjust path if needed
 
-function Search() {
-  const { user } = useUser();
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
-  const [queryId, setQueryId] = useState(null);
-  const [error, setError] = useState(null);
-  const [showComparison, setShowComparison] = useState(false);
-  const [selectedProfiles, setSelectedProfiles] = useState([]);
-  const [voteMessage, setVoteMessage] = useState('');
+export default function Search() {
+  // Toggle for "Personalized?" option
+  const [personalized, setPersonalized] = useState(false);
+  // Search input state
+  const [searchText, setSearchText] = useState('');
+  // Ref for carousel container
+  const carouselRef = useRef(null);
 
-  const handleSearch = async (queryText) => {
-    setIsSearching(true);
-    setError(null);
-    setVoteMessage('');
-    setShowComparison(false);
-    try {
-      const response = await api.post('/query', { query_text: queryText, user_id: user?.id || null });
-      setSearchResults(response.data.profiles);
-      setQueryId(response.data.query_id);
-      if (response.data.profiles.length >= 2) {
-        setSelectedProfiles(response.data.profiles.slice(0, 2));
-        setShowComparison(true);
-      }
-    } catch (err) {
-      setError(err.response?.data?.error || 'Search failed');
-    } finally {
-      setIsSearching(false);
-    }
-  };
+  // Example quick tag data
+  const quickTags = [
+    { label: 'in Web3 or crypto' },
+    { label: 'PhDs now working at FAANG companies' },
+  ];
 
-  const handleVote = async (winnerId, loserId) => {
-    try {
-      await api.post('/vote', { user_id: user?.id, query_id: queryId, winner_profile_id: winnerId, loser_profile_id: loserId });
-      setVoteMessage('Thanks for your vote!');
-      setShowComparison(false);
-      const updatedResults = searchResults.map(profile => {
-        if (profile.id === winnerId) return { ...profile, elo_rating: profile.elo_rating + 10 };
-        if (profile.id === loserId) return { ...profile, elo_rating: profile.elo_rating - 5 };
-        return profile;
-      });
-      setSearchResults(updatedResults);
-    } catch (err) {
-      setError(err.response?.data?.error || 'Failed to record vote');
-    }
-  };
+  // Example "CRACKDDDD People" data
+  const people = [
+    {
+      name: 'Austin Patel',
+      role: 'CEO @ Nvidia',
+      location: 'Mountain View, California, United States',
+      edu: 'Stanford GSB (MBA)',
+      linkedin: '#',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Niklas Morningtoff',
+      role: 'Contextual AI',
+      location: 'San Jose, CA, United States',
+      edu: 'Stanford d.school Space',
+      linkedin: '#',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Rohan Sanda',
+      role: 'Apple',
+      location: 'Stanford Shared Space',
+      edu: 'Stanford Computer Science MS',
+      linkedin: '#',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Hailey So',
+      role: 'Apple',
+      location: 'Stanford, CA',
+      edu: 'Stanford Graduate School of Education',
+      linkedin: '#',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+    {
+      name: 'Grace Jin',
+      role: 'Apple',
+      location: 'San Francisco, CA',
+      edu: 'Stanford Computer Science BS',
+      linkedin: '#',
+      photoUrl: 'https://via.placeholder.com/60',
+    },
+  ];
 
-  const handleCompare = () => {
-    if (searchResults.length >= 2) {
-      setSelectedProfiles(searchResults.slice(0, 2));
-      setShowComparison(true);
-      setVoteMessage('');
-    }
+  // Create a tripled array to ensure enough content for seamless looping
+  const tripleContent = [...people, ...people, ...people];
+
+  // Handle width calculation for seamless scrolling
+  useEffect(() => {
+    if (!carouselRef.current) return;
+    
+    // Ensure the animation works correctly by adjusting the animation properties
+    const carouselWidth = carouselRef.current.scrollWidth / 3;
+    carouselRef.current.style.setProperty('--carousel-width', `${carouselWidth}px`);
+  }, []);
+
+  const handleSearch = () => {
+    console.log('Searching for:', searchText, 'Personalized:', personalized);
+    // Insert your search logic here...
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Search LinkedIn Profiles</h1>
-      <SearchForm onSearch={handleSearch} isSearching={isSearching} />
-      {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{error}</div>}
-      {voteMessage && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-          {voteMessage}{" "}
-          <button onClick={handleCompare} className="underline text-green-700 hover:text-green-800">Compare more profiles</button>
+    <>
+      {/* Add the network graph background */}
+      <NetworkGraphBackground />
+      
+      {/* Main content */}
+      <div
+        className="
+          relative min-h-screen 
+          bg-[url('https://images.unsplash.com/photo-1673462255986-0f931ed0c6c4?ixid=...')]
+          bg-no-repeat bg-cover bg-fixed
+          flex flex-col
+        "
+      >
+
+        {/* Hero / Search Section */}
+        <div className="flex flex-col items-center justify-center flex-grow px-4 pt-20 md:pt-8">
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-800 mb-2 text-center">
+            The Modern Alumni Network for McGill and Concordia
+          </h1>
+          <p className="text-md md:text-lg text-gray-600 mb-4 text-center">
+            Alumni who studied abroad and now work internationally
+          </p>
+
+          {/* Big Search Box */}
+          <div className="relative w-full max-w-2xl mt-4">
+            <textarea
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="e.g. Alumni who studied abroad and now work internationally"
+              rows={5}
+              className="
+                w-full py-3 px-4 pr-16
+                rounded-xl bg-white/70 backdrop-blur-sm border border-gray-300 text-gray-800
+                focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none
+              "
+            />
+            {/* Personalized checkbox in bottom-left */}
+            <div className="absolute bottom-2 left-3 flex items-center space-x-1">
+              <input
+                type="checkbox"
+                checked={personalized}
+                onChange={(e) => setPersonalized(e.target.checked)}
+                className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+              />
+              <label className="text-sm text-gray-800">Personalized?</label>
+            </div>
+            {/* Search button in top-right */}
+            <button
+              onClick={handleSearch}
+              className="
+                absolute top-2 right-3
+                text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700
+              "
+            >
+              Search
+            </button>
+          </div>
+
+          {/* Quick Tags */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
+            {quickTags.map((tag, idx) => (
+              <button
+                key={idx}
+                onClick={() => setSearchText(tag.label)}
+                className="px-4 py-1 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full text-sm text-gray-700 hover:bg-white/80 transition"
+              >
+                {tag.label}
+              </button>
+            ))}
+          </div>
         </div>
-      )}
-      {isSearching && (
-        <div className="my-12">
-          <LoadingSpinner message="Searching for relevant profiles..." />
+
+        {/* "CRACKDDDD People" Animated Carousel */}
+        <div className="w-full mt-8 py-4 bg-transparent overflow-hidden">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
+            CRACKDDDD People <span className="text-orange-500">🔥</span>
+          </h2>
+          
+          {/* Carousel Container */}
+          <div className="relative overflow-hidden">
+            <div 
+              ref={carouselRef}
+              className="flex carousel-content"
+            >
+              {/* Render items three times for a seamless loop */}
+              {tripleContent.map((person, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => console.log("Clicked", person.name)}
+                  className="min-w-[300px] flex-shrink-0 mx-3 bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
+                >
+                  <img
+                    src={person.photoUrl}
+                    alt={person.name}
+                    className="w-12 h-12 rounded-full bg-gray-300"
+                  />
+                  <div className="text-center">
+                    <h3 className="font-semibold text-gray-800">{person.name}</h3>
+                    <p className="text-sm text-gray-500">{person.role}</p>
+                    <p className="text-xs text-gray-400">{person.location}</p>
+                    <p className="text-xs text-gray-400">{person.edu}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      )}
-      {showComparison ? (
-        <ProfileComparison profiles={selectedProfiles} onVote={handleVote} onCancel={() => setShowComparison(false)} />
-      ) : (
-        <div>
-          {searchResults.length > 0 && !isSearching && (
-            <>
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold">Search Results ({searchResults.length})</h2>
-                {searchResults.length > 1 && !voteMessage && (
-                  <button onClick={handleCompare} className="px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700">Compare Profiles</button>
-                )}
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                {searchResults.map((profile) => (
-                  <ProfileCard key={profile.id} profile={profile} similarity={profile.similarity} />
-                ))}
-              </div>
-            </>
-          )}
-          {searchResults.length === 0 && !isSearching && (
-            <p className="text-gray-600 text-center py-10">No profiles found. Try a different search query.</p>
-          )}
-        </div>
-      )}
-    </div>
+
+        {/* CSS for carousel animation */}
+        <style>{`
+          .carousel-content {
+            animation: carousel-scroll 60s linear infinite;
+            will-change: transform;
+          }
+          
+          @keyframes carousel-scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-1 * var(--carousel-width)));
+            }
+          }
+          
+          @keyframes bounce {
+            0%, 100% {
+              transform: translateY(-25%);
+              animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+              transform: translateY(0);
+              animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+          }
+          
+          .animate-bounce {
+            animation: bounce 1s infinite;
+          }
+        `}</style>
+      </div>
+    </>
   );
 }
-
-export default Search;

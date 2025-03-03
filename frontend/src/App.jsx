@@ -12,7 +12,6 @@ import NotFound from './pages/NotFound';
 
 // Components
 import Header from './components/Header';
-import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
       <BrowserRouter>
         <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="container mx-auto px-4 py-8 flex-grow">
+          <main className="container mx-auto px-0 py-1 flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -38,7 +37,6 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
-          <Footer />
         </div>
       </BrowserRouter>
     </UserProvider>
