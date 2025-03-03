@@ -19,11 +19,11 @@ export default function Search() {
   // Example "CRACKDDDD People" data
   const people = [
     {
-      name: 'Austin Patel',
-      role: 'CEO @ Nvidia',
-      location: 'Mountain View, California, United States',
-      edu: 'Stanford GSB (MBA)',
-      linkedin: '#',
+      name: 'Lucas Miranda',
+      role: 'Software engineering & finance student',
+      location: 'Montréal, Canada',
+      edu: 'JMSB',
+      linkedin: 'https://www.linkedin.com/in/cielofinsoen/',
       photoUrl: 'https://via.placeholder.com/60',
     },
     {
@@ -164,24 +164,31 @@ export default function Search() {
             >
               {/* Render items three times for a seamless loop */}
               {tripleContent.map((person, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => console.log("Clicked", person.name)}
-                  className="min-w-[300px] flex-shrink-0 mx-3 bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
-                >
-                  <img
-                    src={person.photoUrl}
-                    alt={person.name}
-                    className="w-12 h-12 rounded-full bg-gray-300"
-                  />
-                  <div className="text-center">
-                    <h3 className="font-semibold text-gray-800">{person.name}</h3>
-                    <p className="text-sm text-gray-500">{person.role}</p>
-                    <p className="text-xs text-gray-400">{person.location}</p>
-                    <p className="text-xs text-gray-400">{person.edu}</p>
-                  </div>
-                </div>
-              ))}
+  <div
+    key={idx}
+    onClick={() => {
+      if (person.linkedin && person.linkedin !== '#') {
+        window.open(person.linkedin, '_blank');
+      }
+      console.log("Clicked", person.name);
+    }}
+    className="min-w-[300px] flex-shrink-0 mx-3 bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
+  >
+    <img
+      src={person.photoUrl}
+      alt={person.name}
+      className="w-12 h-12 rounded-full bg-gray-300"
+    />
+    <div className="text-center">
+      <h3 className="font-semibold text-gray-800">{person.name}</h3>
+      <p className="text-sm text-gray-500">{person.role}</p>
+      <p className="text-xs text-gray-400">{person.location}</p>
+      <p className="text-xs text-gray-400">{person.edu}</p>
+    </div>
+  </div>
+))}
+
+
             </div>
           </div>
         </div>
