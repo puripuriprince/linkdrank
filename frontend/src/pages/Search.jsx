@@ -7,13 +7,27 @@ export default function Search() {
   const [personalized, setPersonalized] = useState(false);
   // Search input state
   const [searchText, setSearchText] = useState('');
-  // Ref for carousel container
-  const carouselRef = useRef(null);
+  // Refs for carousels
+  const peopleCarouselRef = useRef(null);
+  const suggestionsCarouselRef = useRef(null);
+  // Current slide index for people carousel
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Example quick tag data
+  // Example quick tag data with more extensive suggestions
   const quickTags = [
     { label: 'in Web3 or crypto' },
     { label: 'PhDs now working at FAANG companies' },
+    { label: 'McGill grads at Google' },
+    { label: 'Product managers in fintech' },
+    { label: 'Concordia alumni in Silicon Valley' },
+    { label: 'Architects working in sustainability' },
+    { label: 'Lawyers specializing in tech' },
+    { label: 'Medical researchers at top hospitals' },
+    { label: 'Engineering leads in AI startups' },
+    { label: 'UX designers at Series A startups' },
+    { label: 'Data scientists in renewable energy' },
+    { label: 'MBA grads who switched to tech' },
+    { label: 'Psychology majors in HR leadership' },
   ];
 
   // Example "CRACKDDDD People" data
@@ -60,16 +74,61 @@ export default function Search() {
     },
   ];
 
-  // Create a tripled array to ensure enough content for seamless looping
-  const tripleContent = [...people, ...people, ...people];
+  // Create a tripled array for suggestions
+  const tripleTags = [...quickTags, ...quickTags, ...quickTags];
 
-  // Handle width calculation for seamless scrolling
+  // Create a doubled array for people to ensure continuous sliding
+  const doublePeople = [...people, ...people, ...people];
+
+  // For clock-like carousel, we use useEffect to handle the timing and sliding
   useEffect(() => {
-    if (!carouselRef.current) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => {
+        // Increment the slide
+        const nextSlide = prev + 1;
+        
+        // If we've reached the end of our original set, reset to the beginning
+        // but without visual disruption (the doubled array allows this)
+        if (nextSlide >= people.length) {
+          // We don't immediately reset to 0, we continue through the duplicate set
+          return nextSlide;
+        }
+        
+        return nextSlide;
+      });
+    }, 3000); // 1.5s pause + 1.5s transition = 3s total per slide
     
-    // Ensure the animation works correctly by adjusting the animation properties
-    const carouselWidth = carouselRef.current.scrollWidth / 3;
-    carouselRef.current.style.setProperty('--carousel-width', `${carouselWidth}px`);
+    return () => clearInterval(interval);
+  }, []);
+
+  // When we reach the end of the duplicated set, reset to the beginning seamlessly
+  useEffect(() => {
+    if (currentSlide >= people.length * 2) {
+      // Using setTimeout to ensure the transition animation is completed
+      setTimeout(() => {
+        // Disable transitions temporarily
+        if (peopleCarouselRef.current) {
+          peopleCarouselRef.current.style.transition = 'none';
+          // Reset to the first set of duplicates
+          setCurrentSlide(currentSlide % people.length);
+          
+          // Re-enable transitions after a brief delay
+          setTimeout(() => {
+            if (peopleCarouselRef.current) {
+              peopleCarouselRef.current.style.transition = 'transform 1.5s ease-in-out';
+            }
+          }, 50);
+        }
+      }, 1500);
+    }
+  }, [currentSlide]);
+
+  // Handle width calculation for suggestions carousel
+  useEffect(() => {
+    if (suggestionsCarouselRef.current) {
+      const suggestionsWidth = suggestionsCarouselRef.current.scrollWidth / 3;
+      suggestionsCarouselRef.current.style.setProperty('--suggestions-width', `${suggestionsWidth}px`);
+    }
   }, []);
 
   const handleSearch = () => {
@@ -88,7 +147,7 @@ export default function Search() {
           relative min-h-screen 
           bg-[url('https://images.unsplash.com/photo-1673462255986-0f931ed0c6c4?ixid=...')]
           bg-no-repeat bg-cover bg-fixed
-          flex flex-col
+          flex flex-col pb-10
         "
       >
 
@@ -101,112 +160,139 @@ export default function Search() {
             Alumni who studied abroad and now work internationally
           </p>
 
-          {/* Big Search Box */}
-          <div className="relative w-full max-w-2xl mt-4">
-            <textarea
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="e.g. Alumni who studied abroad and now work internationally"
-              rows={5}
-              className="
-                w-full py-3 px-4 pr-16
-                rounded-xl bg-white/70 backdrop-blur-sm border border-gray-300 text-gray-800
-                focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none
-              "
-            />
-            {/* Personalized checkbox in bottom-left */}
-            <div className="absolute bottom-2 left-3 flex items-center space-x-1">
-              <input
-                type="checkbox"
-                checked={personalized}
-                onChange={(e) => setPersonalized(e.target.checked)}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+          {/* Search Section */}
+          <div className="w-full max-w-2xl relative">
+            {/* Big Search Box */}
+            <div className="relative w-full">
+              <textarea
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="e.g. Alumni who studied abroad and now work internationally"
+                rows={5}
+                className="
+                  w-full py-3 px-4 pr-16
+                  rounded-xl bg-white/70 backdrop-blur-sm border border-gray-300 text-gray-800
+                  focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none
+                "
               />
-              <label className="text-sm text-gray-800">Personalized?</label>
-            </div>
-            {/* Search button in top-right */}
-            <button
-              onClick={handleSearch}
-              className="
-                absolute top-2 right-3
-                text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700
-              "
-            >
-              Search
-            </button>
-          </div>
-
-          {/* Quick Tags */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
-            {quickTags.map((tag, idx) => (
+              {/* Personalized checkbox in bottom-left */}
+              <div className="absolute bottom-2 left-3 flex items-center space-x-1">
+                <input
+                  type="checkbox"
+                  checked={personalized}
+                  onChange={(e) => setPersonalized(e.target.checked)}
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                />
+                <label className="text-sm text-gray-800">Personalized?</label>
+              </div>
+              {/* Glassmorphism search button in bottom-right with up arrow */}
               <button
-                key={idx}
-                onClick={() => setSearchText(tag.label)}
-                className="px-4 py-1 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full text-sm text-gray-700 hover:bg-white/80 transition"
+                onClick={handleSearch}
+                className="
+                  absolute bottom-2 right-3
+                  flex items-center justify-center
+                  h-8 w-8 rounded-full
+                  bg-white/40 backdrop-blur-md 
+                  border border-white/50
+                  shadow-md
+                  text-blue-600 font-bold
+                  hover:bg-white/60 hover:text-blue-700
+                  transition duration-200
+                "
               >
-                {tag.label}
+                ↑
               </button>
-            ))}
+            </div>
+            
+            {/* Quick Tags Carousel - positioned below the search box */}
+            <div className="w-full overflow-hidden mt-3">
+              <div className="relative overflow-hidden">
+                <div 
+                  ref={suggestionsCarouselRef}
+                  className="flex suggestions-carousel"
+                >
+                  {/* Render items three times for a seamless loop */}
+                  {tripleTags.map((tag, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSearchText(tag.label)}
+                      className="min-w-max flex-shrink-0 mx-2 px-4 py-1.5 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full text-sm text-gray-700 hover:bg-white/80 transition"
+                    >
+                      {tag.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* "CRACKDDDD People" Animated Carousel */}
+        {/* "CRACKDDDD People" Clock-like Carousel */}
         <div className="w-full mt-8 py-4 bg-transparent overflow-hidden">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
             CRACKDDDD People <span className="text-orange-500">🔥</span>
           </h2>
           
           {/* Carousel Container */}
-          <div className="relative overflow-hidden">
+          <div className="relative max-w-6xl mx-auto overflow-hidden">
             <div 
-              ref={carouselRef}
-              className="flex carousel-content"
+              ref={peopleCarouselRef}
+              className="flex transition-transform duration-1500 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 320}px)` }}
             >
-              {/* Render items three times for a seamless loop */}
-              {tripleContent.map((person, idx) => (
-  <div
-    key={idx}
-    onClick={() => {
-      if (person.linkedin && person.linkedin !== '#') {
-        window.open(person.linkedin, '_blank');
-      }
-      console.log("Clicked", person.name);
-    }}
-    className="min-w-[300px] flex-shrink-0 mx-3 bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
-  >
-    <img
-      src={person.photoUrl}
-      alt={person.name}
-      className="w-12 h-12 rounded-full bg-gray-300"
-    />
-    <div className="text-center">
-      <h3 className="font-semibold text-gray-800">{person.name}</h3>
-      <p className="text-sm text-gray-500">{person.role}</p>
-      <p className="text-xs text-gray-400">{person.location}</p>
-      <p className="text-xs text-gray-400">{person.edu}</p>
-    </div>
-  </div>
-))}
-
-
+              {/* Render people multiple times for continuous sliding */}
+              {doublePeople.map((person, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    if (person.linkedin && person.linkedin !== '#') {
+                      window.open(person.linkedin, '_blank');
+                    }
+                    console.log("Clicked", person.name);
+                  }}
+                  className="min-w-[300px] w-[300px] mx-2.5 bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
+                >
+                  <img
+                    src={person.photoUrl}
+                    alt={person.name}
+                    className="w-12 h-12 rounded-full bg-gray-300"
+                  />
+                  <div className="text-center">
+                    <h3 className="font-semibold text-gray-800">{person.name}</h3>
+                    <p className="text-sm text-gray-500">{person.role}</p>
+                    <p className="text-xs text-gray-400">{person.location}</p>
+                    <p className="text-xs text-gray-400">{person.edu}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* CSS for carousel animation */}
+        {/* CSS for carousel animations */}
         <style>{`
-          .carousel-content {
-            animation: carousel-scroll 60s linear infinite;
+          .suggestions-carousel {
+            animation: suggestions-scroll 40s linear infinite;
             will-change: transform;
+            width: 100%; 
+            padding: 2px 0;
           }
           
-          @keyframes carousel-scroll {
+          @keyframes suggestions-scroll {
             0% {
               transform: translateX(0);
             }
             100% {
-              transform: translateX(calc(-1 * var(--carousel-width)));
+              transform: translateX(calc(-1 * var(--suggestions-width)));
             }
+          }
+          
+          .transition-transform {
+            transition-property: transform;
+          }
+          
+          .duration-1500 {
+            transition-duration: 1500ms;
           }
           
           @keyframes bounce {
