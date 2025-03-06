@@ -9,10 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@iconify/react": "^5.2.0",
+    "@radix-ui/themes": "^3.2.1",
+    "@supabase/supabase-js": "^2.49.1",
+    "axios": "^1.8.1",
     "next": "15.2.1",
     "postcss": "^8.5.3",
+    "posthog-js": "^1.227.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sonner": "^2.0.1",
+    "supabase": "^2.15.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
