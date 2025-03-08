@@ -1,4 +1,5 @@
 import "src/globals.css";
+import "@radix-ui/themes/styles.css";
 
 import type { Metadata, Viewport } from 'next';
 
