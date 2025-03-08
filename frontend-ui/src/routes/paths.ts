@@ -12,6 +12,8 @@ export const paths = {
   leaderboard: '/leaderboard',
   feedback: '/',
   search: '/search',
+  privacy: '/privacy',
+  terms: '/terms',
   people: {
     root: '/search',
     details: (handle: string) => `/p/${handle}`,

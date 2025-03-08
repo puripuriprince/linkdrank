@@ -1,1 +1,76 @@
 @import "tailwindcss";
+
+:root {
+    --desktop-header-top: 1.25rem;
+    --desktop-header-height: 6.6875rem;
+    --mobile-header-height: calc(3rem + 1px);
+    --mobile-tab-bar-height: calc(3.5rem + 1px);
+
+    --current: currentColor;
+    --transparent: transparent;
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+    --grayish-blue-150: 240deg 9% 94%;
+    --grayish-blue-200: 240deg 6% 91%;
+    --grayish-blue-250: 240deg 5% 88%;
+    --grayish-blue-300: 240deg 7% 84%;
+    --gray-50: 0deg 0% 98%;
+    --gray-100: 240deg 5% 96%;
+    --gray-200: 240deg 6% 90%;
+    --gray-300: 240deg 5% 84%;
+    --gray-400: 240deg 5% 65%;
+    --gray-500: 240deg 4% 46%;
+    --gray-600: 240deg 5% 34%;
+    --gray-700: 240deg 6% 26%;
+    --gray-800: 240deg 4% 16%;
+    --gray-900: 240deg 6% 10%;
+    --gray-950: 240deg 10% 4%;
+    --font-size-2xs: 0.6875rem;
+    --line-height-2xs: 0.875rem;
+    --font-size-xs: 0.8125rem;
+    --line-height-xs: 1rem;
+    --font-size-sm: 0.875rem;
+    --line-height-sm: 1.25rem;
+    --font-size-base: 1rem;
+    --line-height-base: 1.5rem;
+    --font-size-lg: 1.125rem;
+    --line-height-lg: 1.625rem;
+    --font-size-xl: 1.25rem;
+    --line-height-xl: 1.625rem;
+    --font-size-2xl: 1.375rem;
+    --line-height-2xl: 1.75rem;
+    --font-size-3xl: 1.625rem;
+    --line-height-3xl: 2rem;
+    --font-size-4xl: 2rem;
+    --line-height-4xl: 2.5rem;
+    --font-size-5xl: 2.5rem;
+    --line-height-5xl: 3rem;
+    --font-size-6xl: 3rem;
+    --line-height-6xl: 1;
+    --font-size-7xl: 3.75rem;
+    --line-height-7xl: 4.25rem;
+}
+
+:where([data-theme=dark]) {
+    --bg-system-marketing-primary: var(--black);
+    --bg-system-marketing-secondary: var(--gray-900);
+    --bg-system-marketing-tertiary: var(--gray-800);
+    --text-system-marketing-primary: var(--white);
+    --text-system-marketing-secondary: var(--gray-300);
+    --text-system-marketing-tertiary: var(--gray-500);
+    --text-system-primary: var(--white);
+    --text-system-secondary: var(--gray-400);
+    --text-system-tertiary: var(--gray-500);
+    --border-system-primary: var(--gray-800);
+    --border-system-secondary: var(--gray-700);
+}
+
+.bg-system-marketing-primary {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--bg-system-marketing-primary) / var(--tw-bg-opacity, 1));
+}
+
+.px-safe-offset-4 {
+    padding-right: calc(env(safe-area-inset-right) + 1rem);
+    padding-left: calc(env(safe-area-inset-left) + 1rem);
+}

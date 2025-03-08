@@ -14,7 +14,7 @@ export type NavItemOptionsProps = {
 };
 
 export type NavItemDataProps = {
-  path: string;
+  href: string;
   title: string;
   icon?: string | React.ReactNode;
   children?: {

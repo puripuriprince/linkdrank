@@ -1,56 +1,89 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { usePathname } from 'src/routes/hooks';
-import { useAuthContext } from '../../../../auth/hooks';
-import { paths } from 'src/routes/paths';
-import { cn } from 'src/lib/utils';
-import { Button, Box, Flex } from '@radix-ui/themes';
+import {Icon} from "@iconify/react";
+import {FC} from "react";
+import {DesktopHeaderProps} from "../desktop";
+import {Button} from "@radix-ui/themes";
+import {cn} from "src/lib/utils";
+import {usePathname} from "src/routes/hooks";
+import {paths} from "src/routes/paths";
 
-export type NavMobileProps = {
-    data: Array<{ title: string; href: string; icon: React.ReactNode }>;
-    open: boolean;
-    onClose: () => void;
+export type MobileNavProps = {
+    data: { title: string; href: string, icon?: string }[];
+    className?: string;
 };
 
-export function NavMobile({ data, open, onClose }: NavMobileProps) {
-    const pathname = usePathname();
-    const { authenticated } = useAuthContext();
+export function MobileHeader() {
+    return (
+        <header
+            className="fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b bg-system-marketing-primary px-safe-offset-4 md:hidden">
 
-    useEffect(() => {
-        if (open) {
-            onClose();
-        }
-    }, [pathname]);
+            {/* Left: Login/Profile Button */}
+            <div
+                className="flex flex-row items-center data-[align=start]:col-start-1 data-[align=start]:[place-self:center_start] data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
+                <Icon icon="ph:user-circle" width={24} height={24}/>
+            </div>
+
+            {/* Center: Branding */}
+            <p className="col-start-2 place-self-center text-[17px] font-semibold">
+                AI Emojis
+            </p>
+
+            {/* Right: iOS Download Button */}
+            <div className="flex flex-row items-center justify-end data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
+                <a
+                    href="https://apps.apple.com/us/app/ai-emojis-generator/id6468916301"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative rounded outline-none after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-px after:rounded-md"
+                >
+                    <Icon icon="mdi:apple" width={24} height={24}/>
+                    <span className="sr-only">Download iOS App</span>
+                </a>
+            </div>
+        </header>
+    );
+}
+
+export const MobileNav: FC<DesktopHeaderProps> = ({
+                                                          data,
+                                                          className,
+                                                      }: MobileNavProps) => {
+    const pathname = usePathname();
 
     return (
-        <nav className="fixed inset-x-0 bottom-0 h-[calc(var(--mobile-tab-bar-height)-1px)] select-none flex min-w-full flex-row justify-evenly border-t bg-system-marketing-primary py-[5px] md:hidden">
-            {data.map((item) => (
+        <nav
+            className={cn(
+                "fixed inset-x-0 bottom-0 h-[calc(var(--mobile-tab-bar-height)-1px)] select-none flex min-w-full flex-row justify-evenly border-t bg-system-marketing-primary py-[5px] md:hidden",
+                className
+            )}
+        >
+            {data.map(({ title, href, icon }) => (
                 <a
-                    key={item.title}
-                    href={item.href}
+                    key={title}
+                    href={href}
                     className={cn(
-                        'rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px]',
-                        pathname === item.href ? 'text-system-primary' : 'text-gray-400 dark:text-gray-500'
+                        "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-400 dark:text-gray-500 transition-colors",
+                        pathname === href && "text-system-primary",
+                        "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]"
                     )}
                 >
-                    {item.icon}
-                    <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">
-                        {item.title}
-                    </p>
+                    {icon && <Icon icon={icon} width={28} height={28} className="h-7 w-7 shrink-0" />}
+                    <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">{title}</p>
                 </a>
             ))}
-            <Box className="flex flex-1 flex-col items-center justify-center gap-[5px]">
-                {authenticated ? (
-                    <a href={paths.profile.root} className="text-[10px] font-medium">
-                        Dashboard
-                    </a>
-                ) : (
-                    <a href={paths.profile.root} className="text-[10px] font-medium">
-                        Sign In
-                    </a>
+
+            {/* Profile Button */}
+            <a
+                className={cn(
+                    "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-400 dark:text-gray-500 transition-colors",
+                    pathname === paths.profile.root && "text-system-primary",
+                    "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]"
                 )}
-            </Box>
+            >
+                <Icon icon="ph:user-circle" width={28} height={28} className="h-7 w-7 shrink-0" />
+                <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">Profile</p>
+            </a>
         </nav>
     );
 }
