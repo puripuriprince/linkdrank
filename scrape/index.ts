@@ -1,38 +1,25 @@
 import { LinkedInScraper } from "./LinkedInScraper";
-import { ScraperConfig } from "./ScraperConfig";
-import {chromium} from "playwright";
-import {PeopleSearchConfig} from "./PeopleSearchConfig";
-import {PeopleSearch} from "./PeopleSearch";
+import { ProfileConfig, PeopleSearchConfig } from "./Models";
 
 (async () => {
-    const config = new ScraperConfig();
-
-    const scraper = new LinkedInScraper(config);
-    await scraper.init();
-
-    const profile = await scraper.scrapeProfile("https://www.linkedin.com/in/abinaya-ramanathan/");
-    console.log(profile.toJSON());
-})();
-
-(async () => {
-    // Launch the browser.
-    const browser = await chromium.launch({ headless: false });
-    const context = await browser.newContext();
-    const page = await context.newPage();
-
-    // Define search configuration with filters.
-    const config: PeopleSearchConfig = {
+    const config = new ProfileConfig();
+    const config2: PeopleSearchConfig = {
         filters: {
             keywords: "Software Engineer",
-            currentCompany: "1441",
+            currentCompany: "1337",
             schoolFilter: "163191",
+            origin: 'GLOBAL_SEARCH_HEADER',
         },
-        pagesToScrape: 5,
-        closeOnComplete: true,
+        pagesToScrape: 3,
         waitForTimeout: 3000,
     };
-    // Create and run the PeopleSearch.
-    const peopleSearch = new PeopleSearch(page, config);
-    await peopleSearch.scrapePeople();
-    console.log(peopleSearch.toJSON());
+
+    const scraper = new LinkedInScraper();
+    await scraper.init();
+
+    const profile = await scraper.getProfile("https://www.linkedin.com/in/gwladys-djuikom-6a4770179", config);
+    console.log(profile.toJSON());
+
+    const peopleSearch = await scraper.searchPeople(config2);
+    console.log(peopleSearch);
 })();

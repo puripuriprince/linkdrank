@@ -1,47 +1,31 @@
 import { Page, ElementHandle } from "playwright";
-import { Person } from "./PersonSearch";
-import { PeopleSearchConfig } from "./PeopleSearchConfig";
-import { removeQueryParams } from "./utils";
+import { Person, PeopleSearchConfig } from "./Models";
+import {autoScroll, removeQueryParams} from "./common";
 
 export class PeopleSearch {
+    public peopleResults: Person[] = [];
     private page: Page;
     private config: PeopleSearchConfig;
-    public peopleResults: Person[] = [];
 
-    constructor(page: Page, config: PeopleSearchConfig = {}) {
+    constructor(page: Page, config: PeopleSearchConfig) {
         this.page = page;
-        // Set default configuration values and merge with any provided config.
+        // Merge provided config with default values.
         this.config = {
             baseUrl: "https://www.linkedin.com/search/results/",
-            pagesToScrape: 100,
-            closeOnComplete: false,
-            waitForTimeout: 2000,
             filters: {},
             ...config,
         };
     }
 
-    /**
-     * Kick off the scraping process.
-     */
     async scrapePeople(): Promise<void> {
         const url = this.buildUrl();
         await this.page.goto(url, { waitUntil: "domcontentloaded" });
-        await this.scrollToBottom();
-        await this.focus();
-        await this.page.waitForTimeout(this.config.waitForTimeout || 2000);
+        await autoScroll(this.page);
+        await this.page.waitForTimeout(this.config.waitForTimeout);
         await this.scrapePage(1);
-
-        if (this.config.closeOnComplete) {
-            await this.page.context().browser()?.close();
-        }
     }
 
-    /**
-     * Build the search URL with filters.
-     * To add a new filter, simply add a new key/value pair to the filters config.
-     */
-    buildUrl(): string {
+    private buildUrl(): string {
         const { baseUrl, filters } = this.config;
         const searchPath = "people";
         const params: string[] = [];
@@ -57,18 +41,11 @@ export class PeopleSearch {
             : `${baseUrl}${searchPath}`;
     }
 
-    /**
-     * Scrape a single search results page.
-     */
-    async scrapePage(currentPage: number): Promise<void> {
+    private async scrapePage(currentPage: number): Promise<void> {
         console.log(`Scraping page ${currentPage}...`);
-        // Wait for the main search results container to load.
-        // Adjust the selector if LinkedIn changes its layout.
-        const mainSelector = "div.search-results-container, ul.search-results__list";
+        const mainSelector = "div.search-results-container";
         await this.page.waitForSelector(mainSelector, { timeout: 15000 });
-
-        // Use a selector for the people card; you might need to update this based on the actual DOM.
-        const cardSelector = "div[data-view-id='search-entity-result']";
+        const cardSelector = "div[data-view-name='search-entity-result-universal-template']";
         const cards = await this.page.$$(cardSelector);
 
         for (const card of cards) {
@@ -80,15 +57,13 @@ export class PeopleSearch {
             }
         }
 
-        // Check if we should proceed to the next page.
         if (currentPage < (this.config.pagesToScrape || 1)) {
             try {
                 const nextButton = await this.page.waitForSelector("button[aria-label='Next']", { timeout: 5000 });
                 if (nextButton && (await nextButton.isEnabled())) {
                     await nextButton.click();
-                    await this.page.waitForTimeout(this.config.waitForTimeout || 2000);
-                    await this.focus();
-                    await this.scrollToBottom();
+                    await this.page.waitForTimeout(this.config.waitForTimeout);
+                    await autoScroll(this.page);
                     await this.scrapePage(currentPage + 1);
                 } else {
                     console.log("Next button not enabled or not found. Ending scrape.");
@@ -99,46 +74,30 @@ export class PeopleSearch {
         }
     }
 
-    /**
-     * Scrape an individual person card.
-     * Adjust the selectors based on the current LinkedIn DOM.
-     */
-    async scrapePersonCard(card: ElementHandle<Element>): Promise<Person> {
-        // Get the profile link element.
-        const linkElem = await card.$("a");
+    private async scrapePersonCard(card: ElementHandle<Element>): Promise<Person> {
+        const linkElem = await card.$('a[data-test-app-aware-link]');
         if (!linkElem) throw new Error("No link element found on card");
-        const linkedinUrlRaw = (await linkElem.getAttribute("href")) || "";
-        const linkedinUrl = removeQueryParams(linkedinUrlRaw);
+        const rawUrl = (await linkElem.getAttribute("href")) || "";
+        const linkedinUrl = removeQueryParams(rawUrl);
 
-        // Get the image (if any).
-        const logoElem = await card.$("img");
-        const picture = logoElem ? (await logoElem.getAttribute("src")) || "" : "";
+        const imgElem = await card.$("img");
+        const picture = imgElem ? (await imgElem.getAttribute("src")) || "" : "";
 
-        // Extract name, title, and location.
-        const nameElem = await card.$("span.actor-name, span.entity-result__title-text");
+        const nameElem = await card.$('a[data-test-app-aware-link] span[aria-hidden="true"]');
         const name = nameElem ? (await nameElem.textContent())?.trim() || "" : "";
 
-        const titleElem = await card.$("div.entity-result__primary-subtitle");
-        const title = titleElem ? (await titleElem.textContent())?.trim() || "" : "";
+        const container = await card.$("div.mb1");
 
-        const locationElem = await card.$("div.entity-result__secondary-subtitle");
-        const location = locationElem ? (await locationElem.textContent())?.trim() || "" : "";
+        let title = "";
+        let location = "";
+        if (container) {
+            const titleElem = await container.$("div.t-14.t-black.t-normal");
+            title = titleElem ? (await titleElem.textContent())?.trim() || "" : "";
+
+            const locationElem = await container.$("div.t-14.t-normal:not(.t-black)");
+            location = locationElem ? (await locationElem.textContent())?.trim() || "" : "";
+        }
 
         return { linkedinUrl, name, picture, title, location };
-    }
-
-    async scrollToBottom(): Promise<void> {
-        await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    }
-
-    async focus(): Promise<void> {
-        await this.page.evaluate(() => document.body.focus());
-    }
-
-    /**
-     * Return the results as a JSON string.
-     */
-    toJSON(indent = 2): string {
-        return JSON.stringify(this.peopleResults, null, indent);
     }
 }
