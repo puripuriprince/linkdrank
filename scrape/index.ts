@@ -3,6 +3,12 @@ import { ProfileConfig, PeopleSearchConfig } from "./Models";
 
 (async () => {
     const config = new ProfileConfig();
+    config.scrapeAbout = false;
+    config.scrapeEducation = false;
+    config.scrapeHonors = false;
+    config.scrapeRecommendations = false;
+    config.scrapeProjects = false;
+
     const config2: PeopleSearchConfig = {
         filters: {
             keywords: "Software Engineer",
@@ -17,7 +23,7 @@ import { ProfileConfig, PeopleSearchConfig } from "./Models";
     const scraper = new LinkedInScraper();
     await scraper.init();
 
-    const profile = await scraper.getProfile("https://www.linkedin.com/in/gwladys-djuikom-6a4770179", config);
+    const profile = await scraper.getProfile("https://www.linkedin.com/in/beaudelaire", config);
     console.log(profile.toJSON());
 
     const peopleSearch = await scraper.searchPeople(config2);

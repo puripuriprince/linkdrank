@@ -3,7 +3,7 @@ import { PersonProfile, ProfileConfig } from "./Models";
 import {autoScroll, removeQueryParams} from "./common";
 
 export class PersonProfileScraper {
-    private page: Page;
+    private readonly page: Page;
 
     constructor(page: Page, private config: ProfileConfig) {
         this.page = page;
@@ -118,10 +118,12 @@ export class PersonProfileScraper {
         return await this.page.evaluate(
             (dedupFunc: string) => {
                 const deduplicate = eval(dedupFunc);
+
                 function parseDelimited(text: string) {
                     const parts = text.split("·").map(p => p.trim());
                     return { first: parts[0] || "", second: parts[1] || "" };
                 }
+
                 function parseDateInfo(text: string) {
                     const parts = text.split("·").map(p => p.trim());
                     let dateRange = parts[0] || "";
@@ -132,41 +134,92 @@ export class PersonProfileScraper {
                     }
                     return { startDate, endDate, duration };
                 }
-                const items = document.querySelectorAll("li.pvs-list__paged-list-item");
+
+                const items = document.querySelectorAll(".scaffold-finite-scroll__content > ul > li.pvs-list__paged-list-item:not(li li)")
                 const experiences: any[] = [];
                 items.forEach(item => {
-                    const spans = Array.from(item.querySelectorAll("span[aria-hidden='true']"));
-                    let title = "", companyRaw = "", dateText = "", locationRaw = "";
-                    if (spans.length >= 4) {
-                        title = deduplicate(spans[0].textContent);
-                        companyRaw = deduplicate(spans[1].textContent);
-                        dateText = deduplicate(spans[2].textContent);
-                        locationRaw = deduplicate(spans[3].textContent);
-                    } else if (spans.length === 3) {
-                        title = deduplicate(spans[0].textContent);
-                        companyRaw = deduplicate(spans[1].textContent);
-                        dateText = deduplicate(spans[2].textContent);
-                    } else if (spans.length === 2) {
-                        title = deduplicate(spans[0].textContent);
-                        companyRaw = deduplicate(spans[1].textContent);
+
+                    const isNested = item.querySelector("li.pvs-list__paged-list-item");
+
+                    if (isNested) {
+                        const nestedContainer = item.querySelector("ul")
+                        const companyLogoElem = item.querySelector("img");
+                        const companyLogo = companyLogoElem ? companyLogoElem.getAttribute("src") || "" : "";
+
+                        const companyInfoSpan = item.querySelector("span[aria-hidden='true']");
+                        const companyName = companyInfoSpan ? deduplicate(companyInfoSpan.textContent) : "";
+
+                        const roleItems = nestedContainer?.querySelectorAll("li.pvs-list__paged-list-item");
+                        roleItems?.forEach(roleItem => {
+                            const roleSpans = Array.from(roleItem.querySelectorAll("span[aria-hidden='true']"));
+                            let title = "", employmentType = "", dateText = "", location = "";
+                            if (roleSpans.length >= 3) {
+                                title = deduplicate(roleSpans[0].textContent);
+                                employmentType = deduplicate(roleSpans[1].textContent);
+                                dateText = deduplicate(roleSpans[2].textContent);
+                                if (roleSpans.length >= 4) {
+                                    location = deduplicate(roleSpans[3].textContent);
+                                }
+                            }
+                            const { startDate, endDate, duration } = parseDateInfo(dateText);
+                            experiences.push({
+                                title,
+                                companyName,
+                                employmentType,
+                                location,
+                                workMode: "",
+                                startDate,
+                                endDate,
+                                duration,
+                                companyLogo
+                            });
+                        });
+                    } else {
+                        // No nested roles
+                        const spans = Array.from(item.querySelectorAll("span[aria-hidden='true']"));
+                        let title = "", companyRaw = "", dateText = "", locationRaw = "";
+                        if (spans.length >= 4) {
+                            title = deduplicate(spans[0].textContent);
+                            companyRaw = deduplicate(spans[1].textContent);
+                            dateText = deduplicate(spans[2].textContent);
+                            locationRaw = deduplicate(spans[3].textContent);
+                        } else if (spans.length === 3) {
+                            title = deduplicate(spans[0].textContent);
+                            companyRaw = deduplicate(spans[1].textContent);
+                            dateText = deduplicate(spans[2].textContent);
+                        } else if (spans.length === 2) {
+                            title = deduplicate(spans[0].textContent);
+                            companyRaw = deduplicate(spans[1].textContent);
+                        }
+                        let companyName = companyRaw, employmentType = "";
+                        if (companyRaw.includes("·")) {
+                            const parsed = parseDelimited(companyRaw);
+                            companyName = parsed.first;
+                            employmentType = parsed.second;
+                        }
+                        let location = locationRaw, workMode = "";
+                        if (locationRaw && locationRaw.includes("·")) {
+                            const parsed = parseDelimited(locationRaw);
+                            location = parsed.first;
+                            workMode = parsed.second;
+                        }
+                        const { startDate, endDate, duration } = parseDateInfo(dateText);
+                        const logoElem = item.querySelector("img");
+                        const logo = logoElem ? logoElem.getAttribute("src") || "" : "";
+                        experiences.push({
+                            title,
+                            companyName,
+                            employmentType,
+                            location,
+                            workMode,
+                            startDate,
+                            endDate,
+                            duration,
+                            logo
+                        });
                     }
-                    let company = companyRaw, contractType = "";
-                    if (companyRaw.includes("·")) {
-                        const parsed = parseDelimited(companyRaw);
-                        company = parsed.first;
-                        contractType = parsed.second;
-                    }
-                    let location = locationRaw, workMode = "";
-                    if (locationRaw && locationRaw.includes("·")) {
-                        const parsed = parseDelimited(locationRaw);
-                        location = parsed.first;
-                        workMode = parsed.second;
-                    }
-                    const { startDate, endDate, duration } = parseDateInfo(dateText);
-                    const logoElem = item.querySelector("img");
-                    const logo = logoElem ? logoElem.getAttribute("src") || "" : "";
-                    experiences.push({ title, company, contractType, location, workMode, startDate, endDate, duration, logo });
                 });
+
                 return experiences;
             },
             PersonProfileScraper.deduplicateScript
@@ -210,8 +263,8 @@ export class PersonProfileScraper {
                     }
                     const yearInfo = parseYears(yearText);
                     const logoElem = item.querySelector("img");
-                    const logo = logoElem ? logoElem.getAttribute("src") || "" : "";
-                    educations.push({ school, degree, logo, ...yearInfo });
+                    const companyLogo = logoElem ? logoElem.getAttribute("src") || "" : "";
+                    educations.push({ school, degree, companyLogo, ...yearInfo });
                 });
                 return educations;
             },
@@ -357,17 +410,25 @@ export class PersonProfileScraper {
         await this.clickSeeMoreButtons();
         return await this.page.evaluate((dedupFunc: string) => {
             const deduplicate = eval(dedupFunc);
+
+            function parseDelimited(text: string) {
+                const parts = text.split("·").map(p => p.trim());
+                return { first: parts[0] || "", second: parts[1] || "" };
+            }
+
             const items = document.querySelectorAll("li.pvs-list__paged-list-item");
             const honors: any[] = [];
             items.forEach(item => {
                 const titleElem = item.querySelector("div.t-bold");
                 const detailElem = item.querySelector("span.t-14.t-normal");
                 const title = titleElem ? deduplicate(titleElem.textContent) : "";
-                const details = detailElem ? deduplicate(detailElem.textContent) : "";
+                const details = parseDelimited(detailElem ? deduplicate(detailElem.textContent) : "");
+                const issuer =  details.first;
+                const date = details.second;
                 const logoElem = item.querySelector("img");
                 const logo = logoElem ? logoElem.getAttribute("src") || "" : "";
                 if (title || details || logo) {
-                    honors.push({ title, details, logo });
+                    honors.push({ title, issuer, date, logo });
                 }
             });
             return honors;
