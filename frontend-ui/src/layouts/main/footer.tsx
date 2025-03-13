@@ -1,7 +1,9 @@
-import { Flex, Box, Text, Link, Button, Separator, Heading } from "@radix-ui/themes";
 import { Icon } from "@iconify/react";
 import { FC } from "react";
 import {paths} from "src/routes/paths";
+import {cn} from "src/lib/utils";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface LinkItem {
   label?: string;
@@ -40,10 +42,10 @@ interface FooterProps {
 
 export const Footer: FC<FooterProps> = ({ className }) => {
   return (
-      <footer className={`w-full border-t bg-white dark:bg-black py-14 px-4 ${className || ""}`}>
-        <Flex className="max-w-6xl mx-auto space-y-16" direction="column">
-          <Flex wrap="wrap" gap="8" justify="between">
-            <Flex direction="column" className="col-span-2 gap-4 md:col-span-2">
+      <footer className={cn('w-full border-t bg-white dark:bg-black py-14 px-4 z-[1000]', className)}>
+        <div className="flex flex-col max-w-6xl mx-auto space-y-16">
+          <div className="flex flex-wrap gap-8 justify-between">
+            <div className="flex flex-col col-span-2 gap-4 md:col-span-2">
               <Link href="/" className="w-fit font-semibold">
                 <img
                     aria-hidden="true"
@@ -54,47 +56,49 @@ export const Footer: FC<FooterProps> = ({ className }) => {
                     src="https://attic.sh/_static/emojis-opengraph/favicon-96x96.png"
                 />
               </Link>
-              <Flex gap="3">
-                <Button asChild variant="solid">
+              <div className="flex gap-3">
+                <Button asChild>
                   <Link href="https://apps.apple.com/us/app/ai-emojis-generator/id6468916301">
-                    <Icon icon="mdi:apple" className="w-6 h-6" /> iOS App
+                    <Icon icon="mdi:apple" className="w-6 h-6"/> iOS App
                   </Link>
                 </Button>
-                <Button asChild variant="solid">
+                <Button asChild>
                   <Link href="https://play.google.com/store/apps/details?id=sh.emojis.app">
-                    <Icon icon="mdi:google-play" className="w-6 h-6" /> Android App
+                    <Icon icon="mdi:google-play" className="w-6 h-6"/> Android App
                   </Link>
                 </Button>
-              </Flex>
-              <Flex gap="4">
-                {LINKS.social.map(({ icon, href }, idx) => (
-                    <a key={idx} href={href} className="text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
-                      <Icon icon={icon!} className="w-6 h-6" />
+              </div>
+              <div className="flex gap-4">
+                {LINKS.social.map(({icon, href}, idx) => (
+                    <a key={idx} href={href}
+                       className="text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
+                      <Icon icon={icon!} className="w-6 h-6"/>
                     </a>
                 ))}
-              </Flex>
-            </Flex>
+              </div>
+            </div>
             {["features", "company"].map((category) => (
-                <Box key={category}>
-                  <Heading size="3" className="text-black dark:text-white" mb='4'>
+                <div key={category}>
+                  <h3 className="text-black dark:text-white mb-4">
                     {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </Heading>
-                  <Flex direction="column" gap="3">
-                    {LINKS[category as keyof LinksStructure].map(({ label, href }) => (
-                        <a key={href} href={href} className="text-gray-500 dark:text-gray-400 hover:text-gray-950 dark:hover:text-gray-100 transition-colors ease-out">
+                  </h3>
+                  <div className="flex flex-col gap-3">
+                    {LINKS[category as keyof LinksStructure].map(({label, href}) => (
+                        <a key={href} href={href}
+                           className="text-gray-500 dark:text-gray-400 hover:text-gray-950 dark:hover:text-gray-100 transition-colors ease-out">
                           {label}
                         </a>
                     ))}
-                  </Flex>
-                </Box>
+                  </div>
+                </div>
             ))}
-          </Flex>
-          <Separator />
-          <Flex justify="between" align="center">
-            <Text className="text-sm text-black dark:text-white">© {new Date().getFullYear()}</Text>
-            <Flex align="center" gap="2">
-              <Text className="text-sm text-black dark:text-white">Crafted with love in Montreal</Text>
-              <Box className="relative w-9 h-9 rotate-6">
+          </div>
+          <hr className="border-[0.5px] border-black/[0.13] dark:border-white/[0.13] h-px border-b-0"/>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-black dark:text-white">© {new Date().getFullYear()}</p>
+            <div className="flex items-center gap-2">
+              <p className="text-sm text-black dark:text-white">Crafted with love in Montreal</p>
+              <div className="relative w-9 h-9 rotate-6">
                 <img
                     alt="San Francisco map"
                     className="absolute inset-0 rounded-lg dark:hidden"
@@ -105,10 +109,10 @@ export const Footer: FC<FooterProps> = ({ className }) => {
                     className="absolute inset-0 rounded-lg hidden dark:block"
                     src="https://attic.sh/_static/emojis/san-francisco-map-dark.webp"
                 />
-              </Box>
-            </Flex>
-          </Flex>
-        </Flex>
+              </div>
+            </div>
+          </div>
+        </div>
       </footer>
   );
 };

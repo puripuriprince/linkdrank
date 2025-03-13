@@ -3,7 +3,6 @@
 import {Icon} from "@iconify/react";
 import {FC} from "react";
 import {DesktopHeaderProps} from "../desktop";
-import {Button} from "@radix-ui/themes";
 import {cn} from "src/lib/utils";
 import {usePathname} from "src/routes/hooks";
 import {paths} from "src/routes/paths";
@@ -16,7 +15,7 @@ export type MobileNavProps = {
 export function MobileHeader() {
     return (
         <header
-            className="fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b bg-system-marketing-primary px-safe-offset-4 md:hidden">
+            className="z-[1000] bg-white dark:bg-black fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b px-safe-offset-4 md:hidden">
 
             {/* Left: Login/Profile Button */}
             <div
@@ -54,7 +53,7 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
     return (
         <nav
             className={cn(
-                "fixed inset-x-0 bottom-0 h-[calc(var(--mobile-tab-bar-height)-1px)] select-none flex min-w-full flex-row justify-evenly border-t bg-system-marketing-primary py-[5px] md:hidden",
+                "z-[1000] bg-white dark:bg-black fixed inset-x-0 bottom-0 h-[calc(var(--mobile-tab-bar-height)-1px)] select-none flex min-w-full flex-row justify-evenly border-t py-[5px] md:hidden",
                 className
             )}
         >
@@ -63,7 +62,7 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
                     key={title}
                     href={href}
                     className={cn(
-                        "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-400 dark:text-gray-500 transition-colors",
+                        "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-500 dark:text-gray-400 transition-colors",
                         pathname === href && "text-system-primary",
                         "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]"
                     )}

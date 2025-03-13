@@ -1,17 +1,14 @@
 import "src/globals.css";
-import "@radix-ui/themes/styles.css";
-
 import type { Metadata, Viewport } from 'next';
 
 import { CONFIG } from 'src/global-config';
-import { Theme as ThemeProvider } from "@radix-ui/themes";
-
-import { Snackbar } from 'src/components/snackbar';
+import { ThemeProvider as NextThemesProvider } from "next-themes"
 
 import { AuthProvider as JwtAuthProvider } from 'src/auth/context/jwt';
 import { AuthProvider as SupabaseAuthProvider } from 'src/auth/context/supabase';
 
 import { PosthogProvider } from '../analytics/posthog-provider';
+import {Snackbar} from "@/components/snackbar";
 
 // ----------------------------------------------------------------------
 
@@ -45,10 +42,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <body>
             <AuthProvider>
                 <PosthogProvider>
-                    <ThemeProvider>
+                    <NextThemesProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
                         <Snackbar />
                         {children}
-                    </ThemeProvider>
+                    </NextThemesProvider>
                 </PosthogProvider>
             </AuthProvider>
         </body>
