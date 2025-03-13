@@ -2,7 +2,6 @@ import {ProfilePreview, ProfilePreviewProps} from "@/components/profile-preview"
 import {useCallback, useEffect, useState} from "react";
 import {getProfilesPreview} from "@/src/actions/profiles";
 import {InfiniteScroll} from "@/components/infinite-scroll";
-import {v4 as uuid} from "uuid";
 
 export function HomeProfiles() {
     const [profiles, setProfiles] = useState<ProfilePreviewProps[]>([]);
@@ -53,10 +52,14 @@ export function HomeProfiles() {
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                         {profiles.map(profile => (
                             <div
-                                key={uuid()}
-                                className="flex justify-center hover:cursor-pointer rounded-xl ring-1 ring-muted/40 hover:ring-primary/20 hover:ring-offset-2"
+                                key={`profile-${profile.name}`}
+                                className="flex justify-center hover:cursor-pointer rounded-xl"
                             >
-                                <ProfilePreview name={profile.name} title={profile.title} picture={profile.picture}/>
+                                <ProfilePreview name={profile.name} title={profile.title} picture={profile.picture}
+                                                currentCompany={{
+                                                    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQHiNSL4Or29cg/company-logo_100_100/company-logo_100_100/0/1631311446380?e=1749686400&v=beta&t=Gwp7TJ03ucl_lSWXsdG8lCgHnVoQKbH4_zMgayw38XQ",
+                                                    name: 'Google'
+                                }}/>
                             </div>
                         ))}
                     </div>

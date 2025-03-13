@@ -30,7 +30,7 @@ export function useAutoResizeTextarea(
         const newHeight = Math.max(initialHeight, textarea.scrollHeight);
 
         // Apply new height (with max height constraint if desired)
-        const maxHeight = 144; // Max height (same as in your original code)
+        const maxHeight = 104;
         textarea.style.height = `${Math.min(newHeight, maxHeight)}px`;
 
         // Update state

@@ -338,3 +338,11 @@ export async function getProfilesPreview(page: number = 1, limit: number = 10) {
     await new Promise(resolve => setTimeout(resolve, 1000))
     return SAMPLE_PROFILES.slice((page - 1) * limit, page * limit)
 }
+
+export async function searchProfiles(query: string, page: number = 1, limit: number = 10) {
+    if (!query) return [];
+    return SAMPLE_PROFILES.filter(profile =>
+        profile.name.toLowerCase().includes(query.toLowerCase()) ||
+        profile.title.toLowerCase().includes(query.toLowerCase())
+    ).slice((page - 1) * limit, page * limit);
+}

@@ -1,11 +1,13 @@
 "use client";
 
 import {Icon} from "@iconify/react";
-import {FC} from "react";
+import {FC, useState} from "react";
 import {DesktopHeaderProps} from "../desktop";
 import {cn} from "src/lib/utils";
-import {usePathname} from "src/routes/hooks";
 import {paths} from "src/routes/paths";
+import { Input } from "@/components/ui/input";
+import {usePathname, useRouter} from "src/routes/hooks";
+import {useSearchParams} from "@/src/routes/hooks";
 
 export type MobileNavProps = {
     data: { title: string; href: string, icon?: string }[];
@@ -13,6 +15,18 @@ export type MobileNavProps = {
 };
 
 export function MobileHeader() {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const { query } = searchParams;
+    const [search, setSearch] = useState(query ?? "");
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setSearch(value);
+        router.push(`/search?query=${encodeURIComponent(value)}`, undefined, { shallow: true });
+    };
+
     return (
         <header
             className="z-[1000] bg-white dark:bg-black fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b px-safe-offset-4 md:hidden">
@@ -25,11 +39,12 @@ export function MobileHeader() {
 
             {/* Center: Branding */}
             <p className="col-start-2 place-self-center text-[17px] font-semibold">
-                AI Emojis
+                {pathname === '/' ? "Linky" : pathname.slice(1).charAt(0).toUpperCase() + pathname.slice(2)}
             </p>
 
             {/* Right: iOS Download Button */}
-            <div className="flex flex-row items-center justify-end data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
+            <div
+                className="flex flex-row items-center justify-end data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
                 <a
                     href="https://apps.apple.com/us/app/ai-emojis-generator/id6468916301"
                     target="_blank"
@@ -40,14 +55,25 @@ export function MobileHeader() {
                     <span className="sr-only">Download iOS App</span>
                 </a>
             </div>
+
+            { pathname === paths.search && (
+            <div className="col-span-3 pb-4 pt-1.5">
+                <Input
+                    placeholder="Search Profiles..."
+                    value={search}
+                    className='bg-gray-100/85 dark:bg-gray-900/80'
+                    onChange={handleSearchChange}
+                />
+            </div>
+                )}
         </header>
     );
 }
 
 export const MobileNav: FC<DesktopHeaderProps> = ({
-                                                          data,
-                                                          className,
-                                                      }: MobileNavProps) => {
+                                                      data,
+                                                      className,
+                                                  }: MobileNavProps) => {
     const pathname = usePathname();
 
     return (
@@ -57,7 +83,7 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
                 className
             )}
         >
-            {data.map(({ title, href, icon }) => (
+            {data.map(({title, href, icon}) => (
                 <a
                     key={title}
                     href={href}

@@ -3,33 +3,44 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {useCountUp} from "@/src/hooks";
+import {CONFIG} from "@/src/global-config";
+import {useRouter, useSearchParams} from "@/src/routes/hooks";
 
 export type DesktopHeaderProps = {
     data: { title: string; href: string }[];
     className?: string;
-    totalEmojis?: number;
+    totalProfiles?: number;
 };
 
 export const DesktopHeader: FC<DesktopHeaderProps> = ({
                                                           data,
                                                           className,
-                                                          totalEmojis = 5804335,
+                                                          totalProfiles = 5804335,
                                                       }) => {
-    const [search, setSearch] = useState("");
+
+    const searchParams = useSearchParams();
+    const [search, setSearch] = useState(searchParams.get("query") || "");
+    const router = useRouter();
 
     const { formattedValue } = useCountUp({
         start: 2000000,
-        end: totalEmojis,
+        end: totalProfiles,
         duration: 2000,
         formatter: (value) => value.toLocaleString(),
     });
+
+    const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter" && search.trim() !== "") {
+            router.push(`/search?query=${encodeURIComponent(search.trim())}`);
+        }
+    };
 
     return (
         <header
             className={cn('fixed top-[var(--desktop-header-top)] isolate w-screen select-none px-4 hidden items-center justify-center md:flex z-[1000]', className)}
         >
             <nav
-                className="flex flex-col justify-between gap-3 mx-auto h-[var(--desktop-header-height)] w-full max-w-[calc(72rem+2rem)] rounded-xl py-3 bg-system-marketing-primary bg-clip-padding shadow-[0_10px_15px_-3px_rgb(0_0_0_/_0.08),_0_4px_6px_-4px_rgb(0_0_0_/_0.08)] dark:bg-system-marketing-primary/60 dark:bg-clip-border dark:backdrop-blur-xl dark:backdrop-saturate-150 border-[0.5px] border-black/[0.13] dark:border-white/[0.13]">
+                className="flex flex-col justify-between gap-3 mx-auto h-[var(--desktop-header-height)] w-full max-w-[calc(72rem+2rem)] rounded-xl backdrop-blur-lg py-3 bg-clip-padding shadow-[0_10px_15px_-3px_rgb(0_0_0_/_0.08),_0_4px_6px_-4px_rgb(0_0_0_/_0.08)] dark:bg-clip-border dark:backdrop-saturate-150 border-[0.5px] border-black/[0.13] dark:border-white/[0.13]">
                 <div className="flex flex-row flex-nowrap items-center justify-between gap-4 px-3">
                     <Link
                         href="/"
@@ -37,12 +48,12 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
                     >
                         <img
                             aria-hidden="true"
-                            alt="AI Emojis"
+                            alt="Linky"
                             width={32}
                             height={32}
-                            src="https://attic.sh/_static/emojis-opengraph/favicon-96x96.png"
+                            src={`${CONFIG.assetsDir}/logo/logo.svg`}
                         />
-                        AI Emojis
+                        Linky
                     </Link>
 
                     {data.map(({title, href}) => (
@@ -80,12 +91,13 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
                             <Icon icon="mdi:magnify" className="shrink-0 text-system-marketing-primary/60" width={20} height={20}/>
                         </div>
                         <p className={cn('pointer-events-none absolute left-8 top-0 z-10 w-full bg-transparent text-[0.9375rem] text-system-marketing-primary/60', search ? 'hidden' : '')}>
-                            Search and download over <span className="tabular-nums">{formattedValue}</span> AI emojis
+                            Search over <span className="tabular-nums">{formattedValue}</span> profiles on Linky
                         </p>
                         <input
                             className="relative outline-none after:pointer-events-none after:absolute after:ring-inset after:ring-transparent data-[focus]:sm:after:ring-1 data-[focus]:sm:after:ring-blue-500 data-[focus]:sm:after:outline data-[focus]:sm:after:outline-3 data-[focus]:sm:after:outline-offset-0 data-[focus]:sm:after:outline-blue-200 data-[focus]:sm:after:dark:outline-blue-700/50 after:inset-0 after:rounded-[inherit] w-full bg-transparent pl-8 text-[0.9375rem] text-system-marketing-primary placeholder:text-system-marketing-primary/60"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
+                            onKeyDown={handleSearchSubmit}
                         />
                     </div>
                 </div>

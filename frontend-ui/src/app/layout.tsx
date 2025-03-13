@@ -9,6 +9,7 @@ import { AuthProvider as SupabaseAuthProvider } from 'src/auth/context/supabase'
 
 import { PosthogProvider } from '../analytics/posthog-provider';
 import {Snackbar} from "@/components/snackbar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +50,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                         disableTransitionOnChange
                     >
                         <Snackbar />
+                        <TooltipProvider>
                         {children}
+                        </TooltipProvider>
                     </NextThemesProvider>
                 </PosthogProvider>
             </AuthProvider>

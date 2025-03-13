@@ -4,6 +4,7 @@ import {paths} from "src/routes/paths";
 import {cn} from "src/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import {CONFIG} from "@/src/global-config";
 
 interface LinkItem {
   label?: string;
@@ -49,25 +50,13 @@ export const Footer: FC<FooterProps> = ({ className }) => {
               <Link href="/" className="w-fit font-semibold">
                 <img
                     aria-hidden="true"
-                    alt="AI Emojis"
+                    alt="Linky"
                     width={96}
                     height={96}
                     className="w-12 md:w-10"
-                    src="https://attic.sh/_static/emojis-opengraph/favicon-96x96.png"
+                    src={`${CONFIG.assetsDir}/logo/logo.svg`}
                 />
               </Link>
-              <div className="flex gap-3">
-                <Button asChild>
-                  <Link href="https://apps.apple.com/us/app/ai-emojis-generator/id6468916301">
-                    <Icon icon="mdi:apple" className="w-6 h-6"/> iOS App
-                  </Link>
-                </Button>
-                <Button asChild>
-                  <Link href="https://play.google.com/store/apps/details?id=sh.emojis.app">
-                    <Icon icon="mdi:google-play" className="w-6 h-6"/> Android App
-                  </Link>
-                </Button>
-              </div>
               <div className="flex gap-4">
                 {LINKS.social.map(({icon, href}, idx) => (
                     <a key={idx} href={href}

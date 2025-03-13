@@ -13,22 +13,22 @@ export function HomeHero() {
     } = useAutoResizeTextarea();
 
     const suggestions = [
-        "Penguin Wizard",
-        "Cat wearing sunglasses",
-        "Cupcake with pink icing",
-        "Shark with a top hat",
+        "Who leads impactful nonprofits?",
+        "Who recently founded successful startups?",
+        "Who are rising screenwriters in independent cinema?",
+        "Who runs highly influential lifestyle blogs or platforms?",
     ];
 
     return (
         <section
             className="mb-8 flex h-[68vh] min-h-fit flex-col flex-nowrap items-center justify-center sm:h-[max(60vh,580px)]">
             <h1 className="mb-8 text-center text-4xl text-[clamp(2.4rem,_4vw,_4rem)] font-bold tracking-tighter text-system-marketing-primary sm:text-7xl">
-                AI{" "}
+                The{" "}
                 <span
-                    className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 from-10% via-pink-500 to-purple-500 to-90%">
-          Emojis
+                    className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 from-10% via-pink-500 to-purple-500 to-90%">
+          Alumni
         </span>{" "}
-                Generator
+                Network
                 <br/>
                 made{" "}
                 <span className="text-gray-400 line-through dark:text-gray-500">
@@ -40,7 +40,7 @@ export function HomeHero() {
             <div className="flex flex-row flex-nowrap items-end -space-x-20">
                 <img
                     draggable={false}
-                    alt="banner of emojis"
+                    alt="banner of Linky creators"
                     loading="lazy"
                     width="1004"
                     height="309"
@@ -49,10 +49,9 @@ export function HomeHero() {
                 />
             </div>
 
-            <div
-                className="min-h-28 w-full max-w-2xl border bg-gray-100/85 backdrop-blur-xl backdrop-saturate-200 dark:bg-gray-900/80 rounded-2xl">
+            <div className="min-h-28 w-full max-w-2xl border bg-gray-100/85 backdrop-blur-xl backdrop-saturate-200 dark:bg-gray-900/80 rounded-2xl">
                 <Textarea
-                    placeholder="Describe your image"
+                    placeholder="Describe who you're looking for..."
                     value={input}
                     onChange={handleTextareaChange}
                     ref={textareaRef}
@@ -93,10 +92,8 @@ export function HomeHero() {
                             ))}
                         </div>
 
-                        <div
-                            className="pointer-events-none absolute -left-1 bottom-0 top-0 h-full w-20 -translate-x-2 bg-gradient-to-r from-white to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_right,black_0%,black_30%,transparent_100%)] opacity-0 transition-all duration-300 dark:from-black"></div>
-                        <div
-                            className="pointer-events-none absolute -right-1 bottom-0 top-0 h-full w-12 bg-gradient-to-l from-white to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_left,black_0%,black_30%,transparent_100%)] transition-all duration-300 dark:from-black translate-x-0 opacity-100"></div>
+                        <div className="pointer-events-none absolute -left-1 bottom-0 top-0 h-full w-20 -translate-x-2 bg-gradient-to-r from-white to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_right,black_0%,black_30%,transparent_100%)] opacity-100 transition-all duration-300 dark:from-black"></div>
+                        <div className="pointer-events-none absolute -right-1 bottom-0 top-0 h-full w-12 bg-gradient-to-l from-white to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_left,black_0%,black_30%,transparent_100%)] transition-all duration-300 dark:from-black translate-x-0 opacity-100"></div>
                     </div>
                 </div>
             </div>
@@ -111,7 +108,7 @@ export function HomeHero() {
 
                 .suggestion-scroll {
                     display: flex;
-                    animation: scrollSuggestions 15s linear infinite;
+                    animation: scrollSuggestions 30s linear infinite;
                     width: max-content;
                 }
 
