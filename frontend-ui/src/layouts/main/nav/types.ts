@@ -1,4 +1,3 @@
-
 /**
  * Item
  */
@@ -30,11 +29,11 @@ export type NavItemProps = NavItemDataProps &
 /**
  * List
  */
-export type NavListProps = React.ComponentProps<'li'> & {
+export type NavListProps = React.ComponentProps<"li"> & {
   data: NavItemDataProps;
 };
 
-export type NavSubListProps = React.ComponentProps<'li'> & {
+export type NavSubListProps = React.ComponentProps<"li"> & {
   subheader: string;
   data: NavItemDataProps[];
 };

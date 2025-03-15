@@ -1,6 +1,6 @@
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useMemo, useState, useEffect, useCallback } from "react";
 
-import { setStorage, getStorage, removeStorage } from 'src/utils/local-storage';
+import { setStorage, getStorage, removeStorage } from "src/utils/local-storage";
 
 // ----------------------------------------------------------------------
 
@@ -45,10 +45,10 @@ export type UseLocalStorageReturn<T> = {
 export function useLocalStorage<T>(
   key: string,
   defaultValue?: T,
-  options?: UseLocalStorageOptions
+  options?: UseLocalStorageOptions,
 ): UseLocalStorageReturn<T> {
   const { initializeWithValue = true } = options ?? {};
-  const isObjectState = defaultValue && typeof defaultValue === 'object';
+  const isObjectState = defaultValue && typeof defaultValue === "object";
 
   const [state, setState] = useState<T | undefined>(() => {
     const storedValue = getStorage<T>(key);
@@ -83,7 +83,7 @@ export function useLocalStorage<T>(
         setState(newState as T);
       }
     },
-    [key, isObjectState]
+    [key, isObjectState],
   );
 
   const updateField = useCallback(
@@ -92,7 +92,7 @@ export function useLocalStorage<T>(
         updateState({ [fieldName]: updateValue } as Partial<T>);
       }
     },
-    [isObjectState, updateState]
+    [isObjectState, updateState],
   );
 
   const resetState = useCallback(
@@ -101,7 +101,7 @@ export function useLocalStorage<T>(
       setState(stateToReset as T);
       removeStorage(key);
     },
-    [defaultValue, key]
+    [defaultValue, key],
   );
 
   const memoizedValue = useMemo(
@@ -111,7 +111,7 @@ export function useLocalStorage<T>(
       setField: updateField,
       resetState,
     }),
-    [resetState, updateField, updateState, state]
+    [resetState, updateField, updateState, state],
   );
 
   return memoizedValue;

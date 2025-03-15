@@ -1,1 +1,1 @@
-export * from './search-view';
+export * from "./search-view";

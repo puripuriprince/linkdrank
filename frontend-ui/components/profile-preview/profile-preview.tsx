@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tooltip, TooltipTrigger } from '@radix-ui/react-tooltip';
 import {TooltipContent} from "@/components/ui/tooltip";
+import {CONFIG} from "@/src/global-config";
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +12,7 @@ import {TooltipContent} from "@/components/ui/tooltip";
 export interface ProfilePreviewProps {
     name: string;
     title: string;
-    picture?: string | null;
+    picture: string | null;
     currentCompany?: {
         name: string;
         logo: string;
@@ -20,7 +21,7 @@ export interface ProfilePreviewProps {
 
 export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
                                                      name,
-                                                     title, picture = "/api/placeholder/150/150",
+                                                     title, picture,
                                                                   currentCompany
                                                  }) => {
     return (
@@ -40,7 +41,7 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
             {/* Profile Image */}
             <div className="flex justify-center mb-2">
                 <Avatar className="h-16 w-16">
-                    <AvatarImage src={picture ?? ''} alt={`${name}'s profile picture`} />
+                    <AvatarImage src={picture ?? `${CONFIG.assetsDir}/logo/logo.svg`} alt={`${name}'s profile picture`} />
                     <AvatarFallback>{ name ? name[0].toUpperCase() : 'U' }</AvatarFallback>
                 </Avatar>
             </div>

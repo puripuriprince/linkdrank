@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useMemo, useEffect, useCallback } from 'react';
+import { useMemo, useEffect, useCallback } from "react";
 
-import axios from 'src/lib/axios';
-import { supabase } from 'src/lib/supabase';
+import axios from "src/lib/axios";
+import { useSetState } from "src/hooks";
+import { supabase } from "src/lib/supabase";
 
-import { AuthContext } from '../auth-context';
+import { AuthContext } from "../auth-context";
 
-import type { AuthState } from '../../types';
-import {useSetState} from "src/hooks";
+import type { AuthState } from "../../types";
 
 // ----------------------------------------------------------------------
 
@@ -23,7 +23,10 @@ type Props = {
 };
 
 export function AuthProvider({ children }: Props) {
-  const { state, setState } = useSetState<AuthState>({ user: null, loading: true });
+  const { state, setState } = useSetState<AuthState>({
+    user: null,
+    loading: true,
+  });
 
   const checkUserSession = useCallback(async () => {
     try {
@@ -60,9 +63,9 @@ export function AuthProvider({ children }: Props) {
 
   // ----------------------------------------------------------------------
 
-  const checkAuthenticated = state.user ? 'authenticated' : 'unauthenticated';
+  const checkAuthenticated = state.user ? "authenticated" : "unauthenticated";
 
-  const status = state.loading ? 'loading' : checkAuthenticated;
+  const status = state.loading ? "loading" : checkAuthenticated;
 
   const memoizedValue = useMemo(
     () => ({
@@ -72,16 +75,20 @@ export function AuthProvider({ children }: Props) {
             id: state.user?.id,
             accessToken: state.user?.access_token,
             displayName: `${state.user?.user_metadata.display_name}`,
-            role: state.user?.role ?? 'admin',
+            role: state.user?.role ?? "admin",
           }
         : null,
       checkUserSession,
-      loading: status === 'loading',
-      authenticated: status === 'authenticated',
-      unauthenticated: status === 'unauthenticated',
+      loading: status === "loading",
+      authenticated: status === "authenticated",
+      unauthenticated: status === "unauthenticated",
     }),
-    [checkUserSession, state.user, status]
+    [checkUserSession, state.user, status],
   );
 
-  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

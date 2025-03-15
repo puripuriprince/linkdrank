@@ -1,21 +1,21 @@
 // ----------------------------------------------------------------------
 
 const ROOTS = {
-  AUTH: '/auth',
-  PROFILE: '/profile',
+  AUTH: "/auth",
+  PROFILE: "/profile",
 };
 
 // ----------------------------------------------------------------------
 
 export const paths = {
-  vote: '/elo',
-  leaderboard: '/leaderboard',
-  feedback: '/',
-  search: '/search',
-  privacy: '/privacy',
-  terms: '/terms',
+  vote: "/elo",
+  leaderboard: "/leaderboard",
+  feedback: "/",
+  search: "/search",
+  privacy: "/privacy",
+  terms: "/terms",
   people: {
-    root: '/search',
+    root: "/search",
     details: (handle: string) => `/p/${handle}`,
   },
   // AUTH
@@ -27,7 +27,10 @@ export const paths = {
       updatePassword: `${ROOTS.AUTH}/amplify/update-password`,
       resetPassword: `${ROOTS.AUTH}/amplify/reset-password`,
     },
-    jwt: { signIn: `${ROOTS.AUTH}/jwt/sign-in`, signUp: `${ROOTS.AUTH}/jwt/sign-up` },
+    jwt: {
+      signIn: `${ROOTS.AUTH}/jwt/sign-in`,
+      signUp: `${ROOTS.AUTH}/jwt/sign-up`,
+    },
     firebase: {
       signIn: `${ROOTS.AUTH}/firebase/sign-in`,
       verify: `${ROOTS.AUTH}/firebase/verify`,
@@ -45,6 +48,6 @@ export const paths = {
   },
   // DASHBOARD
   profile: {
-    root: ROOTS.PROFILE
+    root: ROOTS.PROFILE,
   },
 };

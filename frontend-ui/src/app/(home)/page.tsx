@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-import { HomeView } from 'src/sections/home/view';
+import { HomeView } from "src/sections/home/view";
 
 // ----------------------------------------------------------------------
 
 export const metadata: Metadata = {
-  title: '',
-  description: '',
+  title: "",
+  description: "",
 };
 
 export default function Page() {

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import axios, { endpoints } from 'src/lib/axios';
+import axios, { endpoints } from "src/lib/axios";
 
-import { setSession } from './utils';
-import { JWT_STORAGE_KEY } from './constant';
+import { setSession } from "./utils";
+import { JWT_STORAGE_KEY } from "./constant";
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +22,10 @@ export type SignUpParams = {
 /** **************************************
  * Sign in
  *************************************** */
-export const signInWithPassword = async ({ email, password }: SignInParams): Promise<void> => {
+export const signInWithPassword = async ({
+  email,
+  password,
+}: SignInParams): Promise<void> => {
   try {
     const params = { email, password };
 
@@ -31,12 +34,12 @@ export const signInWithPassword = async ({ email, password }: SignInParams): Pro
     const { accessToken } = res.data;
 
     if (!accessToken) {
-      throw new Error('Access token not found in response');
+      throw new Error("Access token not found in response");
     }
 
     setSession(accessToken);
   } catch (error) {
-    console.error('Error during sign in:', error);
+    console.error("Error during sign in:", error);
     throw error;
   }
 };
@@ -63,12 +66,12 @@ export const signUp = async ({
     const { accessToken } = res.data;
 
     if (!accessToken) {
-      throw new Error('Access token not found in response');
+      throw new Error("Access token not found in response");
     }
 
     sessionStorage.setItem(JWT_STORAGE_KEY, accessToken);
   } catch (error) {
-    console.error('Error during sign up:', error);
+    console.error("Error during sign up:", error);
     throw error;
   }
 };
@@ -80,7 +83,7 @@ export const signOut = async (): Promise<void> => {
   try {
     await setSession(null);
   } catch (error) {
-    console.error('Error during sign out:', error);
+    console.error("Error during sign out:", error);
     throw error;
   }
 };

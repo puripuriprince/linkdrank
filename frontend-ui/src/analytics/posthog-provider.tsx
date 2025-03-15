@@ -1,21 +1,23 @@
-'use client';
+"use client";
 
-import posthog from 'posthog-js';
-import {Suspense, useEffect} from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { usePostHog, PostHogProvider } from 'posthog-js/react';
+import posthog from "posthog-js";
+import { Suspense, useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { usePostHog, PostHogProvider } from "posthog-js/react";
 
-import { CONFIG } from '../global-config';
-import { useAuthContext } from '../auth/hooks';
+import { SplashScreen } from "@/components/loading-screen";
+
+import { CONFIG } from "../global-config";
+import { useAuthContext } from "../auth/hooks";
 
 type PosthogProviderProps = {
   children: React.ReactNode;
 };
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   posthog.init(CONFIG.posthog.apiKey, {
     api_host: CONFIG.posthog.apiHost,
-    person_profiles: 'identified_only',
+    person_profiles: "identified_only",
     capture_pageview: false,
     capture_pageleave: true,
   });
@@ -23,9 +25,9 @@ if (typeof window !== 'undefined') {
 
 export function PosthogProvider({ children }: PosthogProviderProps) {
   return (
-      <Suspense fallback={<>loading...</>}>
-        <PosthogContainer>{children}</PosthogContainer>
-      </Suspense>
+    <Suspense fallback={<SplashScreen />}>
+      <PosthogContainer>{children}</PosthogContainer>
+    </Suspense>
   );
 }
 
@@ -50,7 +52,7 @@ function PosthogContainer({ children }: PosthogProviderProps) {
       if (searchParams?.toString()) {
         url = url + `?${searchParams.toString()}`;
       }
-      pg.capture('$pageview', {
+      pg.capture("$pageview", {
         $current_url: url,
       });
     }

@@ -1,4 +1,4 @@
-import { CONFIG } from 'src/global-config';
+import { CONFIG } from "src/global-config";
 
 import {
   _id,
@@ -29,7 +29,7 @@ import {
   _descriptions,
   _phoneNumbers,
   _countryNames,
-} from './assets';
+} from "./assets";
 
 // ----------------------------------------------------------------------
 

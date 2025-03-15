@@ -1,6 +1,7 @@
 'use client';
 import {ReactNode, useEffect, useRef} from "react";
 import { Icon } from "@iconify/react";
+
 interface InfiniteScrollProps {
     /** The content to render inside the infinite scroll container */
     children: ReactNode;
@@ -12,8 +13,10 @@ interface InfiniteScrollProps {
     isLoading?: boolean;
     /** Message to display when there are no more items */
     endMessage?: ReactNode;
-    /** Message to display when items are loading */
-    loadingMessage?: string;
+    /** Message or component to display when items are loading */
+    loadingMessage?: string | ReactNode;
+    /** Custom loader component to replace the default loader */
+    loader?: ReactNode;
     /** Threshold for when to trigger the loadMore function (0-1) */
     threshold?: number;
     /** Additional className to apply to the container */
@@ -27,6 +30,7 @@ export function InfiniteScroll({
                                    isLoading = false,
                                    endMessage,
                                    loadingMessage = "Loading...",
+                                   loader,
                                    threshold = 0.5,
                                    className = "",
                                }: InfiniteScrollProps) {
@@ -51,20 +55,31 @@ export function InfiniteScroll({
         };
     }, [hasMore, isLoading, loadMore, threshold]);
 
+    // Render custom loader if provided, otherwise use default
+    const renderLoader = () => {
+        if (loader) {
+            return loader;
+        }
+
+        return (
+            <div className="flex w-full flex-col items-center justify-center gap-2 py-4">
+                <Icon
+                    icon="line-md:loading-twotone-loop"
+                    className="h-8 w-8 text-primary"
+                />
+                <span className="text-sm text-muted-foreground">
+                    {typeof loadingMessage === 'string' ? loadingMessage : loadingMessage}
+                </span>
+            </div>
+        );
+    };
+
     return (
         <div className={className}>
             {children}
 
             <div ref={observerRef} className="w-full py-4">
-                {isLoading && (
-                    <div className="flex w-full flex-col items-center justify-center gap-2 py-4">
-                        <Icon
-                            icon="line-md:loading-twotone-loop"
-                            className="h-8 w-8 text-primary"
-                        />
-                        <span className="text-sm text-muted-foreground">{loadingMessage}</span>
-                    </div>
-                )}
+                {isLoading && renderLoader()}
 
                 {!hasMore && !isLoading && endMessage && (
                     <div className="flex w-full justify-center py-4">

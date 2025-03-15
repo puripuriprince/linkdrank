@@ -1,62 +1,61 @@
 import "src/globals.css";
-import type { Metadata, Viewport } from 'next';
 
-import { CONFIG } from 'src/global-config';
-import { ThemeProvider as NextThemesProvider } from "next-themes"
+import type { Viewport } from "next";
 
-import { AuthProvider as JwtAuthProvider } from 'src/auth/context/jwt';
-import { AuthProvider as SupabaseAuthProvider } from 'src/auth/context/supabase';
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-import { PosthogProvider } from '../analytics/posthog-provider';
-import {Snackbar} from "@/components/snackbar";
+import { Snackbar } from "@/components/snackbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SearchProvider } from "@/src/sections/search/context";
+
+import { CONFIG } from "src/global-config";
+
+import { AuthProvider as JwtAuthProvider } from "src/auth/context/jwt";
+import { AuthProvider as SupabaseAuthProvider } from "src/auth/context/supabase";
+
+import { PosthogProvider } from "../analytics/posthog-provider";
 
 // ----------------------------------------------------------------------
 
 const AuthProvider =
-    (CONFIG.auth.method === 'supabase' && SupabaseAuthProvider) ||
-    JwtAuthProvider;
+  (CONFIG.auth.method === "supabase" && SupabaseAuthProvider) ||
+  JwtAuthProvider;
 
 export const viewport: Viewport = {
-    width: 'device-width',
-    initialScale: 1,
-};
-
-export const metadata: Metadata = {
-    icons: [
-        {
-            rel: 'icon',
-            url: `${CONFIG.assetsDir}/favicon.ico`,
-        },
-    ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 // ----------------------------------------------------------------------
 
 type RootLayoutProps = {
-    children: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-    return (
-        <html lang='en' suppressHydrationWarning>
-        <body>
-            <AuthProvider>
-                <PosthogProvider>
-                    <NextThemesProvider
-                        attribute="class"
-                        defaultTheme="system"
-                        enableSystem
-                        disableTransitionOnChange
-                    >
-                        <Snackbar />
-                        <TooltipProvider>
-                        {children}
-                        </TooltipProvider>
-                    </NextThemesProvider>
-                </PosthogProvider>
-            </AuthProvider>
-        </body>
-        </html>
-    );
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Linky" />
+        <title>Linky</title>
+      </head>
+      <body>
+        <AuthProvider>
+          <PosthogProvider>
+            <NextThemesProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <SearchProvider>
+                <Snackbar />
+                <TooltipProvider>{children}</TooltipProvider>
+              </SearchProvider>
+            </NextThemesProvider>
+          </PosthogProvider>
+        </AuthProvider>
+      </body>
+    </html>
+  );
 }

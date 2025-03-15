@@ -9,14 +9,17 @@
  * const user = getStorage('user');
  * console.log(user); // { name: 'John', age: 30 }
  */
-export function getStorage<T>(key: string, defaultValue?: T): T | null | undefined {
+export function getStorage<T>(
+  key: string,
+  defaultValue?: T,
+): T | null | undefined {
   if (!sessionStorageAvailable()) {
     return defaultValue ?? null;
   }
 
   const storedValue = sessionStorage.getItem(key);
 
-  if (storedValue === 'undefined') {
+  if (storedValue === "undefined") {
     return undefined as T;
   }
 
@@ -51,7 +54,7 @@ export function setStorage<T>(key: string, value: T): void {
     const serializedValue = JSON.stringify(value);
     window.sessionStorage.setItem(key, serializedValue);
   } catch (error) {
-    console.error('Error while setting storage:', error);
+    console.error("Error while setting storage:", error);
   }
 }
 
@@ -70,7 +73,7 @@ export function removeStorage(key: string): void {
   try {
     window.sessionStorage.removeItem(key);
   } catch (error) {
-    console.error('Error while removing from storage:', error);
+    console.error("Error while removing from storage:", error);
   }
 }
 
@@ -88,7 +91,7 @@ export function removeStorage(key: string): void {
 
 export function sessionStorageAvailable(): boolean {
   try {
-    const key = '__some_random_key_you_are_not_going_to_use__';
+    const key = "__some_random_key_you_are_not_going_to_use__";
     window.sessionStorage.setItem(key, key);
     window.sessionStorage.removeItem(key);
     return true;

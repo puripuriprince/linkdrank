@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import { useRouter, useSearchParams } from 'src/routes/hooks';
+import { useRouter, useSearchParams } from "src/routes/hooks";
 
-import { CONFIG } from 'src/global-config';
+import { CONFIG } from "src/global-config";
 
-import { useAuthContext } from '../hooks';
+import { useAuthContext } from "../hooks";
 
 // ----------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ export function GuestGuard({ children }: GuestGuardProps) {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const returnTo = searchParams.get('returnTo') || CONFIG.auth.redirectPath;
+  const returnTo = searchParams.get("returnTo") || CONFIG.auth.redirectPath;
 
   const { loading, authenticated } = useAuthContext();
 

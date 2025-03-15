@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 // ----------------------------------------------------------------------
 
@@ -27,37 +27,37 @@ import { useState, useCallback } from 'react';
  */
 
 export type UseSetStateReturn<T> = {
-    state: T;
-    resetState: (defaultState?: T) => void;
-    setState: (updateState: T | Partial<T>) => void;
-    setField: (name: keyof T, updateValue: T[keyof T]) => void;
+  state: T;
+  resetState: (defaultState?: T) => void;
+  setState: (updateState: T | Partial<T>) => void;
+  setField: (name: keyof T, updateValue: T[keyof T]) => void;
 };
 
 export function useSetState<T>(initialState?: T): UseSetStateReturn<T> {
-    const [state, setState] = useState<T | undefined>(initialState);
+  const [state, setState] = useState<T | undefined>(initialState);
 
-    const updateState = useCallback((newState: T | Partial<T>) => {
-        setState((prevValue) => ({ ...prevValue, ...newState }) as T);
-    }, []);
+  const updateState = useCallback((newState: T | Partial<T>) => {
+    setState((prevValue) => ({ ...prevValue, ...newState }) as T);
+  }, []);
 
-    const updateField = useCallback(
-        (fieldName: keyof T, updateValue: T[keyof T]) => {
-            updateState({ [fieldName]: updateValue } as Partial<T>);
-        },
-        [updateState]
-    );
+  const updateField = useCallback(
+    (fieldName: keyof T, updateValue: T[keyof T]) => {
+      updateState({ [fieldName]: updateValue } as Partial<T>);
+    },
+    [updateState],
+  );
 
-    const resetState = useCallback(
-        (defaultState?: T) => {
-            setState(defaultState ?? initialState);
-        },
-        [initialState]
-    );
+  const resetState = useCallback(
+    (defaultState?: T) => {
+      setState(defaultState ?? initialState);
+    },
+    [initialState],
+  );
 
-    return {
-        state: state as T,
-        setState: updateState,
-        setField: updateField,
-        resetState,
-    };
+  return {
+    state: state as T,
+    setState: updateState,
+    setField: updateField,
+    resetState,
+  };
 }

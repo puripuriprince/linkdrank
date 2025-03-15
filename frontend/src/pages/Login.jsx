@@ -12,7 +12,7 @@ function Login() {
   const { login, signup } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.search?.from?.pathname || '/';
 
   const handleSubmit = async (e) => {
     e.preventDefault();

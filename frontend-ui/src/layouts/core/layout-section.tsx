@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { cn } from 'src/lib/utils';
+import { cn } from "src/lib/utils";
 
 export type LayoutSectionProps = {
   className?: string;
@@ -12,41 +12,43 @@ export type LayoutSectionProps = {
 };
 
 export function LayoutSection({
-                                cssVars,
-                                children,
-                                footerSection,
-                                headerSection,
-                                sidebarSection,
-                                className,
-                                ...other
-                              }: LayoutSectionProps) {
+  cssVars,
+  children,
+  footerSection,
+  headerSection,
+  sidebarSection,
+  className,
+  ...other
+}: LayoutSectionProps) {
   return (
-      <div
-          id="root__layout"
-          style={cssVars}
-          className={cn('relative flex flex-col min-h-screen', className)}
-          {...other}
-      >
-        {sidebarSection ? (
-            <div className="flex flex-row w-full">
-              {sidebarSection}
-              <LayoutSidebarContainer>
-                {headerSection}
-                {children}
-                {footerSection}
-              </LayoutSidebarContainer>
-            </div>
-        ) : (
-            <>
-              {headerSection}
-              {children}
-              {footerSection}
-            </>
-        )}
-      </div>
+    <div
+      id="root__layout"
+      style={cssVars}
+      className={cn("relative flex flex-col min-h-screen", className)}
+      {...other}
+    >
+      {sidebarSection ? (
+        <div className="flex flex-row w-full">
+          {sidebarSection}
+          <LayoutSidebarContainer>
+            {headerSection}
+            {children}
+            {footerSection}
+          </LayoutSidebarContainer>
+        </div>
+      ) : (
+        <>
+          {headerSection}
+          {children}
+          {footerSection}
+        </>
+      )}
+    </div>
   );
 }
 
-const LayoutSidebarContainer = ({ children }: { children: React.ReactNode }) => (
-    <div className="flex flex-1 flex-col container">{children}</div>
-);
+const LayoutSidebarContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => <div className="flex flex-1 flex-col container">{children}</div>;
