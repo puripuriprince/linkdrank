@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tooltip, TooltipTrigger } from '@radix-ui/react-tooltip';
 import {TooltipContent} from "@/components/ui/tooltip";
 import {CONFIG} from "@/src/global-config";
+import {ProfileData} from "@/src/sections/profile/top-profiles";
 
 // ----------------------------------------------------------------------
 
@@ -51,6 +52,40 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
                 <h3 className="font-bold text-lg text-black dark:text-white">{name}</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-300">{title}</p>
             </CardContent>
+        </Card>
+    );
+};
+
+interface ProfilePreviewHorizontalProps {
+    profile: ProfileData;
+    selected: boolean;
+    onClick: () => void;
+}
+
+export const ProfilePreviewHorizontal: React.FC<ProfilePreviewHorizontalProps> = ({
+                                                                                      profile,
+                                                                                      selected,
+                                                                                      onClick,
+                                                                                  }) => {
+    return (
+        <Card
+            onClick={onClick}
+            className={`flex flex-row items-center gap-4 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer transition-all hover:shadow-xl ${
+                selected ? "ring-2 ring-yellow-500" : "ring-0"
+            }`}
+        >
+            <Avatar className="h-16 w-16">
+                <AvatarImage src={profile.picture ?? `${CONFIG.assetsDir}/logo/logo.svg`} alt={`${profile.name}'s profile picture`} />
+                <AvatarFallback>{ profile.name ? profile.name[0].toUpperCase() : 'U' }</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+                <h3 className="font-bold text-lg text-black dark:text-white">
+                    {profile.name}
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-300">
+                    {profile.title}
+                </p>
+            </div>
         </Card>
     );
 };

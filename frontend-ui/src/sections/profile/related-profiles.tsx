@@ -2,32 +2,37 @@ import {
   ProfilePreviewProps,
   ProfilePreviewSkeleton,
 } from "@/components/profile-preview";
-
 import { useState, useEffect, useCallback } from "react";
-
 import { getProfilesPreview } from "@/src/actions/profiles";
 import { ProfilePreview } from "@/components/profile-preview";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export function HomeProfiles() {
+interface RelatedProfilesProps {
+  relatedTags: { id: string; label: string }[];
+}
+
+const PAGE_SIZE = 15;
+export function RelatedProfiles({ relatedTags }: RelatedProfilesProps) {
   const [profiles, setProfiles] = useState<ProfilePreviewProps[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const fetchNextPage = useCallback(async () => {
     if (loading || !hasMore) return;
-
     setLoading(true);
-
     try {
-      const newProfiles = await getProfilesPreview(page);
-
+      const newProfiles = await getProfilesPreview(page, PAGE_SIZE);
       if (!newProfiles?.length) {
         setHasMore(false);
       } else {
         setProfiles((prev) => [...prev, ...newProfiles]);
         setPage((prev) => prev + 1);
+        setHasMore(newProfiles.length === PAGE_SIZE);
       }
     } catch (error) {
       console.error("Failed to fetch profiles:", error);
@@ -37,13 +42,18 @@ export function HomeProfiles() {
     }
   }, [page, loading, hasMore]);
 
-  // Load initial data
+  useEffect(() => {
+    setProfiles([]);
+    setPage(1);
+    setHasMore(true);
+  }, [selectedTag]);
+
   useEffect(() => {
     fetchNextPage();
-  }, []);
+  }, [selectedTag]);
 
   const renderSkeletons = () =>
-    Array(15)
+    Array(PAGE_SIZE)
       .fill(0)
       .map((_, index) => (
         <div
@@ -56,10 +66,31 @@ export function HomeProfiles() {
 
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col space-y-6">
-      <h2 className="text-2xl font-semibold tracking-tight">
-        Discover Profiles
-      </h2>
-
+      <div className="mb-4 mt-10">
+        <h2 className="mb-2 text-2xl font-semibold">Related Profiles</h2>
+        {relatedTags && (
+          <ScrollArea className="relative flex w-full">
+            <div className="flex flex-row gap-2 overflow-x-auto whitespace-nowrap">
+              {relatedTags.map((tag) => (
+                <Button
+                  key={tag.id}
+                  variant="outline"
+                  className={cn(
+                    "capitalize px-4 py-2 text-sm font-semibold",
+                    selectedTag === tag.id
+                      ? "bg-zinc-200 dark:bg-zinc-700"
+                      : "bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700",
+                  )}
+                  onClick={() => setSelectedTag(tag.id)}
+                >
+                  {tag.label}
+                </Button>
+              ))}
+            </div>
+            <div className="pointer-events-none absolute -right-1 bottom-0 top-0 h-full w-12 bg-gradient-to-l from-white to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_left,black_0%,black_30%,transparent_100%)] transition-all duration-300 dark:from-black translate-x-0 opacity-100" />
+          </ScrollArea>
+        )}
+      </div>
       <InfiniteScroll
         loadMore={fetchNextPage}
         hasMore={hasMore}

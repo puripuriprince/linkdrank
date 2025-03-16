@@ -1,0 +1,243 @@
+import React, { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Icon } from "@iconify/react";
+import Image from "next/image";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ProfilePreviewHorizontal } from "@/components/profile-preview";
+
+export type ProfileData = {
+  id: number;
+  title: string;
+  picture: string;
+  name: string;
+};
+
+export type ProfileGalleryProps = {
+  profiles: ProfileData[];
+};
+
+const ActionButtons: React.FC = () => {
+  return (
+    <>
+      <Button variant="outline" size="sm">
+        <Icon icon="material-symbols:work" width="16" height="16" /> Experience
+      </Button>
+      <Button variant="outline" size="sm">
+        <Icon icon="material-symbols:school" width="16" height="16" /> Education
+      </Button>
+      <Button variant="outline" size="sm">
+        <Icon icon="hugeicons:workflow-circle-05" width="16" height="16" />{" "}
+        Projects
+      </Button>
+      <Button variant="outline" size="sm">
+        <Icon icon="material-symbols:diamond-outline" width="16" height="16" />{" "}
+        Honors
+      </Button>
+    </>
+  );
+};
+
+interface DesktopProfileDisplayProps {
+  profile: ProfileData;
+}
+
+const DesktopProfileDisplay: React.FC<DesktopProfileDisplayProps> = ({
+  profile,
+}) => {
+  return (
+    <div className="relative h-full w-full overflow-hidden border-r-[0.5px] border-black/[0.13] dark:border-white/[0.13]">
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="relative flex h-full w-full flex-col items-center justify-center">
+          {/* Top overlay */}
+          <div className="absolute left-8 top-9 z-20">
+            <h1 className="line-clamp-3 text-xl font-semibold text-black dark:text-white drop-shadow">
+              Top Profiles
+            </h1>
+          </div>
+          <div className="absolute right-8 top-9 flex gap-1 z-20">
+            <Button variant="outline" size="sm">
+              <Icon icon="mdi:heart" width="16" height="16" /> Favorite
+            </Button>
+          </div>
+          {/* Main display */}
+          <div className="pointer-events-none flex h-full w-full gap-12 items-center justify-center p-10">
+            <div className="flex flex-col items-center space-y-4">
+              <div className="relative h-24 w-24">
+                <Image
+                  src={profile.picture}
+                  alt={profile.name}
+                  fill
+                  className="rounded-full object-cover"
+                />
+              </div>
+              <div className="text-center">
+                <h1 className="text-xl font-bold text-black dark:text-white">
+                  {profile.name}
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-300">
+                  {profile.title}
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-3 w-1/2">
+              <ActionButtons />
+            </div>
+          </div>
+          {/* Bottom button */}
+          <div className="mt-auto pb-10">
+            <Button variant="outline" size="sm">
+              <Icon icon="mdi:linkedin" width="16" height="16" /> View on
+              LinkedIn
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface DesktopViewProps {
+  selectedProfile: ProfileData;
+  profiles: ProfileData[];
+  onProfileSelect: (profile: ProfileData) => void;
+}
+
+const DesktopView: React.FC<DesktopViewProps> = ({
+  selectedProfile,
+  profiles,
+  onProfileSelect,
+}) => {
+  return (
+    <div className="mx-auto hidden h-full w-full max-w-[calc(72rem+2rem)] grid-cols-2 md:grid overflow-hidden rounded-xl border-[0.5px] border-black/[0.13] dark:border-white/[0.13]">
+      {/* Left Column */}
+      <DesktopProfileDisplay profile={selectedProfile} />
+      {/* Right Column: Horizontal Profile Previews */}
+      <div className="flex flex-col p-10 dark:bg-zinc-900/80">
+        <div className="mb-6 mt-1">
+          <h1 className="line-clamp-3 text-xl font-semibold text-black dark:text-white">
+            More Profiles
+          </h1>
+        </div>
+        <ScrollArea className="h-96 w-full">
+          <div className="space-y-2 p-1">
+            {profiles.map((profile) => (
+              <ProfilePreviewHorizontal
+                key={profile.id}
+                profile={profile}
+                selected={selectedProfile.id === profile.id}
+                onClick={() => onProfileSelect(profile)}
+              />
+            ))}
+          </div>
+        </ScrollArea>
+      </div>
+    </div>
+  );
+};
+
+interface MobileProfileDisplayProps {
+  profile: ProfileData;
+}
+
+const MobileProfileDisplay: React.FC<MobileProfileDisplayProps> = ({
+  profile,
+}) => {
+  return (
+    <div className="flex flex-col items-center space-y-4">
+      <div className="relative h-40 w-40">
+        <Image
+          src={profile.picture}
+          alt={profile.title}
+          fill
+          className="rounded-full object-cover"
+        />
+      </div>
+      <div className="text-center">
+        <h1 className="text-xl font-bold text-black dark:text-white">
+          {profile.name}
+        </h1>
+        <p className="text-sm text-gray-500 dark:text-gray-300">
+          {profile.title}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+interface MobileViewProps {
+  selectedProfile: ProfileData;
+  profiles: ProfileData[];
+  onProfileSelect: (profile: ProfileData) => void;
+}
+
+const MobileView: React.FC<MobileViewProps> = ({
+  selectedProfile,
+  profiles,
+  onProfileSelect,
+}) => {
+  return (
+    <div className="md:hidden flex flex-col items-center p-4">
+      <MobileProfileDisplay profile={selectedProfile} />
+      {/* Buttons Grid */}
+      <div className="grid grid-cols-2 gap-3 w-full mt-6">
+        <ActionButtons />
+      </div>
+      {/* Mobile Profile Selector */}
+      <div className="mt-4 w-full">
+        <ScrollArea className="relative w-full h-full">
+          <div className="flex space-x-3 p-2">
+            {profiles.map((profile) => (
+              <Card
+                key={profile.id}
+                className={`flex items-center w-40 h-40 cursor-pointer overflow-hidden ${
+                  selectedProfile.id === profile.id
+                    ? "ring-2 ring-blue-500"
+                    : ""
+                }`}
+                onClick={() => onProfileSelect(profile)}
+              >
+                <div className="relative h-24 w-24">
+                  <Image
+                    src={profile.picture}
+                    alt={profile.name}
+                    fill
+                    className="object-cover rounded-full"
+                  />
+                </div>
+              </Card>
+            ))}
+          </div>
+          <div className="pointer-events-none absolute -right-1 bottom-0 top-0 h-full w-12 bg-gradient-to-l from-white to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_left,black_0%,black_30%,transparent_100%)] transition-all duration-300 dark:from-black translate-x-0 opacity-100" />
+        </ScrollArea>
+      </div>
+    </div>
+  );
+};
+
+export function ProfileGallery({ profiles }: ProfileGalleryProps) {
+  const [selectedProfile, setSelectedProfile] = useState<ProfileData>(
+    profiles[0],
+  );
+
+  const handleProfileSelect = (profile: ProfileData) => {
+    setSelectedProfile(profile);
+  };
+
+  return (
+    <div className="flex flex-col h-full w-full">
+      <section className="min-h-[34.75rem] md:h-[calc(100vh-10rem)] md:max-h-[31.25rem] md:min-h-[25rem]">
+        <DesktopView
+          selectedProfile={selectedProfile}
+          profiles={profiles}
+          onProfileSelect={handleProfileSelect}
+        />
+        <MobileView
+          selectedProfile={selectedProfile}
+          profiles={profiles}
+          onProfileSelect={handleProfileSelect}
+        />
+      </section>
+    </div>
+  );
+}

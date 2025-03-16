@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-import { CONFIG } from 'src/global-config';
+import { CONFIG } from "src/global-config";
 
-import { View500 } from 'src/sections/error';
+import { View500 } from "src/sections/error";
 
 // ----------------------------------------------------------------------
 

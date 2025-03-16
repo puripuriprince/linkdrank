@@ -1,4 +1,4 @@
-const SAMPLE_PROFILES = [
+export const SAMPLE_PROFILES = [
   {
     name: "Salma Elmahallawy",
     picture:

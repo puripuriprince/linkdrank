@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 
-import { CONFIG } from "src/global-config";
-
-import { NotFoundView } from "src/sections/error";
+import { ProfileView } from "@/src/sections/profile/view";
 
 // ----------------------------------------------------------------------
 
 export const metadata: Metadata = {
-  title: `404 page not found! | Error - ${CONFIG.appName}`,
+  title: "",
+  description: "",
 };
 
 export default function Page() {
-  return <NotFoundView />;
+  return <ProfileView />;
 }
