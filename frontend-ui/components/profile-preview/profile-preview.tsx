@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tooltip, TooltipTrigger } from '@radix-ui/react-tooltip';
 import {TooltipContent} from "@/components/ui/tooltip";
 import {CONFIG} from "@/src/global-config";
-import {ProfileData} from "@/src/sections/profile/top-profiles";
+import {Profile} from "@/src/types/profile";
 
 // ----------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
 };
 
 interface ProfilePreviewHorizontalProps {
-    profile: ProfileData;
+    profile: Profile;
     selected: boolean;
     onClick: () => void;
 }

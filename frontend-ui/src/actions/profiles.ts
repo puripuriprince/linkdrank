@@ -1,5 +1,311 @@
 export const SAMPLE_PROFILES = [
   {
+    name: "Nikita Kozak",
+    title:
+      "Stanford MechE PhD Candidate | Knight-Hennessey Scholar | DOE Computational Science Graduate Fellow",
+    location: "Stanford, California, United States",
+    picture:
+      "https://media.licdn.com/dms/image/v2/C4E03AQGq-RuxjV691w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1588362709407?e=1747872000&v=beta&t=JXcDyKuYwXZRYi5nzreiELO6aAqj0NQ6HmS7IR2e9V4",
+    about: "",
+    linkedinUrl: "https://www.linkedin.com/in/nikita-kozak/",
+    experiences: [
+      {
+        title: "Graduate Student Researcher",
+        companyName:
+          "Flow Physics and Computational Engineering Group, Stanford University",
+        employmentType: "Full-time",
+        location: "Stanford, California, United States",
+        workMode: "",
+        startDate: "Aug 2020",
+        endDate: "Present",
+        duration: "4 yrs 8 mos",
+        logo: "",
+      },
+      {
+        title: "Undergraduate Researcher",
+        companyName:
+          "Iowa State University - Computational Fluid–Structure Interaction Laboratory",
+        employmentType: "Part-time",
+        location: "Ames, IA",
+        workMode: "",
+        startDate: "Sep 2017",
+        endDate: "May 2020",
+        duration: "2 yrs 9 mos",
+        logo: "https://media.licdn.com/dms/image/v2/C560BAQGaz7lrBl-b6Q/company-logo_100_100/company-logo_100_100/0/1673026883907?e=1750291200&v=beta&t=LRfgcE94VTxveMQ-NV0KCpnJR57ZX19rZUs0WO2cZvk",
+      },
+      {
+        title: "Mechanical Engineering Intern",
+        companyName:
+          "U.S. Army CCDC Army Research Laboratory: Computational and Information Sciences Directorate",
+        employmentType: "Internship",
+        location: "Baltimore, Maryland Area",
+        workMode: "",
+        startDate: "May 2019",
+        endDate: "Aug 2019",
+        duration: "4 mos",
+        logo: "https://media.licdn.com/dms/image/v2/C4E0BAQFOPJaj77KHSA/company-logo_100_100/company-logo_100_100/0/1678970868091/armyresearchlab_logo?e=1750291200&v=beta&t=tB4yWrfz7UCHPAhT8Fnh-zJVqGLk3ik2YcVkSaXeXXE",
+      },
+      {
+        title: "Mechanical Engineering Intern",
+        companyName:
+          "U.S. Army CCDC Army Research Laboratory - Vehicle Technology Directorate",
+        employmentType: "Internship",
+        location: "Baltimore, Maryland Area",
+        workMode: "",
+        startDate: "May 2018",
+        endDate: "Aug 2018",
+        duration: "4 mos",
+        logo: "https://media.licdn.com/dms/image/v2/C4E0BAQFOPJaj77KHSA/company-logo_100_100/company-logo_100_100/0/1678970868091/armyresearchlab_logo?e=1750291200&v=beta&t=tB4yWrfz7UCHPAhT8Fnh-zJVqGLk3ik2YcVkSaXeXXE",
+      },
+      {
+        title: "Research Associate",
+        companyName: "KG Marketsense",
+        employmentType: "",
+        location: "Des Moines, Iowa Area",
+        workMode: "",
+        startDate: "Jun 2017",
+        endDate: "Aug 2017",
+        duration: "3 mos",
+        logo: "",
+      },
+      {
+        title: "Mechanical Engineering Intern",
+        companyName: "CCC (Compressor Controls Corporation)",
+        employmentType: "",
+        location: "Des Moines, Iowa Area",
+        workMode: "",
+        startDate: "Dec 2016",
+        endDate: "Jan 2017",
+        duration: "2 mos",
+        logo: "https://media.licdn.com/dms/image/v2/D4D0BAQFhgIvgHjTDBw/company-logo_100_100/company-logo_100_100/0/1728653736155/honeywell_ccc_logo?e=1750291200&v=beta&t=6wnSldkIOjBqCOa73xeAc7r0M6hXUohsxZAGMNNdzS0",
+      },
+      {
+        title: "Engineering and Architecture Intern",
+        companyName: "DLR Group",
+        employmentType: "",
+        location: "Des Moines, Iowa",
+        workMode: "",
+        startDate: "Oct 2015",
+        endDate: "May 2016",
+        duration: "8 mos",
+        logo: "https://media.licdn.com/dms/image/v2/C4E0BAQGIrSHUPMuAng/company-logo_100_100/company-logo_100_100/0/1634654651159/dlrgroup_logo?e=1750291200&v=beta&t=-gQxR0k41zmWxDFyQTkR0ql6EHHJ115yp7giAO8ev1g",
+      },
+    ],
+    educations: [
+      {
+        school: "Stanford University",
+        degree: "Doctor of Philosophy - PhD, Mechanical Engineering",
+        companyLogo:
+          "https://media.licdn.com/dms/image/v2/C560BAQHr9suxyJBXMw/company-logo_100_100/company-logo_100_100/0/1635534378870/stanford_university_logo?e=1750291200&v=beta&t=G5ci_qXqyO9GhF_Z9UuhajAye2Qi57g4bOLLwIQslXo",
+        startYear: "Aug 2020",
+        endYear: "May 2025",
+      },
+      {
+        school: "Stanford University",
+        degree: "Master of Science - MS, Mechanical Engineering",
+        companyLogo:
+          "https://media.licdn.com/dms/image/v2/C560BAQHr9suxyJBXMw/company-logo_100_100/company-logo_100_100/0/1635534378870/stanford_university_logo?e=1750291200&v=beta&t=G5ci_qXqyO9GhF_Z9UuhajAye2Qi57g4bOLLwIQslXo",
+        startYear: "Aug 2020",
+        endYear: "May 2022",
+      },
+      {
+        school: "Iowa State University",
+        degree: "Bachelor of Engineering (BEng), Mechanical Engineering",
+        companyLogo:
+          "https://media.licdn.com/dms/image/v2/C560BAQFlTCixZ8qIYQ/company-logo_100_100/company-logo_100_100/0/1675978834843/iowastateu_logo?e=1750291200&v=beta&t=8A_4l8-6hm-ToYUegRAKhMnvpOukgWbtCJ-03qaI6l0",
+        startYear: "2016",
+        endYear: "2020",
+      },
+      {
+        school: "Hochschule Mannheim",
+        degree: "Study Aboard: Summer Semester , Mechanical Engineering",
+        companyLogo:
+          "https://media.licdn.com/dms/image/v2/D4D0BAQFg_4KtQOljLw/company-logo_100_100/B4DZVRsS1BHkAQ-/0/1740832321172/hochschule_mannheim_logo?e=1750291200&v=beta&t=UqR5QPNmlCfXmjCiYC2GoBcWYl_7ymTiyYyrTi_elD4",
+        startYear: "2016",
+        endYear: "2016",
+      },
+    ],
+    projects: [
+      {
+        title:
+          "Application of Supervised Machine Learning (ML) to a Gas Turbine Stage and Combustor Performance Data and Flow Fields Application of Supervised Machine Learning (ML) to a Gas Turbine Stage and Combustor Performance Data and Flow Fields",
+        startDate: "Jun 2019",
+        endDate: "Present",
+        description:
+          "- Developing ML kernel functions to accurately predict the complex flow fields and performance metrics of gas turbine stages and combustors.- Validating predictions with computational fluid dynamics (CFD) simulations.- Comparing my reduced order models with published models for CFD.- Developing ML kernel functions to accurately predict the complex flow fields and performance metrics of gas turbine stages and combustors.\n" +
+          "- Validating predictions with computational fluid dynamics (CFD) simulations.\n" +
+          "- Comparing my reduced order models with published models for CFD.",
+        logo: "",
+      },
+      {
+        title:
+          "Implementation of Sand Ingestion Effects on Turbomachinery Blades in Finite Element (FE) Fluid Structure Interaction (FSI) Code",
+        startDate: "Jun 2019",
+        endDate: "Present",
+        description:
+          "- Creating a script to build a gas turbine stage geometry and to impose 3D scanned textures on the blade geometries.- Examining the effects of sand attachment and deterioration of blade geometries on flow fields and performance metrics. - Investigating the ability of novel FE numerical methods (weakly-enforced boundary conditions) to accurately capture small-scale surface changes. - Creating a script to build a gas turbine stage geometry and to impose 3D scanned textures on the blade geometries.\n" +
+          "- Examining the effects of sand attachment and deterioration of blade geometries on flow fields and performance metrics. \n" +
+          "- Investigating the ability of novel FE numerical methods (weakly-enforced boundary conditions) to accurately capture small-scale surface changes.",
+        logo: "",
+      },
+      {
+        title:
+          "Development and Application of a Surrogate Management Framework (SMF) Optimizer for Army Gas Turbine Engines. Development and Application of a Surrogate Management Framework (SMF) Optimizer for Army Gas Turbine Engines.",
+        startDate: "Sep 2018",
+        endDate: "May 2020",
+        description:
+          "- Modifying the computation techniques of an existing SMF optimizer for an Army specific application. - Developing and validating a mathematical model to ensure optimization achieves peak gas turbine engine performance. - Optimizing gas turbine blade position for engines operating at off-design conditions.- Modifying the computation techniques of an existing SMF optimizer for an Army specific application. \n" +
+          "- Developing and validating a mathematical model to ensure optimization achieves peak gas turbine engine performance. \n" +
+          "- Optimizing gas turbine blade position for engines operating at off-design conditions.",
+        logo: "",
+      },
+      {
+        title:
+          "Computational Study of Gas Turbine Adaptive Stator/Rotor Interactions Computational Study of Gas Turbine Adaptive Stator/Rotor Interactions",
+        startDate: "May 2018",
+        endDate: "May 2019",
+        description:
+          "Associated with U.S. Army CCDC Army Research Laboratory - Vehicle Technology Directorate",
+        logo: "https://media.licdn.com/dms/image/v2/C4E0BAQFOPJaj77KHSA/company-logo_100_100/company-logo_100_100/0/1678970868091/armyresearchlab_logo?e=1750291200&v=beta&t=tB4yWrfz7UCHPAhT8Fnh-zJVqGLk3ik2YcVkSaXeXXE",
+      },
+      {
+        title:
+          "Implementation of the Actuator Line Method in a Finite Element simulation modeling Wind Turbine Aerodynamics Implementation of the Actuator Line Method in a Finite Element simulation modeling Wind Turbine Aerodynamics",
+        startDate: "Sep 2017",
+        endDate: "May 2018",
+        description: "Associated with Iowa State University",
+        logo: "https://media.licdn.com/dms/image/v2/C560BAQFlTCixZ8qIYQ/company-logo_100_100/company-logo_100_100/0/1675978834843/iowastateu_logo?e=1750291200&v=beta&t=8A_4l8-6hm-ToYUegRAKhMnvpOukgWbtCJ-03qaI6l0",
+      },
+      {
+        title: "Independent Study on Electromagnetic Solenoid Engines",
+        startDate: "",
+        endDate: "",
+        description:
+          "- Studied the functionality and operation of electromagnetics- Innovated an electromagnetic solenoid engine- 3D Printed a functioning model and presented the new design- Studied the functionality and operation of electromagnetics\n" +
+          "- Innovated an electromagnetic solenoid engine\n" +
+          "- 3D Printed a functioning model and presented the new design",
+        logo: "",
+      },
+      {
+        title:
+          "Manufacturing Optimization Study at Hochschule Mannheim Manufacturing Optimization Study at Hochschule Mannheim",
+        startDate: "",
+        endDate: "",
+        description:
+          "- Researched, designed and optimized an assembly line with real-life constraints.- Overcame language barriers to collaborate with a multicultural team- Presented design in a project competition (awarded first place)- Researched, designed and optimized an assembly line with real-life constraints.\n" +
+          "- Overcame language barriers to collaborate with a multicultural team\n" +
+          "- Presented design in a project competition (awarded first place)",
+        logo: "",
+      },
+    ],
+    honors: [
+      {
+        title:
+          "2018 US Army Research Laboratory Campus Wide Summer Research Competition - First Place",
+        issuer: "Issued by US Army Research Laboratory",
+        date: "",
+        logo: "",
+      },
+      {
+        title:
+          "2018 US Army Research Laboratory Computational and Information Science Directorate Summer Research Competition - First Place",
+        issuer:
+          "Issued by US Army Research Laboratory -  Computational and Information Science Directorate",
+        date: "",
+        logo: "",
+      },
+      {
+        title:
+          "2018 US Army Research Laboratory Vehicle Technology Directorate Summer Research Competition - First Place",
+        issuer:
+          "Issued by Vehicle Technology Directorate - US Army Research Laboratory",
+        date: "",
+        logo: "",
+      },
+      {
+        title:
+          "2019 US Army Research Laboratory Campus Wide Summer Research Competition - First Place",
+        issuer: "Issued by US Army Research Laboratory",
+        date: "",
+        logo: "",
+      },
+      {
+        title: "Academic Recognition Scholar",
+        issuer: "Issued by ISU",
+        date: "",
+        logo: "",
+      },
+      {
+        title: "Barry Goldwater Scholar",
+        issuer: "Issued by Goldwater Scholarship",
+        date: "",
+        logo: "",
+      },
+      {
+        title: "Cardinal Leadership Scholar",
+        issuer: "Issued by ISU",
+        date: "",
+        logo: "",
+      },
+      {
+        title:
+          "Department of Energy Computational Science Graduate Fellow Department of Energy Computational Science Graduate Fellow",
+        issuer:
+          "Issued by Krell Institute - Department of Energy Issued by Krell Institute - Department of Energy",
+        date: "",
+        logo: "",
+      },
+      {
+        title:
+          "IINSPIRE LSAMP Research Conference - First Place Oral Presentation",
+        issuer: "Issued by IINSPIRE LSAMP",
+        date: "",
+        logo: "",
+      },
+      {
+        title: "Knight-Hennessy Scholar Knight-Hennessy Scholar",
+        issuer:
+          "Issued by Knight-Hennessy Scholarship Program Issued by Knight-Hennessy Scholarship Program",
+        date: "",
+        logo: "",
+      },
+      {
+        title:
+          "National Science Foundation Graduate Research Fellowship Recipient National Science Foundation Graduate Research Fellowship Recipient",
+        issuer: "",
+        date: "",
+        logo: "",
+      },
+      {
+        title: "Posters on the Hill Honorable Mention",
+        issuer: "Issued by NCUR",
+        date: "",
+        logo: "",
+      },
+      {
+        title: "Research in the Capital Participant",
+        issuer: "Issued by Iowa State University",
+        date: "",
+        logo: "",
+      },
+      {
+        title:
+          "Student Marshall - College of Engineering Student Marshall - College of Engineering",
+        issuer:
+          "Issued by Iowa State University Issued by Iowa State University",
+        date: "",
+        logo: "",
+      },
+      {
+        title: "Wallace E. Barron All-University Senior Award",
+        issuer:
+          "Issued by Iowa State University Issued by Iowa State University",
+        date: "",
+        logo: "",
+      },
+    ],
+  },
+  {
     name: "Salma Elmahallawy",
     picture:
       "https://media.licdn.com/dms/image/v2/D4E03AQEq3TJlYCH6_Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1689957251626?e=1746662400&v=beta&t=fIHnu_tG8q7c7r578-QWrVDm5t2q-9lQieBj3qbfSvw",

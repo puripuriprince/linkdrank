@@ -1,4 +1,4 @@
-export type UserType = Record<string, any> | null;
+export type UserType = Record<string, never> | null;
 
 export type AuthState = {
   user: UserType;

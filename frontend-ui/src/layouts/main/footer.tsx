@@ -8,6 +8,7 @@ import { CONFIG } from "@/src/global-config";
 import { paths } from "src/routes/paths";
 
 import { cn } from "src/lib/utils";
+import Image from "next/image";
 
 interface LinkItem {
   label?: string;
@@ -55,7 +56,7 @@ export const Footer: FC<FooterProps> = ({ className }) => (
       <div className="flex flex-wrap gap-8 justify-between">
         <div className="flex flex-col col-span-2 gap-4 md:col-span-2">
           <Link href="/" className="w-fit font-semibold">
-            <img
+            <Image
               aria-hidden="true"
               alt="Linky"
               width={96}
@@ -106,17 +107,27 @@ export const Footer: FC<FooterProps> = ({ className }) => (
           <p className="text-sm text-black dark:text-white">
             Crafted with love in Montreal
           </p>
-          <div className="relative w-9 h-9 rotate-6">
-            <img
-              alt="San Francisco map"
-              className="absolute inset-0 rounded-lg dark:hidden"
-              src="https://attic.sh/_static/emojis/san-francisco-map-light.webp"
+          <div className="relative isolate aspect-square w-9 rotate-6">
+            <div className="absolute inset-0 rounded-lg bg-gray-100 dark:bg-gray-800"></div>
+            <Image
+                alt="San Francisco map"
+                className="absolute inset-0 rounded-lg dark:hidden"
+                src="https://attic.sh/_static/emojis/san-francisco-map-light.webp"
+                width={36}
+                height={36}
             />
-            <img
-              alt="San Francisco map"
-              className="absolute inset-0 rounded-lg hidden dark:block"
-              src="https://attic.sh/_static/emojis/san-francisco-map-dark.webp"
+            <Image
+                alt="San Francisco map"
+                className="absolute inset-0 rounded-lg hidden dark:block"
+                src="https://attic.sh/_static/emojis/san-francisco-map-dark.webp"
+                width={36}
+                height={36}
             />
+            <div className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10 dark:ring-white/10"></div>
+            <div className="absolute left-1/2 top-1/2 aspect-square w-2.5 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute inset-0 animate-ping rounded-full bg-blue-500 dark:bg-blue-600"></div>
+              <div className="absolute inset-0 rounded-full border border-white bg-blue-500 dark:bg-blue-600"></div>
+            </div>
           </div>
         </div>
       </div>

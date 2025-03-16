@@ -3,11 +3,8 @@
 import Link from "next/link";
 import { paths } from "@/src/routes/paths";
 
-import { Button } from "@/components/ui/button";
-
 import { MainSection, LayoutSection } from "../core";
-import { DesktopHeader } from "@/src/layouts/main/nav/desktop";
-import { MobileHeader, MobileNav } from "@/src/layouts/main/nav/mobile";
+import { MobileNav } from "@/src/layouts/main/nav/mobile";
 import { Footer } from "@/src/layouts/main/footer";
 import { cn } from "@/lib/utils";
 import { navData as mainNavData } from "../nav-config-main";

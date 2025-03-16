@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/src/hooks/use-auto-resize-textarea";
+import Image from "next/image";
 
 export function HomeHero() {
   const {
@@ -37,7 +38,7 @@ export function HomeHero() {
       </h1>
 
       <div className="flex flex-row flex-nowrap items-end -space-x-20">
-        <img
+        <Image
           draggable={false}
           alt="banner of Linky creators"
           loading="lazy"

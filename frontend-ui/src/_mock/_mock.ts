@@ -35,7 +35,7 @@ import {
 
 export const _mock = {
   id: (index: number) => _id[index],
-  time: (index: number) => new Date().toISOString(),
+  time: () => new Date().toISOString(),
   boolean: (index: number) => _booleans[index],
   role: (index: number) => _roles[index],
   // Text

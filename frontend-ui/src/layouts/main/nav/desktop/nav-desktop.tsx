@@ -10,6 +10,7 @@ import { paths } from "@/src/routes/paths";
 import { CONFIG } from "@/src/global-config";
 import { useRouter, usePathname } from "@/src/routes/hooks";
 import { useSearchContext } from "@/src/sections/search/context";
+import Image from "next/image";
 
 export type DesktopHeaderProps = {
   data: { title: string; href: string }[];
@@ -65,7 +66,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
             href="/"
             className="text-gray-500 dark:text-gray-300 relative outline-none flex flex-row flex-nowrap items-center gap-2.5 whitespace-nowrap rounded-lg text-[0.9375rem] font-[550] leading-none"
           >
-            <img
+            <Image
               aria-hidden="true"
               alt="Linky"
               width={32}

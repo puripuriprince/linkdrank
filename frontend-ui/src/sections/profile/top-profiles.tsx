@@ -5,41 +5,16 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ProfilePreviewHorizontal } from "@/components/profile-preview";
-
-export type ProfileData = {
-  id: number;
-  title: string;
-  picture: string;
-  name: string;
-};
+import { Profile } from "@/src/types/profile";
+import { ProfileButtons } from "./components";
+import { toast } from "sonner";
 
 export type ProfileGalleryProps = {
-  profiles: ProfileData[];
-};
-
-const ActionButtons: React.FC = () => {
-  return (
-    <>
-      <Button variant="outline" size="sm">
-        <Icon icon="material-symbols:work" width="16" height="16" /> Experience
-      </Button>
-      <Button variant="outline" size="sm">
-        <Icon icon="material-symbols:school" width="16" height="16" /> Education
-      </Button>
-      <Button variant="outline" size="sm">
-        <Icon icon="hugeicons:workflow-circle-05" width="16" height="16" />{" "}
-        Projects
-      </Button>
-      <Button variant="outline" size="sm">
-        <Icon icon="material-symbols:diamond-outline" width="16" height="16" />{" "}
-        Honors
-      </Button>
-    </>
-  );
+  profiles: Profile[];
 };
 
 interface DesktopProfileDisplayProps {
-  profile: ProfileData;
+  profile: Profile;
 }
 
 const DesktopProfileDisplay: React.FC<DesktopProfileDisplayProps> = ({
@@ -56,12 +31,16 @@ const DesktopProfileDisplay: React.FC<DesktopProfileDisplayProps> = ({
             </h1>
           </div>
           <div className="absolute right-8 top-9 flex gap-1 z-20">
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => toast.info("Added to favorites!")}
+            >
               <Icon icon="mdi:heart" width="16" height="16" /> Favorite
             </Button>
           </div>
           {/* Main display */}
-          <div className="pointer-events-none flex h-full w-full gap-12 items-center justify-center p-10">
+          <div className="flex h-full w-full gap-12 items-center justify-center p-10">
             <div className="flex flex-col items-center space-y-4">
               <div className="relative h-24 w-24">
                 <Image
@@ -81,12 +60,16 @@ const DesktopProfileDisplay: React.FC<DesktopProfileDisplayProps> = ({
               </div>
             </div>
             <div className="grid grid-cols-1 gap-3 w-1/2">
-              <ActionButtons />
+              <ProfileButtons profile={profile} />
             </div>
           </div>
           {/* Bottom button */}
           <div className="mt-auto pb-10">
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => window.open(profile.linkedinUrl)}
+            >
               <Icon icon="mdi:linkedin" width="16" height="16" /> View on
               LinkedIn
             </Button>
@@ -98,9 +81,9 @@ const DesktopProfileDisplay: React.FC<DesktopProfileDisplayProps> = ({
 };
 
 interface DesktopViewProps {
-  selectedProfile: ProfileData;
-  profiles: ProfileData[];
-  onProfileSelect: (profile: ProfileData) => void;
+  selectedProfile: Profile;
+  profiles: Profile[];
+  onProfileSelect: (profile: Profile) => void;
 }
 
 const DesktopView: React.FC<DesktopViewProps> = ({
@@ -137,7 +120,7 @@ const DesktopView: React.FC<DesktopViewProps> = ({
 };
 
 interface MobileProfileDisplayProps {
-  profile: ProfileData;
+  profile: Profile;
 }
 
 const MobileProfileDisplay: React.FC<MobileProfileDisplayProps> = ({
@@ -166,9 +149,9 @@ const MobileProfileDisplay: React.FC<MobileProfileDisplayProps> = ({
 };
 
 interface MobileViewProps {
-  selectedProfile: ProfileData;
-  profiles: ProfileData[];
-  onProfileSelect: (profile: ProfileData) => void;
+  selectedProfile: Profile;
+  profiles: Profile[];
+  onProfileSelect: (profile: Profile) => void;
 }
 
 const MobileView: React.FC<MobileViewProps> = ({
@@ -181,7 +164,16 @@ const MobileView: React.FC<MobileViewProps> = ({
       <MobileProfileDisplay profile={selectedProfile} />
       {/* Buttons Grid */}
       <div className="grid grid-cols-2 gap-3 w-full mt-6">
-        <ActionButtons />
+        <ProfileButtons profile={selectedProfile} />
+      </div>
+      <div className="py-3">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => window.open(selectedProfile.linkedinUrl)}
+        >
+          <Icon icon="mdi:linkedin" width="16" height="16" /> View on LinkedIn
+        </Button>
       </div>
       {/* Mobile Profile Selector */}
       <div className="mt-4 w-full">
@@ -216,11 +208,9 @@ const MobileView: React.FC<MobileViewProps> = ({
 };
 
 export function ProfileGallery({ profiles }: ProfileGalleryProps) {
-  const [selectedProfile, setSelectedProfile] = useState<ProfileData>(
-    profiles[0],
-  );
+  const [selectedProfile, setSelectedProfile] = useState<Profile>(profiles[0]);
 
-  const handleProfileSelect = (profile: ProfileData) => {
+  const handleProfileSelect = (profile: Profile) => {
     setSelectedProfile(profile);
   };
 

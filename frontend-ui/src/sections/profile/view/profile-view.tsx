@@ -24,9 +24,8 @@ export function ProfileView() {
   const profiles = SAMPLE_PROFILES.map((p, i) => {
     return {
       id: i,
-      name: p.name,
+      ...p,
       picture: p.picture ?? `${CONFIG.assetsDir}/logo/logo.svg`,
-      title: p.title,
     };
   });
   return (
