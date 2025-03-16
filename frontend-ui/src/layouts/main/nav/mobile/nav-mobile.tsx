@@ -13,6 +13,8 @@ import { usePathname } from "src/routes/hooks";
 import { cn } from "src/lib/utils";
 
 import type { DesktopHeaderProps } from "../desktop";
+import { UserMenu } from "@/src/layouts/components";
+import Link from "next/link";
 
 export type MobileNavProps = {
   data: { title: string; href: string; icon?: string }[];
@@ -28,10 +30,10 @@ export function MobileHeader() {
   };
 
   return (
-    <header className="z-[1000] bg-white dark:bg-black fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b px-safe-offset-4 md:hidden">
+    <header className="z-20 bg-white dark:bg-black fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b px-safe-offset-4 md:hidden">
       {/* Left: Login/Profile Button */}
       <div className="flex flex-row items-center data-[align=start]:col-start-1 data-[align=start]:[place-self:center_start] data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
-        <Icon icon="ph:user-circle" width={24} height={24} />
+        <UserMenu />
       </div>
 
       {/* Center: Branding */}
@@ -82,12 +84,12 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
       )}
     >
       {data.map(({ title, href, icon }) => (
-        <a
+        <Link
           key={title}
           href={href}
           className={cn(
             "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-500 dark:text-gray-400 transition-colors",
-            pathname === href && "text-system-primary",
+            pathname === href && "text-black dark:text-white",
             "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]",
           )}
         >
@@ -102,16 +104,17 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
           <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">
             {title}
           </p>
-        </a>
+        </Link>
       ))}
 
       {/* Profile Button */}
-      <a
+      <Link
         className={cn(
           "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-400 dark:text-gray-500 transition-colors",
-          pathname === paths.profile.root && "text-system-primary",
+          pathname === paths.profile.root && "text-black dark:text-white",
           "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]",
         )}
+        href={paths.profile.root}
       >
         <Icon
           icon="ph:user-circle"
@@ -122,7 +125,7 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
         <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">
           Profile
         </p>
-      </a>
+      </Link>
     </nav>
   );
 };

@@ -110,18 +110,18 @@ export const Footer: FC<FooterProps> = ({ className }) => (
           <div className="relative isolate aspect-square w-9 rotate-6">
             <div className="absolute inset-0 rounded-lg bg-gray-100 dark:bg-gray-800"></div>
             <Image
-                alt="San Francisco map"
-                className="absolute inset-0 rounded-lg dark:hidden"
-                src="https://attic.sh/_static/emojis/san-francisco-map-light.webp"
-                width={36}
-                height={36}
+              alt="San Francisco map"
+              className="absolute inset-0 rounded-lg dark:hidden"
+              src="https://attic.sh/_static/emojis/san-francisco-map-light.webp"
+              width={36}
+              height={36}
             />
             <Image
-                alt="San Francisco map"
-                className="absolute inset-0 rounded-lg hidden dark:block"
-                src="https://attic.sh/_static/emojis/san-francisco-map-dark.webp"
-                width={36}
-                height={36}
+              alt="San Francisco map"
+              className="absolute inset-0 rounded-lg hidden dark:block"
+              src="https://attic.sh/_static/emojis/san-francisco-map-dark.webp"
+              width={36}
+              height={36}
             />
             <div className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10 dark:ring-white/10"></div>
             <div className="absolute left-1/2 top-1/2 aspect-square w-2.5 -translate-x-1/2 -translate-y-1/2">

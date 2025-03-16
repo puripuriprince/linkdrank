@@ -11,6 +11,7 @@ import { CONFIG } from "@/src/global-config";
 import { useRouter, usePathname } from "@/src/routes/hooks";
 import { useSearchContext } from "@/src/sections/search/context";
 import Image from "next/image";
+import { UserMenu } from "@/src/layouts/components";
 
 export type DesktopHeaderProps = {
   data: { title: string; href: string }[];
@@ -56,7 +57,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
   return (
     <header
       className={cn(
-        "fixed top-[var(--desktop-header-top)] isolate w-screen select-none px-4 hidden items-center justify-center md:flex z-[1000]",
+        "fixed top-[var(--desktop-header-top)] isolate w-screen select-none px-4 hidden items-center justify-center md:flex z-20",
         className,
       )}
     >
@@ -87,14 +88,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
           ))}
 
           <div className="flex flex-row flex-nowrap items-center justify-end gap-3 text-gray-500 dark:text-gray-300">
-            <button className="relative rounded-full" type="button">
-              <span className="sr-only">Login</span>
-              <span className="relative flex shrink-0 select-none overflow-hidden rounded-full avatar-851 h-[--avatar-size] w-[--avatar-size]">
-                <span className="flex h-full w-full items-center justify-center rounded-full border border-system-primary bg-system-marketing-secondary text-system-marketing-tertiary">
-                  <Icon icon="ph:user-circle" width="20" height="20" />
-                </span>
-              </span>
-            </button>
+            <UserMenu />
           </div>
         </div>
 

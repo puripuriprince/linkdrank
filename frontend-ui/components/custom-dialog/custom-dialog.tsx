@@ -29,7 +29,7 @@ interface CustomDialogProps {
 }
 
 export function CustomDialog({ trigger, title, description, children, footer }: CustomDialogProps) {
-    const isMobile = useMediaQuery('(max-width: 640px)');
+    const isMobile = useMediaQuery('(max-width: 767px)');
 
     return (
         isMobile ? (
