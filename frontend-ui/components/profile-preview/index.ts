@@ -1,2 +1,2 @@
-export * from './profile-preview';
-export * from './profile-preview-skeleton';
+export * from "./profile-preview";
+export * from "./profile-preview-skeleton";

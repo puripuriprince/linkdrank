@@ -15,6 +15,7 @@ import { cn } from "src/lib/utils";
 import type { DesktopHeaderProps } from "../desktop";
 import { UserMenu } from "@/src/layouts/components";
 import Link from "next/link";
+import { AIDialogOpener } from "@/src/sections/profile/components";
 
 export type MobileNavProps = {
   data: { title: string; href: string; icon?: string }[];
@@ -31,9 +32,17 @@ export function MobileHeader() {
 
   return (
     <header className="z-20 bg-white dark:bg-black fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b px-safe-offset-4 md:hidden">
-      {/* Left: Login/Profile Button */}
+      {/* Left: Beaudelaire Profile */}
       <div className="flex flex-row items-center data-[align=start]:col-start-1 data-[align=start]:[place-self:center_start] data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
-        <UserMenu />
+        <Link
+          href="https://beaudelaire.ca"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative rounded outline-none after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-px after:rounded-md"
+        >
+          <Icon icon="mdi:apple" width={24} height={24} />
+          <span className="sr-only">Beaudelaire</span>
+        </Link>
       </div>
 
       {/* Center: Branding */}
@@ -43,17 +52,9 @@ export function MobileHeader() {
           : pathname.slice(1).charAt(0).toUpperCase() + pathname.slice(2)}
       </p>
 
-      {/* Right: iOS Download Button */}
+      {/* Right: Login/Profile Button */}
       <div className="flex flex-row items-center justify-end data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
-        <a
-          href="https://apps.apple.com/us/app/ai-emojis-generator/id6468916301"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative rounded outline-none after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-px after:rounded-md"
-        >
-          <Icon icon="mdi:apple" width={24} height={24} />
-          <span className="sr-only">Download iOS App</span>
-        </a>
+        <UserMenu />
       </div>
 
       {pathname === paths.search && (
@@ -79,53 +80,37 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
   return (
     <nav
       className={cn(
-        "z-[1000] bg-white dark:bg-black fixed inset-x-0 bottom-0 h-[calc(var(--mobile-tab-bar-height)-1px)] select-none flex min-w-full flex-row justify-evenly border-t py-[5px] md:hidden",
+        "z-30 bg-white dark:bg-black fixed inset-x-0 bottom-0 h-[calc(var(--mobile-tab-bar-height)-1px)] select-none flex min-w-full flex-row justify-evenly border-t py-[5px] md:hidden",
         className,
       )}
     >
-      {data.map(({ title, href, icon }) => (
-        <Link
-          key={title}
-          href={href}
-          className={cn(
-            "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-500 dark:text-gray-400 transition-colors",
-            pathname === href && "text-black dark:text-white",
-            "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]",
-          )}
-        >
-          {icon && (
-            <Icon
-              icon={icon}
-              width={28}
-              height={28}
-              className="h-7 w-7 shrink-0"
-            />
-          )}
-          <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">
-            {title}
-          </p>
-        </Link>
-      ))}
-
-      {/* Profile Button */}
-      <Link
-        className={cn(
-          "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-400 dark:text-gray-500 transition-colors",
-          pathname === paths.profile.root && "text-black dark:text-white",
-          "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]",
-        )}
-        href={paths.profile.root}
-      >
-        <Icon
-          icon="ph:user-circle"
-          width={28}
-          height={28}
-          className="h-7 w-7 shrink-0"
-        />
-        <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">
-          Profile
-        </p>
-      </Link>
+      {data.map(({ title, href, icon }) =>
+        href === paths.people.aiSearch ? (
+          <AIDialogOpener key={title} />
+        ) : (
+          <Link
+            key={title}
+            href={href}
+            className={cn(
+              "rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-500 dark:text-gray-400 transition-colors",
+              pathname === href && "text-black dark:text-white",
+              "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]",
+            )}
+          >
+            {icon && (
+              <Icon
+                icon={icon}
+                width={28}
+                height={28}
+                className="h-7 w-7 shrink-0"
+              />
+            )}
+            <p className="pb-0.75 text-[10px] font-medium leading-none tracking-wide">
+              {title}
+            </p>
+          </Link>
+        ),
+      )}
     </nav>
   );
 };

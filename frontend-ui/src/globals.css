@@ -8,7 +8,7 @@
     --desktop-header-top: 1.25rem;
     --desktop-header-height: 6.6875rem;
     --mobile-header-height: calc(3rem + 1px);
-    --mobile-tab-bar-height: calc(3.5rem + 1px);
+    --mobile-tab-bar-height: calc(5rem + 1px);
 
     --current: currentColor;
     --transparent: transparent;
@@ -184,6 +184,21 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+}
+
+.text-system-marketing-tertiary {
+    --tw-text-opacity: 1;
+    color: hsl(var(--text-system-marketing-tertiary) / var(--tw-text-opacity, 1));
+}
+
+.text-system-marketing-secondary {
+    --tw-text-opacity: 1;
+    color: hsl(var(--text-system-marketing-secondary) / var(--tw-text-opacity, 1));
+}
+
+.text-system-marketing-primary {
+    --tw-text-opacity: 1;
+    color: hsl(var(--text-system-marketing-primary) / var(--tw-text-opacity, 1));
 }
 
 @layer base {

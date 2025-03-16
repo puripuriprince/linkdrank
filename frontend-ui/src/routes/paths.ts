@@ -15,8 +15,8 @@ export const paths = {
   privacy: "/privacy",
   terms: "/terms",
   people: {
-    root: "/search",
-    details: (handle: string) => `/p/${handle}`,
+    aiSearch: "/p",
+    details: (handle: string | undefined) => `/p/${handle ?? ":handle"}`,
   },
   // AUTH
   auth: {

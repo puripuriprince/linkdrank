@@ -48,7 +48,7 @@ interface FooterProps {
 export const Footer: FC<FooterProps> = ({ className }) => (
   <footer
     className={cn(
-      "w-full border-t bg-white dark:bg-black py-14 px-4 z-[1000]",
+      "w-full border-t bg-white dark:bg-black py-14 px-4",
       className,
     )}
   >

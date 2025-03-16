@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/src/hooks/use-auto-resize-textarea";
 import Image from "next/image";
+import React, { useState } from "react";
+import { aiSearch } from "@/src/actions/search";
 
 export function HomeHero() {
   const {
@@ -13,6 +15,15 @@ export function HomeHero() {
     setValue: setInput,
     textareaRef,
   } = useAutoResizeTextarea();
+
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    await aiSearch(input);
+    setLoading(false);
+  };
 
   const suggestions = [
     "Who leads impactful nonprofits?",
@@ -49,7 +60,10 @@ export function HomeHero() {
         />
       </div>
 
-      <div className="min-h-28 w-full max-w-2xl border bg-gray-100/85 backdrop-blur-xl backdrop-saturate-200 dark:bg-gray-900/80 rounded-2xl">
+      <form
+        onSubmit={handleSubmit}
+        className="min-h-28 w-full max-w-2xl border bg-gray-100/85 backdrop-blur-xl backdrop-saturate-200 dark:bg-gray-900/80 rounded-2xl"
+      >
         <Textarea
           placeholder="Describe who you're looking for..."
           value={input}
@@ -66,12 +80,21 @@ export function HomeHero() {
             variant="default"
             size="icon"
             className="bg-gray-950 dark:bg-gray-50 text-white dark:text-gray-800 mr-1 rounded-full shrink-0 hover:bg-gray-700 dark:hover:bg-gray-300"
-            disabled={!input.trim()}
+            disabled={!input.trim() || loading}
           >
-            <Icon icon="mdi:arrow-up" width="16" height="16" />
+            {loading ? (
+              <Icon
+                icon="lucide:loader"
+                className="animate-spin"
+                width="24"
+                height="24"
+              />
+            ) : (
+              <Icon icon="mdi:arrow-up" width="16" height="16" />
+            )}
           </Button>
         </div>
-      </div>
+      </form>
 
       <div className="w-full max-w-2xl py-2.5">
         <div className="relative flex w-full transition-opacity overflow-hidden">

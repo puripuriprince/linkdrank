@@ -77,15 +77,17 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
             Linky
           </Link>
 
-          {data.map(({ title, href }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-gray-500 dark:text-gray-300 relative font-medium rounded-lg px-1 text-system-marketing-primary/80 transition-colors duration-250 ease-out hover:text-system-marketing-primary text-[0.9375rem]"
-            >
-              {title}
-            </Link>
-          ))}
+          {data
+            .filter(({ href }) => href !== paths.people.aiSearch)
+            .map(({ title, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-gray-500 dark:text-gray-300 relative font-medium rounded-lg px-1 text-system-marketing-primary/80 transition-colors duration-250 ease-out hover:text-system-marketing-primary text-[0.9375rem]"
+              >
+                {title}
+              </Link>
+            ))}
 
           <div className="flex flex-row flex-nowrap items-center justify-end gap-3 text-gray-500 dark:text-gray-300">
             <UserMenu />

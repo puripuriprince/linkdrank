@@ -32,7 +32,7 @@ export function SimpleLayout({
   const renderHeader = () => (
     <>
       <MobileNav data={navData} />
-      <div className="flex justify-between items-center p-4 border-b">
+      <div className="flex justify-between items-center p-4 border-b bg-white dark:bg-black dark:border-gray-800">
         <Image
           src={`${CONFIG.assetsDir}/logo/logo.svg`}
           alt="Logo"

@@ -1,19 +1,20 @@
-import {
-  ProfilePreviewProps,
-  ProfilePreviewSkeleton,
-} from "@/components/profile-preview";
+import { ProfilePreviewSkeleton } from "@/components/profile-preview";
 
 import { useState, useEffect, useCallback } from "react";
 
 import { getProfilesPreview } from "@/src/actions/profiles";
 import { ProfilePreview } from "@/components/profile-preview";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import { Profile } from "@/src/types/profile";
+import { paths } from "@/src/routes/paths";
+import { useRouter } from "@/src/routes/hooks";
 
 export function HomeProfiles() {
-  const [profiles, setProfiles] = useState<ProfilePreviewProps[]>([]);
+  const [profiles, setProfiles] = useState<Profile[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const router = useRouter();
 
   const fetchNextPage = useCallback(async () => {
     if (loading || !hasMore) return;
@@ -74,12 +75,13 @@ export function HomeProfiles() {
       >
         {profiles.length > 0 ? (
           <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-            {profiles.map((profile) => (
+            {profiles.map((profile, i) => (
               <div
                 key={`profile-${profile.name}`}
                 className="flex justify-center hover:cursor-pointer rounded-xl"
               >
                 <ProfilePreview
+                  id={i}
                   name={profile.name}
                   title={profile.title}
                   picture={profile.picture}
@@ -87,6 +89,9 @@ export function HomeProfiles() {
                     logo: "https://media.licdn.com/dms/image/v2/C4D0BAQHiNSL4Or29cg/company-logo_100_100/company-logo_100_100/0/1631311446380?e=1749686400&v=beta&t=Gwp7TJ03ucl_lSWXsdG8lCgHnVoQKbH4_zMgayw38XQ",
                     name: "Google",
                   }}
+                  onClick={() =>
+                    router.push(paths.people.details(profile.linkedinUrl))
+                  }
                 />
               </div>
             ))}

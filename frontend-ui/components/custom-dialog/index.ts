@@ -1,1 +1,1 @@
-export * from './custom-dialog';
+export * from "./custom-dialog";
