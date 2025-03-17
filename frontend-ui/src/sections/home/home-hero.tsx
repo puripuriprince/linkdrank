@@ -5,8 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 import Image from "next/image";
 import React, { useState } from "react";
-import {paths} from "@/routes/paths";
-import {useRouter} from "@/routes/hooks";
+import { paths } from "@/routes/paths";
+import { useRouter } from "@/routes/hooks";
 
 export function HomeHero() {
   const {

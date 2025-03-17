@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Icon } from "@iconify/react";
-import {paths} from "@/routes/paths";
+import { paths } from "@/routes/paths";
 import { useRouter } from "@/routes/hooks/use-router";
 
 export const AISearchForm: React.FC = () => {

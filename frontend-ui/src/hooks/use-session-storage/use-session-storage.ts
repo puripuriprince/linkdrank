@@ -1,9 +1,9 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 
 import {
-    getSessionStorage as getStorage,
-    removeSessionStorage as removeStorage,
-    setSessionStorage as setStorage,
+  getSessionStorage as getStorage,
+  removeSessionStorage as removeStorage,
+  setSessionStorage as setStorage,
 } from "@/lib/utils";
 
 // ----------------------------------------------------------------------

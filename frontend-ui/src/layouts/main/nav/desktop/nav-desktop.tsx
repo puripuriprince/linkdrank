@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { useRef, useEffect } from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import { useCountUp } from "@/hooks";
 import { paths } from "@/routes/paths";
 import { CONFIG } from "@/global-config";

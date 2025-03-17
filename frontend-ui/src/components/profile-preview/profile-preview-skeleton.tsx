@@ -25,17 +25,21 @@ export const ProfilePreviewSkeleton: React.FC = () => {
 };
 
 export const ProfilePreviewHorizontalSkeleton: React.FC = () => {
-    return (
-        <Card className={"flex flex-row items-center gap-4 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer transition-all hover:shadow-xl"}>
-            <Skeleton className="h-16 w-16 rounded-full" />
-            <div className="flex flex-col gap-2 w-full">
-                <h3 className="font-bold text-lg text-black dark:text-white">
-                    <Skeleton className="h-5 w-32" />
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-300">
-                    <Skeleton className="h-8 w-52"/>
-                </p>
-            </div>
-        </Card>
-    );
+  return (
+    <Card
+      className={
+        "flex flex-row items-center gap-4 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer transition-all hover:shadow-xl"
+      }
+    >
+      <Skeleton className="h-16 w-16 rounded-full" />
+      <div className="flex flex-col gap-2 w-full">
+        <h3 className="font-bold text-lg text-black dark:text-white">
+          <Skeleton className="h-5 w-32" />
+        </h3>
+        <div className="text-sm text-gray-500 dark:text-gray-300">
+          <Skeleton className="h-8 w-52" />
+        </div>
+      </div>
+    </Card>
+  );
 };

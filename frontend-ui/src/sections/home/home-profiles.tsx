@@ -90,7 +90,7 @@ export function HomeProfiles() {
                 />
               </div>
             ))}
-              {loading && renderSkeletons()}
+            {loading && renderSkeletons()}
           </div>
         ) : !loading ? (
           <div className="flex h-40 w-full items-center justify-center">

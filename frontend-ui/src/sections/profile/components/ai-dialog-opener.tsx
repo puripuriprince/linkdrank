@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 export const AIDialogOpener: React.FC = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-    const [previousPath, setPreviousPath] = useState("");
+  const [previousPath, setPreviousPath] = useState("");
 
   const handleOpen = () => {
     setOpen(true);

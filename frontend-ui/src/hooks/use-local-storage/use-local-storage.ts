@@ -1,8 +1,10 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 
-    import { setLocalStorage as setStorage
-    , getLocalStorage as getStorage
-    , removeLocalStorage as removeStorage } from "@/lib/utils";
+import {
+  setLocalStorage as setStorage,
+  getLocalStorage as getStorage,
+  removeLocalStorage as removeStorage,
+} from "@/lib/utils";
 
 // ----------------------------------------------------------------------
 

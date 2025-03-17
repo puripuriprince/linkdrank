@@ -32,14 +32,14 @@ export function SimpleLayout({
   const renderHeader = () => (
     <>
       <MobileNav data={navData} />
-      <div className="flex justify-between items-center p-4 border-b bg-white dark:bg-black dark:border-gray-800">
+      <div className="flex justify-between items-center p-4 border-b bg-white dark:bg-black dark:border-gray-800 border-black/[0.13] dark:border-white/[0.13]">
         <Link href="/">
-        <Image
-          src={`${CONFIG.assetsDir}/logo/logo.svg`}
-          alt="Logo"
-          width={50}
-          height={50}
-        />
+          <Image
+            src={`${CONFIG.assetsDir}/logo/logo.svg`}
+            alt="Logo"
+            width={50}
+            height={50}
+          />
         </Link>
         <div className="flex gap-4 mr-2">
           <Link
