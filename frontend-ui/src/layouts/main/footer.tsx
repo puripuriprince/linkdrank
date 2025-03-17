@@ -24,7 +24,7 @@ interface LinksStructure {
 
 const LINKS: LinksStructure = {
   features: [
-    { label: "Search", href: paths.search },
+    { label: "Search", href: paths.browse },
     { label: "Vote", href: paths.vote },
     { label: "Leaderboard", href: paths.leaderboard },
   ],

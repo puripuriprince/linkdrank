@@ -33,12 +33,14 @@ export function SimpleLayout({
     <>
       <MobileNav data={navData} />
       <div className="flex justify-between items-center p-4 border-b bg-white dark:bg-black dark:border-gray-800">
+        <Link href="/">
         <Image
           src={`${CONFIG.assetsDir}/logo/logo.svg`}
           alt="Logo"
-          width={100}
-          height={100}
+          width={50}
+          height={50}
         />
+        </Link>
         <div className="flex gap-4 mr-2">
           <Link
             href={paths.feedback}

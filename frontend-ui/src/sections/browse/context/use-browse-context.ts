@@ -2,12 +2,12 @@
 
 import { useContext } from "react";
 
-import { SearchContext } from "./search-context";
+import { BrowseContext } from "./browse-context";
 
 // ----------------------------------------------------------------------
 
-export function useSearchContext() {
-  const context = useContext(SearchContext);
+export function useBrowseContext() {
+  const context = useContext(BrowseContext);
 
   if (!context)
     throw new Error("useSearchContext must be use inside SearchProvider");

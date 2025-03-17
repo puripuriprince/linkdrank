@@ -39,7 +39,7 @@ export const ProfilePreview: React.FC<ProfilePreviewProps & Profile> = ({
             />
           </TooltipTrigger>
           <TooltipContent>
-            <p>{currentCompany.name}</p>
+            <p className="text-white dark:text-black">{currentCompany.name}</p>
           </TooltipContent>
         </Tooltip>
       )}

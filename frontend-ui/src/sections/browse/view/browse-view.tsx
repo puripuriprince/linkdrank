@@ -6,7 +6,7 @@ import { useState, useEffect, useCallback } from "react";
 import { CONFIG } from "@/global-config";
 import { searchProfiles } from "@/actions/profiles";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { useSearchContext } from "@/sections/search/context";
+import { useBrowseContext } from "@/sections/browse/context";
 import {
   ProfilePreview,
   ProfilePreviewSkeleton,
@@ -18,8 +18,8 @@ import { Profile } from "@/types/profile";
 // ----------------------------------------------------------------------
 
 const PAGE_SIZE = 15;
-export function SearchView() {
-  const { search } = useSearchContext();
+export function BrowseView() {
+  const { search } = useBrowseContext();
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -80,11 +80,6 @@ export function SearchView() {
           hasMore={hasMore}
           isLoading={loading}
           className="w-full"
-          loader={
-            <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-              {renderSkeletons()}
-            </div>
-          }
         >
           <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
             {profiles.map((profile, i) => (
@@ -107,6 +102,7 @@ export function SearchView() {
                 />
               </div>
             ))}
+            {loading && renderSkeletons()}
           </div>
         </InfiniteScroll>
       ) : (

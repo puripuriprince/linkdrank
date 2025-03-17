@@ -2,6 +2,7 @@ import { CustomDialog } from "@/components/custom-dialog";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
 import { Education, Experience, Honor, Project } from "@/types/profile";
+import {AvatarFallback, AvatarImage, Avatar} from "@/components/ui/avatar";
 
 interface BaseDialogProps {
   triggerText: string;
@@ -48,18 +49,29 @@ export const ExperienceDialog: React.FC<ExperienceDialogProps> = ({
   >
     {experiences && experiences.length > 0 ? (
       experiences.map((exp, index) => (
-        <div key={index} className="border-b pb-2">
-          <h2 className="text-lg font-semibold">{exp.title}</h2>
-          <p className="text-sm text-gray-500">
-            {exp.companyName} - {exp.location}
-          </p>
-          <p className="text-sm">
-            {exp.startDate} - {exp.endDate} ({exp.duration})
-          </p>
-        </div>
+          <div key={index} className="flex gap-4">
+            <div className="flex-shrink-0">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src={exp.logo} alt={exp.companyName}/>
+                <AvatarFallback>{exp.companyName[0]}</AvatarFallback>
+              </Avatar>
+            </div>
+            <div key={index} className="border-b pb-2">
+              <h2 className="text-lg font-semibold">{exp.title}</h2>
+              <p className="text-sm text-gray-500">
+                {exp.companyName} - {exp.location}
+              </p>
+              <p className="text-sm">
+                {exp.startDate} - {exp.endDate} ({exp.duration})
+              </p>
+              <p className="text-sm">
+                {exp.location} {exp.workMode && `(${exp.workMode})`}
+              </p>
+            </div>
+          </div>
       ))
     ) : (
-      <p className="text-sm">No experience information available.</p>
+        <p className="text-sm">No experience information available.</p>
     )}
   </BaseDialog>
 );
@@ -69,16 +81,23 @@ interface EducationDialogProps {
 }
 
 export const EducationDialog: React.FC<EducationDialogProps> = ({
-  educations,
-}) => (
-  <BaseDialog
-    triggerText="Education"
-    triggerIcon="material-symbols:school"
+                                                                  educations,
+                                                                }) => (
+    <BaseDialog
+        triggerText="Education"
+        triggerIcon="material-symbols:school"
     title="Education"
     description="View educational background"
   >
     {educations && educations.length > 0 ? (
       educations.map((edu, index) => (
+          <div key={index} className="flex gap-4">
+            <div className="flex-shrink-0">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src={edu.companyLogo} alt={edu.school}/>
+                <AvatarFallback>{edu.school[0]}</AvatarFallback>
+              </Avatar>
+            </div>
         <div key={index} className="border-b pb-2">
           <h2 className="text-lg font-semibold">{edu.school}</h2>
           <p className="text-sm text-gray-500">{edu.degree}</p>
@@ -86,6 +105,7 @@ export const EducationDialog: React.FC<EducationDialogProps> = ({
             {edu.startYear} - {edu.endYear}
           </p>
         </div>
+          </div>
       ))
     ) : (
       <p className="text-sm">No education information available.</p>
@@ -109,9 +129,18 @@ export const ProjectsDialog: React.FC<ProjectsDialogProps> = ({ projects }) => (
         <div key={index} className="border-b pb-2">
           <h2 className="text-lg font-semibold">{proj.title}</h2>
           <p className="text-sm text-gray-500">
-            {proj.startDate} - {proj.endDate}
+            {`
+            ${proj.startDate ? proj.startDate : ""}
+            ${proj.endDate ? " - " + proj.endDate : ""}
+            `}
           </p>
-          <p className="text-sm">{proj.description}</p>
+          <ul>
+            {proj.description.split("- ").map((line, index) => (
+                <li key={index} className="text-sm mb-2">
+                  {line}
+                </li>
+            ))}
+          </ul>
         </div>
       ))
     ) : (

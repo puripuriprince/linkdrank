@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Icon } from "@iconify/react";
-import { aiSearch } from "@/actions/search";
+import {paths} from "@/routes/paths";
+import { useRouter } from "@/routes/hooks/use-router";
 
 export const AISearchForm: React.FC = () => {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setLoading(true);
-    await aiSearch(description);
+    router.push(paths.people.AISearch(description));
     setLoading(false);
   };
 

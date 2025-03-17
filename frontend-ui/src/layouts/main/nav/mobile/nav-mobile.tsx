@@ -5,7 +5,7 @@ import type { FC } from "react";
 import { Icon } from "@iconify/react";
 
 import { Input } from "@/components/ui/input";
-import { useSearchContext } from "@/sections/search/context";
+import { useBrowseContext } from "@/sections/browse/context";
 
 import { paths } from "@/routes/paths";
 import { usePathname } from "@/routes/hooks";
@@ -24,7 +24,7 @@ export type MobileNavProps = {
 
 export function MobileHeader() {
   const pathname = usePathname();
-  const { search, setSearch } = useSearchContext();
+  const { search, setSearch } = useBrowseContext();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -57,7 +57,7 @@ export function MobileHeader() {
         <UserMenu />
       </div>
 
-      {pathname === paths.search && (
+      {pathname === paths.browse && (
         <div className="col-span-3 pb-4 pt-1.5">
           <Input
             placeholder="Search Profiles..."
@@ -85,7 +85,7 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
       )}
     >
       {data.map(({ title, href, icon }) =>
-        href === paths.people.aiSearch ? (
+        href === paths.people.root ? (
           <AIDialogOpener key={title} />
         ) : (
           <Link

@@ -67,14 +67,9 @@ export function HomeProfiles() {
         isLoading={loading}
         endMessage="You've reached the end. No more profiles to show."
         className="w-full"
-        loader={
-          <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-            {renderSkeletons()}
-          </div>
-        }
       >
         {profiles.length > 0 ? (
-          <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-6">
             {profiles.map((profile, i) => (
               <div
                 key={`profile-${profile.name}`}
@@ -95,6 +90,7 @@ export function HomeProfiles() {
                 />
               </div>
             ))}
+              {loading && renderSkeletons()}
           </div>
         ) : !loading ? (
           <div className="flex h-40 w-full items-center justify-center">

@@ -6,6 +6,6 @@ import { createContext } from "react";
 
 // ----------------------------------------------------------------------
 
-export const SearchContext = createContext<SearchContextValue | undefined>(
+export const BrowseContext = createContext<SearchContextValue | undefined>(
   undefined,
 );

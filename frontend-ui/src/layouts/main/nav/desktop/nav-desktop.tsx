@@ -9,7 +9,7 @@ import { useCountUp } from "@/hooks";
 import { paths } from "@/routes/paths";
 import { CONFIG } from "@/global-config";
 import { useRouter, usePathname } from "@/routes/hooks";
-import { useSearchContext } from "@/sections/search/context";
+import { useBrowseContext } from "@/sections/browse/context";
 import Image from "next/image";
 import { UserMenu } from "@/layouts/components";
 
@@ -25,9 +25,9 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
   totalProfiles = 5804335,
 }) => {
   const router = useRouter();
-  const { search, setSearch } = useSearchContext();
+  const { search, setSearch } = useBrowseContext();
   const pathname = usePathname();
-  const isSearchPage = pathname === paths.search;
+  const isSearchPage = pathname === paths.browse;
   const inputRef = useRef(null);
 
   const { formattedValue } = useCountUp({
@@ -78,7 +78,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
           </Link>
 
           {data
-            .filter(({ href }) => href !== paths.people.aiSearch)
+            .filter(({ href }) => href !== paths.people.root)
             .map(({ title, href }) => (
               <Link
                 key={href}

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 
 import { CONFIG } from "@/global-config";
 
-import { SearchView } from "@/sections/search/view";
+import { BrowseView } from "@/sections/browse/view";
 
 // ----------------------------------------------------------------------
 
-export const metadata: Metadata = { title: `Search - ${CONFIG.appName}` };
+export const metadata: Metadata = { title: `Browse - ${CONFIG.appName}` };
 
 export default function Search() {
-  return <SearchView />;
+  return <BrowseView />;
 }

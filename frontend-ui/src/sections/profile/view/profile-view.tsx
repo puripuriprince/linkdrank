@@ -6,8 +6,31 @@ import { RelatedProfiles } from "@/sections/profile/related-profiles";
 import { ProfileGallery } from "@/sections/profile/top-profiles";
 import { SAMPLE_PROFILES } from "@/actions/profiles";
 import { CONFIG } from "@/global-config";
+import {useEffect, useState} from "react";
+import {aiSearch} from "@/actions/search";
+import { usePathname } from "next/navigation";
 
 export function ProfileView() {
+  const pathname = usePathname();
+  const query = pathname.split(":").pop();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (query) {
+      setLoading(true);
+      aiSearch(query)
+            .then((profiles) => {
+                console.log("AI search results for :", query);
+            })
+          .catch((error) => {
+            console.error("Error performing AI search:", error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+    }
+  }, [query]);
+
   const relatedTags = [
     { id: "accessory", label: "Accessory" },
     { id: "face", label: "Face" },
@@ -30,8 +53,8 @@ export function ProfileView() {
   });
   return (
     <>
-      <ProfileGallery profiles={profiles} />
-      <RelatedProfiles relatedTags={relatedTags} />
+      <ProfileGallery profiles={profiles} loading={true}/>
+      <RelatedProfiles relatedTags={relatedTags} isLoading={true} />
     </>
   );
 }

@@ -5,7 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 import Image from "next/image";
 import React, { useState } from "react";
-import { aiSearch } from "@/actions/search";
+import {paths} from "@/routes/paths";
+import {useRouter} from "@/routes/hooks";
 
 export function HomeHero() {
   const {
@@ -17,11 +18,12 @@ export function HomeHero() {
   } = useAutoResizeTextarea();
 
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await aiSearch(input);
+    router.push(paths.people.AISearch(input));
     setLoading(false);
   };
 

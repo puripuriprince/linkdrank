@@ -7,13 +7,13 @@ import { paths } from "@/routes/paths";
 import { SplashScreen } from "@/components/loading-screen";
 import { useRouter, useSearchParams } from "@/routes/hooks";
 
-import { SearchContext } from "./search-context";
+import { BrowseContext } from "./browse-context";
 
 type SearchProviderProps = {
   children: React.ReactNode;
 };
 
-export function SearchProvider({ children }: SearchProviderProps) {
+export function BrowseProvider({ children }: SearchProviderProps) {
   return (
     <Suspense fallback={<SplashScreen />}>
       <SearchContainer>{children}</SearchContainer>
@@ -35,14 +35,14 @@ function SearchContainer({ children }: SearchProviderProps) {
 
   const updateSearch = (value: string) => {
     setSearch(value);
-    if (pathname === paths.search) {
+    if (pathname === paths.browse) {
       router.push(`/search?query=${encodeURIComponent(value.trim())}`);
     }
   };
 
   return (
-    <SearchContext.Provider value={{ search, setSearch: updateSearch }}>
+    <BrowseContext.Provider value={{ search, setSearch: updateSearch }}>
       {children}
-    </SearchContext.Provider>
+    </BrowseContext.Provider>
   );
 }

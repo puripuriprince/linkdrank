@@ -11,12 +11,13 @@ export const paths = {
   vote: "/elo",
   leaderboard: "/leaderboard",
   feedback: "/",
-  search: "/search",
+  browse: "/browse",
   privacy: "/privacy",
   terms: "/terms",
   people: {
-    aiSearch: "/p",
-    details: (handle: string | undefined) => `/p/${handle ?? ":handle"}`,
+    root: "/p",
+    details: (handle: string | undefined) => `/p/:handle:${handle ?? ""}`,
+    AISearch: (query: string | undefined) => `/p/:ai-search:${query ?? ""}`,
   },
   // AUTH
   auth: {

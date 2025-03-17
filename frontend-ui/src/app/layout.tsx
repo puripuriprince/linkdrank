@@ -6,7 +6,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import { Snackbar } from "@/components/snackbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { SearchProvider } from "@/sections/search/context";
+import { BrowseProvider } from "@/sections/browse/context";
 
 import { CONFIG } from "@/global-config";
 
@@ -48,10 +48,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               enableSystem
               disableTransitionOnChange
             >
-              <SearchProvider>
+              <BrowseProvider>
                 <Snackbar />
                 <TooltipProvider>{children}</TooltipProvider>
-              </SearchProvider>
+              </BrowseProvider>
             </NextThemesProvider>
           </PosthogProvider>
         </AuthProvider>

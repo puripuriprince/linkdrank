@@ -11,14 +11,16 @@ import { usePathname } from "next/navigation";
 export const AIDialogOpener: React.FC = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+    const [previousPath, setPreviousPath] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
-    window.history.pushState({}, "", paths.people.aiSearch);
+    setPreviousPath(window.location.pathname);
+    window.history.pushState({}, "", paths.people.root);
   };
 
   const handleClose = () => {
-    window.history.pushState({}, "", "/");
+    window.history.pushState({}, "", previousPath || "/");
   };
 
   return (
@@ -27,7 +29,7 @@ export const AIDialogOpener: React.FC = () => {
         <button
           className={cn(
             "hover:cursor-pointer rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-500 dark:text-gray-400 transition-colors",
-            pathname === paths.people.aiSearch && "text-black dark:text-white",
+            pathname === paths.people.root && "text-black dark:text-white",
             "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]",
           )}
           onClick={handleOpen}
