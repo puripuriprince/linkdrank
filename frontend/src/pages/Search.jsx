@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-// Import the separate NetworkGraphBackground component
-import NetworkGraphBackground from './NetworkGraphBackground';  // Adjust path if needed
+import NetworkGraphBackground from './NetworkGraphBackground';
+import { searchProfiles } from '../services/searchService';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function Search() {
-  // Toggle for "Personalized?" option
   const [personalized, setPersonalized] = useState(false);
-  // Search input state
   const [searchText, setSearchText] = useState('');
-  // Refs for carousels
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [error, setError] = useState(null);
   const peopleCarouselRef = useRef(null);
   const suggestionsCarouselRef = useRef(null);
-  // Current slide index for people carousel
   const [currentSlide, setCurrentSlide] = useState(0);
-  // Window width state
   const [windowWidth, setWindowWidth] = useState(0);
 
-  // Example quick tag data with more extensive suggestions
   const quickTags = [
     { label: 'in Web3 or crypto' },
     { label: 'PhDs now working at FAANG companies' },
@@ -32,7 +30,6 @@ export default function Search() {
     { label: 'Psychology majors in HR leadership' },
   ];
 
-  // Example "CRACKDDDD People" data with extra fake people
   const people = [
     {
       name: 'Lucas Miranda',
@@ -74,7 +71,6 @@ export default function Search() {
       linkedin: '#',
       photoUrl: 'https://via.placeholder.com/60',
     },
-    // Additional fake people:
     {
       name: 'Alice Smith',
       role: 'Developer at Tech Corp',
@@ -157,62 +153,40 @@ export default function Search() {
     },
   ];
 
-  // Initialize window width on component mount
+  const doublePeople = [...people, ...people, ...people];
+
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     
-    // Add event listener for window resize
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
     
     window.addEventListener('resize', handleResize);
-    
-    // Cleanup function
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Create a doubled array for people to ensure continuous sliding
-  const doublePeople = [...people, ...people, ...people];
-
-  // Create a tripled array for suggestions
-  const tripleTags = [...quickTags, ...quickTags, ...quickTags];
-
-  // For clock-like carousel, we use useEffect to handle the timing and sliding
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => {
-        // Increment the slide
         const nextSlide = prev + 1;
-        
-        // If we've reached the end of our original set, reset to the beginning
-        // but without visual disruption (the doubled array allows this)
         if (nextSlide >= people.length) {
-          // We don't immediately reset to 0, we continue through the duplicate set
           return nextSlide;
         }
-        
         return nextSlide;
       });
-    }, 3000); // 1.5s pause + 1.5s transition = 3s total per slide
+    }, 3000);
     
     return () => clearInterval(interval);
   }, []);
 
-  // When we reach the end of the duplicated set, reset to the beginning seamlessly
   useEffect(() => {
     if (currentSlide >= people.length * 2) {
-      // Using setTimeout to ensure the transition animation is completed
       setTimeout(() => {
-        // Disable transitions temporarily
         if (peopleCarouselRef.current) {
           peopleCarouselRef.current.style.transition = 'none';
-          // Reset to the first set of duplicates
           setCurrentSlide(currentSlide % people.length);
           
-          // Re-enable transitions after a brief delay
           setTimeout(() => {
             if (peopleCarouselRef.current) {
               peopleCarouselRef.current.style.transition = 'transform 1.5s ease-in-out';
@@ -223,7 +197,6 @@ export default function Search() {
     }
   }, [currentSlide]);
 
-  // Handle width calculation for suggestions carousel
   useEffect(() => {
     if (suggestionsCarouselRef.current) {
       const suggestionsWidth = suggestionsCarouselRef.current.scrollWidth / 3;
@@ -231,58 +204,50 @@ export default function Search() {
     }
   }, []);
 
-  const handleSearch = () => {
-    console.log('Searching for:', searchText, 'Personalized:', personalized);
-    // Insert your search logic here...
-  };
-
-  // Calculate transform value to start flush with left edge
   const calculateTransform = () => {
-    const cardWidth = 305; // 300px width + 5px margin
+    const cardWidth = 305;
     const screenOffset = windowWidth;
     return `translateX(calc(-${currentSlide * cardWidth}px))`;
   };
 
+  const handleSearch = async () => {
+    if (!searchText.trim()) return;
+    
+    setIsSearching(true);
+    setError(null);
+    
+    try {
+      const { profiles } = await searchProfiles(searchText);
+      setSearchResults(profiles || []);
+      setCurrentSlide(0);
+    } catch (err) {
+      console.error('Search error:', err);
+      setError('Failed to perform search. Please try again.');
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
   return (
     <>
-      {/* Add the network graph background */}
       <NetworkGraphBackground />
       
-      {/* Main content */}
-      <div
-        className="
-          relative min-h-screen 
-          bg-[url('https://images.unsplash.com/photo-1673462255986-0f931ed0c6c4?ixid=...')]
-          bg-no-repeat bg-cover bg-fixed
-          flex flex-col pb-10
-        "
-      >
-
-        {/* Hero / Search Section */}
+      <div className="relative min-h-screen bg-[url('https://images.unsplash.com/photo-1673462255986-0f931ed0c6c4?ixid=...')] bg-no-repeat bg-cover bg-fixed flex flex-col pb-10">
         <div className="flex flex-col items-center justify-center flex-grow px-4 pt-20 md:pt-8">
           <h1 className="text-2xl md:text-4xl font-bold text-gray-800 mb-2 text-center">
             The Modern Alumni Network for McGill and Concordia
           </h1>
-          <p className="text-md md:text-lg text-gray-600 mb-4 text-center">
-            Alumni who studied abroad and now work internationally
-          </p>
+          
 
-          {/* Search Section */}
           <div className="w-full max-w-2xl relative">
-            {/* Big Search Box */}
             <div className="relative w-full">
               <textarea
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 placeholder="e.g. Alumni who studied abroad and now work internationally"
                 rows={5}
-                className="
-                  w-full py-3 px-4 pr-16
-                  rounded-xl bg-white/70 backdrop-blur-sm border border-gray-300 text-gray-800
-                  focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none
-                "
+                className="w-full py-3 px-4 pr-16 rounded-xl bg-white/70 backdrop-blur-sm border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
               />
-              {/* Personalized checkbox in bottom-left */}
               <div className="absolute bottom-2 left-3 flex items-center space-x-1">
                 <input
                   type="checkbox"
@@ -292,34 +257,22 @@ export default function Search() {
                 />
                 <label className="text-sm text-gray-800">Personalized?</label>
               </div>
-              {/* Glassmorphism search button in bottom-right with up arrow */}
               <button
                 onClick={handleSearch}
-                className="
-                  absolute bottom-2 right-3
-                  flex items-center justify-center
-                  h-8 w-8 rounded-full
-                  bg-white/40 backdrop-blur-md 
-                  border border-white/50
-                  shadow-md
-                  text-blue-600 font-bold
-                  hover:bg-white/60 hover:text-blue-700
-                  transition duration-200
-                "
+                disabled={isSearching}
+                className="absolute bottom-2 right-3 flex items-center justify-center h-8 w-8 rounded-full bg-white/40 backdrop-blur-md border border-white/50 shadow-md text-blue-600 font-bold hover:bg-white/60 hover:text-blue-700 transition duration-200"
               >
-                ↑
+                {isSearching ? '...' : '↑'}
               </button>
             </div>
             
-            {/* Quick Tags Carousel - positioned below the search box */}
             <div className="w-full overflow-hidden mt-3">
               <div className="relative overflow-hidden">
                 <div 
                   ref={suggestionsCarouselRef}
                   className="flex suggestions-carousel"
                 >
-                  {/* Render items three times for a seamless loop */}
-                  {tripleTags.map((tag, idx) => (
+                  {[...quickTags, ...quickTags, ...quickTags].map((tag, idx) => (
                     <button
                       key={idx}
                       onClick={() => setSearchText(tag.label)}
@@ -334,28 +287,25 @@ export default function Search() {
           </div>
         </div>
 
-        {/* "CRACKDDDD People" Clock-like Carousel - Edge to Edge */}
         <div className="w-full mt-8 py-4 bg-transparent">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
             CRACKDDDD People <span className="text-orange-500">🔥</span>
           </h2>
           
-          {/* Carousel Container - Full Width with no padding */}
           <div className="relative w-full overflow-hidden">
             <div 
               ref={peopleCarouselRef}
               className="flex transition-transform duration-1500 ease-in-out"
               style={{ transform: calculateTransform() }}
             >
-              {/* Render people multiple times for continuous sliding */}
               {doublePeople.map((person, idx) => (
                 <div
                   key={idx}
                   onClick={() => {
                     if (person.linkedin && person.linkedin !== '#') {
                       window.open(person.linkedin, '_blank');
+                      console.log("Clicked", person.name);
                     }
-                    console.log("Clicked", person.name);
                   }}
                   className="min-w-[300px] w-[300px] mx-[2.5px] bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
                 >
@@ -376,7 +326,47 @@ export default function Search() {
           </div>
         </div>
 
-        {/* CSS for carousel animations */}
+        {error && (
+          <div className="text-red-600 text-center mt-4 bg-white/80 backdrop-blur-sm rounded-lg p-3 mx-auto max-w-md">
+            {error}
+          </div>
+        )}
+        
+        {isSearching ? (
+          <div className="flex justify-center mt-8">
+            <LoadingSpinner />
+          </div>
+        ) : searchResults.length > 0 ? (
+          <div className="w-full mt-8 py-4 bg-transparent">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
+              Search Results <span className="text-orange-500">🔥</span>
+            </h2>
+            
+            <div className="flex flex-wrap justify-center gap-4 px-4">
+              {searchResults.map((profile) => (
+                <div
+                  key={profile.id}
+                  onClick={() => {
+                    if (profile.linkedin_url) {
+                      window.open(profile.linkedin_url, '_blank');
+                    }
+                  }}
+                  className="w-[300px] bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl p-4 flex flex-col items-center space-y-2 cursor-pointer hover:shadow-md transition"
+                >
+                  <div className="text-center">
+                    <h3 className="font-semibold text-gray-800">{profile.name}</h3>
+                    <p className="text-sm text-gray-500">{profile.summary}</p>
+                    <p className="text-xs text-gray-400">{profile.education}</p>
+                    <p className="text-xs text-blue-500 mt-2">
+                      Similarity: {(profile.similarity * 100).toFixed(1)}%
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <style>{`
           .suggestions-carousel {
             animation: suggestions-scroll 40s linear infinite;
