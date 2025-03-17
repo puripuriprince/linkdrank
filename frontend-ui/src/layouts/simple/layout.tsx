@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { paths } from "@/src/routes/paths";
+import { paths } from "@/routes/paths";
 
 import { MainSection, LayoutSection } from "../core";
-import { MobileNav } from "@/src/layouts/main/nav/mobile";
-import { Footer } from "@/src/layouts/main/footer";
+import { MobileNav } from "@/layouts/main/nav/mobile";
+import { Footer } from "@/layouts/main/footer";
 import { cn } from "@/lib/utils";
 import { navData as mainNavData } from "../nav-config-main";
 import Image from "next/image";
-import { CONFIG } from "@/src/global-config";
+import { CONFIG } from "@/global-config";
 
 export type SimpleLayoutProps = {
   className?: string;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Icon } from "@iconify/react";
-import { aiSearch } from "@/src/actions/search";
+import { aiSearch } from "@/actions/search";
 
 export const AISearchForm: React.FC = () => {
   const [description, setDescription] = useState("");

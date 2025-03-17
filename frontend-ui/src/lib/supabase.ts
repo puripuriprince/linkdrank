@@ -2,7 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import { createClient } from "@supabase/supabase-js";
 
-import { CONFIG } from "src/global-config";
+import { CONFIG } from "@/global-config";
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Profile } from "@/src/types/profile";
+import { Profile } from "@/types/profile";
 import {
   EducationDialog,
   ExperienceDialog,

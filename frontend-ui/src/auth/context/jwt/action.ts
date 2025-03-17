@@ -1,6 +1,6 @@
 "use client";
 
-import axios, { endpoints } from "src/lib/axios";
+import axios, { endpoints } from "@/lib/axios";
 
 import { setSession } from "./utils";
 import { JWT_STORAGE_KEY } from "./constant";

@@ -4,8 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tooltip, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { TooltipContent } from "@/components/ui/tooltip";
-import { CONFIG } from "@/src/global-config";
-import { Profile } from "@/src/types/profile";
+import { CONFIG } from "@/global-config";
+import { Profile } from "@/types/profile";
 
 // ----------------------------------------------------------------------
 

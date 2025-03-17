@@ -5,17 +5,17 @@ import type { FC } from "react";
 import { Icon } from "@iconify/react";
 
 import { Input } from "@/components/ui/input";
-import { useSearchContext } from "@/src/sections/search/context";
+import { useSearchContext } from "@/sections/search/context";
 
-import { paths } from "src/routes/paths";
-import { usePathname } from "src/routes/hooks";
+import { paths } from "@/routes/paths";
+import { usePathname } from "@/routes/hooks";
 
-import { cn } from "src/lib/utils";
+import { cn } from "@/lib/utils";
 
 import type { DesktopHeaderProps } from "../desktop";
-import { UserMenu } from "@/src/layouts/components";
+import { UserMenu } from "@/layouts/components";
 import Link from "next/link";
-import { AIDialogOpener } from "@/src/sections/profile/components";
+import { AIDialogOpener } from "@/sections/profile/components";
 
 export type MobileNavProps = {
   data: { title: string; href: string; icon?: string }[];

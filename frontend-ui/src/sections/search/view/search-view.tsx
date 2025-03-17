@@ -3,17 +3,17 @@
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 
-import { CONFIG } from "@/src/global-config";
-import { searchProfiles } from "@/src/actions/profiles";
+import { CONFIG } from "@/global-config";
+import { searchProfiles } from "@/actions/profiles";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { useSearchContext } from "@/src/sections/search/context";
+import { useSearchContext } from "@/sections/search/context";
 import {
   ProfilePreview,
   ProfilePreviewSkeleton,
 } from "@/components/profile-preview";
-import { useRouter } from "@/src/routes/hooks";
-import { paths } from "@/src/routes/paths";
-import { Profile } from "@/src/types/profile";
+import { useRouter } from "@/routes/hooks";
+import { paths } from "@/routes/paths";
+import { Profile } from "@/types/profile";
 
 // ----------------------------------------------------------------------
 

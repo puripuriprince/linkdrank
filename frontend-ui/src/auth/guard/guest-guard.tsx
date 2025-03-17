@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-import { useRouter, useSearchParams } from "src/routes/hooks";
+import { useRouter, useSearchParams } from "@/routes/hooks";
 
-import { CONFIG } from "src/global-config";
+import { CONFIG } from "@/global-config";
 
 import { useAuthContext } from "../hooks";
 

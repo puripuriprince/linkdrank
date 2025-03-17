@@ -2,9 +2,9 @@
 
 import type { Metadata } from "next";
 
-import { CONFIG } from "src/global-config";
+import { CONFIG } from "@/global-config";
 
-import { View500 } from "src/sections/error";
+import { View500 } from "@/sections/error";
 
 // ----------------------------------------------------------------------
 

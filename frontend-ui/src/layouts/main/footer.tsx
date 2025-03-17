@@ -3,11 +3,11 @@ import type { FC } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
-import { CONFIG } from "@/src/global-config";
+import { CONFIG } from "@/global-config";
 
-import { paths } from "src/routes/paths";
+import { paths } from "@/routes/paths";
 
-import { cn } from "src/lib/utils";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface LinkItem {

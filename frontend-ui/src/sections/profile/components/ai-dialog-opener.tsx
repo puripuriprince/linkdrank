@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { paths } from "src/routes/paths";
 import { CustomDialog } from "@/components/custom-dialog";
-import { AISearchForm } from "@/src/sections/profile/components/ai-search-form";
-import { cn } from "@/src/lib/utils";
+import { AISearchForm } from "@/sections/profile/components/ai-search-form";
+import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
 

@@ -2,9 +2,9 @@
 
 import { useMemo, useEffect, useCallback } from "react";
 
-import axios from "src/lib/axios";
-import { useSetState } from "src/hooks";
-import { supabase } from "src/lib/supabase";
+import axios from "@/lib/axios";
+import { useSetState } from "@/hooks";
+import { supabase } from "@/lib/supabase";
 
 import { AuthContext } from "../auth-context";
 

@@ -3,9 +3,9 @@
 import { usePathname } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
 
-import { paths } from "@/src/routes/paths";
+import { paths } from "@/routes/paths";
 import { SplashScreen } from "@/components/loading-screen";
-import { useRouter, useSearchParams } from "@/src/routes/hooks";
+import { useRouter, useSearchParams } from "@/routes/hooks";
 
 import { SearchContext } from "./search-context";
 

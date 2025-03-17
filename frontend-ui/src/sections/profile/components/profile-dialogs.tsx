@@ -1,7 +1,7 @@
 import { CustomDialog } from "@/components/custom-dialog";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
-import { Education, Experience, Honor, Project } from "@/src/types/profile";
+import { Education, Experience, Honor, Project } from "@/types/profile";
 
 interface BaseDialogProps {
   triggerText: string;

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Portal } from "@radix-ui/react-portal";
 import Image from "next/image";
-import { CONFIG } from "@/src/global-config";
+import { CONFIG } from "@/global-config";
 
 export type SplashScreenProps = {
   portal?: boolean;

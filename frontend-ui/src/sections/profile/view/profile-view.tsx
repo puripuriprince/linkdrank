@@ -2,10 +2,10 @@
 
 // ----------------------------------------------------------------------
 
-import { RelatedProfiles } from "@/src/sections/profile/related-profiles";
-import { ProfileGallery } from "@/src/sections/profile/top-profiles";
-import { SAMPLE_PROFILES } from "@/src/actions/profiles";
-import { CONFIG } from "@/src/global-config";
+import { RelatedProfiles } from "@/sections/profile/related-profiles";
+import { ProfileGallery } from "@/sections/profile/top-profiles";
+import { SAMPLE_PROFILES } from "@/actions/profiles";
+import { CONFIG } from "@/global-config";
 
 export function ProfileView() {
   const relatedTags = [

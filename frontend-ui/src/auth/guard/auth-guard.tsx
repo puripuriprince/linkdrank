@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 
 import { SplashScreen } from "@/components/loading-screen";
 
-import { paths } from "src/routes/paths";
-import { useRouter, usePathname } from "src/routes/hooks";
+import { paths } from "@/routes/paths";
+import { useRouter, usePathname } from "@/routes/hooks";
 
-import { CONFIG } from "src/global-config";
+import { CONFIG } from "@/global-config";
 
 import { useAuthContext } from "../hooks";
 

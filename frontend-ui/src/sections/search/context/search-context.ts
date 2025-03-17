@@ -1,6 +1,6 @@
 "use client";
 
-import type { SearchContextValue } from "src/types/search";
+import type { SearchContextValue } from "@/types";
 
 import { createContext } from "react";
 

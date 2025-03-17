@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ProfilePreviewHorizontal } from "@/components/profile-preview";
-import { Profile } from "@/src/types/profile";
+import { Profile } from "@/types/profile";
 import { ProfileButtons } from "./components";
 import { toast } from "sonner";
 

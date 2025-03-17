@@ -7,8 +7,8 @@ import { usePostHog, PostHogProvider } from "posthog-js/react";
 
 import { SplashScreen } from "@/components/loading-screen";
 
-import { CONFIG } from "../global-config";
-import { useAuthContext } from "../auth/hooks";
+  import { CONFIG } from "@/global-config";
+import { useAuthContext } from "@/auth/hooks";
 
 type PosthogProviderProps = {
   children: React.ReactNode;

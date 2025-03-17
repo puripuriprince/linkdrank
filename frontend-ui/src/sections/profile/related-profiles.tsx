@@ -1,14 +1,14 @@
 import { ProfilePreviewSkeleton } from "@/components/profile-preview";
 import { useState, useEffect, useCallback } from "react";
-import { getProfilesPreview } from "@/src/actions/profiles";
+import { getProfilesPreview } from "@/actions/profiles";
 import { ProfilePreview } from "@/components/profile-preview";
 import { InfiniteScroll } from "@/components/infinite-scroll";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { Profile } from "@/src/types/profile";
-import { paths } from "@/src/routes/paths";
-import { useRouter } from "@/src/routes/hooks";
+import { cn } from "@/lib/utils"
+import { Profile } from "@/types/profile";
+import { paths } from "@/routes/paths";
+import { useRouter } from "@/routes/hooks";
 
 interface RelatedProfilesProps {
   relatedTags: { id: string; label: string }[];

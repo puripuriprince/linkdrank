@@ -1,10 +1,10 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 
 import {
-  setStorage,
-  getStorage,
-  removeStorage,
-} from "src/utils/session-storage";
+    getSessionStorage as getStorage,
+    removeSessionStorage as removeStorage,
+    setSessionStorage as setStorage,
+} from "@/lib/utils";
 
 // ----------------------------------------------------------------------
 

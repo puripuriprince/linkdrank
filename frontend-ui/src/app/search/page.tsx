@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import { CONFIG } from "src/global-config";
+import { CONFIG } from "@/global-config";
 
-import { SearchView } from "src/sections/search/view";
+import { SearchView } from "@/sections/search/view";
 
 // ----------------------------------------------------------------------
 

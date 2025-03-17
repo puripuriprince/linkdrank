@@ -4,14 +4,14 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { useRef, useEffect } from "react";
 
-import { cn } from "@/lib/utils";
-import { useCountUp } from "@/src/hooks";
-import { paths } from "@/src/routes/paths";
-import { CONFIG } from "@/src/global-config";
-import { useRouter, usePathname } from "@/src/routes/hooks";
-import { useSearchContext } from "@/src/sections/search/context";
+import { cn } from "@/lib/utils"
+import { useCountUp } from "@/hooks";
+import { paths } from "@/routes/paths";
+import { CONFIG } from "@/global-config";
+import { useRouter, usePathname } from "@/routes/hooks";
+import { useSearchContext } from "@/sections/search/context";
 import Image from "next/image";
-import { UserMenu } from "@/src/layouts/components";
+import { UserMenu } from "@/layouts/components";
 
 export type DesktopHeaderProps = {
   data: { title: string; href: string }[];

@@ -2,12 +2,12 @@ import { ProfilePreviewSkeleton } from "@/components/profile-preview";
 
 import { useState, useEffect, useCallback } from "react";
 
-import { getProfilesPreview } from "@/src/actions/profiles";
+import { getProfilesPreview } from "@/actions/profiles";
 import { ProfilePreview } from "@/components/profile-preview";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { Profile } from "@/src/types/profile";
-import { paths } from "@/src/routes/paths";
-import { useRouter } from "@/src/routes/hooks";
+import { Profile } from "@/types/profile";
+import { paths } from "@/routes/paths";
+import { useRouter } from "@/routes/hooks";
 
 export function HomeProfiles() {
   const [profiles, setProfiles] = useState<Profile[]>([]);

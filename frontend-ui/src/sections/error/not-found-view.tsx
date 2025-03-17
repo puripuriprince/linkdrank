@@ -1,10 +1,10 @@
 "use client";
 
 import { m } from "framer-motion";
-import { SimpleLayout } from "@/src/layouts/simple";
+import { SimpleLayout } from "@/layouts/simple";
 import { Button } from "@/components/ui/button";
 import RouterLink from "next/link";
-import { varBounce } from "@/src/lib/animation-variants";
+import { varBounce } from "@/lib/animation-variants";
 
 // ----------------------------------------------------------------------
 

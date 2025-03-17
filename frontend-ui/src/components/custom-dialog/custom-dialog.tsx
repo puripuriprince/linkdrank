@@ -18,7 +18,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useMediaQuery } from "@/src/hooks/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface CustomDialogProps {
   trigger: React.ReactNode;

@@ -11,9 +11,9 @@ import type {
   SignUpWithPasswordCredentials,
 } from "@supabase/supabase-js";
 
-import { paths } from "src/routes/paths";
+import { paths } from "@/routes/paths";
 
-import { supabase } from "src/lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 // ----------------------------------------------------------------------
 

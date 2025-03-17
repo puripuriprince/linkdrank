@@ -17,12 +17,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { useAuthContext } from "@/src/auth/hooks";
+import { useAuthContext } from "@/auth/hooks";
 import { toast } from "sonner";
-import { paths } from "@/src/routes/paths";
+import { paths } from "@/routes/paths";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
-import { useMediaQuery } from "@/src/hooks/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 const UserMenuTrigger = React.forwardRef<HTMLButtonElement>((props, ref) => {
   const { authenticated, user } = useAuthContext();

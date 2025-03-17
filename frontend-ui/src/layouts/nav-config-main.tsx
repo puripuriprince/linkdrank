@@ -1,4 +1,4 @@
-import { paths } from "src/routes/paths";
+import { paths } from "@/routes/paths";
 
 import type { NavMainProps } from "./main/nav/types";
 

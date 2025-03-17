@@ -2,8 +2,8 @@
 
 import { useMemo, useEffect, useCallback } from "react";
 
-import { useSetState } from "src/hooks";
-import axios, { endpoints } from "src/lib/axios";
+import { useSetState } from "@/hooks";
+import axios, { endpoints } from "@/lib/axios";
 
 import { JWT_STORAGE_KEY } from "./constant";
 import { AuthContext } from "../auth-context";

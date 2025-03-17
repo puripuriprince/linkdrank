@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------------
 
-import { HomeProfiles } from "@/src/sections/home/home-profiles";
+import { HomeProfiles } from "@/sections/home/home-profiles";
 
 import { HomeHero } from "../home-hero";
 

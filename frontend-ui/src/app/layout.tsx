@@ -1,4 +1,4 @@
-import "src/globals.css";
+import "@/globals.css";
 
 import type { Viewport } from "next";
 
@@ -6,14 +6,14 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import { Snackbar } from "@/components/snackbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { SearchProvider } from "@/src/sections/search/context";
+import { SearchProvider } from "@/sections/search/context";
 
-import { CONFIG } from "src/global-config";
+import { CONFIG } from "@/global-config";
 
-import { AuthProvider as JwtAuthProvider } from "src/auth/context/jwt";
-import { AuthProvider as SupabaseAuthProvider } from "src/auth/context/supabase";
+import { AuthProvider as JwtAuthProvider } from "@/auth/context/jwt";
+import { AuthProvider as SupabaseAuthProvider } from "@/auth/context/supabase";
 
-import { PosthogProvider } from "../analytics/posthog-provider";
+import { PosthogProvider } from "@/analytics/posthog-provider";
 
 // ----------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <PosthogProvider>
             <NextThemesProvider
               attribute="class"
-              defaultTheme="system"
+              defaultTheme="light"
               enableSystem
               disableTransitionOnChange
             >

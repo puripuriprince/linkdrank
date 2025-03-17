@@ -2,10 +2,10 @@ import { Icon } from "@iconify/react";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useAutoResizeTextarea } from "@/src/hooks/use-auto-resize-textarea";
+import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 import Image from "next/image";
 import React, { useState } from "react";
-import { aiSearch } from "@/src/actions/search";
+import { aiSearch } from "@/actions/search";
 
 export function HomeHero() {
   const {
