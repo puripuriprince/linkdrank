@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "npx ts-node index.ts"
+    "start": "npx ts-node index.ts",
+    "scrape-links": "npx ts-node srape-all-profile-links.ts",
+    "scrape-profiles": "npx ts-node srape-all-profile-details.ts"
   },
   "author": "",
   "license": "ISC",
