@@ -427,7 +427,7 @@ export class PersonProfileScraper {
                 const date = details.second;
                 const logoElem = item.querySelector("img");
                 const logo = logoElem ? logoElem.getAttribute("src") || "" : "";
-                if (title || details || logo) {
+                if (title) {
                     honors.push({ title, issuer, date, logo });
                 }
             });
