@@ -1,0 +1,485 @@
+[
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/shreygup",
+    "name": "Shrey Gupta",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGEFvSWK-m_Qg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516763194198?e=1747872000&v=beta&t=e9W_LGVGCZakMOC3QJcQ-KwRFe8O-kO4Mx0vWGORZNA",
+    "title": "Software Development Engineer @DistributedSystems",
+    "location": "United States"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/arielpickett",
+    "name": "Ariel Pickett",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFKuT4OZ5nPmg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1636663672222?e=1747872000&v=beta&t=rmQR8OCqB5t8o0z6vUa23-_XFoiBFp_qbYpqMyf8fdw",
+    "title": "PhD student in English literature and film at McGill University",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/maria-sartzetaki-a789a893",
+    "name": "Maria Sartzetaki",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEW4zpIX_3gVQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517547688682?e=1747872000&v=beta&t=HJ_x01JyeeTTz8jT7IjfdCFR-P1vwPmWfFPyAXnaWGc",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sjmcdonald1",
+    "name": "Sarah McDonald",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHOgFjVbXck5A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1727434185022?e=1747872000&v=beta&t=WyhyoG0G0RoC7FRcJpntjfGWIj6Nuj-vzAMeU3gXaqY",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/emma-rougerie-ba653416b",
+    "name": "Emma Rougerie",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFhN8RRjly-Ig/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1552618992426?e=1747872000&v=beta&t=BqmzxHCLZ8ndWU6B8poFWeH0JMA1r7t51Y2D27X3qLE",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/emma-luprano-6bb025185",
+    "name": "Emma Luprano",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGnIUO1NkOkEg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1614049573930?e=1747872000&v=beta&t=5IQUoH3nHQ6H_8i2fPip56m_Kjixous_RqS8ZmGDiFM",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sambanack",
+    "name": "Sam Banack",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHgkSLoukzd1g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1732035972619?e=1747872000&v=beta&t=RunanQ6lXsEwkQ2mBWCipH50CQJdTkCbFnIO8BR2c2g",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jess-mulroney-985b7522a",
+    "name": "Jess Mulroney",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHALV1lJRbRLA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1725261638172?e=1747872000&v=beta&t=RjMwzc4_Nj0Fgq_7Z-6h8DUCNwzr9Zzf7IUYkvIQKk0",
+    "title": "Marketing, Public Relations and Creative Consultant. Fashion Stylist. Wedding curator. Founder of The Shoebox Project and the Female Empowerment Project .",
+    "location": "Toronto, ON"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/erin-ishiki",
+    "name": "Erin Ishiki",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQH0UcjJdxEv7w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1613585812304?e=1747872000&v=beta&t=XReN_sH0nayNUebNdA5D4CgGTgAWoHV5H7XnPpniPt4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/stephgregoire",
+    "name": "Stéphanie Grégoire",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFj28_qn6sK-g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1534508208056?e=1747872000&v=beta&t=iGR1qftBjA1MxXu0TdR3EUJ3zzHuGvvytU3e9PhbvWE",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/christopher-mckay-75584921",
+    "name": "Christopher McKay",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQECZrpSTdrW7w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1708114604688?e=1747872000&v=beta&t=cvMfSf2gtZ7rBJnHZ8gvaQkX8ARL9CTzQr-3oij_jTk",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/menarizk",
+    "name": "Mena R.",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQEPoQK4iG9GFQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1732226763134?e=1747872000&v=beta&t=FYKEhVcIkoyLWtF14Sx75Ss3imQNDlGJLVfKep0fLPY",
+    "title": "Content & Strategy Specialist | Social Media, Production, Copywriting Expert | AdTech, B2B, Entertainment Marketing | Award-Winning Campaign Producer",
+    "location": "Toronto, ON"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/crystal-dalman-25b60074",
+    "name": "Crystal Dalman",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHdzdzIbzZsww/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1673474382777?e=1747872000&v=beta&t=TyjT1-ChjptOoL4M6UWM5UJ4N_M9iQq1h75oSXdIR9U",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/engiedevora",
+    "name": "Engie DeVora",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEeu_hP2vt_hA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1663968143033?e=1747872000&v=beta&t=VK8QIhiR5olJaOLttV853Lb39oqqi2jQS92riuY1Dyc",
+    "title": "Sourcing Lead @ Epic Games👩🏻‍💻 | Gamer 🎮 | Former Engineer 🤓 | Unreal Engie ⭐️",
+    "location": "Ladera Ranch, CA"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sasha-moret-le-jeune-25a922199",
+    "name": "Sasha Moret le Jeune",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEB47oWgARxpw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1613756716427?e=1747872000&v=beta&t=bX6iKChTu4c6l2S-uLcRvDuspyxcXRyug_t7GtODjOE",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jenny-yang11868",
+    "name": "Jenny Yang",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQGOXqNlydSvmA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1679030799924?e=1747872000&v=beta&t=oG8-0Lh2uH-cHgRmBbQeHmv44TexlGbFpwoKcs1lj5c",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alexandrinedelage",
+    "name": "Alexandrine Delage",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHtMaU2_8Vy-w/profile-displayphoto-shrink_100_100/B4EZWHibGTHgAU-/0/1741735704079?e=1747872000&v=beta&t=RiAKf4SQr-qh7ZXn9hsrwwOTBmrzz6uY17pNVWgAmaA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/simon-theberge-3b2a7a24",
+    "name": "Simon Theberge",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQHIgWjk-j9POQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517241987076?e=1747872000&v=beta&t=4c6Kh7SxLkBnBNswdZ_fc91xr7ZcpnRng8He8Jl_cCE",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nadeem-ghani-0864331",
+    "name": "Nadeem Ghani",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alex-rivers-176b20b3",
+    "name": "Alex Rivers",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHcWqZtnYoP7A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1720509559713?e=1747872000&v=beta&t=BgfteUHU8aBNTY68tvfo0_8LfD6fkgZOyXCeAckhauw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/juliebeckley",
+    "name": "Julie (Novak) Beckley",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHp7MeC5xKXnA/profile-displayphoto-shrink_100_100/B4EZSV4WK6HAAU-/0/1737681364004?e=1747872000&v=beta&t=knbNoWp6y50-tX5zvxP1ZU0_DMU-VBKL_EGXFbRdtXM",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/search/results/people/headless",
+    "name": "",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ingrid-waldron-ph-d-2908a725",
+    "name": "Ingrid Waldron, Ph.D.",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQG_-wthKr2X7A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1688929579467?e=1747872000&v=beta&t=uUEeLNlb-nkiN-wocuz_HE2tRyVyjvCaO1gj7S701yw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/yasmin-albitar-68a35491",
+    "name": "Yasmin AlBitar",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/cam-langs",
+    "name": "Cam Langs",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQGjjw3b2s5aoQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1727829446923?e=1747872000&v=beta&t=x0xeWGPA1zG-t5vx52cfbafShWeVXsc-nbN1TbVsHqU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/allyson-luchak-94865b83",
+    "name": "Allyson Luchak",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEblRVCNZ46Xw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1565278110320?e=1747872000&v=beta&t=burmpZxY8KcOxMlQ_Et8egIuvyCdHSfju6sYq69BX7Q",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/robertsalomon",
+    "name": "Bobby Salomon",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGLT_fGHMyOzQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1697150218257?e=1747872000&v=beta&t=N4dYZUv22b2NbKYiB4_aL0oP3j_Qi82JJFV_UTQc3b8",
+    "title": "Producer/Writer/Podcast Host",
+    "location": "Los Angeles Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/phillipmirmov",
+    "name": "Phillip Mirmov",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGV46fMCq6NIA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516622227037?e=1747872000&v=beta&t=OE7TkOrdpqJsbP6n-Kh-GtBzRU_pC_xiylHmq2i2Aoc",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/kat-sieniuc-9059ba253",
+    "name": "Kat Sieniuc",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQETcHVCtknA6w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1665779038350?e=1747872000&v=beta&t=d8Jaqp-3GaWi-vS7WYfQEtzpZu9g1TWQpgTg0ZOg6uM",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/michele-sullivan-talon-a72748119",
+    "name": "Michele Sullivan Talon",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFiYMsDBSETmA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517627415078?e=1747872000&v=beta&t=XP0MR7cRUfde65vVFHm0aOaYnxbam8Ih0cv1i_9vp3g",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/stephanecardin",
+    "name": "Stéphane Cardin",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQFm4zpEbQ-znA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1729619369475?e=1747872000&v=beta&t=1XQpzk8deWputm01GWvvM5w492im9TPeZupU2TxutrI",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/search/results/people/headless",
+    "name": "",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alexandrakano",
+    "name": "Alexandra Kano",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQH9ooMG794xJg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1706121377614?e=1747872000&v=beta&t=KyA9kSNpnzEPUFriP3GCo7OEcttxA2MZxxCjv-st4II",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alison-lea-bingeman-1216a46",
+    "name": "Alison Lea Bingeman",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/lhochstein",
+    "name": "Lorin Hochstein",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQH--MQ7s3rLFw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1688422514770?e=1747872000&v=beta&t=ijSDChWTWXxshG9A2p_68IScBA23Bb7IAvm7e6C6-_A",
+    "title": "Staff Software Engineer",
+    "location": "San Jose, CA"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/matthewharper-marketing",
+    "name": "Matthew Harper",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFFUlYDDSFjJQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517491158185?e=1747872000&v=beta&t=EKTLEBgBtYWIhI_iSxApVIbyQd3LYl6pSbKUphSqZj4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/marinacordova",
+    "name": "Marina Córdova",
+    "picture": "https://media.licdn.com/dms/image/v2/D5635AQFfVWnMLF_3-g/profile-framedphoto-shrink_100_100/B56ZWGEDhmGoAk-/0/1741710965308?e=1743004800&v=beta&t=PSOi00YsgOg6rWMYvooHivZnbIeDbDS0E6Cui_GEbJs",
+    "title": "Consultora en Aprendizaje Disruptivo",
+    "location": "Mexico"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alexanderhaque",
+    "name": "Alexander Haque",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHTxN6vCtcwCQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1696199581620?e=1747872000&v=beta&t=1aYW4R2K14wUQR23ej14o684icFhr92mGOnQazEkv5o",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/annefrenchlocalization",
+    "name": "Anne Rossi",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQEwbilsOGDC6w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1708743164721?e=1747872000&v=beta&t=CF2V4Odb1iAJV3yy88lBKXksfPuJrJHNsruPoj4mF2s",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/goformurph",
+    "name": "Patrick Murphy",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQH0iMjJazedFQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516355227474?e=1747872000&v=beta&t=cdSP1sjt83hFxpYr8ZKYSnoEwzDbX366GguxkWXfClk",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/leahmciver",
+    "name": "Leah McIver",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQHg5lta4Qab9Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1711471732073?e=1747872000&v=beta&t=DA_B9kvCXkKniLApvAfAbYsBl0Hew11KBY8Y40T7u6w",
+    "title": "Agent / Appearances, Literary, Rights and Commercial Opportunities",
+    "location": "London"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/emer-connon-3aa2a52ba",
+    "name": "Emer Connon",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQFrCQrGnykjBQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1712074998872?e=1747872000&v=beta&t=5T-HZ-EqWF60XF7CrV0zR_DgM0s9_EetIAnJvudLDGQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/christine-rodriguez-414b661b",
+    "name": "Christine Rodriguez",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQF59t-olA1B7Q/profile-displayphoto-shrink_100_100/B4EZWg_CgGGwAY-/0/1742162635538?e=1747872000&v=beta&t=H3Jiyj-x7U4MVVB4kLswgQe7ASfmeXEdY2fBqrfQjj4",
+    "title": "Alumna of the Norman Jewison Writers’ Lab at the Canadian Film Centre. Represented by Rena Zimmerman at Great North Artists Management.",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/anika-hundal-43921b206",
+    "name": "Anika Hundal",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFaE1zYvf7kGg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1668402765927?e=1747872000&v=beta&t=DhfcgkqYFtHaih4gxyxYFvcf_60qru3cpYRq8oF7YRs",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/cole-dd",
+    "name": "Cole Desfontaines Dorrestein",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sohnikaur",
+    "name": "Sohni Kaur",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHEa4OnL_jRJA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1725812200298?e=1747872000&v=beta&t=8mT6rlqani1ZwVEfi-wEU-lRSKNOK3ybRP1605je4wI",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/search/results/people/headless",
+    "name": "",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQFkfSvYPGrN-Q/profile-displayphoto-shrink_100_100/B56ZWm1wjuGoAc-/0/1742260865573?e=1747872000&v=beta&t=lwFaWE06tkSgzN2QhRc_AKoNIjOvddPQz7KrDv3Vm8g",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/suziephilippot",
+    "name": "Suzie Philippot",
+    "picture": "https://media.licdn.com/dms/image/v2/D5635AQGa32T6UzpqfA/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1667611621036?e=1743004800&v=beta&t=e4rbvNnaT3dVIBNw4cw145EAVAkeYd3YtcF5S7w3kT0",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/brendan-ys-wong",
+    "name": "Brendan Wong",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQHzzSM4AQgysQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1597009482053?e=1747872000&v=beta&t=iGwajucMqJMRoYF6MjVIerPo0nkapP0rbkuCZk92yvM",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nadia-maria-oliva-a6662b33",
+    "name": "nadia maria oliva",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFfaN4axmvlXg/profile-displayphoto-shrink_100_100/B4EZRF.9WnHEAk-/0/1736340920312?e=1747872000&v=beta&t=GtTns3aaQyW4-NoFcHBTyOSE723AIMpryc2Kfds9hlU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/christoskalantzis",
+    "name": "Christos Kalantzis",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHgwirmyN4wrg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1679029303660?e=1747872000&v=beta&t=hCEP_4APl96jINh9VfnlZ-GW_mv7sG7VbwUZWrgDu98",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/leon-bromell-8b9756141",
+    "name": "Leon Bromell",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQHJ0I0N6sfWcA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516976905267?e=1747872000&v=beta&t=osXLbRkdX_p2hDEuJRphqIYSC9LV37X9vSKnUES46m8",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/search/results/people/headless",
+    "name": "",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQF-mX6V-xNWVA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516940828772?e=1747872000&v=beta&t=Vp_5nvxOqPDVugAOPAe1-qYQe1TL3enffUX3lWSSlG8",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/patrick-moss-812a931",
+    "name": "Patrick Moss",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFRrR-dHch8JA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1635784225511?e=1747872000&v=beta&t=tEDizQb-FeXwTrptLNtN8d3jV7AGSMahbo2NZkghwzA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/roberta-garziano-5b122359",
+    "name": "Roberta Garziano",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQHCL8nN-Qhk6g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1728289354693?e=1747872000&v=beta&t=gqdNir1ZMNEuquHzdjn4PnTD4MMtVQZtIfuH5HIInaw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/david-wechsler-83035164",
+    "name": "David Wechsler",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHcp-VeH1FFrQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1694321331892?e=1747872000&v=beta&t=uaS5AETUQ88faeI_pXPaA9T2ufP-u5sble1GCwL_C6U",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/evalipman",
+    "name": "Eva Lipman",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEGshMri2f_Qw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517509059862?e=1747872000&v=beta&t=4O3MWtcOa4Uvon2CEVqd6zB14SOjhrt5NZspjh3TteU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alejandrasantosr",
+    "name": "Alejandra Santos Riaño",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGvDL3c_WkEMQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1590371995080?e=1747872000&v=beta&t=e5I_mLltfRGpWOm_ntTTFym_G6NGU2xtaSMGe2BpBfQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ashbeck",
+    "name": "Ashley B.",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/julie-levert-cui-a28363135",
+    "name": "Julie Levert-Cui",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/dbeckles",
+    "name": "Derrick Beckles",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFTAR-p_R24tw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1624422497461?e=1747872000&v=beta&t=wGmViHJycDmkQiJkajmGkZ_jHjSuf_X6O3APBcTpJLs",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/search/results/people/headless",
+    "name": "",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQH7kmokszAiyw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1699490550268?e=1747872000&v=beta&t=2btkrwwshJGfKUNFiL5xkLKAI3AqhH7WaWKN9FR5zX4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/dante-sali-759401137",
+    "name": "Dante Sali",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHcQ7bJzDnWeQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1696541059372?e=1747872000&v=beta&t=Sf5tpky1ydUPeOU7blw8w9i7m3bkstxq2EtwOX7s-cc",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/annawaring",
+    "name": "Anna Waring",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQF8IQDeJeYXYQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1645396894186?e=1747872000&v=beta&t=E_dTlWqV6dHE7e3IMCRR18sOP7dj4qkteLiWNAuXxw4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/esme-thompson-584065167",
+    "name": "Esme Thompson",
+    "picture": "https://media.licdn.com/dms/image/v2/D5635AQFGk7f8iFFs8g/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1701703625377?e=1743004800&v=beta&t=pb9DUAToEqxd_BP53KFDa4_Vob4vtGnyYPcLf9XIyXw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/leila-brillson-a16190b",
+    "name": "Leila Brillson",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/chualan",
+    "name": "Alan C.",
+    "picture": "https://media.licdn.com/dms/image/v2/D5635AQHuDsQbJvWbsA/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1718303752417?e=1743004800&v=beta&t=B0kTKL_4PHI0eS5OoY17Og5_smPQAxuLYAgP0HLw7WA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/liat-tzoubari-11093928",
+    "name": "Liat Tzoubari",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQF9d1-8MOtWhg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1549331081290?e=1747872000&v=beta&t=FE31mmcjfS04rghwdutZ01oQkfd75srvP-ihmJmCIiU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/davidzelniker",
+    "name": "David Zelniker",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQHZPq1x_nSr2Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516628446579?e=1747872000&v=beta&t=471tVrlQUl7bBs9j37Qdmj5t2AUtDKN8s-Z7w4XNV88",
+    "title": "Investor & Operator | Acquiring Businesses to Lead & Grow",
+    "location": "New York, NY"
+  }
+]

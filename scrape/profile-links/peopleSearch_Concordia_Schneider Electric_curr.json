@@ -1,0 +1,618 @@
+[
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/carla-shawi-46b212220",
+    "name": "Carla Shawi",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQEhUvE3w1gJoA/profile-displayphoto-shrink_100_100/B4EZP.zLTWHgAY-/0/1735146649387?e=1747872000&v=beta&t=_WBhVWZeHkkxKIcmAaEnfiNlWBAaUfQS9cIR-ZkhT2E",
+    "title": "Software Developer @ Schneider Electric || Final year Software Engineering Student at Concordia University",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/amanieazzam",
+    "name": "Amanie Azzam",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQF7NTFnXRIxlg/profile-displayphoto-shrink_100_100/B4EZSdqjyHHgAU-/0/1737811968809?e=1747872000&v=beta&t=fsLdfMnRYBnNSqdyO_W-kpNBDVIE08o14HrPldy3CRg",
+    "title": "Electrical Engineer, M.A.Sc.",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/cyrilfayad",
+    "name": "Cyril Fayad",
+    "picture": "",
+    "title": "Inventory Specialist at Schneider Electric Industrial Engineering Student at Concordia University",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/shakila-zabihollah",
+    "name": "Shakila Zabihollah, M.Sc",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGP9lMrLMvrWw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1679437315258?e=1747872000&v=beta&t=_uLX1RhkcxN4cymJLzXaexN4xIwfSD2FmfOKjEEBpWE",
+    "title": "Mechanical Engineer | R&D | Mechanical Design | Bio-Mechanics",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ahmed-hashem-a11885138",
+    "name": "Ahmed Hashem",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEQwNEVmDRU_A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1637812837048?e=1747872000&v=beta&t=LxVyifVSK82DVEyeEjWdhokFnsuMuEJ74YSwrtRNmWU",
+    "title": "Electromechanical Engineer",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/vanesa-giselt-hernandez-herrera-0101691a4",
+    "name": "Vanesa Giselt Hernandez Herrera",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGcDOAFhlO2BQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1691112295678?e=1747872000&v=beta&t=HHDeTaWZn-WL40yvpVBgwChH9Y0dlTTA6Gy10J64nFo",
+    "title": "Associate Project Manager chez Schneider Electric",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ehtasham-saeed",
+    "name": "Ehtasham Saeed",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFKixRtJNMPCQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1597513516156?e=1747872000&v=beta&t=YsiN9XuK9HuuByXuepWvhZPL08FDahP7CWACcZKo6S4",
+    "title": "Firmware Engineer | Technical Lead | Embedded Software Engineer | IoT Developer | Electrical Engineer",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/paolo-chiriatti-53b2751a5",
+    "name": "Paolo Chiriatti",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHNWKlV6H_W1A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1706049982477?e=1747872000&v=beta&t=fto-swjRW9Igu5CiDcisMN2fYSYcZWvGZPbRXdBWrAY",
+    "title": "Technical Project Manager | Schneider Electric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/hassan-faour-m-ing-863093161",
+    "name": "Hassan Faour, M. Ing.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQH1im8YLULgow/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1679548323425?e=1747872000&v=beta&t=I0JQElatiJWNSaI9mRmBBeZQ7KmASi6vFCAeMjr3_ss",
+    "title": "eOEM Account Manager at Schneider Electric",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/rodaba-qurbani-cpi-36518a15a",
+    "name": "Rodaba Qurbani, CPI",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFHcK3FMc-3vA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1621349545262?e=1747872000&v=beta&t=vvzdcgUFmbQIcWPh3LDGvE1oo04KbxGcjWcgcYhmTG4",
+    "title": "Transactional Quotation Specialist | Electrical Engineering",
+    "location": "Laval, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/doumit-akkari-b47391112",
+    "name": "Doumit Akkari",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFD0tr_v9GfsA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1537652764278?e=1747872000&v=beta&t=MSN3u8AfwbaKI3yerkw0FWrqtVwXbnMwkraJy0xjQYA",
+    "title": "Mechanical Design Engineer at Schneider Electric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sebastian-samaha-018753181",
+    "name": "Sebastian Samaha",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQE2E5hiNL3WLg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1674001746613?e=1747872000&v=beta&t=4gGajev-bFoI0RYUDf-qV0eVMDcN0epwAWqo6Zc13gE",
+    "title": "Industrial Engineer, B.Eng. | Project Coordination Manager - Eastern Canada Region @SchneiderElectric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/carlrandyltuquero",
+    "name": "Carl Randyl Tuquero",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFKplOuBCwqnQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1666645259852?e=1747872000&v=beta&t=gaHHvrH7Mos8Wm6OynLc6W0rOp3P5dpAWNLC_4j0aig",
+    "title": "Software Developer at Schneider Electric",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/pmbedard",
+    "name": "Pierre-Michel Bédard, Ing.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQH7dvKPmj5kDg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1725109847599?e=1747872000&v=beta&t=gSjRbkYEr2j2fBzTN7LSwm0Ihy2vH9eLeCrjd6ZIi-I",
+    "title": "Solutions Sales Representative at Schneider Electric",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/mohammadreza-zonnar",
+    "name": "Mohammadreza Zonnar",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFovpVPi1U2Tg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1621188689373?e=1747872000&v=beta&t=T-BqEwqYKz5KIL_XO5qawm5YRanLHU2BpyaE7TJjnKY",
+    "title": "Senior Firmware Developer at Schneider Electric R&D Department",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/mahmoud-dimassi-45b799a1",
+    "name": "Mahmoud Dimassi",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQHF43QRdepe8w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1656457267986?e=1747872000&v=beta&t=2VizS2D_UmMihT9TDLxLZhiN--x56lERMyQRfan_SzQ",
+    "title": "Sales Representative at Schneider Electric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nathanial-alonso",
+    "name": "Nathanial Alonso",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFfFJcL8Nefgw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1657538794414?e=1747872000&v=beta&t=LL4wQZ5dLpfsBiERm--p4rO35LP50xUI6mYwO0Iwew0",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/dina-alyousef-255430165",
+    "name": "Dina Alyousef",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFK2Ow54O_nhQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1596021028423?e=1747872000&v=beta&t=TVPJCb1iLxDj7b5I3fEhq7MT_a-OOhvlfldv9jvPW04",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/philip-day-5359b472",
+    "name": "Philip Day",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHrtUYsvw5nYA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1713125268261?e=1747872000&v=beta&t=IDitAwvsahLl7gtW2o8T0QlNxLArBKc7B5qvzQCMzp0",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/vinitpatel95",
+    "name": "Vinit Patel, Eng.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGwiR_qMMrtHA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1693419878969?e=1747872000&v=beta&t=ykT3MQZ5Qlh1FdvmuY1G7OyYXKBLXzNNtyGYm7FVY1M",
+    "title": "Mechanical Engineer at Schneider Electric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/melissapedneault",
+    "name": "Melissa Pedneault, CPHR, SHRM-SCP",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQFofIG9B-SEHQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1724176342678?e=1747872000&v=beta&t=0Mo9JtLrWxNIQdFjxs0lJqUooYbjoHtbywjJ7eQiyGE",
+    "title": "Bilingual Human Resources Business Partner at Schneider Electric",
+    "location": "Greater Toronto Area, Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sarahmourad",
+    "name": "Sarah M.",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/amrmeid",
+    "name": "Amr E.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQEO_HwJFOHqSw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1710283355012?e=1747872000&v=beta&t=SQ89x5j1qlgykGU82_9LOqEIKL_RB5Tx3wEJ08rGc8k",
+    "title": "Senior Project Manager / Project Management Consultant",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/leslie-taylor",
+    "name": "Leslie Taylor",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGrI7OljF8qEg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1711651396395?e=1747872000&v=beta&t=PepzLeI8hCFk5JhuK-9ttDiC7JRJIZhVR1BXCcR20a4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/bronson-kiu-72a04042",
+    "name": "Bronson Kiu",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFyrb3UCT-iOQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516961964602?e=1747872000&v=beta&t=4NDSUiVIkhTc9p5OD3bwmJYsr_m4WhYN0ppC2GnuqRQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/tarek-almuhdi-pmp%C2%AE-77aa71b7",
+    "name": "Tarek Almuhdi, PMP®",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEY7zwjWf0AUQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1588292354025?e=1747872000&v=beta&t=2JguNVO-2dgEdxD2uavETpf5NOs3A-dws5XJu-46j_s",
+    "title": "Technical Project Manager at Schneider Electric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/xue-wei-2aaa7476",
+    "name": "Xue Wei",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQHOmqZqqgGvvA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516604584857?e=1747872000&v=beta&t=DsrVgLT1VDNeYqSzRIj1W74_5lX56ta8rEPWgj77MN4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/graziella-abenhaim-98854030",
+    "name": "Graziella Abenhaim",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQHE99PAQQsHMw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516449518619?e=1747872000&v=beta&t=85CnJTVtwXJcRPV5yDiVn0tuBduyqBqwMslC9Z-DNpc",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/kyriakos-gogas-38ab1b81",
+    "name": "Kyriakos Gogas",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/marc-andr%C3%A9-ayotte-eng-18840b4a",
+    "name": "Marc-André Ayotte, Eng.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGq2j9VTd5GDQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1685473990197?e=1747872000&v=beta&t=ee_DeUxJ2xVLt0S867fM8I9Ab0BcJnrLfgT0BocEdAk",
+    "title": "Service Sales Representative at Schneider Electric",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/abdulziade",
+    "name": "AbdulRahman Ziade",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/aminasgari",
+    "name": "Amin Asgari",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQEWIl8PvoPXBg/profile-displayphoto-shrink_100_100/B4DZVYSWaJHkAY-/0/1740942960750?e=1747872000&v=beta&t=0V1j1wN8ppbf33fhmtaTWUtoGu7F8MfYeJvsckia8rQ",
+    "title": "Industrial Engineer",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/marisha-patel-8b17a924",
+    "name": "Marisha Patel",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQE25tULXV-XKQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1650567898999?e=1747872000&v=beta&t=bDPikH46QbLD1OwbaTmNs86lDdwqyns-prNB5zftFG8",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/fricks-n-annacius-jr-6951488a",
+    "name": "Fricks N Annacius Jr",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEzGendRT9xWQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1633503995556?e=1747872000&v=beta&t=QnHacH2HKSCYKGzSdO_Z8FlgWFyqtpyJ2YqXLei8E_I",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/barbara-charalambides-bab2a265",
+    "name": "Barbara Charalambides",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/dehuaz",
+    "name": "Dehua Zhu",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHWapkLJVQ19w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1704661709355?e=1747872000&v=beta&t=mektYdjoKwZF5n8wxTeyVx6DUyYA9jSYSzB-fMDIZxY",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ricardo-rodriguez-6092a327",
+    "name": "Ricardo Rodriguez",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQHp19yRLkqq1A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517445246148?e=1747872000&v=beta&t=6GyFZbE-IJ5BMt3a3-lEn71vejAmbMvhtyAJ_pVinU4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/vincenzo-marcovecchio-02858754",
+    "name": "Vincenzo Marcovecchio",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFrG1cu5zyhDg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1706642282359?e=1747872000&v=beta&t=f4ADb_jbs3SS-y7bdV5aDFfpd5vcP0bgucQcoRaCjPY",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/yuen-tung-2416019b",
+    "name": "Yuen Tung",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEg6Mgavh_ajw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1581444420411?e=1747872000&v=beta&t=O2ofV_uhRtx6iac7Aa2liMp8UNvdFn3Hy1jQChuAvOg",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jjrbracken",
+    "name": "James Bracken",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alisa-kooiman-0b985725",
+    "name": "Alisa Kooiman",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQGkqWLDj5OnLg/profile-displayphoto-shrink_100_100/B4DZVIG2XZHAAU-/0/1740671510465?e=1747872000&v=beta&t=FBgX4jBs1FVKqGzgUTYxYY1JHPF8mYwN6R9uwtVQ3fU",
+    "title": "Industrial Automation Solutions Sales Executive at Schneider Electric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/aisha-rashid-77a56b14a",
+    "name": "aisha rashid",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQE-1Y369WwRTw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1579724594242?e=1747872000&v=beta&t=aLpJArv9mFk3CdHqFf8nWapm6F7wb0T_ru0wfx8_mzw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jianxiong-li",
+    "name": "Jianxiong Li",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQFSHXDHKS_0XA/profile-displayphoto-shrink_100_100/B56ZSwHpyQGQAY-/0/1738121584525?e=1747872000&v=beta&t=nkuqjoGkYrrexxwhw_PLpJ698Ndjc-WpCzKfJcYrBAA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/adanherrera",
+    "name": "Adan Herrera",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGZC3xRAWTRjA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1647372604431?e=1747872000&v=beta&t=KIGDeHyqAlFVDnGq9dLTb7dyt2JA23_Yi7Yu-PsZAEU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/amin-salar",
+    "name": "Amin Salar",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQH4cxl3oBspvQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1728490628594?e=1747872000&v=beta&t=ohgC9B6xdefUUlpAV8bIys3YSd4jO9W6BiGWX_-oGl8",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ramandeep-chahal-b99893b9",
+    "name": "Ramandeep Chahal",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQETZJ9zbwKuRA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1604851001820?e=1747872000&v=beta&t=1U_Xb9lE3nBGqaI21o1NzftZ4ajpV8ZfbuxgmXH793Y",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/frankyrichard",
+    "name": "François Richard",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFBjUK8UjCMWw/profile-displayphoto-shrink_100_100/B4EZWP_dK4GYAU-/0/1741877532227?e=1747872000&v=beta&t=PpZWiABu0llWt7ZWK4D4bDUXLl6-guCUSyhljwBqIbw",
+    "title": "Développeur de jour. Trésorier bénévole de nuit. Toujours chez ECTO.",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/madlouni",
+    "name": "Mohamad Adlouni, M.Eng",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEc69FIHEfK1A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516524338480?e=1747872000&v=beta&t=pH35vAyXvjx5njBntntf1XFTN9sBRAzpd5oFzRcxH4c",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/rafaelsoares0",
+    "name": "Rafael Margiotti Soares, P. Eng, MBA, PMP",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFeNstKsIvN9Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1532109862749?e=1747872000&v=beta&t=Dw3yx1g8E0wKNy8ocbYxY2IZOqvRpp3liSVrz3R9n14",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jeanpaquin",
+    "name": "Jean Paquin",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQHaUmW5M6E4CA/profile-displayphoto-shrink_100_100/B4DZQ9j8ZgHcAU-/0/1736199620645?e=1747872000&v=beta&t=JqYzQNPJXQz-gyDMPoIB7EYtV2dUwQjn8jwlh6ZakpY",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/barbara-m%C3%B6rwald-14a449186",
+    "name": "Barbara Mörwald",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQHj3hc4n3WwBQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1603612686761?e=1747872000&v=beta&t=5_jJtHgNSSdN4t_qHNex9w75UfzFZqIX6pWy3VCBaxs",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alirezagolesorkhi",
+    "name": "Alireza Golesorkhi M.Eng, PMP",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGwcZYV0sA65g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516877730935?e=1747872000&v=beta&t=rbkswYG0EkSmOJmYOhrYKwRRVW6CjA39pqklCpdQgyA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/toby-zhang-ab347422",
+    "name": "Toby Zhang",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEnpmAEGxx0Qg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516972905951?e=1747872000&v=beta&t=wYXkpdlcqUOwSdljT7t7Z6205emXOQlODOzodqd_7DM",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/shetul-patel-379600ba",
+    "name": "Shetul Patel",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQG8DGJM0FUF3w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1706552665937?e=1747872000&v=beta&t=DkJn67UTLnnrjyO7CXP8TjOeo0GT45WvbE-fCQBKbpU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/michaelhabouri",
+    "name": "Michael Habouri",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQE8jzbcnplaAw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1725486124570?e=1747872000&v=beta&t=5I9fGCBHVYuiJLoMDfqbGV34NMHmVMWoowmzdOr3qag",
+    "title": "Mobility Leader | Innovation, Partnership & Strategy",
+    "location": "Pointe-Claire, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/carolynegagnon",
+    "name": "Carolyne Gagnon",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQG1-v2hWKqcrA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1599066804383?e=1747872000&v=beta&t=rYIhjXOCkSUQA2IZxfCwL-xwAT35mF3jYUlBqrCSbrw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/al-pulice-5682337",
+    "name": "Al Pulice",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQFqkcaa0S7eGw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517421112649?e=1747872000&v=beta&t=OVdjD0FVx7ZjJbPSrc383g9zxyUfKCrZu-Tbbxb__1o",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/tony-pulice-135578157",
+    "name": "Tony Pulice",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGN1B1869tKmA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1530158837441?e=1747872000&v=beta&t=6UFdAEL0RscwTmqBP-1BM5RMV5SQHPaEFR0c3HTiWLM",
+    "title": "Senior Project Buyer at Schneider Electric",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/melanie-parnass-5324a5",
+    "name": "Melanie Parnass",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQHSlz-_WkOZ5Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1658836224947?e=1747872000&v=beta&t=l2FwxXDXtPnzxt2-Zp4tECBl64j2vTOFiJ2VbSyVor8",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ignacio-meza-martinez",
+    "name": "Ignacio Meza",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGxczK_OO1P7Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517447141817?e=1747872000&v=beta&t=UjbagJW0ehtYb76RrhZPa9zfG1KqOB5D1XeJPQZCvIw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/hany-boulos-360b207",
+    "name": "Hany Boulos",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGHG9MrGkznig/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1592500469374?e=1747872000&v=beta&t=HXpPTc3D_1NrC5NhX9Xva3Wy7S0fxTRUOi6wTFnZlQI",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/larry-cool",
+    "name": "Larry Cool",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E35AQFm8OTRQ5kVPA/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1679236506876?e=1743012000&v=beta&t=glXvjmy4DWvu-kP3x2D8lplR83lX5s6H7hA-p54JiKk",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/aashay-doshi-cpa-cma-b196878",
+    "name": "Aashay Doshi, CPA, CMA",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQGYb45C7r6OEw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1676471000745?e=1747872000&v=beta&t=JX3R05RqrIucgerQ553xvV0KZ1QrgTC9Faloebppt_0",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/marco-ierfino-2983aa42",
+    "name": "Marco Ierfino",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFzSfNJ6aMe9A/profile-displayphoto-shrink_100_100/B4EZUkI9IWHcAU-/0/1740068082486?e=1747872000&v=beta&t=deYMLuNgsa79e1wmzgbrLcI7lRxmC64loiSkBakJMrU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/tasso-athanasoulias-87829a8",
+    "name": "Tasso Athanasoulias",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEH_N0QqYRmqA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1554737956705?e=1747872000&v=beta&t=36ofhf5h9s79_EI4foSufrCqDJxS50UOcrCBBlTPfpI",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/reginacortesdavila",
+    "name": "Regina Cortes Davila",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHhJevtFIdM5Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1667497932079?e=1747872000&v=beta&t=GD0A0kNlDOSlLIuQEv-Oc_A5XkrVG_LbcY2wL7E8MWw",
+    "title": "Marketing and HR graduate",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/erwan-legros-5588b489",
+    "name": "Erwan Legros",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFGdpEPjPf1sw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1585832514388?e=1747872000&v=beta&t=gBCMqhv8wHona5Dnkh-6VeoID_lKmh_zPFwsW-bsWOg",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/mike-krapec-b682624",
+    "name": "Mike Krapec",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQE1CPDBwZzFvQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1632426640964?e=1747872000&v=beta&t=lqD-lLWvsonCDBsMsrz7AonhmeSj14dBu-n9w2iSBU0",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/imane-btiti",
+    "name": "Imane Btiti",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEasSucJutHBQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1632090648336?e=1747872000&v=beta&t=FfbYZbKxSUhYK5LqTUaDVbqKoQxGyp45kXqvd323_-k",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/eric-rainbow-638a2070",
+    "name": "Eric Rainbow",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGgyxCfC1m7aA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1551710309660?e=1747872000&v=beta&t=ycqykJ8EYCe416NiGDgLVarLe_-4uJEaHlmhVVBYsWg",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/said-sawan",
+    "name": "Said Sawan",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGv7eWDleXo3A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1549935673325?e=1747872000&v=beta&t=LhsUo-ik0X9XWvVdN1x0Q503EmuISWt2s40-2NYAnHw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/piero-baldassarra-pmp-26242a84",
+    "name": "Piero Baldassarra, PMP",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/khaled-fakhuri",
+    "name": "Khaled Fakhuri",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQGEO4czAtSHWg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1701699035420?e=1747872000&v=beta&t=aCqB1Xn6c9f1NxHRAuwOGTGR3vNI1B7m6rbdSShAIPE",
+    "title": "Senior Vice President | Board Member",
+    "location": "Greater Boston"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/search/results/people/headless",
+    "name": "",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEUsnrmEp-4iA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1656013030199?e=1747872000&v=beta&t=SnBLyH49hff633wgAw8CbrOvp7mezsw7_Q_M7tJU8go",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/steve-az-a2b9ba54",
+    "name": "Steve Az.",
+    "picture": "",
+    "title": "Marketing | Business Development Professional | B.Eng. Concordia University",
+    "location": "United States"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nicolas-cosson-458b611b",
+    "name": "Nicolas Cosson",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E35AQGrJA56MPFHRg/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1695291859206?e=1743012000&v=beta&t=bSwQjnwRlw8YViR6bMGH8idarwWDb3KoYAI36OhLhZ4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/pierre-albert-chounet-aa872a90",
+    "name": "Pierre-Albert Chounet",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEQHII8Km-KAg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1621236818197?e=1747872000&v=beta&t=BC9jDH2zBFqSt5ksjRSlorY0icbaktzqXDRmS1GjJQw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/omar-hammad-pmp%C2%AE-04677928",
+    "name": "Omar Hammad , PMP®",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGiykNcH24yyA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1609853219673?e=1747872000&v=beta&t=bmXYZdsFMyT3KSnZ37iesH4_apHfGpWc7sJE3lnyKQc",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alicehwwen",
+    "name": "Alice Wen",
+    "picture": "https://media.licdn.com/dms/image/v2/C5103AQHzSVPmLwC2Kg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1554602064205?e=1747872000&v=beta&t=rdMxxgXDZE53b0tfliVyAea2xmKJryzyxn8DYNI_rzs",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/natalie-boyd-pmp-36181546",
+    "name": "Natalie Boyd, PMP",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/aghileschelil",
+    "name": "Aghiles CHELIL",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGTIw4IbC4K6Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1594143870718?e=1747872000&v=beta&t=RKvOIhKHC-XsXnGWTg0pckVMipmA3iwkgme3LszHZ7g",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/thomas-polliand-83531688",
+    "name": "Thomas POLLIAND",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEv7lKf19etzQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1653043431633?e=1747872000&v=beta&t=YYW6O8DN_3NgkFpVrOzar_TUjsIjAvdYnYyosYQ5jps",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/fadihalawi",
+    "name": "Fadi Halawi",
+    "picture": "https://media.licdn.com/dms/image/v2/C5103AQGqZFHObvCnGQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1532756127551?e=1747872000&v=beta&t=SEk0sQIJm10q6ZaclfC2eu7isr_0yTvds0pKCDGqg2s",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/mario-recine-5368945",
+    "name": "Mario Recine",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/martasanchezsalazar",
+    "name": "Marta Sanchez",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQEs7QyxE8lNoA/profile-displayphoto-shrink_100_100/B4EZUgBM49HcAU-/0/1739998941735?e=1747872000&v=beta&t=uLVPq0g2J2v_hLTMEBy5UYjU0hm1PF8Ic82VDUYL0-U",
+    "title": "VP, Secure Power & Datacenter SAM",
+    "location": "Bogota, D.C."
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/davidbensadoun",
+    "name": "David Bensadoun",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQFE4ZYBBhet4w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517752686484?e=1747872000&v=beta&t=jwLnTgCCc0-Ya2JEx1UCwoHd0qMxNc3YKuzZNViN9kI",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jeanpascalriss",
+    "name": "Jean Pascal Riss",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQEATBryliEcrw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1668964616689?e=1747872000&v=beta&t=E-rmYZO7_8zB2Ww5zd0rxb013nBMAGSO0Y5Xj6Tq_ho",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/vivienne-weiwei-chen-63009a1",
+    "name": "Vivienne (WeiWei) Chen",
+    "picture": "",
+    "title": "",
+    "location": ""
+  }
+]

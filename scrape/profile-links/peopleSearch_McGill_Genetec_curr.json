@@ -1,0 +1,695 @@
+[
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jamesluu0917",
+    "name": "James Luu",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHigcXwhENfng/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1672748975730?e=1747872000&v=beta&t=r9D8Vwj7tvBgJYyWhbdmFB6E_U4dVz-Rk7gWtaC3W3A",
+    "title": "SWE student @ McGill",
+    "location": "Laval, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/devang-patel-48519a129",
+    "name": "Devang Patel",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQHWezrPik94QA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517079431454?e=1747872000&v=beta&t=eODMqfcOiMW-HXXFAVTyH3I-trvYLP_hkUjupWbTuwA",
+    "title": "Development Assistance Team Lead at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/marcelloaudino",
+    "name": "Marcello Audino",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQF65NHBvhjvIg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1697824059297?e=1747872000&v=beta&t=2M74YaQ_XuOlpoKkRqVInklkLYp4clGlpn3kZ4-D4Ws",
+    "title": "Software Engineering at McGill University",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/lin-xiao-zheng",
+    "name": "Lin Xiao Z.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFSYYieLa9Ovg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1692286190596?e=1747872000&v=beta&t=xvanSfmfkAWpsd302eaIKHoOqchtAFd1qtvlCjTsmd0",
+    "title": "Software Developer II @ Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/fadi-samaan-8907b2261",
+    "name": "Fadi Samaan",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFhY2zBLa0n1Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1678672802087?e=1747872000&v=beta&t=C2sKCsI08Wphw_rfSPE2g2skBava2ZPX4kD8zN_OPDo",
+    "title": "McGill graduate | SOC analyst at Genetec",
+    "location": "Laval, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/oubaielkerdi",
+    "name": "Oubai Elkerdi",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQEvT9SYn46nrw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1723045049081?e=1747872000&v=beta&t=V3_HR9U1g6CV2V34jKMKXovq0LGcXUVCNoRL2KWEZpk",
+    "title": "Team Leader in System Test + Doctoral Researcher in History and Philosophy of Science and Technology",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/samahmansour",
+    "name": "Samah Mansour",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEwzWPzCZQ9Eg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1660569274176?e=1747872000&v=beta&t=2jgWLjLysFDJg6ihgf6dC-wJwmZPylncBGQz10saMRc",
+    "title": "Software Development Manager at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/rmpaquet",
+    "name": "Rene-Michel Paquet",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQErcvt_nhW94Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1641559118533?e=1747872000&v=beta&t=Mwmc7F4bZ1Ib-_cm54UcW6p81gIRC7VESB7EgPh-Cck",
+    "title": "Senior Development Manager at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/oula-zaitouny-063976138",
+    "name": "Oula Zaitouny",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHrSPzRbfh7Iw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1703776222660?e=1747872000&v=beta&t=1Lz1uOzQz4n62kUeYQBUzpi2AKgdW4nhJxv-kBDGVbQ",
+    "title": "Senior Talent Acquisition Specialist at Genetec Passionate About Connecting Talent with Growth Opportunities | Expertise in Strategic Hiring & Talent Solutions",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/yao-liu-813566171",
+    "name": "Yao Liu",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQH31pjg3dq10w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1626664357555?e=1747872000&v=beta&t=zVFGZdzXEOhHzk5yBbwpKLnmJPnfyzgYXG5D6sHXpQA",
+    "title": "Software developer",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jean-fran%C3%A7ois-gibeau-a4a72b233",
+    "name": "Jean-François Gibeau",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQEHuY28SCnpfg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1680365320821?e=1747872000&v=beta&t=N2FFfAvRmi0gkmzLnaYDyCW4m-u8Su1OYBCutNORgs8",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/kowalskichristopher",
+    "name": "Christopher Kowalski",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQFu5uncbx99Ag/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517665533375?e=1747872000&v=beta&t=JQ3AOSce2WSqknz_9-Rp1iaYPFMSjofn_DX0PkjtB1c",
+    "title": "Software Developer at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/peterjmarshall",
+    "name": "Peter Marshall",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQG3SFvrk080cg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517723991313?e=1747872000&v=beta&t=LSSz0s2nqZ1u4qXSMO-YFFyDxo5IpkvkP3CUuZqJRcI",
+    "title": "Software Test Team Lead at Genetec",
+    "location": "St Lazare-de-Vaudreuil, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/tchan8",
+    "name": "Theresa Chan",
+    "picture": "",
+    "title": "Quality Assurance Specialist at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nameeraarmin",
+    "name": "Nameera Armin",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQE1tzggcEcMJA/profile-displayphoto-shrink_100_100/B56ZVd91g9GsAU-/0/1741038247240?e=1747872000&v=beta&t=dW9Pp-fEptWlvZE2byDO_LF2ex-1URWarTXbVP7LLow",
+    "title": "Inside Sales @ Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/michael-anobile",
+    "name": "Michael Anobile",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/serge-antoine-na%C3%AFm-55906b156",
+    "name": "Serge-Antoine Naïm",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEAkFmxXkXxag/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517083596135?e=1747872000&v=beta&t=6Ri2OuLSAYbupzTp0uOBy-cDKsxN76bGeQkuRWnx4wI",
+    "title": "Team Lead - Operations Automation | Microsoft Power Platform Developper | Power Apps | Power Automate | D365",
+    "location": "Toronto, ON"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/karam-kahal-1aa4b838",
+    "name": "Karam Kahal",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEHW28crtRgWQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1650984128245?e=1747872000&v=beta&t=SCLKIlDSsWiaFKEVQ1HOz-6RoYG5a9NCATRfZr01InI",
+    "title": "Software Support Specialist at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nazanin-elmi",
+    "name": "Nazanin Elmi",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGzI_Vy3za1hQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1521638815772?e=1747872000&v=beta&t=VG1VaL5KpFtrD9mFQu5BruQO2h_dmuFkDABtREroo9A",
+    "title": "Application Support Analyst",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ahmed-sheikh-qureshi-085872186",
+    "name": "Ahmed A.",
+    "picture": "",
+    "title": "Software Engineer",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ilyanaduev",
+    "name": "Ilya Naduev",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGxaoZcqXpq5Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1528203009446?e=1747872000&v=beta&t=OYo6-NVckbtJ6UG77kRviKFMpxlxRSigquTSO52kWeA",
+    "title": "Software Development Manager at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ngoc-nhu-quynh-le-29aabb106",
+    "name": "Ngoc Nhu Quynh Le",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHC3nPe8X8F7A/profile-displayphoto-shrink_100_100/B4EZVkGmIxHgAY-/0/1741141207005?e=1747872000&v=beta&t=bJleYwvRc8qvJ5gWZEfJN-7hQ-nBZFCE_1xfFDeBUoc",
+    "title": "Customer Service Specialist at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/duc-nguyen-1a57849",
+    "name": "Duc Nguyen",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGnaMVZRrBo3Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1533587904190?e=1747872000&v=beta&t=YLfVb3cBotj0od_7S2U68PitCRYfFGhXEs8xPe72ojw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nidhi-kh",
+    "name": "Nidhi Khandelwal",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGkS9wIwtmXKA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1651881820975?e=1747872000&v=beta&t=1uRsdJZEUlc2VYHzILcX4It_9RmH8SPvnfHBzsHK2S0",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/anna-humphrey-137150134",
+    "name": "Anna Humphrey",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHUCxuAZKvcyg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1709318142635?e=1747872000&v=beta&t=IXIVlN8qC0si4By6l4Ir2E0M2mTTPaMFR1e5hVQSpKg",
+    "title": "Translation Coordinator at Genetec",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/erica-de-petrillo-17536527b",
+    "name": "Erica De Petrillo",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQH4hcoaCZv70Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1686864276667?e=1747872000&v=beta&t=ZuweTaW0qJSKLhBzSQdPxYMmVM5bwuMjlpYxTpdjIOk",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sophie-leblanc-b26346113",
+    "name": "Sophie Leblanc",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFx-OrJy2xHag/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1547559304255?e=1747872000&v=beta&t=4jy8uQN8YtGJuivy5frOVqqwsSzZD8qvt_nvO-USf9k",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/arezou-behnamravan-99990473",
+    "name": "Arezou BehnamRavan",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHYzkL37o5g3Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1666096166971?e=1747872000&v=beta&t=ZJ2X4zvbOKEpc6Jj9SYbJeHsav17HQA-h_Q7lbYzCJQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/mathieuleduc2",
+    "name": "Mathieu Leduc",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFwWU8isT2eJw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516931364097?e=1747872000&v=beta&t=3_A6Bwl6y24-FO1ALOg_jpOmVVevDb4rOSj1FlABiVo",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/dalexracicot",
+    "name": "Denis Alexandre Racicot Morales",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGJ3JFyYW0a5g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1661101571534?e=1747872000&v=beta&t=f7q_d3872TQc_DOhVgPaqdoiad1pBzonJq0v60SKXTk",
+    "title": "Software Developer @ Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/racha-karout",
+    "name": "Racha Karout",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEyrPoVgaypUA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1629756398039?e=1747872000&v=beta&t=nZU8CXsy0fUO812i2psuRSR3UWzqn0B8P9P9f9WzKag",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/rohit-upadhyay-3278b363",
+    "name": "Rohit Upadhyay",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E35AQF5VRxENBjZMA/profile-framedphoto-shrink_100_100/B4EZVGAAvZHMAk-/0/1740636163320?e=1743015600&v=beta&t=-W7nNxre4yIPQgMv_VUuRPtvo9QpWN1GNJv26NQ2Nso",
+    "title": "Senior QA | Quality Assurance | Automation | Project Management",
+    "location": "Indore"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/mostafa-al-shakr",
+    "name": "Mostafa Alshakr",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEWt4JA-3aWBA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1611709269352?e=1747872000&v=beta&t=fXnYiOSmVd0B3xXiPTmDaZXJliC4iLlCjPIKdlD-eII",
+    "title": "Product Specialist at Genetec",
+    "location": "Ottawa, ON"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/daniel-meland-214546144",
+    "name": "Daniel Meland",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEIdoiJB3Yw_A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1561485093465?e=1747872000&v=beta&t=IWZ6zNuzD7rBWsRpCndLXujKkxau-cOwACxldbLA0Vs",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/curtis-henker-89768028",
+    "name": "Curtis Henker",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFpWfDhW16tcw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517505254066?e=1747872000&v=beta&t=xVRmVboNcpeDOI-3tnbAEdizjYEOVvV1SMcWPnVNKDA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/andrealariviere",
+    "name": "Andréa Larivière",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEcKp6synB_3w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1570810388853?e=1747872000&v=beta&t=EInv-TDYzmyNfBbyaJZsk3rDdNOK7v2N5Cp0RiYZLQI",
+    "title": "Lead Technical Recruiter at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/tanya-di-cesare-csm-180bb227",
+    "name": "Tanya Di Cesare, CSM",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQHM4EIVu14q8g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517479819317?e=1747872000&v=beta&t=GoRxSci4Y1GvwI7BGjgdNtmMFuoMRJIOOgkbXn5RNzw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/antoine-lennartz-090b8786",
+    "name": "Antoine Lennartz",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGzGW1INJ38dg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517018903563?e=1747872000&v=beta&t=I28kUFVEzDNQdCJh_66LrU_oi2HxxLjh60uDFWvbzJI",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/irela-gutierrez-banos-893a49122",
+    "name": "Irela Gutierrez Banos",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQG4BzCR3u2Y5w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1712012316112?e=1747872000&v=beta&t=f5Cm0LkDZmX70_s-IMz7fcJzlUDbzgTOmDsLuHN6Z9s",
+    "title": "Team Lead Fulfillment Management at Genetec",
+    "location": "Brossard, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/karenbleakley",
+    "name": "Karen Bleakley",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEbnOC1FchXCQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1534007932986?e=1747872000&v=beta&t=iVgzWhjPnKf3-xHq7NmQ9HctnMKbfcM3NVKNnLsNpBA",
+    "title": "Professional Librarian, Content Manager, Proposal Manager, Taxonomist, depending on the day!",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/erika-della-cioppa-4276b6210",
+    "name": "Erika Della Cioppa",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQG6dWbBCszXRQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1629128008628?e=1747872000&v=beta&t=l0S8guPAcKHAR5kg1jTV8R3blAtTIxwTFM626LypqM4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/pierre-r-2153061",
+    "name": "Pierre R.",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ccadieux",
+    "name": "Chantale Cadieux",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQG2I9eIOVQipw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1518822558560?e=1747872000&v=beta&t=NKM-LXB9i7RPTgw94929nbZIbKBnU10Vsq2B1gBs7gI",
+    "title": "Sales Administration | Customer Service Excellence | CRM | Trilingual",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alla-levenberg-1983a41a",
+    "name": "Alla Levenberg",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQHZAEyT2Jku_Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516843189452?e=1747872000&v=beta&t=ujP5F0TUM8JSPLipFOoPZD0_QsoRIkyer4fDhYpHc2Q",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/melanie-b-7543a730",
+    "name": "Melanie B.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGDa2yW7hxt3A/profile-displayphoto-shrink_100_100/B4EZUafXijHcAU-/0/1739906186041?e=1747872000&v=beta&t=J_h9cWyjkM2djbwCngb37DTz4rOJVDbelPKvqZhhIc8",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jimmypalatsoukas",
+    "name": "Jimmy Palatsoukas, MEng.",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFz0CML6xa9fA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516237435182?e=1747872000&v=beta&t=SAqTu3NsdxkPFpr63TAPly78igC_7TWZ4l22Ny5LyN4",
+    "title": "Director of Digital Marketing",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/abdelmoula-mouhsin-b4437b79",
+    "name": "Abdelmoula Mouhsin",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/farid-yared-9bba7219",
+    "name": "Farid Yared",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQH_6nBnufnUXw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516823077180?e=1747872000&v=beta&t=w99pz-VUbSApBrdiHEqlMbPbbXliYwPzkr5htxKxQhQ",
+    "title": "Software Developer at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/lior-kidouchim",
+    "name": "Lior Kidouchim",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQFFWLkwhtp7fA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1636844181644?e=1747872000&v=beta&t=PlZomUX4qNb1x-nGjJr9W8TzZuR7RqaCjYv73gIdrfE",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/tiberiu-popa-8b157a108",
+    "name": "Tiberiu Popa",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/harvito",
+    "name": "Michael S. Harvey",
+    "picture": "https://media.licdn.com/dms/image/v2/C5103AQHaAP1xTBaJrw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517368744001?e=1747872000&v=beta&t=xbl3jgshfok34SmXJn-XlKYdNz4vOS5O-7eqZcRnfNw",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/toffany-acosta-60a7a1b6",
+    "name": "Toffany Acosta",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQEBnvBzCWEXgg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1672522421368?e=1747872000&v=beta&t=Takzsrvg691Vs66BL51DPPTp5pGIN4X2jbAPwC5eeSo",
+    "title": "Digital Events Specialist | Creating Engaging Experiences",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/michael-totarella",
+    "name": "Michael Totarella",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGWwe3QVMVIHA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1627144995072?e=1747872000&v=beta&t=N5oXH-GuzaGkt019r2ExEtVswD5EAuU4YjX5tGp3oME",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/arcurid",
+    "name": "Derek A.",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQGWjwuXoJGRDA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1705435384376?e=1747872000&v=beta&t=I3b0uq-pzoZcCCbM81EuR60wHkVCKWPHUHbNS6YXvdI",
+    "title": "Strategy & Transformation",
+    "location": "Toronto, ON"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/marktartamella",
+    "name": "Mark Tartamella, CRM",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGLZl36OIUYeA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1685726110920?e=1747872000&v=beta&t=F3LZU76MnEd4zaGi49XgUkGQJ7U-nfT7Xaan14mQjrs",
+    "title": "Sales Operations | Risk Professional | Owner & Founder, All Shall Pass Group",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/justinmizzi",
+    "name": "Justin Mizzi",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGSt6In9eJiLA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517089331747?e=1747872000&v=beta&t=LDkFihTh0HXkD5my311iobm431RVKJ9dXpGCx7ZxwDg",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/aglayalugo",
+    "name": "Aglaya Lugo",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHYqy9VNIs8Ug/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1641911219278?e=1747872000&v=beta&t=sEAkd_Vq6hgVtcrJuLRnCoIBUPzrLZES9udnSiAEyRc",
+    "title": ".",
+    "location": "Canada"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alxbl",
+    "name": "Alexandre Beaulieu",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQFj2sp7WejPEw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1594854784177?e=1747872000&v=beta&t=bJmItxIvLqcJW8eu9mRsnwF3QtzIj7e-kAJAWVNtFyA",
+    "title": "Staff Developer / Hacker / Solver",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/zach-argiriou-241388241",
+    "name": "Zach Argiriou",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHlgxM7BCCzGA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1690836111424?e=1747872000&v=beta&t=ctNhm-DVHovGJObXaohHBV5nmiJx4Dkw0o5XQLIkHCQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/monique-melo-643559187",
+    "name": "Monique Melo",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/aamrani",
+    "name": "Abdel El Amrani",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFZwdOHnvdorA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1705299647865?e=1747872000&v=beta&t=oiggAmF_2gxHDgOxEisVhFnrHCQBobu58t1O_yrTdn8",
+    "title": "Product Line Manager, Genetec Cloud and Hybrid-Cloud portfolio (Security Center SaaS)",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/laura-lymburner-77015411",
+    "name": "Laura Lymburner",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEfQ1AcDh_BlA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1638317687911?e=1747872000&v=beta&t=T8FLrmxGeiQ-xgV1CSKsmVtU81p4AtECHbpdraj5fXc",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/philippedubois2",
+    "name": "Philippe Dubois",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGPQNgvpxqtwA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516852705561?e=1747872000&v=beta&t=BxdXvKfi4hiBSsuD7wcjLqaeynTjirk1THnPFKmVTX4",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/bradburyjason",
+    "name": "Jason B.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHTIF2R31FTRQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1679688221908?e=1747872000&v=beta&t=kvjsTXK3iunXqjsWTBOPK7D2hxxEQ7EV-7hLIzwD5EM",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/edwin-loaiza-mba-173497132",
+    "name": "Edwin Loaiza, MBA",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFCsqb_11BlZw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516832614850?e=1747872000&v=beta&t=sq_OmFgcsUZRO8_-rMP2STk7AYl7r4YCUqMr8sg00UE",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/david-culver-grey",
+    "name": "David Culver Grey",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGhEIvQUzUf1g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1581647823656?e=1747872000&v=beta&t=IglfXtYMYdibzN6l16Y2GOwgfb1KNQwLXqpkXQoP_J8",
+    "title": "Director of Strategic Alliances at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/adam-robert-baxter-8b0a54b7",
+    "name": "Adam Robert Baxter",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQEs0-K7qJZPbQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1685108647923?e=1747872000&v=beta&t=m5jsdM3rmeCHDBbL8hlZ-wA39U6x5kG9BhPD6y-7_jU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/karolyne-faria-pmp-bb539048",
+    "name": "Karolyne Faria, PMP",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEBPEsovaD67Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517482076945?e=1747872000&v=beta&t=uhFOzVgzFCMoKO7hN8IK5mQ7u_pLebbhvhS_2eIO054",
+    "title": "Senior Project Manager at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ben-abecassis-0579786",
+    "name": "Ben Abecassis",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEl670C7YddCg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1580919062229?e=1747872000&v=beta&t=aD127Rtr-2-QDuyFO2bUBlo-Zj0EGi_532bV-Ht08xs",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/katelyn-friesen-24539877",
+    "name": "Katelyn Friesen",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQHIIJuomiLEPQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1627939093894?e=1747872000&v=beta&t=-x9_V34hBZPH15DeVxTHlIRjEF6sgs3YGd_qI2bVv_c",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/sarmin-i-15b22b177",
+    "name": "Sarmin I.",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGC0SCgNmSOFA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1545377799708?e=1747872000&v=beta&t=npz3SbbW8kf2DW4IVX5VtrYdibbgRFpicCtKkwHGkOo",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/search/results/people/headless",
+    "name": "",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQGy9rKPA05bBg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1706145250624?e=1747872000&v=beta&t=3u4tRKYW8gpbukZZXgyAHGGDvD_PG_qUYXCERuDhP4c",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/robertstgermain",
+    "name": "Rob St-Germain",
+    "picture": "",
+    "title": "Vertical Offerings Manager - Public Safety @ Genetec. #ProtectTheEveryday for your community ...",
+    "location": "Greater Montreal Metropolitan Area"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ushaan-r",
+    "name": "Ushaan R.",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQFTkyZhTkfz_Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1532274201170?e=1747872000&v=beta&t=sdqZWm8ldyd2gBuIW2VOMrXZ22RhadlPh9qEnTThx8U",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/laura-muzzo",
+    "name": "Laura Muzzo",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQEUx-9IQ8hrmQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516609551859?e=1747872000&v=beta&t=nC2R5GhU6oKmLw1tYB7jYUu3UmLVOwEJ9lXRzS0WuVU",
+    "title": "Experienced Leader | Project Management | Customer Service",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/mounia-nordine-999595167",
+    "name": "Mounia Nordine",
+    "picture": "",
+    "title": "Software developer",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/karenzhangmontreal",
+    "name": "Karen Zhang",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEPqxz7fPhSEg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516321389854?e=1747872000&v=beta&t=Z4zB--cHi0eKBOCDBIrzcyaaobk41nruztd21L2MIRQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/gary-da-silva-33894146",
+    "name": "Gary Da Silva",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQH3v_SjX7Jv1g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1626873298559?e=1747872000&v=beta&t=_aXe5JsGhP1AKjUoZTDJaJImhnzY8um7n1Uv1OKOgQU",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/daviddeabreu",
+    "name": "David De Abreu",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQHH_JGDFabvqw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1607379937108?e=1747872000&v=beta&t=O1pKfxk_xjPdVSvPQCbNMAUMnHEBfx3ZTJoFbgrDIiQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/lmcote",
+    "name": "Louis-Martin Côté",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQF5Io_buF4qYQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1649083141959?e=1747872000&v=beta&t=sDJ_pO-et9kgF4XWxuy1x99AILRjyOklp4NI45zGueM",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/hyunlee2006",
+    "name": "Hyunmin L.",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/rayan-khan-541a1416",
+    "name": "Rayan Khan",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQHAqYZ8oKzVCA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516613136794?e=1747872000&v=beta&t=PKJvmkzHRB6YLbGbqDl8AoixKgTQPCASfqjiy_Pqrno",
+    "title": "Communications Expert & Creative Director | Writer & Storyteller |",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/carol-yang01",
+    "name": "Carol Yang",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFbpF7T0_4zSg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1715907036395?e=1747872000&v=beta&t=a1ipecALVD19SFqGYtmRGvZoI3Svh_rQaeMYB1vHOEU",
+    "title": "Supply Chain Specialist at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/cwpitman",
+    "name": "Charles Pitman",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQHygL81ojch8Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1553885464486?e=1747872000&v=beta&t=LartQ_5Zonx9jcgp5LqJKdCf3wjEccpAvU8HbI7Ri68",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nada-ebeid-7435b92",
+    "name": "Nada Ebeid",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQGHL_-llVeM9w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516274425346?e=1747872000&v=beta&t=wmawhsppvd3iNTkcWOHku4oythBFcprmDUDhZvG1jos",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jeanyvespikulik",
+    "name": "Jean-Yves Pikulik",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQEvaoD8RfMPjw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1693535102812?e=1747872000&v=beta&t=FEhQbGwRbo-TWaZmBXwFWo_OaUkzTafO_9FT1HheThc",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/julie-benard-053324b",
+    "name": "Julie Benard",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQFdL3Rf0aCl7A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1560889228196?e=1747872000&v=beta&t=xSiFSDhPC7jYndoWXMl6cEm8x8altjs_prp9_OJETrA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/nadia-boujenoui-6594b6126",
+    "name": "Nadia Boujenoui",
+    "picture": "https://media.licdn.com/dms/image/v2/C5103AQH0AJGlcJL1aA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517504907549?e=1747872000&v=beta&t=we39-7y_z5TCkE-B24hvFNaegdJE7Klb8Q0xv2chBPc",
+    "title": "Vice President, Customer Experience at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/aamir-ali-mausam-khan",
+    "name": "Aamir Ali Khan",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGLiD45BEjIcA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516822435930?e=1747872000&v=beta&t=7IHDb2vs-ia6jDiWbbUhiy6X5Ydf4sSmbfYubv9ssdA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/abigail-humphrey-2b190822b",
+    "name": "Abigail Humphrey",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQHNmBGzPuzI9Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1643223598278?e=1747872000&v=beta&t=rTIa41fCcMEpazNajuqa10rIaYya7PNg1GpT0VEHx70",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/alain-cote-b673141",
+    "name": "Alain Cote",
+    "picture": "https://media.licdn.com/dms/image/v2/C5103AQEZ6LgcItZ65g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516251192132?e=1747872000&v=beta&t=uSwS1h5AsL8NprJa1peN3SAfk53q0jjwdZDxNtlW4-I",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/kirsty-whitefield-7706209",
+    "name": "Kirsty Whitefield",
+    "picture": "",
+    "title": "Senior Manager, Strategic Alliances Marketing at Genetec",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/vanessa-nardolillo-cpa-llm-b8102b55",
+    "name": "Vanessa Nardolillo, CPA, LLM",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQHYS0KVLbNhAg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1554399378043?e=1747872000&v=beta&t=us5nFTspKPElZuIWCh2t8Uqtxp-lns6Pgx8V-2-PvmA",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/rajiv-dheer-a1707317",
+    "name": "Rajiv Dheer",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHvetUed2oS5A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1718259344955?e=1747872000&v=beta&t=4PjH1D0mDT7nfQS1GF6MttL3RATcyBPeWQDD5rIRPHk",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/marniwilliams3",
+    "name": "Marni Williams",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHPaAh65o_ibQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1708952893216?e=1747872000&v=beta&t=AiR1_Wk0ceZDmxVc2uBUJfiz8h8Jeyxm7qsA2cmak2c",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/iris-beavis-hardy",
+    "name": "Iris Beavis Hardy",
+    "picture": "https://media.licdn.com/dms/image/v2/C5603AQEQOhcny2-vwg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1548803284471?e=1747872000&v=beta&t=CYGNyak-L5o3xLtlC11q1kCKndObVcSoQtLeOpjw1pk",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/jhgelliott",
+    "name": "Jennifer Elliott",
+    "picture": "",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/pervezsiddiqui",
+    "name": "Pervez Siddiqui",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQEtQDfe1glu3Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516192311098?e=1747872000&v=beta&t=r8uaYH9b_f3VNGouo-1hgJxl5ZdpylDgBH__bbFLzjM",
+    "title": "Vice President, Planning, Offerings & Transformation at Genetec",
+    "location": "Chandler, AZ"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/erica-deri-0449542",
+    "name": "Erica Deri",
+    "picture": "https://media.licdn.com/dms/image/v2/C4E03AQGgQX8SYiHzFw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1516269530175?e=1747872000&v=beta&t=MQW6LIU3SGr-y3_GHgVrVGPt0MHwRfck4EKITfBrWC0",
+    "title": "Senior Manager of Marketing & Communications - EMEA at Genetec",
+    "location": "Paris"
+  }
+]

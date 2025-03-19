@@ -1,0 +1,51 @@
+[
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ydobberstein",
+    "name": "Yanees Dobberstein",
+    "picture": "",
+    "title": "MS Stats @ McGill | Data Science & AI",
+    "location": "Montreal, QC"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/oat-wongsajjathiti",
+    "name": "Oat Wongsajjathiti",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQEXN-8N-NCpkw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1695508112543?e=1747872000&v=beta&t=dNBw_o02586cKz1ls5yXs4Oj3d4NxZwIdSTOuHo_s_Q",
+    "title": "Hiring teams hire at scale within the heavy industries",
+    "location": "Toronto, ON"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/carlos-r-76bb4a143",
+    "name": "Carlos R.",
+    "picture": "https://media.licdn.com/dms/image/v2/D4E03AQErQP9yVZ9Uyw/profile-displayphoto-shrink_100_100/B4EZRm.ccvHgAU-/0/1736894433498?e=1747872000&v=beta&t=BszJ-gGk5vd0ug1pHgg2W-bjV-a0sJIuLp-DDMPh238",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/dvainrub",
+    "name": "Doron Vainrub",
+    "picture": "https://media.licdn.com/dms/image/v2/D4D03AQF2PCMp0xM6Qg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1716231174481?e=1747872000&v=beta&t=HPDi3HKGntak4VXFuNBLshByYlKTbeK3AdXp2L_Q1Qs",
+    "title": "Senior Data Engineer at Meta | Educator and Technologist | Web Dev",
+    "location": "Madrid"
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/bruce-leung-b1189ba0",
+    "name": "Bruce Leung",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQHsNU-7iN-Y-g/profile-displayphoto-shrink_100_100/B56ZTEvy6sGoAU-/0/1738467652507?e=1747872000&v=beta&t=qH63h1zs6YrEVk_lWzD4CB89IhpEIwYTtg4hWK54GHQ",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/ahmadkanaan",
+    "name": "Ahmad Seif Kanaan",
+    "picture": "https://media.licdn.com/dms/image/v2/C4D03AQGeDCwHj3WO7A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1658176151679?e=1747872000&v=beta&t=KByUEvBGYgL-ae99TGBHXvjFaT_xAoLihqeKptao-i0",
+    "title": "",
+    "location": ""
+  },
+  {
+    "linkedinUrl": "https://www.linkedin.com/in/karlarbarradas",
+    "name": "Karla R.",
+    "picture": "https://media.licdn.com/dms/image/v2/D5603AQGPrecXFmVJxg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1729693209448?e=1747872000&v=beta&t=UySar8o7ftYKnrmNbWYvRNStYfdTnKZdK5V78A5R99A",
+    "title": "",
+    "location": ""
+  }
+]
