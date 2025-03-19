@@ -131,7 +131,33 @@ const companies = [
                 fs.mkdirSync(outputDir);
             }
 
-            const filePath = `${outputDir}/peopleSearch_${school.name}_${company.name}.json`;
+            const filePath = `${outputDir}/peopleSearch_${school.name}_${company.name}_prev.json`;
+            fs.writeFileSync(filePath, JSON.stringify(peopleSearch, null, 2));
+        }
+    }
+
+    for (const school of schools) {
+        for (const company of companies) {
+            const config: PeopleSearchConfig = {
+                filters: {
+                    keywords: "",
+                    currentCompany: company.id,
+                    schoolFilter: school.id,
+                    origin: 'GLOBAL_SEARCH_HEADER',
+                },
+                pagesToScrape: 100,
+                waitForTimeout: 1500,
+            };
+
+            console.log(`Searching for people from ${school.name} who currently works at ${company.name}...`);
+            const peopleSearch = await scraper.searchPeople(config);
+            console.log(peopleSearch);
+
+            if (!fs.existsSync(outputDir)) {
+                fs.mkdirSync(outputDir);
+            }
+
+            const filePath = `${outputDir}/peopleSearch_${school.name}_${company.name}_curr.json`;
             fs.writeFileSync(filePath, JSON.stringify(peopleSearch, null, 2));
         }
     }
