@@ -1,3 +1,5 @@
+import {endpoints} from "@/lib/axios";
+
 export const SAMPLE_PROFILES = [
   {
     name: "Nikita Kozak",
@@ -684,4 +686,46 @@ export async function searchProfiles(
       profile.name.toLowerCase().includes(query.toLowerCase()) ||
       profile.title.toLowerCase().includes(query.toLowerCase()),
   ).slice((page - 1) * limit, page * limit);
+}
+
+export async function getProfile(
+  url: string,
+  acceptedSchools?: string[],
+  onMessage?: (msg: string) => void,
+): Promise<any> {
+  const response = await fetch(endpoints.get_profile, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ linkedinUrl: url, acceptedSchools }),
+  });
+
+  if (!response.body) {
+    throw new Error("ReadableStream not supported in this browser.");
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let profileData: any = null;
+  let done = false;
+
+  while (!done) {
+    const { value, done: doneReading } = await reader.read();
+    done = doneReading;
+    const chunk = decoder.decode(value, { stream: !done });
+
+    // Try to parse final JSON data (if present)
+    try {
+      const parsed = JSON.parse(chunk);
+      if (parsed.success && parsed.profile) {
+        profileData = parsed.profile;
+        break;
+      }
+    } catch (e) {
+      // If parsing fails, treat the chunk as a status message.
+      if (onMessage && chunk.trim().length > 0) {
+        onMessage(chunk.trim());
+      }
+    }
+  }
+  return profileData;
 }

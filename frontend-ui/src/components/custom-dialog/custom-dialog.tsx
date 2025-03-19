@@ -21,7 +21,7 @@ import {
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface CustomDialogProps {
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
   title: string | React.ReactNode;
   description: string | React.ReactNode;
   children: React.ReactNode;

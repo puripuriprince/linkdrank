@@ -17,8 +17,8 @@ export const navData: NavMainProps["data"] = [
     icon: "mdi:magnify",
   },
   {
-    title: "Vote",
-    icon: "pepicons-pop:down-up",
-    href: paths.vote,
+    title: "Profile",
+    icon: "material-symbols:account-circle",
+    href: paths.profile,
   },
 ];

@@ -28,7 +28,7 @@ export const AISearchForm: React.FC = () => {
       <Button
         type="submit"
         disabled={loading}
-        className="relative bg-yellow-400 hover:bg-yellow-500 transition-colors duration-200"
+        className="relative bg-yellow-500 hover:bg-yellow-600 transition-colors duration-200"
       >
         {loading ? (
           <Icon

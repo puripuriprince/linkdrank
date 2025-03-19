@@ -5,14 +5,12 @@ import { LinkedInScraper } from "./LinkedInScraper";
 import { ProfileConfig } from "./Models";
 
 const app = express();
-const PORT = 3050;
+const PORT = 3060;
 
-// Middleware configuration
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Initialize the LinkedIn scraper on server startup
 let scraper: LinkedInScraper;
 
 (async () => {
@@ -34,7 +32,6 @@ app.post("/get-profile", async (req: Request, res: Response): Promise<void> => {
         return;
     }
 
-    // Set response headers for streaming
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
@@ -43,14 +40,11 @@ app.post("/get-profile", async (req: Request, res: Response): Promise<void> => {
     stream.pipe(res);
 
     try {
-        stream.write(`Getting the profile \n`);
-
         const config = new ProfileConfig();
         config.scrapeExperience = false;
         config.scrapeProjects = false;
         config.scrapeHonors = false;
-        stream.write(`Admiring your profile \n`);
-        stream.write(`Checking if you can add your profile.\n`);
+        stream.write(`We checking if you can add your profile.\n`);
         const profileData = await scraper.getProfile(linkedinUrl, config);
 
         // Validate the user's educational background if an accepted school list is provided
@@ -59,14 +53,14 @@ app.post("/get-profile", async (req: Request, res: Response): Promise<void> => {
             const isAccepted = userSchools.some((school) => acceptedSchools.includes(school));
 
             if (!isAccepted) {
-                stream.write(`Sorry but you need to have studied in ${acceptedSchools.join(", ")} to add your profile.\n`);
+                stream.write(`Sorry but you need to have studied in ${acceptedSchools.join(" or ")} to add your profile.\n`);
                 stream.end();
                 return;
             }
 
-            stream.write(`Looks good. Proceeding with further data extraction.\n`);
+            stream.write(`Looks good; Proceeding with further data extraction.\n`);
         } else {
-            stream.write(`No school restrictions provided. Proceeding with the profile scraping process.\n`);
+            stream.write(`Proceeding with the profile scraping process.\n`);
         }
 
         // Extracting work experience
@@ -111,7 +105,7 @@ app.post("/get-profile", async (req: Request, res: Response): Promise<void> => {
         res.end(JSON.stringify({ success: true, profile: profileData }));
     } catch (error: any) {
         console.error(`Error encountered while processing profile ${linkedinUrl}:`, error);
-        stream.write(`An error occurred during profile scraping: ${error.message}\n`);
+        stream.write(`An error occurred \n`);
         stream.end();
     }
 });

@@ -6,3 +6,10 @@ import { twMerge } from "tw-merge";
 export function cn(...classes: ClassValue[]) {
   return twMerge(clsx(...classes));
 }
+
+//example: https://www.linkedin.com/in/amine-arrachid-3468922aa/
+export function getHandeFromLinkedInURL(url: string) {
+  if (!url) return "";
+  const normalizedUrl = url.replace(/\/$/, "");
+  return normalizedUrl.split("/").pop();
+}

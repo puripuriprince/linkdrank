@@ -23,6 +23,10 @@ import { paths } from "@/routes/paths";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { AddProfileDialogOpener } from "@/sections/profile/components/add-profile-opener";
+import { cn } from "@/lib/utils";
+import { AddProfileForm } from "@/sections/profile/components/add-profile-form";
+import { CustomDialog } from "@/components/custom-dialog";
 
 const UserMenuTrigger = React.forwardRef<HTMLButtonElement>((props, ref) => {
   const { authenticated, user } = useAuthContext();
@@ -74,7 +78,7 @@ export function UserMenu() {
         align={isMobile ? "start" : "end"}
       >
         <DropdownMenuItem asChild>
-          <Link href={paths.profile.root}>
+          <Link href={paths.profile}>
             <div className="flex items-center">
               <Icon
                 icon="material-symbols:account-circle"

@@ -1,5 +1,7 @@
 // ----------------------------------------------------------------------
 
+import { getHandeFromLinkedInURL } from "@/lib/utils";
+
 const ROOTS = {
   AUTH: "/auth",
   PROFILE: "/profile",
@@ -12,12 +14,14 @@ export const paths = {
   leaderboard: "/leaderboard",
   feedback: "/",
   browse: "/browse",
-  privacy: "/privacy",
-  terms: "/terms",
+  privacy: "/",
+  terms: "/",
   people: {
     root: "/p",
-    details: (handle: string | undefined) => `/p/:handle:${handle ?? ""}`,
-    AISearch: (query: string | undefined) => `/p/:ai-search:${query ?? ""}`,
+    details: (handle: string | undefined) =>
+      `/p/:handle:${getHandeFromLinkedInURL(handle ?? "")}`,
+    AISearch: (query: string | undefined) =>
+      `/p/:ai-search:${encodeURIComponent(query ?? "")}`,
   },
   // AUTH
   auth: {
@@ -48,7 +52,5 @@ export const paths = {
     },
   },
   // DASHBOARD
-  profile: {
-    root: ROOTS.PROFILE,
-  },
+  profile: ROOTS.PROFILE,
 };

@@ -76,7 +76,7 @@ const DesktopProfileDisplay: React.FC<DesktopProfileDisplayProps> = ({
             <div className="flex flex-col items-center space-y-4">
               <div className="relative h-24 w-24">
                 <Image
-                  src={profile.picture}
+                  src={profile.picture || `${CONFIG.assetsDir}/logo/logo.svg`}
                   alt={profile.name}
                   fill
                   className="rounded-full object-cover"
@@ -176,7 +176,7 @@ const MobileProfileDisplay: React.FC<MobileProfileDisplayProps> = ({
     <div className="flex flex-col items-center space-y-4">
       <div className="relative h-40 w-40">
         <Image
-          src={profile.picture}
+          src={profile.picture || `${CONFIG.assetsDir}/logo/logo.svg`}
           alt={profile.title}
           fill
           className="rounded-full object-cover"
@@ -259,7 +259,9 @@ const MobileView: React.FC<MobileViewProps> = ({
                   >
                     <div className="relative h-24 w-24">
                       <Image
-                        src={profile.picture}
+                        src={
+                          profile.picture || `${CONFIG.assetsDir}/logo/logo.svg`
+                        }
                         alt={profile.name}
                         fill
                         className="object-cover rounded-full"

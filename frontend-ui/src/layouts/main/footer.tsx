@@ -25,20 +25,14 @@ interface LinksStructure {
 const LINKS: LinksStructure = {
   features: [
     { label: "Search", href: paths.browse },
-    { label: "Vote", href: paths.vote },
-    { label: "Leaderboard", href: paths.leaderboard },
+    { label: "Add Profile", href: paths.profile },
   ],
   company: [
     { label: "Contact", href: paths.feedback },
     { label: "Privacy Policy", href: paths.privacy },
     { label: "Terms of Service", href: paths.terms },
   ],
-  social: [
-    { icon: "mdi:tiktok", href: "https://www.tiktok.com/@emojis.sh" },
-    { icon: "mdi:instagram", href: "https://www.instagram.com/emojis.sh" },
-    { icon: "mdi:twitter", href: "https://x.com/emojis_sh" },
-    { icon: "mdi:github", href: "https://github.com/851-labs" },
-  ],
+  social: [],
 };
 
 interface FooterProps {

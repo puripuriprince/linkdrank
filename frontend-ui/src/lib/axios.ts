@@ -36,20 +36,5 @@ export const fetcher = async (args: string | [string, AxiosRequestConfig]) => {
 // ----------------------------------------------------------------------
 
 export const endpoints = {
-  offers: "https://api.flyfast.io/offers",
-  link: "https://api.flyfast.io/urls",
-  deeplinks: "https://api.flyfast.io/links",
-  flights: "https://api.flyfast.io/flights",
-  aircraft: "https://api.flymile.pro/findAircraft",
-  auth: {
-    me: "/api/auth/me",
-    signIn: "/api/auth/sign-in",
-    signUp: "/api/auth/sign-up",
-  },
-  post: {
-    list: "/api/post/list",
-    details: "/api/post/details",
-    latest: "/api/post/latest",
-    search: "/api/post/search",
-  },
+  get_profile: "http://localhost:3060/get-profile",
 };

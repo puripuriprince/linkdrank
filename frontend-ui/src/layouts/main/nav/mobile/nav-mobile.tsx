@@ -16,6 +16,7 @@ import type { DesktopHeaderProps } from "../desktop";
 import { UserMenu } from "@/layouts/components";
 import Link from "next/link";
 import { AIDialogOpener } from "@/sections/profile/components";
+import { AddProfileDialogOpener } from "@/sections/profile/components/add-profile-opener";
 
 export type MobileNavProps = {
   data: { title: string; href: string; icon?: string }[];
@@ -87,6 +88,8 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
       {data.map(({ title, href, icon }) =>
         href === paths.people.root ? (
           <AIDialogOpener key={title} />
+        ) : href === paths.profile ? (
+          <AddProfileDialogOpener key={title} />
         ) : (
           <Link
             key={title}

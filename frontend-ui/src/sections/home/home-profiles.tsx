@@ -76,14 +76,7 @@ export function HomeProfiles() {
                 className="flex justify-center hover:cursor-pointer rounded-xl"
               >
                 <ProfilePreview
-                  id={i}
-                  name={profile.name}
-                  title={profile.title}
-                  picture={profile.picture}
-                  currentCompany={{
-                    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQHiNSL4Or29cg/company-logo_100_100/company-logo_100_100/0/1631311446380?e=1749686400&v=beta&t=Gwp7TJ03ucl_lSWXsdG8lCgHnVoQKbH4_zMgayw38XQ",
-                    name: "Google",
-                  }}
+                  profile={profile}
                   onClick={() =>
                     router.push(paths.people.details(profile.linkedinUrl))
                   }

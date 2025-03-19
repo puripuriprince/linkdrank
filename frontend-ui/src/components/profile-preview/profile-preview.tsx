@@ -10,20 +10,18 @@ import { Profile } from "@/types/profile";
 // ----------------------------------------------------------------------
 
 export interface ProfilePreviewProps {
-  currentCompany?: {
-    name: string;
-    logo: string;
-  };
+  profile: Profile;
   onClick: () => void;
 }
 
-export const ProfilePreview: React.FC<ProfilePreviewProps & Profile> = ({
-  name,
-  title,
-  picture,
-  currentCompany,
+export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
+  profile,
   onClick,
 }) => {
+  const currentCompany = profile.experiences?.length && profile.experiences[0]?.logo ? {
+    name: profile.experiences[0].companyName,
+    logo: profile.experiences[0].logo
+  } : null;
   return (
     <Card
       onClick={onClick}
@@ -48,17 +46,17 @@ export const ProfilePreview: React.FC<ProfilePreviewProps & Profile> = ({
       <div className="flex justify-center mb-2">
         <Avatar className="h-16 w-16">
           <AvatarImage
-            src={picture ?? `${CONFIG.assetsDir}/logo/logo.svg`}
-            alt={`${name}'s profile picture`}
+            src={profile.picture ?? `${CONFIG.assetsDir}/logo/logo.svg`}
+            alt={`${profile.name}'s profile picture`}
           />
-          <AvatarFallback>{name ? name[0].toUpperCase() : "U"}</AvatarFallback>
+          <AvatarFallback>{profile.name ? profile.name[0].toUpperCase() : "U"}</AvatarFallback>
         </Avatar>
       </div>
 
       {/* Profile Information */}
       <CardContent className="p-0 flex flex-col items-center text-center">
-        <h3 className="font-bold text-lg text-black dark:text-white">{name}</h3>
-        <p className="text-sm text-gray-500 dark:text-gray-300">{title}</p>
+        <h3 className="font-bold text-lg text-black dark:text-white">{profile.name}</h3>
+        <p className="text-sm text-gray-500 dark:text-gray-300">{profile.title}</p>
       </CardContent>
     </Card>
   );

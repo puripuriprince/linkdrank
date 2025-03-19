@@ -33,13 +33,10 @@ export class PersonProfile {
             title: this.title,
             location: this.location,
             picture: this.picture,
-            about: this.about,
             linkedinUrl: this.linkedinUrl,
             experiences: this.experiences.map(exp => ({ ...exp })),
             educations: this.educations.map(edu => ({ ...edu })),
             projects: this.projects.map(proj => ({ ...proj })),
-            RecReceived: this.recommendations.received.map(rec => ({ ...rec })),
-            RecGiven: this.recommendations.given.map(rec => ({ ...rec })),
             honors: this.honors.map(hon => ({ ...hon }))
         };
     }
