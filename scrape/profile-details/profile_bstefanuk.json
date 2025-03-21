@@ -1,0 +1,111 @@
+{
+  "name": "Braden Stefanuk",
+  "title": "🏗 Building things of various sorts...",
+  "location": "Calgary, Alberta, Canada",
+  "picture": "https://media.licdn.com/dms/image/v2/D5603AQHJ8JvTWcgPuw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1680985280060?e=1747872000&v=beta&t=zm9QB42zO9Io7Ps0E0NnRHSuZOii34dOt6tnFIDbkUE",
+  "linkedinUrl": "https://www.linkedin.com/in/bstefanuk",
+  "experiences": [
+    {
+      "title": "Senior Software Development Engineer",
+      "companyName": "AMD",
+      "employmentType": "Permanent Full-time",
+      "location": "Calgary, Alberta, Canada",
+      "workMode": "",
+      "startDate": "Apr 2024",
+      "endDate": "Present",
+      "duration": "1 yr",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "Software Engineer",
+      "companyName": "Open Ocean Robotics",
+      "employmentType": "Permanent Full-time",
+      "location": "Victoria, British Columbia, Canada",
+      "workMode": "",
+      "startDate": "Sep 2021",
+      "endDate": "Jan 2024",
+      "duration": "2 yrs 5 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQF5RLb9BnssuQ/company-logo_100_100/company-logo_100_100/0/1656944085393/open_ocean_robotics_logo?e=1747872000&v=beta&t=TA-lydeV7QhI3RklFaXoHXwtC0B7kdKmliT7Jie-Ko0"
+    },
+    {
+      "title": "Machine Learning and Robotics Engineer",
+      "companyName": "Mission Control Space Services",
+      "employmentType": "Contract Full-time",
+      "location": "Ottawa, Ontario, Canada",
+      "workMode": "",
+      "startDate": "Aug 2020",
+      "endDate": "Aug 2021",
+      "duration": "1 yr 1 mo",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQGoJ2mVg3Dtmw/company-logo_100_100/company-logo_100_100/0/1639768171166/mission_control_space_services_logo?e=1747872000&v=beta&t=iKCDoSwrShyYzQgflvKCYaCy-kRF5WJ2i42GRf4mIeQ"
+    },
+    {
+      "title": "Researcher",
+      "companyName": "Universidad Nacional Autónoma de México",
+      "employmentType": "Internship",
+      "location": "Mexico City Area, Mexico",
+      "workMode": "",
+      "startDate": "May 2018",
+      "endDate": "Aug 2018",
+      "duration": "4 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQGABD7hwSgTaQ/company-logo_100_100/company-logo_100_100/0/1631320433530?e=1747872000&v=beta&t=e7C9GT4s-Z-S6Vshvv9PuIKb4LVVuiuXxTkVSQ8beow"
+    },
+    {
+      "title": "Data Analyst - Live Cell Imaging Lab",
+      "companyName": "University of Calgary",
+      "employmentType": "Internship",
+      "location": "Calgary, Canada Area",
+      "workMode": "",
+      "startDate": "May 2017",
+      "endDate": "Apr 2018",
+      "duration": "1 yr",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQFd4YEPJpZwKw/company-logo_100_100/company-logo_100_100/0/1727990132837/ucalgary_logo?e=1747872000&v=beta&t=hW1KiZhqabB_3QwPQ98oFODEQoH8zIVXZvJ3w26Bq6s"
+    },
+    {
+      "title": "Piano Instructor",
+      "companyName": "Self-employed",
+      "employmentType": "",
+      "location": "Calgary, Canada Area",
+      "workMode": "",
+      "startDate": "Sep 2012",
+      "endDate": "Jan 2018",
+      "duration": "5 yrs 5 mos",
+      "logo": ""
+    },
+    {
+      "title": "Data Analyst",
+      "companyName": "Echelon Wealth Partners",
+      "employmentType": "Contract Full-time",
+      "location": "Calgary, Canada Area",
+      "workMode": "",
+      "startDate": "May 2016",
+      "endDate": "Sep 2016",
+      "duration": "5 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQFe0gLU4F8QYQ/company-logo_100_100/company-logo_100_100/0/1630652807127/echelonwealth_logo?e=1747872000&v=beta&t=JCE6Lq66tikSBT4eEsagdOKFNupX8eFywclUTKWFHNw"
+    }
+  ],
+  "educations": [
+    {
+      "school": "Concordia University",
+      "degree": "Master's of Applied Science, Electrical and Computer Engineering",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A",
+      "startYear": "2019",
+      "endYear": "2021"
+    },
+    {
+      "school": "University of Calgary",
+      "degree": "Bachelor of Science (Honours), Physics",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQFd4YEPJpZwKw/company-logo_100_100/company-logo_100_100/0/1727990132837/ucalgary_logo?e=1747872000&v=beta&t=hW1KiZhqabB_3QwPQ98oFODEQoH8zIVXZvJ3w26Bq6s",
+      "startYear": "2014",
+      "endYear": "2019"
+    },
+    {
+      "school": "The Royal Conservatory of Music",
+      "degree": "Level 10, Advanced Certificate, Piano",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C4D0BAQHhfan6bv89vQ/company-logo_100_100/company-logo_100_100/0/1631328139378?e=1747872000&v=beta&t=2Ww4d-1RbtszswGAm5rXfK3ROTAapJaaFbqnnVWEJio",
+      "startYear": "2004",
+      "endYear": "2013"
+    }
+  ],
+  "projects": [],
+  "honors": []
+}

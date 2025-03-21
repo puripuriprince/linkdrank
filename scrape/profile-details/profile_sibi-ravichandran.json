@@ -1,0 +1,113 @@
+{
+  "name": "Sibi Ravichandran",
+  "title": "Embedded Software/ Firmware Engineer",
+  "location": "Markham, Ontario, Canada",
+  "picture": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+  "linkedinUrl": "https://www.linkedin.com/in/sibi-ravichandran",
+  "experiences": [
+    {
+      "title": "MTS Silicon Design Engineer",
+      "companyName": "AMD",
+      "employmentType": "Permanent Full-time",
+      "location": "Markham, Ontario, Canada",
+      "workMode": "Hybrid",
+      "startDate": "Jul 2021",
+      "endDate": "Present",
+      "duration": "3 yrs 9 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "Senior Software Engineer - Firmware Development",
+      "companyName": "Intel Corporation",
+      "employmentType": "Contract Full-time",
+      "location": "Vancouver, British Columbia, Canada",
+      "workMode": "Hybrid",
+      "startDate": "Aug 2020",
+      "endDate": "Jul 2021",
+      "duration": "1 yr",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQGpvWtEtj9oTQ/company-logo_100_100/company-logo_100_100/0/1630663244736/intel_corporation_logo?e=1747872000&v=beta&t=W48K5CV5TZbNEEIYLt2L-70RsVR7ky1vPE8-kzgYgbI"
+    },
+    {
+      "title": "Teaching Assistant / Exam Invigilator",
+      "companyName": "Concordia University",
+      "employmentType": "Part-time",
+      "location": "Montreal, Canada Area",
+      "workMode": "",
+      "startDate": "May 2018",
+      "endDate": "Dec 2019",
+      "duration": "1 yr 8 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Embedded Software Engineer",
+      "companyName": "Honeywell Technology Solutions Lab",
+      "employmentType": "Permanent Full-time",
+      "location": "Tamil Nadu, India",
+      "workMode": "On-site",
+      "startDate": "Oct 2015",
+      "endDate": "Mar 2018",
+      "duration": "2 yrs 6 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQFvcIh3UnA5zw/company-logo_100_100/company-logo_100_100/0/1630621634841/honeywell_logo?e=1747872000&v=beta&t=oM9uF2pBUYXp7LkqO8qnF-JFkETUMqdjbfpjk2jO-9M"
+    }
+  ],
+  "educations": [
+    {
+      "school": "Concordia University",
+      "degree": "Master of Engineering, Electrical and Computer Engineering",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A",
+      "startYear": "May 2018",
+      "endYear": "Dec 2019"
+    }
+  ],
+  "projects": [],
+  "honors": [
+    {
+      "title": "AMD Executive Spotlight Award",
+      "issuer": "Issued by AMD",
+      "date": "Mar 2023",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "AMD Spotlight Award",
+      "issuer": "Issued by AMD",
+      "date": "Sep 2022",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "Best Performer Award - Q4 2020",
+      "issuer": "Issued by HCL Axon Technologies",
+      "date": "Dec 2020",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQGpvWtEtj9oTQ/company-logo_100_100/company-logo_100_100/0/1630663244736/intel_corporation_logo?e=1747872000&v=beta&t=W48K5CV5TZbNEEIYLt2L-70RsVR7ky1vPE8-kzgYgbI"
+    },
+    {
+      "title": "Concordia University - Golden Key",
+      "issuer": "Issued by Golden Key International Honor Society",
+      "date": "Nov 2019",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Concordia University - Golden key",
+      "issuer": "Issued by Golden Key International Honor Society",
+      "date": "Jul 2019",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Honeywell STAR Award",
+      "issuer": "Issued by Honeywell Technology Solutions Lab",
+      "date": "Nov 2017",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQFvcIh3UnA5zw/company-logo_100_100/company-logo_100_100/0/1630621634841/honeywell_logo?e=1747872000&v=beta&t=oM9uF2pBUYXp7LkqO8qnF-JFkETUMqdjbfpjk2jO-9M"
+    },
+    {
+      "title": "Honeywell BRONZE Award",
+      "issuer": "Issued by Honeywell Technology Solutions Lab",
+      "date": "Mar 2017",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQFvcIh3UnA5zw/company-logo_100_100/company-logo_100_100/0/1630621634841/honeywell_logo?e=1747872000&v=beta&t=oM9uF2pBUYXp7LkqO8qnF-JFkETUMqdjbfpjk2jO-9M"
+    },
+    {
+      "title": "Honeywell STAR Award",
+      "issuer": "Issued by Honeywell Technology Solutions Lab",
+      "date": "Sep 2016",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQFvcIh3UnA5zw/company-logo_100_100/company-logo_100_100/0/1630621634841/honeywell_logo?e=1747872000&v=beta&t=oM9uF2pBUYXp7LkqO8qnF-JFkETUMqdjbfpjk2jO-9M"
+    }
+  ]
+}

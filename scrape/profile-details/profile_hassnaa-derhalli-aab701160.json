@@ -1,0 +1,71 @@
+{
+  "name": "Hassnaa Derhalli",
+  "title": "Design Verification Engineer - PhD Silicon Photonics Accelerators",
+  "location": "Canada",
+  "picture": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+  "linkedinUrl": "https://www.linkedin.com/in/hassnaa-derhalli-aab701160",
+  "experiences": [
+    {
+      "title": "Silicon Design Engineer",
+      "companyName": "AMD",
+      "employmentType": "Permanent Full-time",
+      "location": "Canada",
+      "workMode": "",
+      "startDate": "Sep 2022",
+      "endDate": "Present",
+      "duration": "2 yrs 7 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "Verification Engineer",
+      "companyName": "MDA",
+      "employmentType": "Permanent Full-time",
+      "location": "Montreal, Quebec, Canada",
+      "workMode": "",
+      "startDate": "Jun 2021",
+      "endDate": "Sep 2022",
+      "duration": "1 yr 4 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQGgcPQ4CzDOmA/company-logo_100_100/company-logo_100_100/0/1719841394256/mdaspace_logo?e=1747872000&v=beta&t=tB_U_8LSOEN55oUKi4tWytUrjZ0EjPRzLuuqNIt8rc4"
+    },
+    {
+      "title": "Graduate Research Assistant at Hardware Verification Group",
+      "companyName": "Concordia University",
+      "employmentType": "",
+      "location": "Quebec, Canada",
+      "workMode": "",
+      "startDate": "Jan 2017",
+      "endDate": "Apr 2021",
+      "duration": "4 yrs 4 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Lecturer",
+      "companyName": "Al Ahliyya Amman University",
+      "employmentType": "Full-time",
+      "location": "Amman, Jordan",
+      "workMode": "",
+      "startDate": "Nov 2006",
+      "endDate": "Aug 2015",
+      "duration": "8 yrs 10 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQFcq0laNgDDYQ/company-logo_100_100/company-logo_100_100/0/1705789077332/al_ahliyya_amman_university_logo?e=1747872000&v=beta&t=M3FA0CyOE7brgYTdmaZAB7EaSauOrEF7wYg_eJVC8zo"
+    }
+  ],
+  "educations": [
+    {
+      "school": "Concordia University",
+      "degree": "Doctor of Philosophy - PhD, Electrical and Computer Engineering",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A",
+      "startYear": "2017",
+      "endYear": "2021"
+    },
+    {
+      "school": "New York Institute of Technology",
+      "degree": "Master of Science - MS, Electrical and computer Enginering",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C4E0BAQFggCb_wedvWQ/company-logo_100_100/company-logo_100_100/0/1630610574488/new_york_institute_of_technology_logo?e=1747872000&v=beta&t=S90lK3ptZPEW4wHq1fz2bsnXLd0Sb8qXdaWlCfNENY8",
+      "startYear": "2003",
+      "endYear": "2004"
+    }
+  ],
+  "projects": [],
+  "honors": []
+}

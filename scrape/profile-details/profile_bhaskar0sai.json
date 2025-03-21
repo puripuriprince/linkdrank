@@ -1,0 +1,64 @@
+{
+  "name": "Bhaskar pedhagamala",
+  "title": "Sillicon design engineer at AMD",
+  "location": "Montreal, Quebec, Canada",
+  "picture": "https://media.licdn.com/dms/image/v2/D5635AQGdHExPhWpcOg/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1698074714447?e=1743174000&v=beta&t=c9fdQTYC2qF20OlUgUGVDVxpTnhftwPYoieMJqtiaRU",
+  "linkedinUrl": "https://www.linkedin.com/in/bhaskar0sai",
+  "experiences": [
+    {
+      "title": "Sillicon design engineer",
+      "companyName": "AMD",
+      "employmentType": "Permanent Full-time",
+      "location": "Markham, Ontario, Canada",
+      "workMode": "Hybrid",
+      "startDate": "Nov 2021",
+      "endDate": "Present",
+      "duration": "3 yrs 5 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "Physical design(ASIC)",
+      "companyName": "Black pepper technologies",
+      "employmentType": "Internship",
+      "location": "Bangalore, India",
+      "workMode": "",
+      "startDate": "Jan 2018",
+      "endDate": "Mar 2018",
+      "duration": "3 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C562DAQHDDPQK57p51A/profile-treasury-document-cover-images_480/profile-treasury-document-cover-images_480/0/1612151339141?e=1743174000&v=beta&t=SZVh1kGjJtljDfReKG5iQd4V4JOJybIvlf0-W_M5Ct0"
+    }
+  ],
+  "educations": [
+    {
+      "school": "Concordia University",
+      "degree": "Master's degree, application specified integrated cercuits",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A",
+      "startYear": "2019",
+      "endYear": "2022"
+    }
+  ],
+  "projects": [
+    {
+      "title": "creating a Test bench for calculator using Systemverilog",
+      "startDate": "Jan 2020",
+      "endDate": "Present",
+      "description": "Associated with Concordia University",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Design of wireless network",
+      "startDate": "Jan 2020",
+      "endDate": "Apr 2020",
+      "description": "Associated with Concordia University",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Design and simulation of Arithmetic unit using (VHDL)",
+      "startDate": "Sep 2019",
+      "endDate": "Dec 2019",
+      "description": "Associated with Concordia University",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    }
+  ],
+  "honors": []
+}

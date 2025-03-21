@@ -1,0 +1,42 @@
+{
+  "name": "Abdouallah Swelam",
+  "title": "Software Development Engineer @AMD",
+  "location": "North York, Ontario, Canada",
+  "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGtUQql-RvArA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1731097374201?e=1747872000&v=beta&t=QGjDhkU-aP6daMlLd96MEdA0Y3XeesiXocikw03sXyg",
+  "linkedinUrl": "https://www.linkedin.com/in/abdouallah-swelam",
+  "experiences": [
+    {
+      "title": "Software Development Engineer",
+      "companyName": "AMD",
+      "employmentType": "Contract Full-time",
+      "location": "Markham, Ontario, Canada",
+      "workMode": "Hybrid",
+      "startDate": "Jan 2025",
+      "endDate": "Present",
+      "duration": "3 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "Software Developer",
+      "companyName": "Abbcari",
+      "employmentType": "Internship",
+      "location": "Ottawa, Ontario, Canada",
+      "workMode": "Hybrid",
+      "startDate": "May 2024",
+      "endDate": "Dec 2024",
+      "duration": "8 mos",
+      "logo": "https://media.licdn.com/dms/image/v2/D4D0BAQEBN6IXFrAYtg/company-logo_100_100/company-logo_100_100/0/1729267147789/abbcari_logo?e=1747872000&v=beta&t=lC0KUMTiG3skBSzPWUGF7h13t-7eJIn7HKv9nmx37Cc"
+    }
+  ],
+  "educations": [
+    {
+      "school": "Concordia University",
+      "degree": "Bachelor's degree, Computer Science",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A",
+      "startYear": "20",
+      "endYear": ""
+    }
+  ],
+  "projects": [],
+  "honors": []
+}

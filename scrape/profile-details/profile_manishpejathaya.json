@@ -1,0 +1,99 @@
+{
+  "name": "Manish Pejathaya",
+  "title": "Silicon Design Engineer 2",
+  "location": "Toronto, Ontario, Canada",
+  "picture": "https://media.licdn.com/dms/image/v2/D4E03AQGQq4yeM3Z8Nw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1733167247988?e=1747872000&v=beta&t=JKqMyNGhOZec3ACCjhAPClCy-PqklaLqqn58FvshwW8",
+  "linkedinUrl": "https://www.linkedin.com/in/manishpejathaya",
+  "experiences": [
+    {
+      "title": "Silicon Design Engineer 2",
+      "companyName": "AMD",
+      "employmentType": "1 yr",
+      "location": "Markham, Ontario, Canada",
+      "workMode": "Sep 2024 - Present · 7 mosSep 2024 to Present · 7 mos",
+      "startDate": "",
+      "endDate": "",
+      "duration": "",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    },
+    {
+      "title": "DFT Silicon Design Engineer 2",
+      "companyName": "AMD",
+      "employmentType": "1 yr",
+      "location": "Markham, Ontario, Canada",
+      "workMode": "Apr 2024 - Sep 2024 · 6 mosApr 2024 to Sep 2024 · 6 mos",
+      "startDate": "",
+      "endDate": "",
+      "duration": "",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C560BAQEkjpiqeCK9Ag/company-logo_100_100/company-logo_100_100/0/1654804896089/amd_logo?e=1747872000&v=beta&t=2lg11CG5HWHuEaputSQN0-1JIdOMsYJcEDKGcBj9FM4"
+    }
+  ],
+  "educations": [
+    {
+      "school": "Concordia University",
+      "degree": "Master's, Electrical and Computer Engineering",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A",
+      "startYear": "Jan 2022",
+      "endYear": "Sep 2023"
+    },
+    {
+      "school": "N M A M Institute of Technology, NITTE",
+      "degree": "Bachelor of Engineering - BE, Electrical, Electronics and Communications Engineering",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C560BAQGgevSJKDc-9g/company-logo_100_100/company-logo_100_100/0/1631317745327?e=1747872000&v=beta&t=jr66tZuj8YdnP61GReCrVAZT7p4KerBc6y3P80MJtlQ",
+      "startYear": "2017",
+      "endYear": "2021"
+    },
+    {
+      "school": "Sharada PU College",
+      "degree": "Science, Electronics",
+      "companyLogo": "",
+      "startYear": "2015",
+      "endYear": "2017"
+    },
+    {
+      "school": "Presidecy",
+      "degree": "Jun 2012 - Apr 2015",
+      "companyLogo": "",
+      "startYear": "",
+      "endYear": ""
+    }
+  ],
+  "projects": [
+    {
+      "title": "Digital design of Expression Calculator using VHDL",
+      "startDate": "Oct 2022",
+      "endDate": "Dec 2022",
+      "description": "Associated with Concordia University",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Boundary scan testing of a Combinational VLSI circuit (IEEE 1149.1):",
+      "startDate": "Jun 2020",
+      "endDate": "Jul 2022",
+      "description": "Associated with Concordia University",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Equivalence Checking of two different levels of abstraction using formal testing methods:",
+      "startDate": "May 2022",
+      "endDate": "Jun 2022",
+      "description": "Associated with Concordia University",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Mini-MIPS, 32-bit processor design based on RISC-V architecture",
+      "startDate": "Jan 2022",
+      "endDate": "Mar 2022",
+      "description": "Associated with Concordia University",
+      "logo": "https://media.licdn.com/dms/image/v2/D4E0BAQGYfVVygRuGfQ/company-logo_100_100/company-logo_100_100/0/1719255840518/concordia_university_logo?e=1747872000&v=beta&t=S--LmHKlbyEnn7EXbPSUV1PKu_GoablNBDkYylLJM9A"
+    },
+    {
+      "title": "Galvanic skin response (GSR) based Approach for the Examination of Emotional State",
+      "startDate": "Nov 2020",
+      "endDate": "Mar 2021",
+      "description": "Associated with N M A M Institute of Technology, NITTE",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQGgevSJKDc-9g/company-logo_100_100/company-logo_100_100/0/1631317745327?e=1747872000&v=beta&t=jr66tZuj8YdnP61GReCrVAZT7p4KerBc6y3P80MJtlQ"
+    }
+  ],
+  "honors": []
+}
