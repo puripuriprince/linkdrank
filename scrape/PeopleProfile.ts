@@ -125,9 +125,10 @@ export class PersonProfileScraper {
                 }
 
                 function parseDateInfo(text: string) {
+                    if (!text) return { startDate: "", endDate: "", duration: "" };
                     const parts = text.split("·").map(p => p.trim());
                     let dateRange = parts[0] || "";
-                    let duration = parts[1] || "";
+                    let duration = parts[2] ? parts[2] : parts[1] || "";
                     let startDate = "", endDate = "";
                     if (dateRange.includes(" - ")) {
                         [startDate, endDate] = dateRange.split(" - ").map(s => s.trim());
@@ -142,32 +143,28 @@ export class PersonProfileScraper {
                     const isNested = item.querySelector("li.pvs-list__paged-list-item");
 
                     if (isNested) {
-                        const nestedContainer = item.querySelector("ul")
-                        const companyLogoElem = item.querySelector("img");
-                        const companyLogo = companyLogoElem ? companyLogoElem.getAttribute("src") || "" : "";
+                        const expItems = Array.from(item.querySelectorAll("a.optional-action-target-wrapper "));
 
-                        const companyInfoSpan = item.querySelector("span[aria-hidden='true']");
-                        const companyName = companyInfoSpan ? deduplicate(companyInfoSpan.textContent) : "";
+                        const companyLogo = expItems[0].querySelector("img")?.getAttribute("src") || "";
 
-                        const roleItems = nestedContainer?.querySelectorAll("li.pvs-list__paged-list-item");
-                        roleItems?.forEach(roleItem => {
-                            const roleSpans = Array.from(roleItem.querySelectorAll("span[aria-hidden='true']"));
-                            let title = "", employmentType = "", dateText = "", location = "";
-                            if (roleSpans.length >= 3) {
-                                title = deduplicate(roleSpans[0].textContent);
-                                employmentType = deduplicate(roleSpans[1].textContent);
-                                dateText = deduplicate(roleSpans[2].textContent);
-                                if (roleSpans.length >= 4) {
-                                    location = deduplicate(roleSpans[3].textContent);
-                                }
-                            }
-                            const { startDate, endDate, duration } = parseDateInfo(dateText);
+                        const topExpBox = expItems[1].children;
+                        const companyName = deduplicate(topExpBox[0]?.textContent);
+                        const employmentType = deduplicate(topExpBox[1]?.textContent).split("·")[0]?.trim();
+                        const location = deduplicate(topExpBox[2]?.textContent);
+
+                        expItems.slice(2)?.forEach(expItem => {
+
+                            const expBox = expItem.children;
+                            const title = expBox[0] ? deduplicate(expBox[0].textContent) : "";
+                            const { startDate, endDate, duration } = parseDateInfo(expBox[1] ? deduplicate(expBox[1].textContent) : "");
+                            const workMode = expBox[2] ? deduplicate(expBox[2].textContent) : "";
+
                             experiences.push({
                                 title,
                                 companyName,
                                 employmentType,
                                 location,
-                                workMode: "",
+                                workMode,
                                 startDate,
                                 endDate,
                                 duration,
