@@ -125,7 +125,6 @@ const companies = [
 
             console.log(`Searching for people from ${school.name} who worked at ${company.name}...`);
             const peopleSearch = await scraper.searchPeople(config);
-            console.log(peopleSearch);
 
             if (!fs.existsSync(outputDir)) {
                 fs.mkdirSync(outputDir);
@@ -151,7 +150,6 @@ const companies = [
 
             console.log(`Searching for people from ${school.name} who currently works at ${company.name}...`);
             const peopleSearch = await scraper.searchPeople(config);
-            console.log(peopleSearch);
 
             if (!fs.existsSync(outputDir)) {
                 fs.mkdirSync(outputDir);

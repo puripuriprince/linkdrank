@@ -8,48 +8,36 @@ import * as path from 'path';
     await scraper.init();
     const config = new ProfileConfig();
 
-    const inputDir = 'profile-links';
+    const inputUrls = 'all-urls.json';
     const outputDir = 'profile-details';
 
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir);
     }
 
-    // Read all files that start with "peopleSearch_" in profile-links
-    const files = fs.readdirSync(inputDir).filter(file => file.startsWith('peopleSearch_') && file.endsWith('.json'));
+    const urls: string[] = Array.from(JSON.parse(fs.readFileSync(inputUrls, 'utf8')));
 
-    for (const file of files) {
-        const filePath = path.join(inputDir, file);
-        console.log(`Processing file: ${filePath}`);
+    for (const url of urls) {
+        console.log(`Processing file: ${url}`);
 
-        const peopleData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-        for (const person of peopleData) {
-            const profileUrl = person.linkedinUrl;
-            if (!profileUrl) {
-                console.log(`Skipping entry with no profile URL: ${JSON.stringify(person)}`);
-                continue;
-            }
-
-            const safeName = (person.name || path.basename(profileUrl))
-                .replace(/[^a-z0-9]/gi, '_')
+            const safeName = url
+                .replace('https://www.linkedin.com/in/', '')
                 .toLowerCase();
             const outputFilePath = path.join(outputDir, `profile_${safeName}.json`);
 
             if (fs.existsSync(outputFilePath)) {
-                console.log(`Skipping already scraped profile: ${profileUrl}`);
+                console.log(`Skipping already scraped profile: ${url}`);
                 continue;
             }
 
-            console.log(`Scraping profile: ${profileUrl}`);
+            console.log(`Scraping profile: ${url}`);
             try {
-                const profile = await scraper.getProfile(profileUrl, config);
+                const profile = await scraper.getProfile(url, config);
                 fs.writeFileSync(outputFilePath, JSON.stringify(profile, null, 2));
                 console.log(`Saved profile to ${outputFilePath}`);
             } catch (error) {
-                console.error(`Error scraping profile ${profileUrl}:`, error);
+                console.error(`Error scraping profile ${url}:`, error);
             }
-        }
     }
 
     console.log("Profile scraping complete.");
