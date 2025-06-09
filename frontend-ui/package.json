@@ -8,10 +8,10 @@
     "start": "next start",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
-    "lint:print": "npx eslint --print-config eslint.config.mjs > eslint-show-config.json",
+    "lint:print": "bunx eslint --print-config eslint.config.mjs > eslint-show-config.json",
     "fm:check": "prettier --check \"**/*.{js,jsx,ts,tsx}\"",
     "fm:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-    "fix:all": "npm run lint:fix && npm run fm:fix",
+    "fix:all": "bun run lint:fix && bun run fm:fix",
     "clean": "rm -rf node_modules .next out dist build"
   },
   "dependencies": {
