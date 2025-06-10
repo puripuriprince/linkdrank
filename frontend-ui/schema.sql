@@ -2,7 +2,7 @@
 CREATE TYPE custom_date AS (
     day SMALLINT,
     month SMALLINT,
-    year INTEGER NOT NULL
+    year INTEGER
     );
 
 -- Lookup tables
