@@ -7,6 +7,7 @@ import { Share2 } from "lucide-react";
 import Image from "next/image";
 import { SAMPLE_PROFILES } from "@/actions/profiles";
 import UserSkillsRadar from "../components/user-skills-radar";
+import { ExperienceCardSection } from "../components/experience-card-section";
 
 
 const userData = SAMPLE_PROFILES[0];
@@ -197,8 +198,9 @@ export function ProfileView() {
 
                             {/* Bottom section - Full width sections */}
                             <div className="w-full space-y-6">
-                                {/* Recent Repositories Contributions */}
-                                
+                                <ExperienceCardSection
+                                    experiences={userData.experiences}
+                                />
                             </div>
                         </div>
                     </div>
