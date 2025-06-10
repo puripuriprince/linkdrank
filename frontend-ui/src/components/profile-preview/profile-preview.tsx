@@ -6,6 +6,7 @@ import { Tooltip, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { TooltipContent } from "@/components/ui/tooltip";
 import { CONFIG } from "@/global-config";
 import { Profile } from "@/types/profile";
+import { CompareSelectButton } from "@/sections/compare/components/compare-select-button";
 
 // ----------------------------------------------------------------------
 
@@ -22,14 +23,34 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
     name: profile.experiences[0].companyName,
     logo: profile.experiences[0].logo
   } : null;
+  
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't trigger onClick if user clicked on the compare button area
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-compare-button]')) {
+      e.stopPropagation();
+      return;
+    }
+    onClick();
+  };
+
   return (
     <Card
-      onClick={onClick}
-      className="relative w-56 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg"
+      onClick={handleCardClick}
+      className="group relative w-56 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer hover:shadow-lg transition-shadow"
     >
+      {/* Compare Select Button */}
+      {(profile.linkedinUrl || profile.linkedin_url) && (
+        <div data-compare-button>
+          <CompareSelectButton
+            profileLinkedinUrl={profile.linkedinUrl || profile.linkedin_url || ""}
+          />
+        </div>
+      )}
+
       {currentCompany && (
         <Tooltip>
-          <TooltipTrigger className="absolute top-2 right-2 bg-white dark:bg-gray-900 p-1 rounded-full shadow-md">
+          <TooltipTrigger className="absolute top-2 left-2 bg-white dark:bg-gray-900 p-1 rounded-full shadow-md">
             <img
               src={currentCompany.logo}
               alt="Company Logo"
@@ -71,13 +92,32 @@ interface ProfilePreviewHorizontalProps {
 export const ProfilePreviewHorizontal: React.FC<
   ProfilePreviewHorizontalProps
 > = ({ profile, selected, onClick }) => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't trigger onClick if user clicked on the compare button area
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-compare-button]')) {
+      e.stopPropagation();
+      return;
+    }
+    onClick();
+  };
+
   return (
     <Card
-      onClick={onClick}
-      className={`flex flex-row items-center gap-4 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer transition-all hover:shadow-xl ${
+      onClick={handleCardClick}
+      className={`group relative flex flex-row items-center gap-4 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer transition-all hover:shadow-xl ${
         selected ? "ring-2 ring-yellow-500" : "ring-0"
       }`}
     >
+      {/* Compare Select Button */}
+      {(profile.linkedinUrl || profile.linkedin_url) && (
+        <div data-compare-button>
+          <CompareSelectButton
+            profileLinkedinUrl={profile.linkedinUrl || profile.linkedin_url || ""}
+          />
+        </div>
+      )}
+
       <Avatar className="h-16 w-16">
         <AvatarImage
           src={profile.picture ?? `${CONFIG.assetsDir}/logo/logo.svg`}

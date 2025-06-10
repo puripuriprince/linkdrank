@@ -3,6 +3,7 @@ import "@/globals.css";
 import type { Viewport } from "next";
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { Snackbar } from "@/components/snackbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -49,8 +50,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               disableTransitionOnChange
             >
               <BrowseProvider>
-                <Snackbar />
-                <TooltipProvider>{children}</TooltipProvider>
+                <NuqsAdapter>
+                  <Snackbar />
+                  <TooltipProvider>{children}</TooltipProvider>
+                </NuqsAdapter>
               </BrowseProvider>
             </NextThemesProvider>
           </PosthogProvider>

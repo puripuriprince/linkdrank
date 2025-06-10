@@ -7,6 +7,7 @@ import { DesktopHeader } from "./nav/desktop";
 import { MainSection, LayoutSection } from "../core";
 import { MobileNav, MobileHeader } from "./nav/mobile";
 import { navData as mainNavData } from "../nav-config-main";
+import { CompareFloatingPanel } from "@/sections/compare/components/compare-floating-panel";
 
 export type MainLayoutProps = {
   className?: string;
@@ -44,6 +45,8 @@ export function MainLayout({
       {renderHeader()}
       {renderMain()}
       {renderFooter()}
+      {/* Compare Floating Panel */}
+      <CompareFloatingPanel />
     </LayoutSection>
   );
 }

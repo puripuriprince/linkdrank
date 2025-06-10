@@ -685,7 +685,12 @@ export const SAMPLE_PROFILES = [
 export async function getProfilesPreview(page: number = 1, limit: number = 10) {
   // some latency
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+  const profiles = SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+  // Add IDs based on original array index
+  return profiles.map((profile, index) => ({
+    ...profile,
+    id: (page - 1) * limit + index + 1
+  }));
 }
 
 export async function searchProfiles(
@@ -693,13 +698,24 @@ export async function searchProfiles(
   page: number = 1,
   limit: number = 10,
 ) {
-  if (!query) return SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+  if (!query) {
+    const profiles = SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+    return profiles.map((profile, index) => ({
+      ...profile,
+      id: (page - 1) * limit + index + 1
+    }));
+  }
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return SAMPLE_PROFILES.filter(
+  const filteredProfiles = SAMPLE_PROFILES.filter(
     (profile) =>
       profile.name.toLowerCase().includes(query.toLowerCase()) ||
       profile.title.toLowerCase().includes(query.toLowerCase()),
   ).slice((page - 1) * limit, page * limit);
+  // Add IDs based on original array index
+  return filteredProfiles.map((profile, index) => ({
+    ...profile,
+    id: (page - 1) * limit + index + 1
+  }));
 }
 
 export async function getProfile(
