@@ -30,13 +30,35 @@ export interface ProfileSearchParams {
   sortOrder?: 'asc' | 'desc';
 }
 
-// Get profiles with basic pagination and search
-export async function getProfilesFromDB({
+// Minimal profile data for profile previews (home page, browse page)
+export interface ProfilePreview {
+  id: number;
+  linkedinId: string;
+  firstName: string;
+  lastName: string;
+  headline: string | null;
+  profilePictureUrl: string | null;
+  connectionsCount: number | null;
+  followersCount: number | null;
+  location?: {
+    id: number;
+    city: string;
+    state: string;
+    country: string;
+  };
+  industry?: {
+    id: number;
+    name: string;
+  };
+}
+
+// Get profile previews with minimal data (for home page, browse page)
+export async function getProfilePreviewsFromDB({
   query = '',
   page = 1,
   limit = 10,
-  sortBy = 'name',
-  sortOrder = 'asc'
+  sortBy = 'followers',
+  sortOrder = 'desc'
 }: ProfileSearchParams = {}) {
   try {
     const offset = (page - 1) * limit;
@@ -45,8 +67,7 @@ export async function getProfilesFromDB({
     const searchConditions = query ? [
       ilike(profiles.firstName, `%${query}%`),
       ilike(profiles.lastName, `%${query}%`),
-      ilike(profiles.headline, `%${query}%`),
-      ilike(profiles.summary, `%${query}%`)
+      ilike(profiles.headline, `%${query}%`)
     ] : [];
 
     // Build sort condition
@@ -56,7 +77,7 @@ export async function getProfilesFromDB({
     
     const orderBy = sortOrder === 'desc' ? desc(sortColumn) : asc(sortColumn);
 
-    // Execute the query with joins
+    // Execute the query with minimal joins for preview
     const profilesData = await db
       .select({
         id: profiles.id,
@@ -64,9 +85,7 @@ export async function getProfilesFromDB({
         firstName: profiles.firstName,
         lastName: profiles.lastName,
         headline: profiles.headline,
-        summary: profiles.summary,
         profilePictureUrl: profiles.profilePictureUrl,
-        backgroundImageUrl: profiles.backgroundImageUrl,
         connectionsCount: profiles.connectionsCount,
         followersCount: profiles.followersCount,
         location: {
@@ -96,24 +115,30 @@ export async function getProfilesFromDB({
 
     const totalCount = totalCountResult[0]?.count || 0;
 
-    // Transform to match the existing Profile interface
-    const transformedProfiles = profilesData.map((profile) => ({
+    // Return profiles as ProfilePreview type (no transformation needed)
+    const previews: ProfilePreview[] = profilesData.map(profile => ({
       id: profile.id,
-      name: `${profile.firstName} ${profile.lastName}`,
-      title: profile.headline || '',
-      picture: profile.profilePictureUrl || '',
-      linkedinUrl: `https://www.linkedin.com/in/${profile.linkedinId}`,
-      linkedin_url: `https://www.linkedin.com/in/${profile.linkedinId}`,
-      location: profile.location ? `${profile.location.city}${profile.location.state ? `, ${profile.location.state}` : ''}, ${profile.location.country}` : '',
-      about: profile.summary || '',
-      experiences: [], // Will be loaded separately if needed
-      educations: [], // Will be loaded separately if needed
-      projects: [], // Will be loaded separately if needed
-      honors: [], // Will be loaded separately if needed
+      linkedinId: profile.linkedinId,
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      headline: profile.headline,
+      profilePictureUrl: profile.profilePictureUrl,
+      connectionsCount: profile.connectionsCount,
+      followersCount: profile.followersCount,
+      location: profile.location && profile.location.id ? {
+        id: profile.location.id,
+        city: profile.location.city,
+        state: profile.location.state || '',
+        country: profile.location.country,
+      } : undefined,
+      industry: profile.industry && profile.industry.id ? {
+        id: profile.industry.id,
+        name: profile.industry.name,
+      } : undefined,
     }));
 
     return {
-      profiles: transformedProfiles,
+      profiles: previews,
       pagination: {
         totalCount,
         currentPage: page,
@@ -122,8 +147,8 @@ export async function getProfilesFromDB({
       }
     };
   } catch (error) {
-    console.error('Error fetching profiles from database:', error);
-    throw new Error('Failed to fetch profiles from database');
+    console.error('Error fetching profile previews from database:', error);
+    throw new Error('Failed to fetch profile previews from database');
   }
 }
 
@@ -269,9 +294,148 @@ export async function getProfileByLinkedInUrl(linkedinUrl: string): Promise<Prof
   }
 }
 
-// Search profiles with pagination
+// Get basic profile info by LinkedIn ID (for comparison page)
+export async function getProfileByLinkedInId(linkedinId: string): Promise<ProfileWithRelations | null> {
+  try {
+    // Get the main profile
+    const profileData = await db
+      .select()
+      .from(profiles)
+      .where(eq(profiles.linkedinId, linkedinId))
+      .leftJoin(location, eq(profiles.locationId, location.id))
+      .leftJoin(industry, eq(profiles.industryId, industry.id))
+      .limit(1);
+
+    if (!profileData.length) {
+      return null;
+    }
+
+    const profile = profileData[0].profiles;
+    const profileLocation = profileData[0].location;
+    const profileIndustry = profileData[0].industry;
+
+    // Get related data (same as getProfileByLinkedInUrl but organized differently)
+    const [
+      educationsData,
+      experiencesData,
+      certificationsData,
+      skillsData,
+      languagesData,
+      volunteersData,
+      publicationsData,
+      awardsData,
+      projectsData
+    ] = await Promise.all([
+      // Educations with schools
+      db.select({
+        education,
+        school
+      })
+      .from(education)
+      .leftJoin(school, eq(education.schoolId, school.id))
+      .where(eq(education.userId, profile.id)),
+
+      // Experiences with organizations and locations
+      db.select({
+        experience,
+        organization,
+        location
+      })
+      .from(experience)
+      .leftJoin(organization, eq(experience.organizationId, organization.id))
+      .leftJoin(location, eq(experience.locationId, location.id))
+      .where(eq(experience.userId, profile.id)),
+
+      // Certifications
+      db.select()
+      .from(certification)
+      .where(eq(certification.userId, profile.id)),
+
+      // Skills
+      db.select({
+        userSkill,
+        skill
+      })
+      .from(userSkill)
+      .leftJoin(skill, eq(userSkill.skillId, skill.id))
+      .where(eq(userSkill.userId, profile.id)),
+
+      // Languages
+      db.select({
+        userLanguage,
+        language
+      })
+      .from(userLanguage)
+      .leftJoin(language, eq(userLanguage.languageId, language.id))
+      .where(eq(userLanguage.userId, profile.id)),
+
+      // Volunteers
+      db.select({
+        volunteer,
+        organization
+      })
+      .from(volunteer)
+      .leftJoin(organization, eq(volunteer.organizationId, organization.id))
+      .where(eq(volunteer.userId, profile.id)),
+
+      // Publications
+      db.select()
+      .from(publication)
+      .where(eq(publication.userId, profile.id)),
+
+      // Awards
+      db.select()
+      .from(award)
+      .where(eq(award.userId, profile.id)),
+
+      // Projects
+      db.select()
+      .from(project)
+      .where(eq(project.userId, profile.id))
+    ]);
+
+    // Construct the full profile with relations
+    const fullProfile: ProfileWithRelations = {
+      ...profile,
+      location: profileLocation || undefined,
+      industry: profileIndustry || undefined,
+      educations: educationsData.map(item => ({
+        ...item.education,
+        school: item.school!
+      })),
+      experiences: experiencesData.map(item => ({
+        ...item.experience,
+        organization: item.organization!,
+        location: item.location || undefined
+      })),
+      certifications: certificationsData,
+      skills: skillsData.map(item => ({
+        ...item.userSkill,
+        skill: item.skill!
+      })),
+      languages: languagesData.map(item => ({
+        ...item.userLanguage,
+        language: item.language!
+      })),
+      volunteers: volunteersData.map(item => ({
+        ...item.volunteer,
+        organization: item.organization!
+      })),
+      publications: publicationsData,
+      awards: awardsData,
+      projects: projectsData
+    };
+
+    return fullProfile;
+  } catch (error) {
+    console.error('Error fetching profile by LinkedIn ID:', error);
+    return null;
+  }
+}
+
+// Search profiles with pagination (returns preview data)
 export async function searchProfilesInDB(query: string, page: number = 1, limit: number = 10) {
-  return getProfilesFromDB({
+  return getProfilePreviewsFromDB({
     query,
     page,
     limit,
@@ -280,9 +444,9 @@ export async function searchProfilesInDB(query: string, page: number = 1, limit:
   });
 }
 
-// Get profiles preview (for homepage)
+// Get profiles preview (for homepage) - returns preview data
 export async function getProfilesPreviewFromDB(page: number = 1, limit: number = 10) {
-  return getProfilesFromDB({
+  return getProfilePreviewsFromDB({
     page,
     limit,
     sortBy: 'followers',

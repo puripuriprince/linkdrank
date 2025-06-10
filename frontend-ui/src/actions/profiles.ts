@@ -6,7 +6,8 @@ import { ADDITIONAL_PROFILES } from "./additional-profiles";
 import { 
   searchProfilesInDB, 
   getProfilesPreviewFromDB,
-  getProfileByLinkedInUrl 
+  getProfileByLinkedInUrl,
+  getProfileByLinkedInId
 } from './profiles-db';
 
 // Configuration flag - set to true when you want to use the database
@@ -482,7 +483,7 @@ export const SAMPLE_PROFILES: ProfileWithRelations[] = [
 // Combine all profiles to have 20 total
 const ALL_PROFILES = [...SAMPLE_PROFILES, ...ADDITIONAL_PROFILES];
 
-export async function getProfilesPreview(page: number = 1, limit: number = 10): Promise<unknown[]> {
+export async function getProfilesPreview(page: number = 1, limit: number = 10) {
   if (USE_DATABASE) {
     try {
       const result = await getProfilesPreviewFromDB(page, limit);

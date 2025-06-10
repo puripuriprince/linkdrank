@@ -420,7 +420,21 @@ export default function CompareMetricsPlayground({
 				linkedinId = searchInput.replace('https://www.linkedin.com/in/', '').replace('/', '');
 			}
 			
-			// Import ADDITIONAL_PROFILES and search in both arrays
+			// Try to fetch from database first
+			const USE_DATABASE = process.env.NODE_ENV === 'production' || process.env.USE_DATABASE === 'true';
+			if (USE_DATABASE) {
+				try {
+					const { getProfileByLinkedInId } = await import("@/actions/profiles-db");
+					const dbProfile = await getProfileByLinkedInId(linkedinId);
+					if (dbProfile) {
+						return convertToProfileFormat(dbProfile);
+					}
+				} catch (error) {
+					console.error('Database error, falling back to sample data:', error);
+				}
+			}
+			
+			// Fallback to sample data
 			const { ADDITIONAL_PROFILES } = await import("@/actions/additional-profiles");
 			const ALL_PROFILES = [...SAMPLE_PROFILES, ...ADDITIONAL_PROFILES];
 			
