@@ -44,13 +44,17 @@ export const ExperienceCardSection = ({
 										<div className="flex items-center gap-1.5">
 											<Code2 className="h-3.5 w-3.5" />
 											<h3 className="mb-1 font-semibold text-[#2300A7] hover:underline dark:text-[#75A9FF]">
-												<Link
-													href={experience.logo}
-													target="_blank"
-													rel="noopener noreferrer"
-												>
-													{companyName}
-												</Link>
+												{experience.logo ? (
+													<Link
+														href={experience.logo}
+														target="_blank"
+														rel="noopener noreferrer"
+													>
+														{companyName}
+													</Link>
+												) : (
+													<span>{companyName}</span>
+												)}
 											</h3>
 										</div>
 										<div className="flex items-center gap-1.5">

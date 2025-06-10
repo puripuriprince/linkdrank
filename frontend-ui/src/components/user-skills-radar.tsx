@@ -17,7 +17,7 @@ export interface UserMetrics {
 	projects: number;
 	experiences?: number;
 	educations?: number;
-	honors?: number;
+	awards?: number;
 }
 
 export interface UserSkillsRadarProps {
@@ -36,7 +36,7 @@ export default function UserSkillsRadar({
 		projects: metrics.projects || 0,
 		experiences: metrics.experiences || 0,
 		educations: metrics.educations || 0,
-		honors: metrics.honors || 0,
+		awards: metrics.awards || 0,
 	};
 
 	// Normalize values for better visualization
@@ -46,7 +46,7 @@ export default function UserSkillsRadar({
 		projects: 150,
 		experiences: 100,
 		educations: 25,
-		honors: 25,
+		awards: 25,
 	};
 
 	// Transform and normalize data for chart
@@ -77,9 +77,9 @@ export default function UserSkillsRadar({
 			originalValue: userMetrics.educations,
 		},
 		{
-			skill: "Honors",
-			value: Math.min(10, (userMetrics.honors / maxValues.honors) * 10),
-			originalValue: userMetrics.honors,
+			skill: "Awards",
+			value: Math.min(10, (userMetrics.awards / maxValues.awards) * 10),
+			originalValue: userMetrics.awards,
 		},
 	];
 

@@ -4,9 +4,10 @@ import { Legend, PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 
 interface LinkedInProfile {
-	name: string;
-	title: string;
-	picture: string;
+	firstName: string;
+	lastName: string;
+	headline: string;
+	profilePictureUrl?: string;
 	color: string;
 	metrics: {
 		followers: number;
@@ -15,7 +16,7 @@ interface LinkedInProfile {
 		educations: number;
 		skills: number;
 		projects: number;
-		honors: number;
+		awards: number;
 	};
 }
 
@@ -38,8 +39,9 @@ export function CombinedProfileMetricsRadar({
 	// Create config object for ChartContainer
 	const chartConfig = profiles.reduce(
 		(config, profile) => {
-			config[profile.name] = {
-				label: profile.name,
+			const profileName = `${profile.firstName} ${profile.lastName}`;
+			config[profileName] = {
+				label: profileName,
 				color: profile.color,
 			};
 			return config;
@@ -55,7 +57,7 @@ export function CombinedProfileMetricsRadar({
 		educations: 5,
 		skills: 20,
 		projects: 10,
-		honors: 15,
+		awards: 15,
 	};
 
 	// Define the metrics we want to display
@@ -66,7 +68,7 @@ export function CombinedProfileMetricsRadar({
 		{ key: "educations", label: "Education" },
 		{ key: "skills", label: "Skills" },
 		{ key: "projects", label: "Projects" },
-		{ key: "honors", label: "Honors" },
+		{ key: "awards", label: "Awards" },
 	];
 
 	// Transform and normalize data for combined chart
@@ -77,6 +79,7 @@ export function CombinedProfileMetricsRadar({
 
 		// For each profile, normalize their value for this metric
 		for (const profile of profiles) {
+			const profileName = `${profile.firstName} ${profile.lastName}`;
 			let value: number | undefined;
 
 			// Get the value for the current metric from the profile
@@ -92,12 +95,12 @@ export function CombinedProfileMetricsRadar({
 				value = profile.metrics.skills;
 			} else if (metric.key === "projects") {
 				value = profile.metrics.projects;
-			} else if (metric.key === "honors") {
-				value = profile.metrics.honors;
+			} else if (metric.key === "awards") {
+				value = profile.metrics.awards;
 			}
 
 			// Store original value for tooltip
-			result[`${profile.name}Original`] = value;
+			result[`${profileName}Original`] = value;
 
 			// Calculate normalized value
 			let normalizedValue = 0;
@@ -114,12 +117,12 @@ export function CombinedProfileMetricsRadar({
 				normalizedValue = Math.min(10, ((value ?? 0) / maxValues.skills) * 10);
 			} else if (metric.key === "projects") {
 				normalizedValue = Math.min(10, ((value ?? 0) / maxValues.projects) * 10);
-			} else if (metric.key === "honors") {
-				normalizedValue = Math.min(10, ((value ?? 0) / maxValues.honors) * 10);
+			} else if (metric.key === "awards") {
+				normalizedValue = Math.min(10, ((value ?? 0) / maxValues.awards) * 10);
 			}
 
 			// Add normalized value to result
-			result[profile.name] = normalizedValue;
+			result[profileName] = normalizedValue;
 		}
 
 		return result;
@@ -142,16 +145,19 @@ export function CombinedProfileMetricsRadar({
 						tick={{ fill: "#888888", fontSize: 12 }}
 					/>
 
-					{profiles.map((profile) => (
-						<Radar
-							key={profile.name}
-							name={profile.name}
-							dataKey={profile.name}
-							stroke={profile.color}
-							fill={profile.color}
-							fillOpacity={0.2}
-						/>
-					))}
+					{profiles.map((profile) => {
+						const profileName = `${profile.firstName} ${profile.lastName}`;
+						return (
+							<Radar
+								key={profileName}
+								name={profileName}
+								dataKey={profileName}
+								stroke={profile.color}
+								fill={profile.color}
+								fillOpacity={0.2}
+							/>
+						);
+					})}
 
 					<Legend />
 					<ChartTooltip content={<CombinedTooltip profiles={profiles} />} />
@@ -183,12 +189,15 @@ function CombinedTooltip({
 		return (
 			<div className="rounded border bg-background p-2 shadow-sm">
 				<p className="mb-1 font-medium">{skill}</p>
-				{profiles.map((profile) => (
-					<p key={profile.name} style={{ color: profile.color }}>
-						{profile.name}:{" "}
-						{payload[0].payload[`${profile.name}Original`] as number}
-					</p>
-				))}
+				{profiles.map((profile) => {
+					const profileName = `${profile.firstName} ${profile.lastName}`;
+					return (
+						<p key={profileName} style={{ color: profile.color }}>
+							{profileName}:{" "}
+							{payload[0].payload[`${profileName}Original`] as number}
+						</p>
+					);
+				})}
 			</div>
 		);
 	}

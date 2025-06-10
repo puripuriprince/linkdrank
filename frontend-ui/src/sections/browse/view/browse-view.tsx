@@ -13,14 +13,14 @@ import {
 } from "@/components/profile-preview";
 import { useRouter } from "@/routes/hooks";
 import { paths } from "@/routes/paths";
-import { Profile } from "@/types/profile";
+import { ProfileWithRelations } from "@/lib/db/types";
 
 // ----------------------------------------------------------------------
 
 const PAGE_SIZE = 15;
 export function BrowseView() {
   const { search } = useBrowseContext();
-  const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [profiles, setProfiles] = useState<ProfileWithRelations[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -32,7 +32,7 @@ export function BrowseView() {
 
     setLoading(true);
     try {
-      const newProfiles = await searchProfiles(searchTerm, page, PAGE_SIZE);
+      const newProfiles = await searchProfiles(searchTerm, page, PAGE_SIZE) as ProfileWithRelations[];
 
       if (!newProfiles || newProfiles.length === 0) {
         setHasMore(false);
@@ -60,8 +60,8 @@ export function BrowseView() {
     fetchNextPage();
   }, [searchTerm]);
 
-  const renderSkeletons = () =>
-    Array(PAGE_SIZE)
+  const renderSkeletons = (count: number = PAGE_SIZE) =>
+    Array(count)
       .fill(0)
       .map((_, index) => (
         <div
@@ -84,18 +84,18 @@ export function BrowseView() {
           <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
             {profiles.map((profile, i) => (
               <div
-                key={`profile-${profile.name}`}
+                key={`profile-${profile.firstName}-${profile.lastName}-${profile.id}`}
                 className="flex justify-center hover:cursor-pointer rounded-xl"
               >
                 <ProfilePreview
                   profile={profile}
                   onClick={() =>
-                    router.push(paths.people.details(profile.linkedinUrl))
+                    router.push(paths.people.details(profile.linkedinId))
                   }
                 />
               </div>
             ))}
-            {loading && renderSkeletons()}
+            {loading && renderSkeletons(Math.min(PAGE_SIZE, 20 - profiles.length))}
           </div>
         </InfiniteScroll>
       ) : (

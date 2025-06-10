@@ -5,13 +5,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tooltip, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { TooltipContent } from "@/components/ui/tooltip";
 import { CONFIG } from "@/global-config";
-import { Profile } from "@/types/profile";
+import { ProfileWithRelations } from "@/lib/db/types";
 import { CompareSelectButton } from "@/sections/compare/components/compare-select-button";
 
 // ----------------------------------------------------------------------
 
 export interface ProfilePreviewProps {
-  profile: Profile;
+  profile: ProfileWithRelations;
   onClick: () => void;
 }
 
@@ -19,9 +19,9 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
   profile,
   onClick,
 }) => {
-  const currentCompany = profile.experiences?.length && profile.experiences[0]?.logo ? {
-    name: profile.experiences[0].companyName,
-    logo: profile.experiences[0].logo
+  const currentCompany = profile.experiences?.length && profile.experiences[0]?.organization?.logoUrl ? {
+    name: profile.experiences[0].organization.name,
+    logo: profile.experiences[0].organization.logoUrl
   } : null;
   
   const handleCardClick = (e: React.MouseEvent) => {
@@ -40,13 +40,11 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
       className="group relative w-56 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer hover:shadow-lg transition-shadow"
     >
       {/* Compare Select Button */}
-      {(profile.linkedinUrl || profile.linkedin_url) && (
-        <div data-compare-button>
-          <CompareSelectButton
-            profileLinkedinUrl={profile.linkedinUrl || profile.linkedin_url || ""}
-          />
-        </div>
-      )}
+      <div data-compare-button>
+        <CompareSelectButton
+          profileLinkedinId={profile.linkedinId}
+        />
+      </div>
 
       {currentCompany && (
         <Tooltip>
@@ -67,24 +65,24 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
       <div className="flex justify-center mb-2">
         <Avatar className="h-16 w-16">
           <AvatarImage
-            src={profile.picture ?? `${CONFIG.assetsDir}/logo/logo.svg`}
-            alt={`${profile.name}'s profile picture`}
+            src={profile.profilePictureUrl ?? `${CONFIG.assetsDir}/logo/logo.svg`}
+            alt={`${profile.firstName} ${profile.lastName}'s profile picture`}
           />
-          <AvatarFallback>{profile.name ? profile.name[0].toUpperCase() : "U"}</AvatarFallback>
+          <AvatarFallback>{profile.firstName ? profile.firstName[0].toUpperCase() : "U"}</AvatarFallback>
         </Avatar>
       </div>
 
       {/* Profile Information */}
       <CardContent className="p-0 flex flex-col items-center text-center">
-        <h3 className="font-bold text-lg text-black dark:text-white">{profile.name}</h3>
-        <p className="text-sm text-gray-500 dark:text-gray-300">{profile.title}</p>
+        <h3 className="font-bold text-lg text-black dark:text-white">{`${profile.firstName} ${profile.lastName}`}</h3>
+        <p className="text-sm text-gray-500 dark:text-gray-300">{profile.headline}</p>
       </CardContent>
     </Card>
   );
 };
 
 interface ProfilePreviewHorizontalProps {
-  profile: Profile;
+  profile: ProfileWithRelations;
   selected: boolean;
   onClick: () => void;
 }
@@ -110,29 +108,27 @@ export const ProfilePreviewHorizontal: React.FC<
       }`}
     >
       {/* Compare Select Button */}
-      {(profile.linkedinUrl || profile.linkedin_url) && (
-        <div data-compare-button>
-          <CompareSelectButton
-            profileLinkedinUrl={profile.linkedinUrl || profile.linkedin_url || ""}
-          />
-        </div>
-      )}
+      <div data-compare-button>
+        <CompareSelectButton
+          profileLinkedinId={profile.linkedinId}
+        />
+      </div>
 
       <Avatar className="h-16 w-16">
         <AvatarImage
-          src={profile.picture ?? `${CONFIG.assetsDir}/logo/logo.svg`}
-          alt={`${profile.name}'s profile picture`}
+          src={profile.profilePictureUrl ?? `${CONFIG.assetsDir}/logo/logo.svg`}
+          alt={`${profile.firstName} ${profile.lastName}'s profile picture`}
         />
         <AvatarFallback>
-          {profile.name ? profile.name[0].toUpperCase() : "U"}
+          {profile.firstName ? profile.firstName[0].toUpperCase() : "U"}
         </AvatarFallback>
       </Avatar>
       <div className="flex flex-col">
         <h3 className="font-bold text-lg text-black dark:text-white">
-          {profile.name}
+          {`${profile.firstName} ${profile.lastName}`}
         </h3>
         <p className="text-sm text-gray-500 dark:text-gray-300">
-          {profile.title}
+          {profile.headline}
         </p>
       </div>
     </Card>

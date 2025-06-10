@@ -1,19 +1,19 @@
 import React from "react";
-import { Profile } from "@/types/profile";
+import { ProfileWithRelations } from "@/lib/db/types";
 import {
   EducationDialog,
   ExperienceDialog,
-  HonorsDialog,
+  AwardsDialog,
   ProjectsDialog,
 } from "./profile-dialogs";
 
-export const ProfileButtons: React.FC<{ profile: Profile }> = ({ profile }) => {
+export const ProfileButtons: React.FC<{ profile: ProfileWithRelations }> = ({ profile }) => {
   return (
     <>
       <ExperienceDialog experiences={profile.experiences} />
       <EducationDialog educations={profile.educations} />
       <ProjectsDialog projects={profile.projects} />
-      <HonorsDialog honors={profile.honors} />
+      <AwardsDialog awards={profile.awards} />
     </>
   );
 };

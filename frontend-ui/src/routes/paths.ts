@@ -14,14 +14,14 @@ export const paths = {
     details: (usernames: string | undefined) =>
       `/compare?u=${encodeURIComponent(usernames ?? "")}`,
   },
-  feedback: "/",
+  feedback: "/feedback",
   browse: {
     root: "/browse",
     details: (query: string | undefined) =>
       `/browse?q=${encodeURIComponent(query ?? "")}`,
   },
-  privacy: "/",
-  terms: "/",
+  privacy: "/privacy",
+  terms: "/terms",
   people: {
     root: "/p/new",
     details: (handle: string | undefined) =>

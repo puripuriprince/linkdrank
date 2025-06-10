@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       "picsum.photos",
       "media.licdn.com",
       "attic.sh",
+      "images.unsplash.com",
     ],
   },
 };

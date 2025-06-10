@@ -6,7 +6,7 @@ import { getProfile, SAMPLE_PROFILES } from "@/actions/profiles";
 import { TypingMessage } from "../../search/components/typing-message";
 import { useRouter } from "@/routes/hooks";
 import { paths } from "@/routes/paths";
-import { Profile } from "@/types/profile";
+import { Profile } from "@/lib/db/types";
 
 export const AddProfileForm: React.FC = () => {
   const router = useRouter();
@@ -42,7 +42,7 @@ export const AddProfileForm: React.FC = () => {
     setStreamingFinished(false);
 
     try {
-      const profileData: Profile = await getProfile(
+      const profileData: any = await getProfile(
         url,
         ["Concordia University", "McGill University"],
         (msg: string) => setMessageQueue((prev) => [...prev, msg]),
@@ -52,11 +52,25 @@ export const AddProfileForm: React.FC = () => {
         return;
       }
 
-      // Simulate adding to the database
-      SAMPLE_PROFILES.unshift({ id: Math.random(), ...profileData });
+      // Simulate adding to the database - cast to proper type
+      const mockProfile = {
+        ...profileData,
+        id: Math.random(),
+        educations: [],
+        experiences: [],
+        certifications: [],
+        skills: [],
+        languages: [],
+        volunteers: [],
+        publications: [],
+        awards: [],
+        projects: [],
+      } as any;
+      SAMPLE_PROFILES.unshift(mockProfile);
       await new Promise((resolve) => setTimeout(resolve, 2500));
 
-      router.push(paths.people.details(profileData.linkedinUrl));
+      const linkedinUrl = profileData.linkedinUrl || profileData.linkedin_url || `https://www.linkedin.com/in/${profileData.linkedinId || 'unknown'}`;
+      router.push(paths.people.details(linkedinUrl));
     } catch (error) {
       console.error("Error fetching profile:", error);
       setMessageQueue((prev) => [...prev, "Error getting your profile."]);
@@ -65,7 +79,7 @@ export const AddProfileForm: React.FC = () => {
     }
   };
 
-  // When there’s no current message but messages are queued, move to the next message.
+  // When there's no current message but messages are queued, move to the next message.
   useEffect(() => {
     if (!currentMessage && messageQueue.length > 0) {
       handleNextMessage();

@@ -8,13 +8,13 @@ import { Label } from "@/components/ui/label";
 const MAX_PROFILES = 6;
 
 interface CompareSelectButtonProps {
-	profileLinkedinUrl: string;
+	profileLinkedinId: string;
 }
 
 export function CompareSelectButton({
-	profileLinkedinUrl,
+	profileLinkedinId,
 }: CompareSelectButtonProps) {
-	// Usando nuqs para manejar el estado de los perfiles seleccionados en la URL
+	// Using nuqs to manage selected profile IDs in URL state
 	const [selectedProfiles, setSelectedProfiles] = useQueryState(
 		"u",
 		parseAsArrayOf(parseAsString, ",").withDefault([]),
@@ -22,24 +22,24 @@ export function CompareSelectButton({
 	const [isSelected, setIsSelected] = useState(false);
 	const [isDisabled, setIsDisabled] = useState(false);
 
-	// Comprobar si este perfil está seleccionado o si se alcanzó el máximo
+	// Check if this profile is selected or if max limit is reached
 	useEffect(() => {
-		const isProfileSelected = selectedProfiles.includes(profileLinkedinUrl);
+		const isProfileSelected = selectedProfiles.includes(profileLinkedinId);
 		setIsSelected(isProfileSelected);
 
-		// Deshabilitar si ya hay MAX_PROFILES seleccionados y este no está entre ellos
+		// Disable if MAX_PROFILES are already selected and this one isn't among them
 		setIsDisabled(selectedProfiles.length >= MAX_PROFILES && !isProfileSelected);
-	}, [selectedProfiles, profileLinkedinUrl]);
+	}, [selectedProfiles, profileLinkedinId]);
 
 	const handleToggle = (checked: boolean) => {
 		if (checked) {
-			// Añadir este perfil si no excede el máximo
+			// Add this profile if it doesn't exceed the maximum
 			if (selectedProfiles.length < MAX_PROFILES) {
-				setSelectedProfiles([...selectedProfiles, profileLinkedinUrl]);
+				setSelectedProfiles([...selectedProfiles, profileLinkedinId]);
 			}
 		} else {
-			// Eliminar este perfil
-			setSelectedProfiles(selectedProfiles.filter((url) => url !== profileLinkedinUrl));
+			// Remove this profile
+			setSelectedProfiles(selectedProfiles.filter((id) => id !== profileLinkedinId));
 		}
 	};
 
@@ -53,13 +53,13 @@ export function CompareSelectButton({
 			onClick={handleClick}
 		>
 			<Checkbox
-				id={`compare-${profileLinkedinUrl}`}
+				id={`compare-${profileLinkedinId}`}
 				checked={isSelected}
 				disabled={isDisabled}
 				onCheckedChange={handleToggle}
 			/>
 			<Label
-				htmlFor={`compare-${profileLinkedinUrl}`}
+				htmlFor={`compare-${profileLinkedinId}`}
 				className={`cursor-pointer whitespace-nowrap text-xs ${isDisabled ? "text-muted-foreground" : ""}`}
 			>
 				Comparar

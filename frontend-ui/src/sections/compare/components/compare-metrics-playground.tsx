@@ -30,28 +30,37 @@ const CHART_COLORS = [
 ];
 
 interface LinkedInProfile {
-	name: string;
-	title: string;
-	picture: string;
-	about?: string;
-	linkedinUrl?: string;
-	followers?: number;
-	connections?: number;
+	firstName: string;
+	lastName: string;
+	headline: string;
+	profilePictureUrl?: string;
+	summary?: string;
+	linkedinId: string;
+	followersCount?: number;
+	connectionsCount?: number;
 	location?: {
 		city?: string;
 		state?: string;
 		country?: string;
 	};
-	skills?: string[];
+	skills?: Array<{
+		skill: {
+			name: string;
+		};
+	}>;
 	experiences?: Array<{
 		title: string;
-		companyName: string;
+		organization: {
+			name: string;
+		};
 		startDate: string;
 		endDate: string;
 		duration?: string;
 	}>;
 	educations?: Array<{
-		school: string;
+		school: {
+			name: string;
+		};
 		degree: string;
 		startYear: string;
 		endYear: string;
@@ -60,7 +69,7 @@ interface LinkedInProfile {
 		title: string;
 		description: string;
 	}>;
-	honors?: Array<{
+	awards?: Array<{
 		title: string;
 		issuer: string;
 	}>;
@@ -72,37 +81,38 @@ interface LinkedInProfile {
 		educations: number;
 		skills: number;
 		projects: number;
-		honors: number;
+		awards: number;
 	};
 }
 
 // Convert profile format to our internal format
 function convertToProfileFormat(profile: any): LinkedInProfile {
 	return {
-		name: profile.name,
-		title: profile.title,
-		picture: profile.picture || "",
-		about: profile.about,
-		linkedinUrl: profile.linkedinUrl || profile.linkedin_url,
-		followers: profile.followers,
-		connections: profile.connections,
+		firstName: profile.firstName,
+		lastName: profile.lastName,
+		headline: profile.headline || "",
+		profilePictureUrl: profile.profilePictureUrl || "",
+		summary: profile.summary,
+		linkedinId: profile.linkedinId,
+		followersCount: profile.followersCount,
+		connectionsCount: profile.connectionsCount,
 		location: typeof profile.location === 'string' 
 			? { city: profile.location, state: "", country: "" }
 			: profile.location,
-		skills: profile.skills,
-		experiences: profile.experiences,
-		educations: profile.educations,
-		projects: profile.projects,
-		honors: profile.honors,
+		skills: profile.skills || [],
+		experiences: profile.experiences || [],
+		educations: profile.educations || [],
+		projects: profile.projects || [],
+		awards: profile.awards || [],
 		color: "",
 		metrics: {
-			followers: profile.followers || 0,
-			connections: profile.connections || 0,
+			followers: profile.followersCount || 0,
+			connections: profile.connectionsCount || 0,
 			experiences: profile.experiences?.length || 0,
 			educations: profile.educations?.length || 0,
 			skills: profile.skills?.length || 0,
 			projects: profile.projects?.length || 0,
-			honors: profile.honors?.length || 0,
+			awards: profile.awards?.length || 0,
 		},
 	};
 }
@@ -124,15 +134,15 @@ function ProfileItem({
 			}}
 		>
 			<Link
-				href={profile.linkedinUrl || "#"}
+				href={`https://www.linkedin.com/in/${profile.linkedinId}`}
 				className="flex items-center gap-3 p-2"
 				target="_blank"
 				rel="noopener noreferrer"
 			>
 				<div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-border/50">
 					<Image
-						src={profile.picture || "/default-avatar.png"}
-						alt={`${profile.name}'s profile picture`}
+						src={profile.profilePictureUrl || "/default-avatar.png"}
+						alt={`${profile.firstName} ${profile.lastName}'s profile picture`}
 						width={48}
 						height={48}
 						className="h-full w-full object-cover"
@@ -141,7 +151,7 @@ function ProfileItem({
 				<div className="min-w-0 flex-1">
 					<div className="flex items-center justify-between">
 						<h3 className="truncate font-medium text-sm">
-							{profile.name}
+							{profile.firstName} {profile.lastName}
 						</h3>
 						<div className="flex items-center gap-2">
 							<div className="flex items-center gap-1 text-xs">
@@ -152,7 +162,7 @@ function ProfileItem({
 					</div>
 					<div className="mt-1 flex items-center gap-2">
 						<p className="truncate text-muted-foreground text-xs">
-							{profile.title}
+							{profile.headline}
 						</p>
 					</div>
 					<div className="mt-1 flex items-center gap-2 text-muted-foreground text-xs">
@@ -162,7 +172,7 @@ function ProfileItem({
 						</span>
 						<span className="flex items-center gap-1">
 							<Award className="h-3 w-3 text-purple-500" />
-							{profile.metrics.honors}
+							{profile.metrics.awards}
 						</span>
 					</div>
 				</div>
@@ -174,7 +184,7 @@ function ProfileItem({
 				className="-right-1 -top-1 absolute h-6 w-6 rounded-full p-0 opacity-0 transition-opacity group-hover:opacity-100"
 			>
 				<X className="h-3 w-3" />
-				<span className="sr-only">Remove {profile.name}</span>
+				<span className="sr-only">Remove {profile.firstName} {profile.lastName}</span>
 			</Button>
 		</div>
 	);
@@ -198,8 +208,8 @@ function ProfileCard({
 				<div className="mb-3 flex items-start gap-3">
 					<div className="h-12 w-12 overflow-hidden rounded-full border border-border/50">
 						<Image
-							src={profile.picture || "/default-avatar.png"}
-							alt={`${profile.name}'s profile`}
+							src={profile.profilePictureUrl || "/default-avatar.png"}
+							alt={`${profile.firstName} ${profile.lastName}'s profile`}
 							width={48}
 							height={48}
 							className="h-full w-full object-cover"
@@ -210,10 +220,10 @@ function ProfileCard({
 							className="truncate font-medium text-base"
 							style={{ color: profile.color }}
 						>
-							{profile.name}
+							{profile.firstName} {profile.lastName}
 						</h3>
 						<p className="truncate text-muted-foreground text-xs">
-							{profile.title}
+							{profile.headline}
 						</p>
 						{profile.location && (
 							<p className="truncate text-muted-foreground text-xs flex items-center gap-1 mt-1">
@@ -238,7 +248,7 @@ function ProfileCard({
 					</div>
 					<div className="flex items-center gap-1.5">
 						<Award className="h-3.5 w-3.5 text-purple-500" />
-						<span>{profile.metrics.honors.toLocaleString()} honors</span>
+						<span>{profile.metrics.awards.toLocaleString()} awards</span>
 					</div>
 					<div className="flex items-center gap-1.5">
 						<Users className="h-3.5 w-3.5 text-amber-500" />
@@ -260,7 +270,7 @@ function ProfileCard({
 				className="absolute top-2 right-2 h-7 w-7 rounded-full border-muted-foreground/30 bg-background/80 p-0 opacity-0 backdrop-blur-sm transition-opacity hover:bg-background hover:text-destructive group-hover:opacity-100"
 			>
 				<X className="h-3.5 w-3.5" />
-				<span className="sr-only">Remove {profile.name}</span>
+				<span className="sr-only">Remove {profile.firstName} {profile.lastName}</span>
 			</Button>
 		</div>
 	);
@@ -277,7 +287,7 @@ export default function CompareMetricsPlayground({
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
-	// On initial load, check URL for profile URLs to compare
+	// On initial load, check URL for profile linkedinIds to compare
 	useEffect(() => {
 		async function loadProfilesFromUrl() {
 			try {
@@ -286,14 +296,14 @@ export default function CompareMetricsPlayground({
 					return;
 				}
 
-				const profileUrls = users.split(",").filter(Boolean);
-				if (profileUrls.length === 0) {
+				const profileIds = users.split(",").filter(Boolean);
+				if (profileIds.length === 0) {
 					setIsLoading(false);
 					return;
 				}
 
 				// Fetch data for each profile in parallel
-				const promises = profileUrls.map((url) => fetchProfileData(decodeURIComponent(url)));
+				const promises = profileIds.map((id) => fetchProfileData(decodeURIComponent(id)));
 				const profiles = await Promise.all(promises);
 
 				// Filter out any null results (profiles not found)
@@ -326,10 +336,19 @@ export default function CompareMetricsPlayground({
 			return;
 		}
 
+		// Extract linkedinId from search input
+		let searchLinkedinId = searchQuery;
+		if (searchQuery.includes('linkedin.com/in/')) {
+			searchLinkedinId = searchQuery.replace('https://www.linkedin.com/in/', '').replace('/', '');
+		}
+
 		// Check if profile is already in the list
 		if (
 			selectedProfiles.some(
-				(profile) => profile.linkedinUrl?.toLowerCase() === searchQuery.toLowerCase(),
+				(profile) => {
+					const profileLinkedinId = profile.linkedinId;
+					return profileLinkedinId.toLowerCase() === searchLinkedinId.toLowerCase();
+				}
 			)
 		) {
 			setError("This profile is already in your comparison");
@@ -344,7 +363,7 @@ export default function CompareMetricsPlayground({
 
 			if (!profileData) {
 				setError(
-					"Profile not found. Please check the LinkedIn URL and try again.",
+					"Profile not found. Please check the LinkedIn URL or ID and try again.",
 				);
 				return;
 			}
@@ -364,17 +383,24 @@ export default function CompareMetricsPlayground({
 	};
 
 	// Remove a profile from the comparison
-	const removeProfile = (profileUrl: string) => {
+	const removeProfile = (profileLinkedinId: string) => {
 		setSelectedProfiles(
-			selectedProfiles.filter((profile) => profile.linkedinUrl !== profileUrl),
+			selectedProfiles.filter((profile) => {
+				const linkedinId = profile.linkedinId;
+				return linkedinId !== profileLinkedinId;
+			})
 		);
 	};
 
 	// Update the URL with selected profiles (for sharing)
 	const updateUrlWithProfiles = useCallback(() => {
 		if (selectedProfiles.length > 0) {
-			const profileUrls = selectedProfiles.map((profile) => encodeURIComponent(profile.linkedinUrl || "")).join(",");
-			router.push(paths.compare.details(profileUrls), { scroll: false });
+			const profileIds = selectedProfiles.map((profile) => {
+				// Extract linkedinId from the linkedinUrl
+				const linkedinId = profile.linkedinId;
+				return encodeURIComponent(linkedinId);
+			}).join(",");
+			router.push(paths.compare.details(profileIds), { scroll: false });
 		} else {
 			router.push(paths.compare.root, { scroll: false });
 		}
@@ -386,10 +412,20 @@ export default function CompareMetricsPlayground({
 	}, [updateUrlWithProfiles]);
 
 	// Fetch profile data from the API
-	const fetchProfileData = async (linkedinUrl: string): Promise<LinkedInProfile | null> => {
+	const fetchProfileData = async (searchInput: string): Promise<LinkedInProfile | null> => {
 		try {
-			const profileData = SAMPLE_PROFILES.find(
-				p => p.linkedin_url === linkedinUrl
+			// Extract linkedinId from URL or use as-is if it's already just the ID
+			let linkedinId = searchInput;
+			if (searchInput.includes('linkedin.com/in/')) {
+				linkedinId = searchInput.replace('https://www.linkedin.com/in/', '').replace('/', '');
+			}
+			
+			// Import ADDITIONAL_PROFILES and search in both arrays
+			const { ADDITIONAL_PROFILES } = await import("@/actions/additional-profiles");
+			const ALL_PROFILES = [...SAMPLE_PROFILES, ...ADDITIONAL_PROFILES];
+			
+			const profileData = ALL_PROFILES.find(
+				p => p.linkedinId === linkedinId
 			)
 			
 			if (!profileData) {
@@ -473,13 +509,16 @@ export default function CompareMetricsPlayground({
 										Add LinkedIn profiles to compare
 									</div>
 								) : (
-									selectedProfiles.map((profile) => (
-										<ProfileItem
-											key={profile.linkedinUrl}
-											profile={profile}
-											onRemove={() => removeProfile(profile.linkedinUrl || "")}
-										/>
-									))
+									selectedProfiles.map((profile) => {
+										const linkedinId = profile.linkedinId;
+										return (
+											<ProfileItem
+												key={linkedinId}
+												profile={profile}
+												onRemove={() => removeProfile(linkedinId)}
+											/>
+										);
+									})
 								)}
 							</div>
 						</div>
@@ -502,13 +541,16 @@ export default function CompareMetricsPlayground({
 								</TabsContent>
 								<TabsContent value="individual" className="pt-4">
 									<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-										{selectedProfiles.map((profile) => (
-											<ProfileCard
-												key={profile.linkedinUrl}
-												profile={profile}
-												onRemove={() => removeProfile(profile.linkedinUrl || "")}
-											/>
-										))}
+										{selectedProfiles.map((profile) => {
+											const linkedinId = profile.linkedinId;
+											return (
+												<ProfileCard
+													key={linkedinId}
+													profile={profile}
+													onRemove={() => removeProfile(linkedinId)}
+												/>
+											);
+										})}
 									</div>
 								</TabsContent>
 							</Tabs>

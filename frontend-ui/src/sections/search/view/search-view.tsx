@@ -24,13 +24,9 @@ export function SearchView() {
         .then((profiles) => {
           console.log("AI search results for :", query);
           setSearchResults({
-            profiles: SAMPLE_PROFILES.map((p, i) => {
-              return {
-                id: i,
-                ...p,
-                picture: p.picture ?? `${CONFIG.assetsDir}/logo/logo.svg`,
-              };
-            }),
+            profiles: SAMPLE_PROFILES.map((p, i) => ({
+              ...p,
+            })),
             relatedTags: [
               { id: "accessory", label: "Accessory" },
               { id: "face", label: "Face" },

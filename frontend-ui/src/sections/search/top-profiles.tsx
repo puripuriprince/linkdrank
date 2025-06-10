@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,44 +10,46 @@ import {
   ProfilePreviewHorizontal,
   ProfilePreviewHorizontalSkeleton,
 } from "@/components/profile-preview";
-import { Profile } from "@/types/profile";
+import { ProfileWithRelations } from "@/lib/db/types";
 import { ProfileButtons } from "./components";
 import { toast } from "sonner";
 import { CONFIG } from "@/global-config";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export type ProfileGalleryProps = {
-  profiles: Profile[];
+  profiles: ProfileWithRelations[];
   loading?: boolean;
 };
 
 interface DesktopProfileDisplayProps {
-  profile: Profile;
+  profile: ProfileWithRelations;
 }
 
 const DesktopProfileDisplaySkeleton: React.FC = () => {
   return (
-    <div className="relative h-full w-full overflow-hidden border-r-[0.5px] border-black/[0.13] dark:border-white/[0.13]">
-      <Image
-        src={`${CONFIG.assetsDir}/logo/logo.svg`}
-        alt={"Linky"}
-        width={500}
-        height={500}
-        className="rounded-full object-cover animate-pulse"
-      />
+    <div className="flex h-full w-full flex-col items-center justify-center p-10">
+      <div className="mb-4 h-40 w-40">
+        <Skeleton className="h-40 w-40 rounded-full" />
+      </div>
+      <Skeleton className="mb-2 h-6 w-48" />
+      <Skeleton className="mb-6 h-4 w-64" />
+      <div className="grid w-full grid-cols-2 gap-3">
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+      </div>
     </div>
   );
 };
 
 const MobileProfileDisplaySkeleton: React.FC = () => {
   return (
-    <Image
-      src={`${CONFIG.assetsDir}/logo/logo.svg`}
-      alt={"Linky"}
-      width={400}
-      height={400}
-      className="rounded-full object-cover animate-pulse"
-    />
+    <div className="flex flex-col items-center space-y-4">
+      <Skeleton className="h-40 w-40 rounded-full" />
+      <div className="text-center">
+        <Skeleton className="mb-2 h-6 w-32" />
+        <Skeleton className="h-4 w-48" />
+      </div>
+    </div>
   );
 };
 
@@ -53,69 +57,44 @@ const DesktopProfileDisplay: React.FC<DesktopProfileDisplayProps> = ({
   profile,
 }) => {
   return (
-    <div className="relative h-full w-full overflow-hidden border-r-[0.5px] border-black/[0.13] dark:border-white/[0.13]">
-      <div className="flex h-full w-full items-center justify-center">
-        <div className="relative flex h-full w-full flex-col items-center justify-center">
-          {/* Top overlay */}
-          <div className="absolute left-8 top-9 z-20">
-            <h1 className="line-clamp-3 text-xl font-semibold text-black dark:text-white drop-shadow">
-              Most Relevant Profiles
-            </h1>
-          </div>
-          <div className="absolute right-8 top-9 flex gap-1 z-20">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => toast.info("Added to favorites!")}
-            >
-              <Icon icon="mdi:heart" width="16" height="16" /> Favorite
-            </Button>
-          </div>
-          {/* Main display */}
-          <div className="flex h-full w-full gap-12 items-center justify-center p-10">
-            <div className="flex flex-col items-center space-y-4">
-              <div className="relative h-24 w-24">
-                <Image
-                  src={profile.picture || `${CONFIG.assetsDir}/logo/logo.svg`}
-                  alt={profile.name}
-                  fill
-                  className="rounded-full object-cover"
-                />
-              </div>
-              <div className="text-center">
-                <h1 className="text-xl font-bold text-black dark:text-white">
-                  {profile.name}
-                </h1>
-                <p className="text-sm text-gray-500 dark:text-gray-300">
-                  {profile.title}
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-3 w-1/2">
-              <ProfileButtons profile={profile} />
-            </div>
-          </div>
-          {/* Bottom button */}
-          <div className="mt-auto pb-10">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => window.open(profile.linkedinUrl)}
-            >
-              <Icon icon="mdi:linkedin" width="16" height="16" /> View on
-              LinkedIn
-            </Button>
-          </div>
-        </div>
+    <div className="flex h-full w-full flex-col items-center justify-center p-10">
+      <div className="relative mb-4 h-40 w-40">
+        <Image
+          src={profile.profilePictureUrl || `${CONFIG.assetsDir}/logo/logo.svg`}
+          alt={`${profile.firstName} ${profile.lastName}'s profile picture`}
+          fill
+          className="rounded-full object-cover"
+        />
+      </div>
+      <div className="text-center">
+        <h1 className="mb-2 text-2xl font-bold text-black dark:text-white">
+          {`${profile.firstName} ${profile.lastName}`}
+        </h1>
+        <p className="mb-6 text-gray-500 dark:text-gray-300">
+          {profile.headline}
+        </p>
+      </div>
+      {/* Buttons Grid */}
+      <div className="grid w-full grid-cols-2 gap-3">
+        <ProfileButtons profile={profile} />
+      </div>
+      <div className="py-3">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => window.open(`https://www.linkedin.com/in/${profile.linkedinId}`)}
+        >
+          <Icon icon="mdi:linkedin" width="16" height="16" /> View on LinkedIn
+        </Button>
       </div>
     </div>
   );
 };
 
 interface DesktopViewProps {
-  selectedProfile: Profile;
-  profiles: Profile[];
-  onProfileSelect: (profile: Profile) => void;
+  selectedProfile: ProfileWithRelations;
+  profiles: ProfileWithRelations[];
+  onProfileSelect: (profile: ProfileWithRelations) => void;
   isLoading?: boolean;
 }
 
@@ -166,7 +145,7 @@ const DesktopView: React.FC<DesktopViewProps> = ({
 };
 
 interface MobileProfileDisplayProps {
-  profile: Profile;
+  profile: ProfileWithRelations;
 }
 
 const MobileProfileDisplay: React.FC<MobileProfileDisplayProps> = ({
@@ -176,18 +155,18 @@ const MobileProfileDisplay: React.FC<MobileProfileDisplayProps> = ({
     <div className="flex flex-col items-center space-y-4">
       <div className="relative h-40 w-40">
         <Image
-          src={profile.picture || `${CONFIG.assetsDir}/logo/logo.svg`}
-          alt={profile.title}
+          src={profile.profilePictureUrl || `${CONFIG.assetsDir}/logo/logo.svg`}
+          alt={profile.headline || "Profile"}
           fill
           className="rounded-full object-cover"
         />
       </div>
       <div className="text-center">
         <h1 className="text-xl font-bold text-black dark:text-white">
-          {profile.name}
+          {`${profile.firstName} ${profile.lastName}`}
         </h1>
         <p className="text-sm text-gray-500 dark:text-gray-300">
-          {profile.title}
+          {profile.headline}
         </p>
       </div>
     </div>
@@ -195,9 +174,9 @@ const MobileProfileDisplay: React.FC<MobileProfileDisplayProps> = ({
 };
 
 interface MobileViewProps {
-  selectedProfile: Profile;
-  profiles: Profile[];
-  onProfileSelect: (profile: Profile) => void;
+  selectedProfile: ProfileWithRelations;
+  profiles: ProfileWithRelations[];
+  onProfileSelect: (profile: ProfileWithRelations) => void;
   isLoading?: boolean;
 }
 
@@ -222,7 +201,7 @@ const MobileView: React.FC<MobileViewProps> = ({
             <Button
               variant="outline"
               size="sm"
-              onClick={() => window.open(selectedProfile.linkedinUrl)}
+              onClick={() => window.open(`https://www.linkedin.com/in/${selectedProfile.linkedinId}`)}
             >
               <Icon icon="mdi:linkedin" width="16" height="16" /> View on
               LinkedIn
@@ -260,9 +239,9 @@ const MobileView: React.FC<MobileViewProps> = ({
                     <div className="relative h-24 w-24">
                       <Image
                         src={
-                          profile.picture || `${CONFIG.assetsDir}/logo/logo.svg`
+                          profile.profilePictureUrl || `${CONFIG.assetsDir}/logo/logo.svg`
                         }
-                        alt={profile.name}
+                        alt={`${profile.firstName} ${profile.lastName}`}
                         fill
                         className="object-cover rounded-full"
                       />
@@ -278,8 +257,8 @@ const MobileView: React.FC<MobileViewProps> = ({
 };
 
 export function ProfileGallery({ profiles, loading }: ProfileGalleryProps) {
-  const [selectedProfile, setSelectedProfile] = useState<Profile>(
-    profiles.length > 0 ? profiles[0] : ({} as Profile),
+  const [selectedProfile, setSelectedProfile] = useState<ProfileWithRelations>(
+    profiles.length > 0 ? profiles[0] : ({} as ProfileWithRelations),
   );
 
   useEffect(() => {
@@ -288,7 +267,7 @@ export function ProfileGallery({ profiles, loading }: ProfileGalleryProps) {
     }
   }, [profiles]);
 
-  const handleProfileSelect = (profile: Profile) => {
+  const handleProfileSelect = (profile: ProfileWithRelations) => {
     setSelectedProfile(profile);
   };
 

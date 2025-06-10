@@ -10,9 +10,10 @@ import {
 } from "recharts";
 
 interface LinkedInProfile {
-	name: string;
-	title: string;
-	picture: string;
+	firstName: string;
+	lastName: string;
+	headline: string;
+	profilePictureUrl?: string;
 	color: string;
 	metrics: {
 		followers: number;
@@ -21,7 +22,7 @@ interface LinkedInProfile {
 		educations: number;
 		skills: number;
 		projects: number;
-		honors: number;
+		awards: number;
 	};
 }
 
@@ -40,7 +41,7 @@ export function ProfileMetricsRadar({ profile }: ProfileMetricsRadarProps) {
 		educations: 5,
 		skills: 20,
 		projects: 10,
-		honors: 15,
+		awards: 15,
 	};
 
 	// Transform and normalize data for chart
@@ -76,11 +77,13 @@ export function ProfileMetricsRadar({ profile }: ProfileMetricsRadarProps) {
 			originalValue: metrics.projects,
 		},
 		{
-			skill: "Honors",
-			value: Math.min(10, (metrics.honors / maxValues.honors) * 10),
-			originalValue: metrics.honors,
+			skill: "Awards",
+			value: Math.min(10, (metrics.awards / maxValues.awards) * 10),
+			originalValue: metrics.awards,
 		},
 	];
+
+	const profileName = `${profile.firstName} ${profile.lastName}`;
 
 	return (
 		<div className="h-[240px]">
@@ -99,7 +102,7 @@ export function ProfileMetricsRadar({ profile }: ProfileMetricsRadarProps) {
 						tick={{ fill: "#888888", fontSize: 12 }}
 					/>
 					<Radar
-						name={profile.name}
+						name={profileName}
 						dataKey="value"
 						stroke={profile.color}
 						fill={profile.color}

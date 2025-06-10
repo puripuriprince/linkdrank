@@ -6,7 +6,7 @@ import { InfiniteScroll } from "@/components/infinite-scroll";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Profile } from "@/types/profile";
+import { ProfileWithRelations } from "@/lib/db/types";
 import { paths } from "@/routes/paths";
 import { useRouter } from "@/routes/hooks";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -21,7 +21,7 @@ export function RelatedProfiles({
   relatedTags,
   isLoading,
 }: RelatedProfilesProps) {
-  const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [profiles, setProfiles] = useState<ProfileWithRelations[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -32,7 +32,7 @@ export function RelatedProfiles({
     if (loading || !hasMore) return;
     setLoading(true);
     try {
-      const newProfiles = await getProfilesPreview(page, PAGE_SIZE);
+      const newProfiles = await getProfilesPreview(page, PAGE_SIZE) as ProfileWithRelations[];
       if (!newProfiles?.length) {
         setHasMore(false);
       } else {
@@ -125,13 +125,13 @@ export function RelatedProfiles({
             <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
               {profiles.map((profile, i) => (
                 <div
-                  key={`profile-${profile.name}`}
+                  key={`profile-${profile.firstName}-${profile.lastName}-${profile.id}`}
                   className="flex justify-center hover:cursor-pointer rounded-xl"
                 >
                   <ProfilePreview
                     profile={profile}
                     onClick={() =>
-                      router.push(paths.people.details(profile.linkedinUrl))
+                      router.push(paths.people.details(`https://www.linkedin.com/in/${profile.linkedinId}`))
                     }
                   />
                 </div>
