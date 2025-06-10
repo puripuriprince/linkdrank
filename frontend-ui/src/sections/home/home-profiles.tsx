@@ -78,7 +78,7 @@ export function HomeProfiles() {
                 <ProfilePreview
                   profile={profile}
                   onClick={() =>
-                    router.push(paths.people.details(profile.linkedinUrl))
+                    router.push(paths.people.details(profile.linkedin_url))
                   }
                 />
               </div>

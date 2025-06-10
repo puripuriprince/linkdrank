@@ -39,6 +39,7 @@ export type Profile = {
   picture: string;
   name: string;
   linkedinUrl?: string;
+  linkedin_url?: string;
   location?: string;
   about?: string;
   experiences?: Experience[];

@@ -9,6 +9,7 @@ export const SAMPLE_PROFILES = [
       "https://media.licdn.com/dms/image/v2/C4E03AQGq-RuxjV691w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1588362709407?e=1747872000&v=beta&t=JXcDyKuYwXZRYi5nzreiELO6aAqj0NQ6HmS7IR2e9V4",
     about: "",
     linkedinUrl: "https://www.linkedin.com/in/nikita-kozak/",
+    linkedin_url: "https://www.linkedin.com/in/nikita-kozak/",
     followers: 100,
     connections: 100,
     location: {

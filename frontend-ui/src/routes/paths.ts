@@ -9,8 +9,11 @@ const ROOTS = {
 // ----------------------------------------------------------------------
 
 export const paths = {
-  vote: "/elo",
-  leaderboard: "/leaderboard",
+  compare: {
+    root: "/compare",
+    details: (usernames: string | undefined) =>
+      `/compare?u=${encodeURIComponent(usernames ?? "")}`,
+  },
   feedback: "/",
   browse: {
     root: "/browse",

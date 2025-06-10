@@ -5,7 +5,11 @@ import type { NavMainProps } from "./main/nav/types";
 // ----------------------------------------------------------------------
 
 export const navData: NavMainProps["data"] = [
-  { title: "Home", href: "/", icon: "ic:baseline-home" },
+  {
+    title: "Comapre",
+    href: paths.compare.root,
+    icon: "ic:baseline-home",
+  },
   {
     title: "AI Search",
     href: paths.search.root,

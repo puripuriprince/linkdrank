@@ -6,8 +6,8 @@ import { Code, ExternalLink, User } from "lucide-react";
 import { Share2 } from "lucide-react";
 import Image from "next/image";
 import { SAMPLE_PROFILES } from "@/actions/profiles";
-import UserSkillsRadar from "../components/user-skills-radar";
-import { ExperienceCardSection } from "../components/experience-card-section";
+import UserSkillsRadar from "../../../components/user-skills-radar";
+import { ExperienceCardSection } from "@/sections/profile/components/experience-card-section";
 
 
 const userData = SAMPLE_PROFILES[0];
