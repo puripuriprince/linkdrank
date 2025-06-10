@@ -35,8 +35,8 @@ function SearchContainer({ children }: SearchProviderProps) {
 
   const updateSearch = (value: string) => {
     setSearch(value);
-    if (pathname === paths.browse) {
-      router.push(`/search?query=${encodeURIComponent(value.trim())}`);
+    if (pathname === paths.browse.root) {
+      router.push(paths.browse.details(value.trim()));
     }
   };
 

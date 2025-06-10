@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-
-import { ProfileView } from "@/sections/profile/view";
+import { ProfileView } from "@/sections/profile/view/profile-view";
 
 // ----------------------------------------------------------------------
 

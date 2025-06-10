@@ -70,7 +70,7 @@ export const signInWithOAuth = async (
 ): Promise<OAuthResponse> => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: provider as Provider,
-    options: { redirectTo: `${window.location.origin}${paths.profile.root}` },
+    options: { redirectTo: `${window.location.origin}${paths.people.root}` },
   });
 
   if (error) {
@@ -93,7 +93,7 @@ export const signUp = async ({
     email,
     password,
     options: {
-      emailRedirectTo: `${window.location.origin}${paths.profile.root}`,
+      emailRedirectTo: `${window.location.origin}${paths.people.root}`,
       data: { display_name: userName },
     },
   });

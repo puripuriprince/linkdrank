@@ -8,17 +8,17 @@ export const navData: NavMainProps["data"] = [
   { title: "Home", href: "/", icon: "ic:baseline-home" },
   {
     title: "AI Search",
-    href: paths.people.root,
+    href: paths.search.root,
     icon: "ix:ai",
   },
   {
     title: "Browse",
-    href: paths.browse,
+    href: paths.browse.root,
     icon: "mdi:magnify",
   },
   {
     title: "Profile",
     icon: "material-symbols:account-circle",
-    href: paths.profile,
+    href: paths.people.root,
   },
 ];

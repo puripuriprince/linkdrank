@@ -4,7 +4,6 @@ import { getHandeFromLinkedInURL } from "@/lib/utils";
 
 const ROOTS = {
   AUTH: "/auth",
-  PROFILE: "/profile",
 };
 
 // ----------------------------------------------------------------------
@@ -13,15 +12,22 @@ export const paths = {
   vote: "/elo",
   leaderboard: "/leaderboard",
   feedback: "/",
-  browse: "/browse",
+  browse: {
+    root: "/browse",
+    details: (query: string | undefined) =>
+      `/browse?q=${encodeURIComponent(query ?? "")}`,
+  },
   privacy: "/",
   terms: "/",
   people: {
-    root: "/p",
+    root: "/p/new",
     details: (handle: string | undefined) =>
-      `/p/:handle:${getHandeFromLinkedInURL(handle ?? "")}`,
-    AISearch: (query: string | undefined) =>
-      `/p/:ai-search:${encodeURIComponent(query ?? "")}`,
+      `/p/${getHandeFromLinkedInURL(handle ?? "")}`,
+  },
+  search: {
+    root: "/search",
+    details: (query: string | undefined) =>
+      `/search?q=${encodeURIComponent(query ?? "")}`,
   },
   // AUTH
   auth: {
@@ -51,6 +57,4 @@ export const paths = {
       resetPassword: `${ROOTS.AUTH}/supabase/reset-password`,
     },
   },
-  // DASHBOARD
-  profile: ROOTS.PROFILE,
 };

@@ -5,11 +5,24 @@ export const SAMPLE_PROFILES = [
     name: "Nikita Kozak",
     title:
       "Stanford MechE PhD Candidate | Knight-Hennessey Scholar | DOE Computational Science Graduate Fellow",
-    location: "Stanford, California, United States",
     picture:
       "https://media.licdn.com/dms/image/v2/C4E03AQGq-RuxjV691w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1588362709407?e=1747872000&v=beta&t=JXcDyKuYwXZRYi5nzreiELO6aAqj0NQ6HmS7IR2e9V4",
     about: "",
     linkedinUrl: "https://www.linkedin.com/in/nikita-kozak/",
+    followers: 100,
+    connections: 100,
+    location: {
+      city: "Stanford",
+      state: "California",
+      country: "United States",
+    },
+    skills: [
+      "Machine Learning",
+      "Computational Fluid Dynamics",
+      "Finite Element Analysis",
+      "Python",
+      "MATLAB",
+    ],
     experiences: [
       {
         title: "Graduate Student Researcher",

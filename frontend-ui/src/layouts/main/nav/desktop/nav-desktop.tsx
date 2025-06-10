@@ -27,7 +27,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
   const router = useRouter();
   const { search, setSearch } = useBrowseContext();
   const pathname = usePathname();
-  const isSearchPage = pathname === paths.browse;
+  const isSearchPage = pathname === paths.browse.root;
   const inputRef = useRef(null);
 
   const { formattedValue } = useCountUp({
@@ -43,7 +43,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && search.trim()) {
-      router.push(`/search?query=${encodeURIComponent(search.trim())}`);
+      router.push(paths.browse.details(search.trim()));
     }
   };
 
@@ -78,7 +78,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
           </Link>
 
           {data
-            .filter(({ href }) => href !== paths.people.root)
+            .filter(({ href }) => href !== paths.search.root)
             .map(({ title, href }) => (
               <Link
                 key={href}

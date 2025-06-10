@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Icon } from "@iconify/react";
 import { getProfile, SAMPLE_PROFILES } from "@/actions/profiles";
-import { TypingMessage } from "./typing-message";
+import { TypingMessage } from "../../search/components/typing-message";
 import { useRouter } from "@/routes/hooks";
 import { paths } from "@/routes/paths";
 import { Profile } from "@/types/profile";

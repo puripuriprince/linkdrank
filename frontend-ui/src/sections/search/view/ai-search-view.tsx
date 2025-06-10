@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------------
 
-import { AISearchForm } from "@/sections/profile/components/ai-search-form";
+import { AISearchForm } from "@/sections/search/components/ai-search-form";
 import React from "react";
 
 export function AISearchView() {

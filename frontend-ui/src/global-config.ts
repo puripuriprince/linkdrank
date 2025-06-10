@@ -45,7 +45,7 @@ export const CONFIG: ConfigValue = {
   auth: {
     method: "jwt",
     skip: false,
-    redirectPath: paths.profile.root,
+    redirectPath: paths.search.root,
   },
   /**
    * Posthog

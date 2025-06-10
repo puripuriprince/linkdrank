@@ -78,7 +78,7 @@ export function UserMenu() {
         align={isMobile ? "start" : "end"}
       >
         <DropdownMenuItem asChild>
-          <Link href={paths.profile}>
+          <Link href={paths.people.root}>
             <div className="flex items-center">
               <Icon
                 icon="material-symbols:account-circle"

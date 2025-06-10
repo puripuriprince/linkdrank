@@ -13,7 +13,7 @@ export const AISearchForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    router.push(paths.people.AISearch(description));
+    router.push(paths.search.details(description));
     setLoading(false);
   };
 

@@ -23,7 +23,7 @@ export function HomeHero() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    router.push(paths.people.AISearch(input));
+    router.push(paths.search.details(input));
     setLoading(false);
   };
 

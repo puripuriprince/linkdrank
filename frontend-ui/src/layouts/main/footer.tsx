@@ -24,8 +24,8 @@ interface LinksStructure {
 
 const LINKS: LinksStructure = {
   features: [
-    { label: "Search", href: paths.browse },
-    { label: "Add Profile", href: paths.profile },
+    { label: "Search", href: paths.browse.root },
+    { label: "Add Profile", href: paths.search.root },
   ],
   company: [
     { label: "Contact", href: paths.feedback },

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { paths } from "src/routes/paths";
 import { CustomDialog } from "@/components/custom-dialog";
-import { AISearchForm } from "@/sections/profile/components/ai-search-form";
+import { AISearchForm } from "@/sections/search/components/ai-search-form";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
@@ -16,7 +16,7 @@ export const AIDialogOpener: React.FC = () => {
   const handleOpen = () => {
     setOpen(true);
     setPreviousPath(window.location.pathname);
-    window.history.pushState({}, "", paths.people.root);
+    window.history.pushState({}, "", paths.search.root);
   };
 
   const handleClose = () => {
@@ -29,7 +29,7 @@ export const AIDialogOpener: React.FC = () => {
         <button
           className={cn(
             "hover:cursor-pointer rounded relative outline-none flex flex-1 flex-col items-center justify-center gap-[5px] [-webkit-touch-callout:_none] text-gray-500 dark:text-gray-400 transition-colors",
-            pathname === paths.people.root && "text-black dark:text-white",
+            pathname === paths.search.root && "text-black dark:text-white",
             "after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-1 after:rounded-[inherit]",
           )}
           onClick={handleOpen}

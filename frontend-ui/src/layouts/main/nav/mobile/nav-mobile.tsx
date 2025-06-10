@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import type { DesktopHeaderProps } from "../desktop";
 import { UserMenu } from "@/layouts/components";
 import Link from "next/link";
-import { AIDialogOpener } from "@/sections/profile/components";
+import { AIDialogOpener } from "@/sections/search/components";
 import { AddProfileDialogOpener } from "@/sections/profile/components/add-profile-opener";
 
 export type MobileNavProps = {
@@ -58,7 +58,7 @@ export function MobileHeader() {
         <UserMenu />
       </div>
 
-      {pathname === paths.browse && (
+      {pathname === paths.browse.root && (
         <div className="col-span-3 pb-4 pt-1.5">
           <Input
             placeholder="Search Profiles..."
@@ -86,9 +86,9 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
       )}
     >
       {data.map(({ title, href, icon }) =>
-        href === paths.people.root ? (
+        href === paths.search.root ? (
           <AIDialogOpener key={title} />
-        ) : href === paths.profile ? (
+        ) : href === paths.people.root ? (
           <AddProfileDialogOpener key={title} />
         ) : (
           <Link
