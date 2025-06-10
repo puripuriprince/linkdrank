@@ -1,6 +1,6 @@
 "use server";
 
-import { eq, ilike, and, or, count, desc, asc } from 'drizzle-orm';
+import { eq, ilike, or, count, desc, asc } from 'drizzle-orm';
 import { db } from '@/lib/db/client';
 import { 
   profiles, 

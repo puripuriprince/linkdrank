@@ -13,7 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { getProfile, SAMPLE_PROFILES } from "@/actions/profiles";
+import { SAMPLE_PROFILES } from "@/actions/profiles";
 import { paths } from "@/routes/paths";
 
 // Maximum number of profiles that can be compared
@@ -433,12 +433,8 @@ export default function CompareMetricsPlayground({
 					console.error('Database error, falling back to sample data:', error);
 				}
 			}
-			
-			// Fallback to sample data
-			const { ADDITIONAL_PROFILES } = await import("@/actions/additional-profiles");
-			const ALL_PROFILES = [...SAMPLE_PROFILES, ...ADDITIONAL_PROFILES];
-			
-			const profileData = ALL_PROFILES.find(
+
+			const profileData = SAMPLE_PROFILES.find(
 				p => p.linkedinId === linkedinId
 			)
 			

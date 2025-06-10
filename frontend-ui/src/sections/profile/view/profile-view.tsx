@@ -6,7 +6,6 @@ import { Code, ExternalLink, User } from "lucide-react";
 import { Share2 } from "lucide-react";
 import Image from "next/image";
 import { SAMPLE_PROFILES } from "@/actions/profiles";
-import { ADDITIONAL_PROFILES } from "@/actions/additional-profiles";
 import UserSkillsRadar from "../../../components/user-skills-radar";
 import { ExperienceCardSection } from "@/sections/profile/components/experience-card-section";
 import { EducationCardSection } from "@/sections/profile/components/education-card-section";
@@ -14,16 +13,13 @@ import { ProjectsCardSection } from "@/sections/profile/components/projects-card
 import { AwardsCardSection } from "@/sections/profile/components/awards-card-section";
 import { CertificationsCardSection } from "@/sections/profile/components/certifications-card-section";
 
-// Combine all profiles
-const ALL_PROFILES = [...SAMPLE_PROFILES, ...ADDITIONAL_PROFILES];
-
 interface ProfileViewProps {
   handle: string;
 }
 
 export function ProfileView({ handle }: ProfileViewProps) {
   // Find the profile based on the handle (linkedinId)
-  const userData = ALL_PROFILES.find(profile => profile.linkedinId === handle);
+  const userData = SAMPLE_PROFILES.find(profile => profile.linkedinId === handle);
 
   // If profile not found, show 404-like message
   if (!userData) {
@@ -34,7 +30,7 @@ export function ProfileView({ handle }: ProfileViewProps) {
             <div className="text-center">
               <h1 className="text-4xl font-bold text-foreground mb-4">Profile Not Found</h1>
               <p className="text-muted-foreground mb-8">
-                The profile you're looking for doesn't exist or has been removed.
+                The profile you&#39;re looking for doesn&#39;t exist or has been removed.
               </p>
               <Button asChild>
                 <Link href="/browse">Browse Profiles</Link>
