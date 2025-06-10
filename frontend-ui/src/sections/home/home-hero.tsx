@@ -64,7 +64,7 @@ export function HomeHero() {
 
       <form
         onSubmit={handleSubmit}
-        className="min-h-28 w-full max-w-2xl border bg-gray-100/85 backdrop-blur-xl backdrop-saturate-200 dark:bg-gray-900/80 rounded-2xl"
+        className="min-h-28 w-full max-w-2xl border bg-black/[0.06] dark:bg-white/[0.08] backdrop-blur-xl backdrop-saturate-200 rounded-2xl"
       >
         <Textarea
           placeholder="Describe who you're looking for..."

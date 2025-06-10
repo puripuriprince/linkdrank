@@ -12,7 +12,11 @@
     "fm:check": "prettier --check \"**/*.{js,jsx,ts,tsx}\"",
     "fm:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "fix:all": "bun run lint:fix && bun run fm:fix",
-    "clean": "rm -rf node_modules .next out dist build"
+    "clean": "rm -rf node_modules .next out dist build",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@iconify/react": "^5.2.0",
@@ -30,6 +34,7 @@
     "axios": "^1.8.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.44.2",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.513.0",
     "next": "15.2.1",
@@ -37,6 +42,7 @@
     "nuqs": "^2.4.3",
     "postcss": "^8.5.3",
     "posthog-js": "^1.227.2",
+    "postgres": "^3.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.15.3",
@@ -53,6 +59,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.1",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "prettier": "^3.4.2",

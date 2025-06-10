@@ -51,7 +51,8 @@ CREATE TABLE profiles
     location_id          INTEGER             REFERENCES location (id) ON DELETE SET NULL,
     industry_id          INTEGER             REFERENCES industry (id) ON DELETE SET NULL,
     connections_count    INTEGER DEFAULT 0,
-    followers_count      INTEGER DEFAULT 0
+    followers_count      INTEGER DEFAULT 0,
+    last_updated         TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Education history
