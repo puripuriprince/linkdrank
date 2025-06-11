@@ -149,9 +149,9 @@ export function HomeHero() {
             isRecording={isRecording} 
             mediaStream={mediaStream}
             className="h-full w-full"
-            height={23}
+            height={25}
             barCount={75}
-            showRecordingIndicator={true}
+            showRecordingIndicator={false}
           />
         ) : (
           <Textarea
@@ -175,15 +175,16 @@ export function HomeHero() {
                     onClick={cancelRecording}
                     variant="outline"
                     size="icon"
-                    className="border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950 rounded-full shrink-0"
+                    className="rounded-full shrink-0"
                   >
                     <Icon icon="mdi:close" width="16" height="16" />
                   </Button>
                   <Button
                     type="button"
                     onClick={confirmRecording}
+                    variant="default"
                     size="icon"
-                    className="bg-green-500 hover:bg-green-600 text-white rounded-full shrink-0"
+                    className="rounded-full shrink-0"
                   >
                     <Icon icon="mdi:check" width="16" height="16" />
                   </Button>

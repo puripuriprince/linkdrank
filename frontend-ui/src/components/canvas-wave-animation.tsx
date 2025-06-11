@@ -239,7 +239,7 @@ export const CanvasWaveAnimation: React.FC<CanvasWaveAnimationProps> = ({
     <div className="relative mx-2.5 grid grid-cols-[auto_minmax(0,1fr)] py-4">
       {showRecordingIndicator && (
         <div className="items-top flex justify-center">
-          <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-3 mt-2" />
+          <div className="w-3 h-3 bg-gray-400 rounded-full animate-pulse mr-3 mt-2" />
         </div>
       )}
       <div className="relative flex-auto bg-transparent pt-1.5" style={{ marginBottom: '-18px', transform: 'translateY(-7px)' }}>

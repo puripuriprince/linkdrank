@@ -104,7 +104,7 @@ export const AISearchForm: React.FC = () => {
             className="h-full w-full"
             height={20}
             barCount={40}
-            showRecordingIndicator={true}
+            showRecordingIndicator={false}
           />
       ) : (
         <Textarea
@@ -126,7 +126,7 @@ export const AISearchForm: React.FC = () => {
               type="button"
               onClick={cancelRecording}
               variant="outline"
-              className="flex-1 border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950"
+              className="flex-1"
             >
               <Icon icon="mdi:close" width="20" height="20" className="mr-2" />
               Cancel
@@ -134,7 +134,8 @@ export const AISearchForm: React.FC = () => {
             <Button
               type="button"
               onClick={confirmRecording}
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white"
+              variant="default"
+              className="flex-1"
             >
               <Icon icon="mdi:check" width="20" height="20" className="mr-2" />
               Transcribe
