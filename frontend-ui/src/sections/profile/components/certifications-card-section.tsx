@@ -5,11 +5,11 @@ interface Certification {
   id: number;
   userId: number;
   name: string;
-  authority: string;
-  displaySource: string;
+  authority: string | null;
+  displaySource: string | null;
   licenseNumber?: string | null;
   url?: string | null;
-  startDate: { year: number; month?: number };
+  startDate: { year: number; month?: number } | null;
   endDate: { year: number; month?: number } | null;
 }
 
@@ -18,8 +18,8 @@ interface CertificationsCardSectionProps {
 }
 
 function formatCertDate(date: { year: number; month?: number } | null): string {
-  if (!date) return '';
-  if (date.month) {
+  if (!date || !date.year) return 'Date not available';
+  if (date.month && date.month > 0 && date.month <= 12) {
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${monthNames[date.month - 1]} ${date.year}`;
@@ -61,7 +61,7 @@ export function CertificationsCardSection({ certifications }: CertificationsCard
                   )}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  {cert.authority}
+                  {cert.authority || 'Authority not available'}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Issued {formatCertDate(cert.startDate)}

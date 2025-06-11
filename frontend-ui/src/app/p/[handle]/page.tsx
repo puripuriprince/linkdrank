@@ -16,5 +16,5 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { handle } = await params;
-  return <ProfileView handle={handle} />;
+  return await ProfileView({ handle });
 }

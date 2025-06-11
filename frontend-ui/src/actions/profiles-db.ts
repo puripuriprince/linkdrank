@@ -21,6 +21,7 @@ import {
   project
 } from '@/lib/db/schema';
 import type { ProfileWithRelations } from '@/lib/db/types';
+import type { ProfileForComponents } from '@/types/profile-components';
 
 export interface ProfileSearchParams {
   query?: string;
@@ -30,29 +31,20 @@ export interface ProfileSearchParams {
   sortOrder?: 'asc' | 'desc';
 }
 
-// Minimal profile data for profile previews (home page, browse page)
-export interface ProfilePreview {
-  id: number;
+// Minimal profile data for profile previews (home page, browse page, components)
+export interface ProfilePreviewData {
   linkedinId: string;
   firstName: string;
   lastName: string;
   headline: string | null;
   profilePictureUrl: string | null;
-  connectionsCount: number | null;
-  followersCount: number | null;
-  location?: {
-    id: number;
-    city: string;
-    state: string;
-    country: string;
-  };
-  industry?: {
-    id: number;
+  currentCompany?: {
     name: string;
-  };
+    logoUrl: string;
+  } | null;
 }
 
-// Get profile previews with minimal data (for home page, browse page)
+// Get profile previews with minimal data and most recent company
 export async function getProfilePreviewsFromDB({
   query = '',
   page = 1,
@@ -77,31 +69,16 @@ export async function getProfilePreviewsFromDB({
     
     const orderBy = sortOrder === 'desc' ? desc(sortColumn) : asc(sortColumn);
 
-    // Execute the query with minimal joins for preview
+    // Execute the query with minimal data needed for preview
     const profilesData = await db
       .select({
-        id: profiles.id,
         linkedinId: profiles.linkedinId,
         firstName: profiles.firstName,
         lastName: profiles.lastName,
         headline: profiles.headline,
         profilePictureUrl: profiles.profilePictureUrl,
-        connectionsCount: profiles.connectionsCount,
-        followersCount: profiles.followersCount,
-        location: {
-          id: location.id,
-          city: location.city,
-          state: location.state,
-          country: location.country,
-        },
-        industry: {
-          id: industry.id,
-          name: industry.name,
-        }
       })
       .from(profiles)
-      .leftJoin(location, eq(profiles.locationId, location.id))
-      .leftJoin(industry, eq(profiles.industryId, industry.id))
       .where(searchConditions.length > 0 ? or(...searchConditions) : undefined)
       .orderBy(orderBy)
       .limit(limit)
@@ -115,30 +92,36 @@ export async function getProfilePreviewsFromDB({
 
     const totalCount = totalCountResult[0]?.count || 0;
 
-    // Return profiles as ProfilePreview type (no transformation needed)
-    const previews: ProfilePreview[] = profilesData.map(profile => ({
-      id: profile.id,
-      linkedinId: profile.linkedinId,
-      firstName: profile.firstName,
-      lastName: profile.lastName,
-      headline: profile.headline,
-      profilePictureUrl: profile.profilePictureUrl,
-      connectionsCount: profile.connectionsCount,
-      followersCount: profile.followersCount,
-      location: profile.location && profile.location.id ? {
-        id: profile.location.id,
-        city: profile.location.city,
-        state: profile.location.state || '',
-        country: profile.location.country,
-      } : undefined,
-      industry: profile.industry && profile.industry.id ? {
-        id: profile.industry.id,
-        name: profile.industry.name,
-      } : undefined,
-    }));
+    // For each profile, get the most recent company experience
+    const profilesWithCompany = await Promise.all(
+      profilesData.map(async (profile) => {
+        // Get the most recent experience with organization
+        const mostRecentExperience = await db
+          .select({
+            organizationName: organization.name,
+            organizationLogo: organization.logoUrl,
+          })
+          .from(experience)
+          .innerJoin(organization, eq(experience.organizationId, organization.id))
+          .innerJoin(profiles, eq(experience.userId, profiles.id))
+          .where(eq(profiles.linkedinId, profile.linkedinId))
+          .orderBy(desc(experience.startDate))
+          .limit(1);
+
+        const currentCompany = mostRecentExperience[0] ? {
+          name: mostRecentExperience[0].organizationName,
+          logoUrl: mostRecentExperience[0].organizationLogo
+        } : null;
+
+        return {
+          ...profile,
+          currentCompany
+        } as ProfilePreviewData;
+      })
+    );
 
     return {
-      profiles: previews,
+      profiles: profilesWithCompany,
       pagination: {
         totalCount,
         currentPage: page,
@@ -452,4 +435,252 @@ export async function getProfilesPreviewFromDB(page: number = 1, limit: number =
     sortBy: 'followers',
     sortOrder: 'desc'
   });
+}
+
+// Get profile for component display (properly typed)
+export async function getProfileForComponents(linkedinId: string): Promise<ProfileForComponents | null> {
+  try {
+    // Get the main profile
+    const profileData = await db
+      .select()
+      .from(profiles)
+      .where(eq(profiles.linkedinId, linkedinId))
+      .leftJoin(location, eq(profiles.locationId, location.id))
+      .leftJoin(industry, eq(profiles.industryId, industry.id))
+      .limit(1);
+
+    if (!profileData.length) {
+      return null;
+    }
+
+    const profile = profileData[0].profiles;
+    const profileLocation = profileData[0].location;
+    const profileIndustry = profileData[0].industry;
+
+    // Get related data with proper error handling
+    const [
+      educationsData,
+      experiencesData,
+      certificationsData,
+      skillsData,
+      languagesData,
+      volunteersData,
+      publicationsData,
+      awardsData,
+      projectsData
+    ] = await Promise.all([
+      // Educations with schools
+      db.select({
+        education,
+        school
+      })
+      .from(education)
+      .leftJoin(school, eq(education.schoolId, school.id))
+      .where(eq(education.userId, profile.id))
+      .catch(() => []),
+
+      // Experiences with organizations and locations
+      db.select({
+        experience,
+        organization,
+        location
+      })
+      .from(experience)
+      .leftJoin(organization, eq(experience.organizationId, organization.id))
+      .leftJoin(location, eq(experience.locationId, location.id))
+      .where(eq(experience.userId, profile.id))
+      .catch(() => []),
+
+      // Certifications
+      db.select()
+      .from(certification)
+      .where(eq(certification.userId, profile.id))
+      .catch(() => []),
+
+      // Skills
+      db.select({
+        userSkill,
+        skill
+      })
+      .from(userSkill)
+      .leftJoin(skill, eq(userSkill.skillId, skill.id))
+      .where(eq(userSkill.userId, profile.id))
+      .catch(() => []),
+
+      // Languages
+      db.select({
+        userLanguage,
+        language
+      })
+      .from(userLanguage)
+      .leftJoin(language, eq(userLanguage.languageId, language.id))
+      .where(eq(userLanguage.userId, profile.id))
+      .catch(() => []),
+
+      // Volunteers
+      db.select({
+        volunteer,
+        organization
+      })
+      .from(volunteer)
+      .leftJoin(organization, eq(volunteer.organizationId, organization.id))
+      .where(eq(volunteer.userId, profile.id))
+      .catch(() => []),
+
+      // Publications
+      db.select()
+      .from(publication)
+      .where(eq(publication.userId, profile.id))
+      .catch(() => []),
+
+      // Awards
+      db.select()
+      .from(award)
+      .where(eq(award.userId, profile.id))
+      .catch(() => []),
+
+      // Projects
+      db.select()
+      .from(project)
+      .where(eq(project.userId, profile.id))
+      .catch(() => [])
+    ]);
+
+    // Build the profile object with proper types
+    const result: ProfileForComponents = {
+      id: profile.id,
+      linkedinId: profile.linkedinId,
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      headline: profile.headline,
+      summary: profile.summary,
+      profilePictureUrl: profile.profilePictureUrl,
+      backgroundImageUrl: profile.backgroundImageUrl,
+      connectionsCount: profile.connectionsCount,
+      followersCount: profile.followersCount,
+      location: profileLocation ? {
+        id: profileLocation.id,
+        city: profileLocation.city,
+        state: profileLocation.state,
+        country: profileLocation.country
+      } : null,
+      industry: profileIndustry ? {
+        id: profileIndustry.id,
+        name: profileIndustry.name
+      } : null,
+      experiences: experiencesData.map(item => ({
+        id: item.experience.id,
+        userId: item.experience.userId,
+        title: item.experience.title,
+        description: item.experience.description,
+        startDate: item.experience.startDate,
+        endDate: item.experience.endDate,
+        organization: {
+          id: item.organization?.id || 0,
+          name: item.organization?.name || 'Unknown Organization',
+          logoUrl: item.organization?.logoUrl || null
+        },
+        location: item.location ? {
+          id: item.location.id,
+          city: item.location.city,
+          state: item.location.state,
+          country: item.location.country
+        } : null
+      })),
+      educations: educationsData.map(item => ({
+        id: item.education.id,
+        userId: item.education.userId,
+        description: item.education.description,
+        startDate: item.education.startDate,
+        endDate: item.education.endDate,
+        degreeName: item.education.degreeName,
+        fieldOfStudy: item.education.fieldOfStudy,
+        school: {
+          id: item.school?.id || 0,
+          name: item.school?.name || 'Unknown School',
+          logoUrl: item.school?.logoUrl || null
+        }
+      })),
+      projects: projectsData.map(project => ({
+        id: project.id,
+        userId: project.userId,
+        title: project.title,
+        description: project.description,
+        startDate: project.startDate,
+        endDate: project.endDate
+      })),
+      awards: awardsData.map(award => ({
+        id: award.id,
+        userId: award.userId,
+        title: award.title,
+        description: award.description,
+        awardDate: award.awardDate,
+        issuer: award.issuer
+      })),
+      certifications: certificationsData.map(cert => ({
+        id: cert.id,
+        userId: cert.userId,
+        name: cert.name,
+        authority: cert.authority,
+        displaySource: cert.displaySource,
+        licenseNumber: cert.licenseNumber,
+        url: cert.url,
+        startDate: cert.startDate,
+        endDate: cert.endDate
+      })),
+      skills: skillsData.map(item => ({
+        userId: item.userSkill.userId,
+        skillId: item.userSkill.skillId,
+        skill: {
+          id: item.skill?.id || 0,
+          name: item.skill?.name || 'Unknown Skill'
+        }
+      })),
+      languages: languagesData.map(item => ({
+        userId: item.userLanguage.userId,
+        languageId: item.userLanguage.languageId,
+        language: {
+          id: item.language?.id || 0,
+          name: item.language?.name || 'Unknown Language'
+        }
+      })),
+      volunteers: volunteersData.map(item => ({
+        id: item.volunteer.id,
+        userId: item.volunteer.userId,
+        role: item.volunteer.role,
+        description: item.volunteer.description,
+        startDate: item.volunteer.startDate,
+        endDate: item.volunteer.endDate,
+        organization: {
+          id: item.organization?.id || 0,
+          name: item.organization?.name || 'Unknown Organization',
+          logoUrl: item.organization?.logoUrl || null
+        }
+      })),
+             publications: publicationsData.map(pub => ({
+         id: pub.id,
+         userId: pub.userId,
+         name: pub.name,
+         pubDate: pub.pubDate,
+         publisher: pub.publisher,
+         url: pub.url
+       }))
+    };
+
+    return result;
+  } catch (error) {
+    console.error('Error fetching profile for components:', error);
+    throw new Error('Failed to fetch profile for components');
+  }
+}
+
+// Get profile for comparison (returns ProfileWithRelations for comparison component)
+export async function getProfileForComparison(linkedinId: string): Promise<ProfileWithRelations | null> {
+  try {
+    // Use the existing getProfileByLinkedInId function but with better error handling
+    return await getProfileByLinkedInId(linkedinId);
+  } catch (error) {
+    console.error('Error fetching profile for comparison:', error);
+    return null;
+  }
 } 

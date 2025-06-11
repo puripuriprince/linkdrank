@@ -7,10 +7,10 @@ interface Education {
   id: number;
   userId: number;
   schoolId: number;
-  degreeName: string;
-  fieldOfStudy: string;
-  startDate: { year: number };
-  endDate: { year: number } | null;
+  degreeName: string | null;
+  fieldOfStudy: string | null;
+  startDate: { year: number; month?: number } | null;
+  endDate: { year: number; month?: number } | null;
   description?: string | null;
   school: {
     id: number;
@@ -58,11 +58,11 @@ export function EducationCardSection({ educations }: EducationCardSectionProps) 
                     {education.school.name}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {education.degreeName}
+                    {education.degreeName || 'Degree not specified'}
                     {education.fieldOfStudy && ` in ${education.fieldOfStudy}`}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {education.startDate.year} - {education.endDate?.year || 'Present'}
+                    {education.startDate?.year || 'Start date not available'} - {education.endDate?.year || 'Present'}
                   </p>
                   {education.description && (
                     <p className="mt-2 text-sm text-muted-foreground">

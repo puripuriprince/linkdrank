@@ -6,16 +6,17 @@ interface Award {
   userId: number;
   title: string;
   description?: string | null;
-  awardDate: { year: number; month?: number };
-  issuer: string;
+  awardDate: { year: number; month?: number } | null;
+  issuer: string | null;
 }
 
 interface AwardsCardSectionProps {
   awards: Award[];
 }
 
-function formatAwardDate(date: { year: number; month?: number }): string {
-  if (date.month) {
+function formatAwardDate(date: { year: number; month?: number } | null): string {
+  if (!date || !date.year) return 'Date not available';
+  if (date.month && date.month >= 1 && date.month <= 12) {
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${monthNames[date.month - 1]} ${date.year}`;
@@ -45,7 +46,7 @@ export function AwardsCardSection({ awards }: AwardsCardSectionProps) {
                   {award.title}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {award.issuer}
+                  {award.issuer || 'Issuer not available'}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   {formatAwardDate(award.awardDate)}

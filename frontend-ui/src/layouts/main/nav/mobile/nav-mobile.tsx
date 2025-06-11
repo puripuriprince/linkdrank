@@ -17,6 +17,8 @@ import { UserMenu } from "@/layouts/components";
 import Link from "next/link";
 import { AIDialogOpener } from "@/sections/search/components";
 import { AddProfileDialogOpener } from "@/sections/profile/components/add-profile-opener";
+import { CONFIG } from "@/global-config";
+import Image from "next/image";
 
 export type MobileNavProps = {
   data: { title: string; href: string; icon?: string }[];
@@ -36,13 +38,17 @@ export function MobileHeader() {
       {/* Left: Beaudelaire Profile */}
       <div className="flex flex-row items-center data-[align=start]:col-start-1 data-[align=start]:[place-self:center_start] data-[align=end]:col-start-3 data-[align=end]:[place-self:center_end]">
         <Link
-          href="https://beaudelaire.ca"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/"
           className="relative rounded outline-none after:pointer-events-none after:absolute after:ring-inset after:ring-transparent after:-inset-px after:rounded-md"
         >
-          <Icon icon="mdi:apple" width={24} height={24} />
-          <span className="sr-only">Beaudelaire</span>
+          <Image
+              aria-hidden="true"
+              alt="Linky"
+              width={32}
+              height={32}
+              src={`${CONFIG.assetsDir}/logo/logo.svg`}
+            />
+          <span className="sr-only">Linky</span>
         </Link>
       </div>
 
@@ -63,7 +69,7 @@ export function MobileHeader() {
           <Input
             placeholder="Search Profiles..."
             value={search}
-            className="bg-gray-100/85 dark:bg-gray-900/80"
+            className="bg-black/[0.06] dark:bg-white/[0.08]"
             onChange={handleSearchChange}
           />
         </div>

@@ -62,7 +62,7 @@ export const ExperienceDialog: React.FC<ExperienceDialogProps> = ({
               {exp.organization.name}
             </p>
             <p className="text-sm">
-              {exp.startDate ? `${exp.startDate.month || ''}/${exp.startDate.year}` : ''} - {exp.endDate ? `${exp.endDate.month || ''}/${exp.endDate.year}` : 'Present'}
+              {exp.startDate ? `${exp.startDate.month || ''}/${exp.startDate.year}` : 'Start date unknown'} - {exp.endDate ? `${exp.endDate.month || ''}/${exp.endDate.year}` : 'Present'}
             </p>
           </div>
         </div>
@@ -126,10 +126,8 @@ export const ProjectsDialog: React.FC<ProjectsDialogProps> = ({ projects }) => (
         <div key={index} className="border-b pb-2">
           <h2 className="text-lg font-semibold">{proj.title}</h2>
           <p className="text-sm text-gray-500">
-            {`
-            ${proj.startDate ? `${proj.startDate.month || ''}/${proj.startDate.year}` : ""}
-            ${proj.endDate ? " - " + `${proj.endDate.month || ''}/${proj.endDate.year}` : ""}
-            `}
+            {proj.startDate ? `${proj.startDate.month || ''}/${proj.startDate.year}` : 'Start date unknown'}
+            {proj.endDate ? ` - ${proj.endDate.month || ''}/${proj.endDate.year}` : ' - Present'}
           </p>
           {proj.description && (
             <ul>

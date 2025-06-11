@@ -1,5 +1,6 @@
 import {endpoints} from "@/lib/axios";
 import type { ProfileWithRelations } from "@/types/profile";
+import type { ProfilePreviewData } from "@/lib/db/types";
 
 import {
   searchProfilesInDB, 
@@ -9,6 +10,24 @@ import {
 
 // Configuration flag - set to true when you want to use the database
 const USE_DATABASE = process.env.NODE_ENV === 'production' || process.env.USE_DATABASE === 'true';
+
+// Helper function to transform ProfileWithRelations to ProfilePreviewData
+function transformToProfilePreviewData(profile: ProfileWithRelations): ProfilePreviewData {
+  // Get the most recent company from experiences
+  const currentCompany = profile.experiences?.length && profile.experiences[0]?.organization?.logoUrl ? {
+    name: profile.experiences[0].organization.name,
+    logoUrl: profile.experiences[0].organization.logoUrl
+  } : null;
+
+  return {
+    linkedinId: profile.linkedinId,
+    firstName: profile.firstName,
+    lastName: profile.lastName,
+    headline: profile.headline,
+    profilePictureUrl: profile.profilePictureUrl,
+    currentCompany
+  };
+}
 
 // Sample data that matches the Drizzle ProfileWithRelations structure
 export const SAMPLE_PROFILES: ProfileWithRelations[] = [
@@ -1055,7 +1074,7 @@ export const SAMPLE_PROFILES: ProfileWithRelations[] = [
   }
 ];
 
-export async function getProfilesPreview(page: number = 1, limit: number = 10) {
+export async function getProfilesPreview(page: number = 1, limit: number = 10): Promise<ProfilePreviewData[]> {
   if (USE_DATABASE) {
     try {
       const result = await getProfilesPreviewFromDB(page, limit);
@@ -1066,14 +1085,15 @@ export async function getProfilesPreview(page: number = 1, limit: number = 10) {
   }
 
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+  const sampleProfiles = SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+  return sampleProfiles.map(transformToProfilePreviewData);
 }
 
 export async function searchProfiles(
   query: string,
   page: number = 1,
   limit: number = 10,
-) {
+): Promise<ProfilePreviewData[]> {
   if (USE_DATABASE) {
     try {
       const result = await searchProfilesInDB(query, page, limit);
@@ -1084,16 +1104,19 @@ export async function searchProfiles(
   }
 
   if (!query) {
-    return SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+    const sampleProfiles = SAMPLE_PROFILES.slice((page - 1) * limit, page * limit);
+    return sampleProfiles.map(transformToProfilePreviewData);
   }
   
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return  SAMPLE_PROFILES.filter(
+  const filteredProfiles = SAMPLE_PROFILES.filter(
     (profile) =>
       `${profile.firstName} ${profile.lastName}`.toLowerCase().includes(query.toLowerCase()) ||
       profile.headline?.toLowerCase().includes(query.toLowerCase()) ||
       profile.summary?.toLowerCase().includes(query.toLowerCase()),
   ).slice((page - 1) * limit, page * limit);
+  
+  return filteredProfiles.map(transformToProfilePreviewData);
 }
 
 export async function getProfile(

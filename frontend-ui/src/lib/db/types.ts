@@ -70,4 +70,17 @@ export type ProfileWithRelations = Profile & {
   publications: Publication[];
   awards: Award[];
   projects: Project[];
-}; 
+};
+
+// Minimal profile data for profile previews
+export interface ProfilePreviewData {
+  linkedinId: string;
+  firstName: string;
+  lastName: string;
+  headline: string | null;
+  profilePictureUrl: string | null;
+  currentCompany?: {
+    name: string;
+    logoUrl: string;
+  } | null;
+} 

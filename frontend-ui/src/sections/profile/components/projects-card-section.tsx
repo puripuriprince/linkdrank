@@ -6,7 +6,7 @@ interface Project {
   userId: number;
   title: string;
   description?: string | null;
-  startDate: { year: number; month?: number };
+  startDate: { year: number; month?: number } | null;
   endDate: { year: number; month?: number } | null;
 }
 
@@ -15,8 +15,8 @@ interface ProjectsCardSectionProps {
 }
 
 function formatDate(date: { year: number; month?: number } | null): string {
-  if (!date) return 'Present';
-  if (date.month) {
+  if (!date || !date.year) return 'Present';
+  if (date.month && date.month > 0 && date.month <= 12) {
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${monthNames[date.month - 1]} ${date.year}`;

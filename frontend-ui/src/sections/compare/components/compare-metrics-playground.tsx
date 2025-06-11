@@ -15,6 +15,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { SAMPLE_PROFILES } from "@/actions/profiles";
 import { paths } from "@/routes/paths";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CONFIG } from "@/global-config";
 
 // Maximum number of profiles that can be compared
 const MAX_PROFILES = 6;
@@ -96,7 +98,7 @@ function convertToProfileFormat(profile: any): LinkedInProfile {
 		linkedinId: profile.linkedinId,
 		followersCount: profile.followersCount,
 		connectionsCount: profile.connectionsCount,
-		location: typeof profile.location === 'string' 
+		location: typeof profile.location === 'string'
 			? { city: profile.location, state: "", country: "" }
 			: profile.location,
 		skills: profile.skills || [],
@@ -140,13 +142,13 @@ function ProfileItem({
 				rel="noopener noreferrer"
 			>
 				<div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-border/50">
-					<Image
-						src={profile.profilePictureUrl || "/default-avatar.png"}
-						alt={`${profile.firstName} ${profile.lastName}'s profile picture`}
-						width={48}
-						height={48}
-						className="h-full w-full object-cover"
-					/>
+					<Avatar className="h-full w-full object-cover">
+						<AvatarImage
+							src={profile.profilePictureUrl ?? `${CONFIG.assetsDir}/logo/logo.svg`}
+							alt={`${profile.firstName} ${profile.lastName}'s profile picture`}
+						/>
+						<AvatarFallback>{profile.firstName ? profile.firstName[0].toUpperCase() : "U"}</AvatarFallback>
+					</Avatar>
 				</div>
 				<div className="min-w-0 flex-1">
 					<div className="flex items-center justify-between">
@@ -207,13 +209,13 @@ function ProfileCard({
 				{/* Header with avatar and name */}
 				<div className="mb-3 flex items-start gap-3">
 					<div className="h-12 w-12 overflow-hidden rounded-full border border-border/50">
-						<Image
-							src={profile.profilePictureUrl || "/default-avatar.png"}
-							alt={`${profile.firstName} ${profile.lastName}'s profile`}
-							width={48}
-							height={48}
-							className="h-full w-full object-cover"
+					<Avatar className="h-full w-full object-cover">
+						<AvatarImage
+							src={profile.profilePictureUrl ?? `${CONFIG.assetsDir}/logo/logo.svg`}
+							alt={`${profile.firstName} ${profile.lastName}'s profile picture`}
 						/>
+						<AvatarFallback>{profile.firstName ? profile.firstName[0].toUpperCase() : "U"}</AvatarFallback>
+					</Avatar>
 					</div>
 					<div className="min-w-0 flex-1">
 						<h3
@@ -240,7 +242,7 @@ function ProfileCard({
 				<div className="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
 					<div className="flex items-center gap-1.5">
 						<Users className="h-3.5 w-3.5 text-blue-500" />
-						<span>{profile.metrics.followers.toLocaleString()} followers</span>
+						<span>{profile.metrics.followers.toLocaleString()} fols</span>
 					</div>
 					<div className="flex items-center gap-1.5">
 						<Building2 className="h-3.5 w-3.5 text-green-500" />
@@ -252,7 +254,7 @@ function ProfileCard({
 					</div>
 					<div className="flex items-center gap-1.5">
 						<Users className="h-3.5 w-3.5 text-amber-500" />
-						<span>{profile.metrics.connections.toLocaleString()} connections</span>
+						<span>{profile.metrics.connections.toLocaleString()}{profile.metrics.connections > 500 ? '+' : ''} conn.</span>
 					</div>
 				</div>
 
@@ -280,7 +282,6 @@ export default function CompareMetricsPlayground({
 	users,
 }: { users: string | null }) {
 	const router = useRouter();
-	const searchParams = useSearchParams();
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedProfiles, setSelectedProfiles] = useState<LinkedInProfile[]>([]);
 	const [isSearching, setIsSearching] = useState(false);
@@ -419,25 +420,22 @@ export default function CompareMetricsPlayground({
 			if (searchInput.includes('linkedin.com/in/')) {
 				linkedinId = searchInput.replace('https://www.linkedin.com/in/', '').replace('/', '');
 			}
-			
+
 			// Try to fetch from database first
-			const USE_DATABASE = process.env.NODE_ENV === 'production' || process.env.USE_DATABASE === 'true';
-			if (USE_DATABASE) {
-				try {
-					const { getProfileByLinkedInId } = await import("@/actions/profiles-db");
-					const dbProfile = await getProfileByLinkedInId(linkedinId);
-					if (dbProfile) {
-						return convertToProfileFormat(dbProfile);
-					}
-				} catch (error) {
-					console.error('Database error, falling back to sample data:', error);
+			try {
+				const { getProfileForComparison } = await import("@/actions/profiles-db");
+				const dbProfile = await getProfileForComparison(linkedinId);
+				if (dbProfile) {
+					return convertToProfileFormat(dbProfile);
 				}
+			} catch (error) {
+				console.error('Database error, falling back to sample data:', error);
 			}
 
 			const profileData = SAMPLE_PROFILES.find(
 				p => p.linkedinId === linkedinId
 			)
-			
+
 			if (!profileData) {
 				return null;
 			}

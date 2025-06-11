@@ -6,41 +6,55 @@ import { Code, ExternalLink, User } from "lucide-react";
 import { Share2 } from "lucide-react";
 import Image from "next/image";
 import { SAMPLE_PROFILES } from "@/actions/profiles";
+import { getProfileForComponents } from "@/actions/profiles-db";
+import type { ProfileForComponents } from "@/types/profile-components";
 import UserSkillsRadar from "../../../components/user-skills-radar";
 import { ExperienceCardSection } from "@/sections/profile/components/experience-card-section";
 import { EducationCardSection } from "@/sections/profile/components/education-card-section";
 import { ProjectsCardSection } from "@/sections/profile/components/projects-card-section";
 import { AwardsCardSection } from "@/sections/profile/components/awards-card-section";
 import { CertificationsCardSection } from "@/sections/profile/components/certifications-card-section";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CONFIG } from "@/global-config";
 
 interface ProfileViewProps {
-  handle: string;
+    handle: string;
 }
 
-export function ProfileView({ handle }: ProfileViewProps) {
-  // Find the profile based on the handle (linkedinId)
-  const userData = SAMPLE_PROFILES.find(profile => profile.linkedinId === handle);
+export async function ProfileView({ handle }: ProfileViewProps) {
+    // Try to fetch from database first, then fall back to sample data
+    let userData: ProfileForComponents | any;
+    try {
+        userData = await getProfileForComponents(handle);
+    } catch (error) {
+        console.error('Database error, falling back to sample data:', error);
+    }
+    
+    // If not found in database, try sample data
+    if (!userData) {
+        userData = SAMPLE_PROFILES.find(profile => profile.linkedinId === handle);
+    }
 
-  // If profile not found, show 404-like message
-  if (!userData) {
-    return (
-      <div className="flex min-h-screen flex-col bg-background">
-        <main className="flex-1">
-          <div className="mx-auto w-full px-4 py-8 lg:px-10 lg:py-16">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-foreground mb-4">Profile Not Found</h1>
-              <p className="text-muted-foreground mb-8">
-                The profile you&#39;re looking for doesn&#39;t exist or has been removed.
-              </p>
-              <Button asChild>
-                <Link href="/browse">Browse Profiles</Link>
-              </Button>
+    // If profile not found, show 404-like message
+    if (!userData) {
+        return (
+            <div className="flex min-h-screen flex-col bg-background">
+                <main className="flex-1">
+                    <div className="mx-auto w-full px-4 py-8 lg:px-10 lg:py-16">
+                        <div className="text-center">
+                            <h1 className="text-4xl font-bold text-foreground mb-4">Profile Not Found</h1>
+                            <p className="text-muted-foreground mb-8">
+                                The profile you&#39;re looking for doesn&#39;t exist or has been removed.
+                            </p>
+                            <Button asChild>
+                                <Link href="/browse">Browse Profiles</Link>
+                            </Button>
+                        </div>
+                    </div>
+                </main>
             </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
+        );
+    }
 
     return (
         <div className="flex min-h-screen flex-col bg-background">
@@ -54,55 +68,27 @@ export function ProfileView({ handle }: ProfileViewProps) {
                                     <CardHeader className="p-0">
                                         <div className="relative border-border/50 border-b bg-muted p-4 text-center dark:border-border/20 dark:bg-muted/20">
                                             <div className="mx-auto h-24 w-24 overflow-hidden rounded-full border-2 border-background shadow-sm">
-                                                <Image
-                                    src={userData.profilePictureUrl ?? ''}
-                                    alt={`${userData.firstName} ${userData.lastName}'s profile picture`}
-                                    width={96}
-                                    height={96}
-                                    className="h-full w-full object-cover"
-                                    priority
-                                />
+                                                <Avatar className="h-full w-full object-cover">
+                                                    <AvatarImage
+                                                        src={userData.profilePictureUrl ?? `${CONFIG.assetsDir}/logo/logo.svg`}
+                                                        alt={`${userData.firstName} ${userData.lastName}'s profile picture`}
+                                                    />
+                                                    <AvatarFallback>{userData.firstName ? userData.firstName[0].toUpperCase() : "U"}</AvatarFallback>
+                                                </Avatar>
                                             </div>
                                             <h1 className="mt-3 font-semibold text-[#2300A7] text-xl dark:text-[#75A9FF]">
-                                {`${userData.firstName} ${userData.lastName}`}
-                            </h1>
-                            <div className="flex items-center justify-center gap-1 text-[#008080] text-sm dark:text-[#98FEE3]">
-                                <Link
-                                    href={`https://www.linkedin.com/in/${userData.linkedinId}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-0.5 hover:underline"
-                                >
-                                    @{userData.linkedinId}
-                                    <ExternalLink className="h-3 w-3 text-muted-foreground" />
-                                </Link>
-                            </div>
-
-                            <Button
-                                variant="default"
-                                size="sm"
-                                className="mx-auto mt-3 flex w-max items-center"
-                                asChild
-                            >
-                                <Link href={`/new?username=${userData.linkedinId}`}>
-                                    <span className="-mt-0.5">Reindex</span>
-                                    <Badge className="text-xs" variant="secondary">
-                                        Plus
-                                    </Badge>
-                                </Link>
-                            </Button>
-
-                                            {/* Social links */}
-                                            <div className="mt-3 flex flex-wrap justify-center space-x-2">
-                                                {/* Share button */}
-                                                <Button
-                                                    size="sm"
-                                                    variant="ghost"
-                                                    className="h-8 w-8 p-0"
-                                                    aria-label="Share profile"
+                                                {`${userData.firstName} ${userData.lastName}`}
+                                            </h1>
+                                            <div className="flex items-center justify-center gap-1 text-[#008080] text-sm dark:text-[#98FEE3]">
+                                                <Link
+                                                    href={`https://www.linkedin.com/in/${userData.linkedinId}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-0.5 hover:underline"
                                                 >
-                                                    <Share2 className="h-4 w-4" />
-                                                </Button>
+                                                    @{userData.linkedinId}
+                                                    <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                                                </Link>
                                             </div>
                                         </div>
                                     </CardHeader>
@@ -191,7 +177,7 @@ export function ProfileView({ handle }: ProfileViewProps) {
                                         <CardContent>
                                             <div className="flex flex-wrap gap-2">
                                                 {userData.skills && userData.skills.length > 0 ? (
-                                                    userData.skills.map((userSkill) => (
+                                                    userData.skills.map((userSkill: any) => (
                                                         <span
                                                             key={`${userSkill.userId}-${userSkill.skillId}`}
                                                             className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 font-medium text-primary text-xs"

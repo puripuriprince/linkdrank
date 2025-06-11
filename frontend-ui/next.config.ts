@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       "media.licdn.com",
       "attic.sh",
       "images.unsplash.com",
+      "linky-media.s3.us-east-2.amazonaws.com"
     ],
   },
 };

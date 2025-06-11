@@ -5,12 +5,12 @@ import { useState, useEffect, useCallback } from "react";
 import { getProfilesPreview } from "@/actions/profiles";
 import { ProfilePreview } from "@/components/profile-preview";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { ProfileWithRelations } from "@/lib/db/types";
+import { ProfilePreviewData } from "@/lib/db/types";
 import { paths } from "@/routes/paths";
 import { useRouter } from "@/routes/hooks";
 
 export function HomeProfiles() {
-  const [profiles, setProfiles] = useState<ProfileWithRelations[]>([]);
+  const [profiles, setProfiles] = useState<ProfilePreviewData[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -22,7 +22,7 @@ export function HomeProfiles() {
     setLoading(true);
 
     try {
-      const newProfiles = await getProfilesPreview(page) as ProfileWithRelations[];
+      const newProfiles = await getProfilesPreview(page);
 
       if (!newProfiles?.length) {
         setHasMore(false);
@@ -72,7 +72,7 @@ export function HomeProfiles() {
           <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-6">
             {profiles.map((profile, i) => (
               <div
-                key={`profile-${profile.firstName}-${profile.lastName}-${profile.id}`}
+                key={`profile-${profile.firstName}-${profile.lastName}-${profile.linkedinId}`}
                 className="flex justify-center hover:cursor-pointer rounded-xl"
               >
                 <ProfilePreview

@@ -4,7 +4,7 @@ import React from "react";
 
 export const ProfilePreviewSkeleton: React.FC = () => {
   return (
-    <Card className="relative w-56 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg">
+    <Card className="relative w-56 max-w-56 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg overflow-hidden">
       {/* Company Logo Skeleton */}
       <div className="absolute top-2 right-2">
         <Skeleton className="h-10 w-10 rounded-full" />
@@ -28,7 +28,7 @@ export const ProfilePreviewHorizontalSkeleton: React.FC = () => {
   return (
     <Card
       className={
-        "flex flex-row items-center gap-4 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer transition-all hover:shadow-xl"
+        "flex flex-row items-center gap-4 p-4 bg-white dark:bg-black/80 shadow-md rounded-lg cursor-pointer transition-all hover:shadow-xl overflow-hidden"
       }
     >
       <Skeleton className="h-16 w-16 rounded-full" />

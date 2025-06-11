@@ -16,6 +16,7 @@ export type {
   Award,
   Project,
   ProfileWithRelations,
+  ProfilePreviewData,
   NewProfile,
   NewLocation,
   NewEducation,

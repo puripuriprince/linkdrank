@@ -6,14 +6,14 @@ import type { NavMainProps } from "./main/nav/types";
 
 export const navData: NavMainProps["data"] = [
   {
-    title: "Comapre",
-    href: paths.compare.root,
-    icon: "ic:baseline-home",
-  },
-  {
     title: "AI Search",
     href: paths.search.root,
     icon: "ix:ai",
+  },
+  {
+    title: "Comapre",
+    href: paths.compare.root,
+    icon: "ic:baseline-balance",
   },
   {
     title: "Browse",
@@ -21,7 +21,7 @@ export const navData: NavMainProps["data"] = [
     icon: "mdi:magnify",
   },
   {
-    title: "Profile",
+    title: "Add Profile",
     icon: "material-symbols:account-circle",
     href: paths.people.root,
   },

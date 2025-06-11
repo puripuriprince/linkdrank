@@ -5,9 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookCopy, Code2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import type { ExperienceForComponents } from "@/types/profile-components";
 
 interface ExperienceCardSectionProps {
-	experiences: any;
+	experiences: ExperienceForComponents[];
 }
 
 export const ExperienceCardSection = ({
@@ -31,9 +32,9 @@ export const ExperienceCardSection = ({
 					<section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 						{visibleExperiences.map((experience) => {
 							const experienceName = experience.title;
-							const companyName = experience.companyName;
+							const companyName = experience.organization.name;
 
-							const isCurrentExperience = experience.endDate === "Present";
+							const isCurrentExperience = !experience.endDate;
 
 							return (
 								<div
@@ -44,9 +45,9 @@ export const ExperienceCardSection = ({
 										<div className="flex items-center gap-1.5">
 											<Code2 className="h-3.5 w-3.5" />
 											<h3 className="mb-1 font-semibold text-[#2300A7] hover:underline dark:text-[#75A9FF]">
-												{experience.logo ? (
+												{experience.organization.logoUrl ? (
 													<Link
-														href={experience.logo}
+														href={experience.organization.logoUrl}
 														target="_blank"
 														rel="noopener noreferrer"
 													>
