@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useCallback, useMemo } from "react";
 
 import { paths } from "@/routes/paths";
 import { SplashScreen } from "@/components/loading-screen";
@@ -33,15 +33,21 @@ function SearchContainer({ children }: SearchProviderProps) {
     setSearch(query);
   }, [query]);
 
-  const updateSearch = (value: string) => {
+  const updateSearch = useCallback((value: string) => {
     setSearch(value);
     if (pathname === paths.browse.root) {
       router.push(paths.browse.details(value.trim()));
     }
-  };
+  }, [pathname, router]);
+
+  // Memoize the context value to prevent unnecessary re-renders
+  const contextValue = useMemo(
+    () => ({ search, setSearch: updateSearch }),
+    [search, updateSearch]
+  );
 
   return (
-    <BrowseContext.Provider value={{ search, setSearch: updateSearch }}>
+    <BrowseContext.Provider value={contextValue}>
       {children}
     </BrowseContext.Provider>
   );

@@ -10,6 +10,7 @@ export const AISearchForm: React.FC = () => {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [isTranscribing, setIsTranscribing] = useState(false);
   const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
   const router = useRouter();
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -63,6 +64,7 @@ export const AISearchForm: React.FC = () => {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
+      setIsTranscribing(true);
 
       // Mock transcription - simulate processing
       setTimeout(() => {
@@ -76,18 +78,31 @@ export const AISearchForm: React.FC = () => {
         
         const randomTranscription = mockTranscriptions[Math.floor(Math.random() * mockTranscriptions.length)];
         setDescription(randomTranscription);
+        setIsTranscribing(false);
       }, 1000);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
-      {isRecording ? (
+      {isTranscribing ? (
+        <div className="flex items-center justify-center h-16 px-4 py-3 border rounded-md bg-black/[0.06] dark:bg-white/[0.08] backdrop-blur-xl backdrop-saturate-200">
+          <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
+            <Icon
+              icon="lucide:loader"
+              className="animate-spin"
+              width="20"
+              height="20"
+            />
+            <span className="text-sm font-medium">Transcribing audio...</span>
+          </div>
+        </div>
+      ) : isRecording ? (
           <CanvasWaveAnimation 
             isRecording={isRecording} 
             mediaStream={mediaStream}
-            className="h-8 w-full"
-            height={32}
+            className="h-full w-full"
+            height={20}
             barCount={40}
             showRecordingIndicator={true}
           />
@@ -101,7 +116,11 @@ export const AISearchForm: React.FC = () => {
       )}
       
       <div className="flex gap-2">
-        {isRecording ? (
+        {isTranscribing ? (
+          <div className="flex-1 flex items-center justify-center py-2">
+            <span className="text-sm text-gray-500 dark:text-gray-400">Processing your audio...</span>
+          </div>
+        ) : isRecording ? (
           <>
             <Button
               type="button"

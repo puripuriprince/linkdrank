@@ -6,6 +6,7 @@ import {
   searchProfilesInDB, 
   getProfilesPreviewFromDB,
   getProfileByLinkedInUrl,
+  getTotalProfileCount,
 } from './profiles-db';
 
 // Configuration flag - set to true when you want to use the database
@@ -1169,4 +1170,17 @@ export async function getProfile(
     }
   }
   return profileData;
+}
+
+export async function getTotalProfilesCount(): Promise<number> {
+  if (USE_DATABASE) {
+    try {
+      return await getTotalProfileCount();
+    } catch (error) {
+      console.error('Database error, falling back to sample data count:', error);
+    }
+  }
+
+  // Return sample data count as fallback
+  return SAMPLE_PROFILES.length;
 }

@@ -1,11 +1,13 @@
 "use client";
 
 import type { FC } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 import { Icon } from "@iconify/react";
 
 import { Input } from "@/components/ui/input";
 import { useBrowseContext } from "@/sections/browse/context";
+import { useDebounce } from "@/hooks/use-debounce/use-debounce";
 
 import { paths } from "@/routes/paths";
 import { usePathname } from "@/routes/hooks";
@@ -29,9 +31,29 @@ export function MobileHeader() {
   const pathname = usePathname();
   const { search, setSearch } = useBrowseContext();
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  // Local state for immediate input updates
+  const [localSearchValue, setLocalSearchValue] = useState(search);
+
+  // Sync local value with context when search changes from other sources
+  useEffect(() => {
+    setLocalSearchValue(search);
+  }, [search]);
+
+  // Debounced search to avoid searching on every character
+  const { debouncedFn: debouncedSearch } = useDebounce(
+    useCallback((value: string) => {
+      setSearch(value);
+    }, [setSearch]),
+    { delay: 400 }
+  );
+
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Update local state immediately for responsiveness
+    setLocalSearchValue(value);
+    // Debounce the actual search
+    debouncedSearch(value);
+  }, [debouncedSearch]);
 
   return (
     <header className="z-20 bg-white dark:bg-black fixed inset-x-0 top-0 select-none grid grid-cols-3 grid-rows-[repeat(1,calc(var(--mobile-header-height)-1px))] items-center justify-center border-b px-safe-offset-4 md:hidden">
@@ -68,7 +90,7 @@ export function MobileHeader() {
         <div className="col-span-3 pb-4 pt-1.5">
           <Input
             placeholder="Search Profiles..."
-            value={search}
+            value={localSearchValue}
             className="bg-black/[0.06] dark:bg-white/[0.08]"
             onChange={handleSearchChange}
           />

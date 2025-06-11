@@ -683,4 +683,18 @@ export async function getProfileForComparison(linkedinId: string): Promise<Profi
     console.error('Error fetching profile for comparison:', error);
     return null;
   }
+}
+
+// Get total profile count from database
+export async function getTotalProfileCount(): Promise<number> {
+  try {
+    const result = await db
+      .select({ count: count() })
+      .from(profiles);
+    
+    return result[0]?.count || 0;
+  } catch (error) {
+    console.error('Error fetching total profile count from database:', error);
+    throw new Error('Failed to fetch total profile count from database');
+  }
 } 

@@ -2,10 +2,12 @@ import type { FC } from "react";
 
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo, useCallback, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { useCountUp } from "@/hooks";
+import { useDebounce } from "@/hooks/use-debounce/use-debounce";
+import { useProfileCount } from "@/hooks/use-profile-count/use-profile-count";
 import { paths } from "@/routes/paths";
 import { CONFIG } from "@/global-config";
 import { useRouter, usePathname } from "@/routes/hooks";
@@ -16,13 +18,11 @@ import { UserMenu } from "@/layouts/components";
 export type DesktopHeaderProps = {
   data: { title: string; href: string }[];
   className?: string;
-  totalProfiles?: number;
 };
 
 export const DesktopHeader: FC<DesktopHeaderProps> = ({
   data,
   className,
-  totalProfiles = 5804335,
 }) => {
   const router = useRouter();
   const { search, setSearch } = useBrowseContext();
@@ -30,22 +30,45 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
   const isSearchPage = pathname === paths.browse.root;
   const inputRef = useRef(null);
 
+  // Local state for immediate input updates
+  const [localSearchValue, setLocalSearchValue] = useState(search);
+
+  // Get profile count from database with caching
+  const { count: totalProfiles, loading: countLoading } = useProfileCount();
+
   const { formattedValue } = useCountUp({
-    start: 2000000,
+    start: 2000,
     end: totalProfiles,
     duration: 2000,
     formatter: (value) => value.toLocaleString(),
   });
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  // Sync local value with context when search changes from other sources
+  useEffect(() => {
+    setLocalSearchValue(search);
+  }, [search]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && search.trim()) {
-      router.push(paths.browse.details(search.trim()));
+  // Debounced search to avoid searching on every character
+  const { debouncedFn: debouncedSearch } = useDebounce(
+    useCallback((value: string) => {
+      setSearch(value);
+    }, [setSearch]),
+    { delay: 400 }
+  );
+
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Update local state immediately for responsiveness
+    setLocalSearchValue(value);
+    // Debounce the actual search
+    debouncedSearch(value);
+  }, [debouncedSearch]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && localSearchValue.trim()) {
+      router.push(paths.browse.details(localSearchValue.trim()));
     }
-  };
+  }, [localSearchValue, router]);
 
   useEffect(() => {
     if (isSearchPage && inputRef.current) {
@@ -53,6 +76,14 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [pathname, isSearchPage]);
+
+  // Memoize the formatted count display to prevent unnecessary re-renders
+  const countDisplay = useMemo(() => {
+    if (countLoading) {
+      return "Loading...";
+    }
+    return formattedValue;
+  }, [formattedValue, countLoading]);
 
   return (
     <header
@@ -109,16 +140,16 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
             <p
               className={cn(
                 "pointer-events-none absolute left-8 top-0 z-10 w-full bg-transparent text-[0.9375rem] text-system-marketing-primary/60",
-                search ? "hidden" : "",
+                localSearchValue ? "hidden" : "",
               )}
             >
-              Search over <span className="tabular-nums">{formattedValue}</span>{" "}
+              Search over <span className="tabular-nums">{countDisplay}</span>{" "}
               profiles on Linky
             </p>
             <input
               ref={inputRef}
               className="relative outline-none after:pointer-events-none after:absolute after:ring-inset after:ring-transparent data-[focus]:sm:after:ring-1 data-[focus]:sm:after:ring-blue-500 data-[focus]:sm:after:outline data-[focus]:sm:after:outline-3 data-[focus]:sm:after:outline-offset-0 data-[focus]:sm:after:outline-blue-200 data-[focus]:sm:after:dark:outline-blue-700/50 after:inset-0 after:rounded-[inherit] w-full bg-transparent pl-8 text-[0.9375rem] text-system-marketing-primary placeholder:text-system-marketing-primary/60"
-              value={search}
+              value={localSearchValue}
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}
             />

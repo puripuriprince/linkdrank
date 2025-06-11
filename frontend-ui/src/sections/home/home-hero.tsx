@@ -20,6 +20,7 @@ export function HomeHero() {
 
   const [loading, setLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [isTranscribing, setIsTranscribing] = useState(false);
   const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
   const router = useRouter();
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -73,6 +74,7 @@ export function HomeHero() {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
+      setIsTranscribing(true);
 
       // Mock transcription - simulate processing
       setTimeout(() => {
@@ -86,6 +88,7 @@ export function HomeHero() {
         
         const randomTranscription = mockTranscriptions[Math.floor(Math.random() * mockTranscriptions.length)];
         setInput(randomTranscription);
+        setIsTranscribing(false);
       }, 1000);
     }
   };
@@ -129,7 +132,19 @@ export function HomeHero() {
         onSubmit={handleSubmit}
         className="min-h-28 w-full max-w-2xl border bg-black/[0.06] dark:bg-white/[0.08] backdrop-blur-xl backdrop-saturate-200 rounded-2xl"
       >
-        {isRecording ? (
+        {isTranscribing ? (
+          <div className="flex items-center justify-center h-full h-full px-4 py-3">
+            <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
+              <Icon
+                icon="lucide:loader"
+                className="animate-spin"
+                width="20"
+                height="20"
+              />
+              <span className="text-sm font-medium">Transcribing audio...</span>
+            </div>
+          </div>
+        ) : isRecording ? (
           <CanvasWaveAnimation 
             isRecording={isRecording} 
             mediaStream={mediaStream}
@@ -151,59 +166,61 @@ export function HomeHero() {
 
         <div className="relative w-full flex flex-row flex-nowrap items-center justify-between gap-1 overflow-x-auto">
           <span aria-hidden="true" className="inline-block h-10" />
-          <div className="flex gap-2 mr-1">
-            {isRecording ? (
-              <>
-                <Button
-                  type="button"
-                  onClick={cancelRecording}
-                  variant="outline"
-                  size="icon"
-                  className="border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950 rounded-full shrink-0"
-                >
-                  <Icon icon="mdi:close" width="16" height="16" />
-                </Button>
-                <Button
-                  type="button"
-                  onClick={confirmRecording}
-                  size="icon"
-                  className="bg-green-500 hover:bg-green-600 text-white rounded-full shrink-0"
-                >
-                  <Icon icon="mdi:check" width="16" height="16" />
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  type="button"
-                  onClick={startRecording}
-                  variant="outline"
-                  size="icon"
-                  className="border-yellow-500 text-yellow-500 hover:bg-yellow-50 dark:hover:bg-yellow-950 rounded-full shrink-0"
-                >
-                  <Icon icon="mdi:microphone" width="16" height="16" />
-                </Button>
-                <Button
-                  type="submit"
-                  variant="default"
-                  size="icon"
-                  className="bg-gray-950 dark:bg-gray-50 text-white dark:text-gray-800 rounded-full shrink-0 hover:bg-gray-700 dark:hover:bg-gray-300"
-                  disabled={!input.trim() || loading}
-                >
-                  {loading ? (
-                    <Icon
-                      icon="lucide:loader"
-                      className="animate-spin"
-                      width="24"
-                      height="24"
-                    />
-                  ) : (
-                    <Icon icon="mdi:arrow-up" width="16" height="16" />
-                  )}
-                </Button>
-              </>
-            )}
-          </div>
+          {!isTranscribing && (
+            <div className="flex gap-2 mr-1">
+              {isRecording ? (
+                <>
+                  <Button
+                    type="button"
+                    onClick={cancelRecording}
+                    variant="outline"
+                    size="icon"
+                    className="border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950 rounded-full shrink-0"
+                  >
+                    <Icon icon="mdi:close" width="16" height="16" />
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={confirmRecording}
+                    size="icon"
+                    className="bg-green-500 hover:bg-green-600 text-white rounded-full shrink-0"
+                  >
+                    <Icon icon="mdi:check" width="16" height="16" />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    type="button"
+                    onClick={startRecording}
+                    variant="outline"
+                    size="icon"
+                    className="border-yellow-500 text-yellow-500 hover:bg-yellow-50 dark:hover:bg-yellow-950 rounded-full shrink-0"
+                  >
+                    <Icon icon="mdi:microphone" width="16" height="16" />
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="default"
+                    size="icon"
+                    className="bg-gray-950 dark:bg-gray-50 text-white dark:text-gray-800 rounded-full shrink-0 hover:bg-gray-700 dark:hover:bg-gray-300"
+                    disabled={!input.trim() || loading}
+                  >
+                    {loading ? (
+                      <Icon
+                        icon="lucide:loader"
+                        className="animate-spin"
+                        width="24"
+                        height="24"
+                      />
+                    ) : (
+                      <Icon icon="mdi:arrow-up" width="16" height="16" />
+                    )}
+                  </Button>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </form>
 
