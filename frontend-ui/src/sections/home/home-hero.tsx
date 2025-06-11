@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { paths } from "@/routes/paths";
 import { useRouter } from "@/routes/hooks";
+import { CanvasWaveAnimation } from "@/components/canvas-wave-animation";
 
 export function HomeHero() {
   const {
@@ -18,13 +19,75 @@ export function HomeHero() {
   } = useAutoResizeTextarea();
 
   const [loading, setLoading] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
   const router = useRouter();
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!input.trim()) return;
+    
     setLoading(true);
     router.push(paths.search.details(input));
     setLoading(false);
+  };
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      
+      mediaRecorderRef.current = mediaRecorder;
+      audioChunksRef.current = [];
+      setMediaStream(stream);
+
+      mediaRecorder.ondataavailable = (event) => {
+        audioChunksRef.current.push(event.data);
+      };
+
+      mediaRecorder.start();
+      setIsRecording(true);
+
+      mediaRecorder.onstop = () => {
+        stream.getTracks().forEach(track => track.stop());
+        setMediaStream(null);
+      };
+
+    } catch (error) {
+      console.error('Error accessing microphone:', error);
+      alert('Unable to access microphone. Please check your permissions.');
+    }
+  };
+
+  const cancelRecording = () => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      audioChunksRef.current = [];
+    }
+  };
+
+  const confirmRecording = () => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+
+      // Mock transcription - simulate processing
+      setTimeout(() => {
+        const mockTranscriptions = [
+          "Who are the senior software engineers with React experience from top universities?",
+          "Find product managers in fintech who have startup experience",
+          "Looking for data scientists specializing in machine learning and AI research",
+          "Who are the marketing professionals with B2B SaaS experience?",
+          "Find UX designers who have worked on successful mobile applications"
+        ];
+        
+        const randomTranscription = mockTranscriptions[Math.floor(Math.random() * mockTranscriptions.length)];
+        setInput(randomTranscription);
+      }, 1000);
+    }
   };
 
   const suggestions = [
@@ -66,35 +129,81 @@ export function HomeHero() {
         onSubmit={handleSubmit}
         className="min-h-28 w-full max-w-2xl border bg-black/[0.06] dark:bg-white/[0.08] backdrop-blur-xl backdrop-saturate-200 rounded-2xl"
       >
-        <Textarea
-          placeholder="Describe who you're looking for..."
-          value={input}
-          onChange={handleTextareaChange}
-          ref={textareaRef}
-          className="focus-visible:ring-0 resize-none outline-none border-0 bg-transparent px-3.5 py-3 pl-4 text-sm/6 text-gray-950 placeholder:text-gray-500 dark:text-white transition-all duration-200"
-          style={{ height: `${textareaHeight}px` }}
-        />
+        {isRecording ? (
+          <CanvasWaveAnimation 
+            isRecording={isRecording} 
+            mediaStream={mediaStream}
+            className="h-full w-full"
+            height={23}
+            barCount={75}
+            showRecordingIndicator={true}
+          />
+        ) : (
+          <Textarea
+            placeholder="Describe who you're looking for..."
+            value={input}
+            onChange={handleTextareaChange}
+            ref={textareaRef}
+            className="focus-visible:ring-0 resize-none outline-none border-0 bg-transparent px-3.5 py-3 pl-4 text-sm/6 text-gray-950 placeholder:text-gray-500 dark:text-white transition-all duration-200"
+            style={{ height: `${textareaHeight}px` }}
+          />
+        )}
 
         <div className="relative w-full flex flex-row flex-nowrap items-center justify-between gap-1 overflow-x-auto">
           <span aria-hidden="true" className="inline-block h-10" />
-          <Button
-            type="submit"
-            variant="default"
-            size="icon"
-            className="bg-gray-950 dark:bg-gray-50 text-white dark:text-gray-800 mr-1 rounded-full shrink-0 hover:bg-gray-700 dark:hover:bg-gray-300"
-            disabled={!input.trim() || loading}
-          >
-            {loading ? (
-              <Icon
-                icon="lucide:loader"
-                className="animate-spin"
-                width="24"
-                height="24"
-              />
+          <div className="flex gap-2 mr-1">
+            {isRecording ? (
+              <>
+                <Button
+                  type="button"
+                  onClick={cancelRecording}
+                  variant="outline"
+                  size="icon"
+                  className="border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950 rounded-full shrink-0"
+                >
+                  <Icon icon="mdi:close" width="16" height="16" />
+                </Button>
+                <Button
+                  type="button"
+                  onClick={confirmRecording}
+                  size="icon"
+                  className="bg-green-500 hover:bg-green-600 text-white rounded-full shrink-0"
+                >
+                  <Icon icon="mdi:check" width="16" height="16" />
+                </Button>
+              </>
             ) : (
-              <Icon icon="mdi:arrow-up" width="16" height="16" />
+              <>
+                <Button
+                  type="button"
+                  onClick={startRecording}
+                  variant="outline"
+                  size="icon"
+                  className="border-yellow-500 text-yellow-500 hover:bg-yellow-50 dark:hover:bg-yellow-950 rounded-full shrink-0"
+                >
+                  <Icon icon="mdi:microphone" width="16" height="16" />
+                </Button>
+                <Button
+                  type="submit"
+                  variant="default"
+                  size="icon"
+                  className="bg-gray-950 dark:bg-gray-50 text-white dark:text-gray-800 rounded-full shrink-0 hover:bg-gray-700 dark:hover:bg-gray-300"
+                  disabled={!input.trim() || loading}
+                >
+                  {loading ? (
+                    <Icon
+                      icon="lucide:loader"
+                      className="animate-spin"
+                      width="24"
+                      height="24"
+                    />
+                  ) : (
+                    <Icon icon="mdi:arrow-up" width="16" height="16" />
+                  )}
+                </Button>
+              </>
             )}
-          </Button>
+          </div>
         </div>
       </form>
 
