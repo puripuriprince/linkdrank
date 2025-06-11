@@ -128,6 +128,7 @@ export interface OrganizationForComponents {
   id: number;
   name: string;
   logoUrl: string | null;
+  linkedinUrl: string | null;
 }
 
 export interface SchoolForComponents {

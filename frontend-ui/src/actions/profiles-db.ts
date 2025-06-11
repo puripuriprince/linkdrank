@@ -578,7 +578,8 @@ export async function getProfileForComponents(linkedinId: string): Promise<Profi
         organization: {
           id: item.organization?.id || 0,
           name: item.organization?.name || 'Unknown Organization',
-          logoUrl: item.organization?.logoUrl || null
+          logoUrl: item.organization?.logoUrl || null,
+          linkedinUrl: item.organization?.linkedinUrl || null
         },
         location: item.location ? {
           id: item.location.id,

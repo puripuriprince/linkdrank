@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookCopy, Code2 } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { BookCopy } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import type { ExperienceForComponents } from "@/types/profile-components";
@@ -42,12 +43,20 @@ export const ExperienceCardSection = ({
 									className="overflow-hidden rounded-lg border border-border/50 bg-muted/10 transition-all hover:border-primary/20 hover:shadow-sm"
 								>
 									<div className="flex items-center justify-between border-border/40 border-b bg-muted px-4 py-2 dark:bg-muted/20">
-										<div className="flex items-center gap-1.5">
-											<Code2 className="h-3.5 w-3.5" />
+										<div className="flex items-center gap-2">
+											<Avatar className="h-6 w-6">
+												<AvatarImage 
+													src={experience.organization.logoUrl || undefined} 
+													alt={`${companyName} logo`} 
+												/>
+												<AvatarFallback className="text-xs font-medium">
+													{companyName.charAt(0).toUpperCase()}
+												</AvatarFallback>
+											</Avatar>
 											<h3 className="mb-1 font-semibold text-[#2300A7] hover:underline dark:text-[#75A9FF]">
-												{experience.organization.logoUrl ? (
+												{experience.organization.linkedinUrl ? (
 													<Link
-														href={experience.organization.logoUrl}
+														href={experience.organization.linkedinUrl}
 														target="_blank"
 														rel="noopener noreferrer"
 													>

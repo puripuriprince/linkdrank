@@ -72,7 +72,7 @@ export function HomeProfiles() {
           <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-6">
             {profiles.map((profile, i) => (
               <div
-                key={`profile-${profile.firstName}-${profile.lastName}-${profile.linkedinId}`}
+                key={profile.linkedinId}
                 className="flex justify-center hover:cursor-pointer rounded-xl"
               >
                 <ProfilePreview

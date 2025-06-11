@@ -48,14 +48,36 @@ export function RelatedProfiles({
     }
   }, [page, loading, hasMore]);
 
+  // Handle initial load and tag changes with proper state management
   useEffect(() => {
+    const fetchInitialData = async () => {
+      if (loading) return; // Prevent multiple simultaneous calls
+      
+      setLoading(true);
+      try {
+        const newProfiles = await getProfilesPreview(1, PAGE_SIZE);
+        if (!newProfiles?.length) {
+          setProfiles([]);
+          setHasMore(false);
+        } else {
+          setProfiles(newProfiles);
+          setPage(2); // Next page to fetch is page 2
+          setHasMore(newProfiles.length === PAGE_SIZE);
+        }
+      } catch (error) {
+        console.error("Failed to fetch profiles:", error);
+        setProfiles([]);
+        setHasMore(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // Reset state and fetch data when selectedTag changes or on mount
     setProfiles([]);
     setPage(1);
     setHasMore(true);
-  }, [selectedTag]);
-
-  useEffect(() => {
-    fetchNextPage();
+    fetchInitialData();
   }, [selectedTag]);
 
   const renderSkeletons = () =>
@@ -125,7 +147,7 @@ export function RelatedProfiles({
             <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
               {profiles.map((profile, i) => (
                 <div
-                  key={`profile-${profile.firstName}-${profile.lastName}-${profile.linkedinId}`}
+                  key={profile.linkedinId}
                   className="flex justify-center hover:cursor-pointer rounded-xl"
                 >
                   <ProfilePreview

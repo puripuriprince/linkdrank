@@ -254,7 +254,7 @@ function ProfileCard({
 					</div>
 					<div className="flex items-center gap-1.5">
 						<Users className="h-3.5 w-3.5 text-amber-500" />
-						<span>{profile.metrics.connections.toLocaleString()}{profile.metrics.connections > 500 ? '+' : ''} conn.</span>
+						<span>{profile.metrics.connections.toLocaleString()}{profile.metrics.connections >= 500 ? '+' : ''} conn.</span>
 					</div>
 				</div>
 

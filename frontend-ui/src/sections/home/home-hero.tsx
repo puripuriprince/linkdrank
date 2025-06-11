@@ -196,7 +196,7 @@ export function HomeHero() {
                     onClick={startRecording}
                     variant="outline"
                     size="icon"
-                    className="border-yellow-500 text-yellow-500 hover:bg-yellow-50 dark:hover:bg-yellow-950 rounded-full shrink-0"
+                    className="rounded-full shrink-0"
                   >
                     <Icon icon="mdi:microphone" width="16" height="16" />
                   </Button>

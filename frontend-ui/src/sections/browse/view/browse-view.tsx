@@ -49,16 +49,44 @@ export function BrowseView() {
     }
   }, [page, loading, hasMore, searchTerm]);
 
+  // Reset everything when search term changes
   useEffect(() => {
-    setProfiles([]); // Clear previous results
-    setPage(1);
-    setHasMore(true);
-    setSearchTerm(search);
-  }, [search]);
+    if (searchTerm !== search) {
+      setProfiles([]); // Clear previous results
+      setPage(1);
+      setHasMore(true);
+      setSearchTerm(search);
+    }
+  }, [search, searchTerm]);
 
+  // Only fetch initial data when searchTerm changes or component mounts
   useEffect(() => {
-    fetchNextPage();
-  }, [searchTerm]);
+    const fetchInitialData = async () => {
+      if (loading) return; // Prevent multiple simultaneous calls
+      
+      setLoading(true);
+      try {
+        const newProfiles = await searchProfiles(searchTerm, 1, PAGE_SIZE);
+
+        if (!newProfiles || newProfiles.length === 0) {
+          setProfiles([]);
+          setHasMore(false);
+        } else {
+          setProfiles(newProfiles);
+          setPage(2); // Next page to fetch is page 2
+          setHasMore(newProfiles.length === PAGE_SIZE);
+        }
+      } catch (error) {
+        console.error("Failed to fetch profiles:", error);
+        setProfiles([]);
+        setHasMore(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInitialData();
+  }, [searchTerm]); // Only depend on searchTerm
 
   const renderSkeletons = (count: number = PAGE_SIZE) => {
     const safeCount = Math.max(0, Math.floor(count));
@@ -86,7 +114,7 @@ export function BrowseView() {
           <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
             {profiles.map((profile, i) => (
               <div
-                key={`profile-${profile.firstName}-${profile.lastName}-${profile.linkedinId}`}
+                key={profile.linkedinId}
                 className="flex justify-center hover:cursor-pointer rounded-xl"
               >
                 <ProfilePreview
