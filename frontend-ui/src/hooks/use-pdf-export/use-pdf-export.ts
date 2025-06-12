@@ -1,4 +1,4 @@
-import { exportCVToPDF } from "@/lib/utils/pdf-export";
+import { exportCVToPDF, cleanupPDFExportArtifacts } from "@/lib/utils/pdf-export";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
 
@@ -49,6 +49,11 @@ export function usePDFExport(options: UsePDFExportOptions = {}) {
 				onError?.(error instanceof Error ? error : new Error(errorMessage));
 			} finally {
 				setIsExporting(false);
+				
+				// Always clean up any potential PDF export artifacts as a safety measure
+				setTimeout(() => {
+					cleanupPDFExportArtifacts();
+				}, 100);
 			}
 		},
 		[filename, onSuccess, onError],
