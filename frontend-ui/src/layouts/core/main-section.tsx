@@ -23,7 +23,7 @@ const MainRoot = ({
 }: React.ComponentProps<"main">) => (
   <main
     className={cn(
-      "bg-white dark:bg-black text-gray-500 dark:text-gray-300 flex flex-col @container/page box-border outline-0 min-h-screen py-5 px-safe-offset-4 md:pt-[calc(1.25rem+var(--desktop-header-top)+var(--desktop-header-height))] max-md:pt-[calc(1.25rem+6.75rem)]",
+      "bg-white dark:bg-black text-gray-500 dark:text-gray-300 flex flex-col box-border outline-0 min-h-screen py-5 px-safe-offset-4 md:pt-[calc(1.25rem+var(--desktop-header-top)+var(--desktop-header-height))] max-md:pt-[calc(1.25rem+6.75rem)]",
       className,
     )}
     {...props}

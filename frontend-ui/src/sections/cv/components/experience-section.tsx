@@ -273,7 +273,7 @@ function SortableExperienceItem({
 									onClick={() => onRemoveBullet(bullet.id)}
 									variant="ghost"
 									size="icon"
-									className="!bg-background -left-2 !size-5 !p-1 hover:!bg-[#FEE8E8] dark:hover:!bg-[#231314] absolute top-0.5 cursor-pointer rounded-full text-muted-foreground opacity-0 hover:text-destructive group-hover/bullet:opacity-100"
+									className="!bg-background -left-2 !size-5 !p-1 hover:!bg-destructive/10 dark:hover:!bg-destructive/20 absolute top-0.5 cursor-pointer rounded-full text-muted-foreground opacity-0 hover:text-destructive group-hover/bullet:opacity-100"
 								>
 									<X className="size-4" />
 								</Button>
@@ -303,7 +303,7 @@ function SortableExperienceItem({
 			<Button
 				onClick={onRemove}
 				variant="ghost"
-				className="-right-7 hover:!bg-[#FEE8E8] dark:hover:!bg-[#231314] absolute top-0 flex h-full w-6 cursor-pointer items-center justify-center rounded-r-md rounded-l-none bg-muted/50 p-0 text-muted-foreground opacity-0 transition-all duration-200 hover:text-destructive group-hover:opacity-100"
+				className="-right-7 hover:!bg-destructive/10 dark:hover:!bg-destructive/20 absolute top-0 flex h-full w-6 cursor-pointer items-center justify-center rounded-r-md rounded-l-none bg-muted/50 p-0 text-muted-foreground opacity-0 transition-all duration-200 hover:text-destructive group-hover:opacity-100"
 			>
 				<Trash2 className="h-4 w-4" />
 			</Button>

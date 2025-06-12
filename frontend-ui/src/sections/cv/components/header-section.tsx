@@ -51,7 +51,7 @@ export function HeaderSection({
 									value={data.email}
 									onChange={(e) => onUpdate("email", e.target.value)}
 									className={cn(
-										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-[#2300A7] shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-[#75A9FF]",
+										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-blue-600 shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-blue-400",
 										data.email && "underline",
 									)}
 									placeholder="youremail@gmail.com"
@@ -66,7 +66,7 @@ export function HeaderSection({
 									value={data.phone}
 									onChange={(e) => onUpdate("phone", e.target.value)}
 									className={cn(
-										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-[#2300A7] shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-[#75A9FF]",
+										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-blue-600 shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-blue-400",
 										data.phone && "underline",
 									)}
 									placeholder="123-456-7890"
@@ -81,7 +81,7 @@ export function HeaderSection({
 									value={data.websiteUrl || ""}
 									onChange={(e) => onUpdate("websiteUrl", e.target.value)}
 									className={cn(
-										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-[#2300A7] shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-[#75A9FF]",
+										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-blue-600 shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-blue-400",
 										data.websiteUrl && "underline",
 									)}
 									placeholder="yourwebsite.com"
@@ -96,7 +96,7 @@ export function HeaderSection({
 									value={data.linkedInHandle || ""}
 									onChange={(e) => onUpdate("linkedInHandle", e.target.value)}
 									className={cn(
-										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-[#2300A7] shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-[#75A9FF]",
+										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-blue-600 shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-blue-400",
 										data.linkedInHandle && "underline",
 									)}
 									placeholder="linkedin.com/in/username"
@@ -110,7 +110,7 @@ export function HeaderSection({
 								value={data.githubHandle || ""}
 								onChange={(e) => onUpdate("githubHandle", e.target.value)}
 								className={cn(
-									"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-[#2300A7] shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-[#75A9FF]",
+									"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-blue-600 shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-blue-400",
 									data.githubHandle && "underline",
 								)}
 								placeholder="github.com/username"

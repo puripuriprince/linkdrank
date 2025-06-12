@@ -10,7 +10,7 @@ export function CVPreviewView() {
     const cv = demoCV; // TODO: get cv from user
 
 	return (
-		<main className="flex flex-1 flex-col py-8">
+		<div className="flex flex-1 flex-col py-8">
 				<div className="mx-auto w-full max-w-4xl px-4">
 					{/* CV Preview - Clean Design */}
 					<div className="mb-8 rounded-lg border border-border bg-background p-8 shadow-sm">
@@ -39,6 +39,6 @@ export function CVPreviewView() {
 						</div>
 					</div>
 				</div>
-			</main>
+			</div>
 	);
 }

@@ -231,7 +231,7 @@ export function FloatingCVToolbar({
 							<Button
 								variant="ghost"
 								size="sm"
-								className="hidden h-8 rounded-full px-3 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 sm:flex dark:hover:bg-blue-950/20"
+								className="hidden h-8 rounded-full px-3 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:flex"
 								onClick={onUpload}
 							>
 								<Upload className="size-4" />
@@ -249,7 +249,7 @@ export function FloatingCVToolbar({
 							<Button
 								variant="ghost"
 								size="sm"
-								className="h-8 w-8 rounded-full p-0 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 sm:hidden dark:hover:bg-blue-950/20"
+								className="h-8 w-8 rounded-full p-0 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:hidden"
 								onClick={onUpload}
 							>
 								<Upload className="size-4" />
@@ -267,7 +267,7 @@ export function FloatingCVToolbar({
 								<Button
 									variant="ghost"
 									size="sm"
-									className="hidden h-8 cursor-pointer rounded-full px-3 transition-all duration-200 hover:bg-purple-50 hover:text-purple-600 sm:flex dark:hover:bg-purple-950/20"
+									className="hidden h-8 cursor-pointer rounded-full px-3 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:flex"
 								>
 									<Palette className="mr-1.5 h-3.5 w-3.5" />
 									<span className="font-medium text-sm">Templates</span>
@@ -286,7 +286,7 @@ export function FloatingCVToolbar({
 								<Button
 									variant="ghost"
 									size="sm"
-									className="h-8 w-8 cursor-pointer rounded-full p-0 transition-all duration-200 hover:bg-purple-50 hover:text-purple-600 sm:hidden dark:hover:bg-purple-950/20"
+									className="h-8 w-8 cursor-pointer rounded-full p-0 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:hidden"
 								>
 									<Palette className="h-3.5 w-3.5" />
 								</Button>
@@ -305,7 +305,7 @@ export function FloatingCVToolbar({
 									<Button
 										variant="ghost"
 										size="sm"
-										className="hidden h-8 rounded-full px-3 transition-all duration-200 hover:bg-green-50 hover:text-green-600 sm:flex dark:hover:bg-green-950/20"
+										className="hidden h-8 rounded-full px-3 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:flex"
 									>
 										<User className="size-4" />
 										<span className="font-medium">Header</span>
@@ -316,7 +316,7 @@ export function FloatingCVToolbar({
 								<p>Customize contact info</p>
 							</TooltipContent>
 						</Tooltip>
-						<PopoverContent className="w-40 p-3" side="top" align="center">
+						<PopoverContent className="w-40 p-3 bg-popover text-popover-foreground border-border" side="top" align="center">
 							<div className="space-y-3">
 								<div className="font-medium text-muted-foreground text-xs">
 									Header Fields
@@ -336,7 +336,7 @@ export function FloatingCVToolbar({
 												/>
 												<Label
 													htmlFor={`${headerId}-${field}`}
-													className="font-normal capitalize"
+													className="font-normal capitalize text-foreground"
 												>
 													{field === "linkedin"
 														? "LinkedIn"
@@ -360,7 +360,7 @@ export function FloatingCVToolbar({
 									<Button
 										variant="ghost"
 										size="sm"
-										className="h-8 w-8 rounded-full p-0 transition-all duration-200 hover:bg-green-50 hover:text-green-600 sm:hidden dark:hover:bg-green-950/20"
+										className="h-8 w-8 rounded-full p-0 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:hidden"
 									>
 										<User className="h-4 w-4" />
 									</Button>
@@ -370,7 +370,7 @@ export function FloatingCVToolbar({
 								<p>Edit header</p>
 							</TooltipContent>
 						</Tooltip>
-						<PopoverContent className="w-36 p-3" side="top" align="center">
+						<PopoverContent className="w-36 p-3 bg-popover text-popover-foreground border-border" side="top" align="center">
 							<div className="space-y-3">
 								<div className="font-medium text-muted-foreground text-xs">
 									Header
@@ -390,7 +390,7 @@ export function FloatingCVToolbar({
 												/>
 												<Label
 													htmlFor={`${headerId}-mobile-${field}`}
-													className="font-normal capitalize"
+													className="font-normal capitalize text-foreground"
 												>
 													{field}
 												</Label>
@@ -428,7 +428,7 @@ export function FloatingCVToolbar({
 									<Button
 										variant="ghost"
 										size="sm"
-										className="hidden h-8 rounded-full px-3 transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 sm:flex dark:hover:bg-orange-950/20"
+										className="hidden h-8 rounded-full px-3 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:flex"
 									>
 										<Layout className="size-4" />
 										<span className="font-medium">Sections</span>
@@ -439,7 +439,7 @@ export function FloatingCVToolbar({
 								<p>Manage CV sections</p>
 							</TooltipContent>
 						</Tooltip>
-						<PopoverContent className="w-40 p-3" side="top" align="center">
+						<PopoverContent className="w-40 p-3 bg-popover text-popover-foreground border-border" side="top" align="center">
 							<div className="space-y-3">
 								<div className="font-medium text-muted-foreground text-xs">
 									CV Sections
@@ -456,7 +456,7 @@ export function FloatingCVToolbar({
 											/>
 											<Label
 												htmlFor={`${sectionsId}-${section}`}
-												className="font-normal capitalize"
+												className="font-normal capitalize text-foreground"
 											>
 												{section}
 											</Label>
@@ -475,7 +475,7 @@ export function FloatingCVToolbar({
 									<Button
 										variant="ghost"
 										size="sm"
-										className="h-8 w-8 rounded-full p-0 transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 sm:hidden dark:hover:bg-orange-950/20"
+										className="h-8 w-8 rounded-full p-0 transition-all duration-200 hover:bg-muted hover:text-accent-foreground sm:hidden"
 									>
 										<Layout className="h-4 w-4" />
 									</Button>
@@ -485,7 +485,7 @@ export function FloatingCVToolbar({
 								<p>Edit sections</p>
 							</TooltipContent>
 						</Tooltip>
-						<PopoverContent className="w-36 p-3" side="top" align="center">
+						<PopoverContent className="w-36 p-3 bg-popover text-popover-foreground border-border" side="top" align="center">
 							<div className="space-y-3">
 								<div className="font-medium text-muted-foreground text-xs">
 									Sections
@@ -502,7 +502,7 @@ export function FloatingCVToolbar({
 											/>
 											<Label
 												htmlFor={`${sectionsId}-mobile-${section}`}
-												className="font-normal capitalize"
+												className="font-normal capitalize text-foreground"
 											>
 												{section}
 											</Label>

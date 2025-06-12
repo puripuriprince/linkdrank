@@ -130,12 +130,10 @@ export const DatePickerDialog: React.FC<DatePickerDialogProps> = ({
 			label: "Select Year",
 			value: "null",
 		},
-		...Array(16)
-			.keys()
-			.map((item) => ({
-				label: (2010 + item).toString(),
-				value: (2010 + item).toString(),
-			})),
+		...Array.from(Array(16).keys()).map((item) => ({
+			label: (2010 + item).toString(),
+			value: (2010 + item).toString(),
+		})),
 	];
 
 	// Common content for both Dialog and Drawer
