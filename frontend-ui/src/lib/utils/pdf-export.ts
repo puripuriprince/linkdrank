@@ -99,7 +99,7 @@ function prepareElementForPDF(element: HTMLElement): HTMLElement {
 	console.log("🔧 Preparing element for PDF export...");
 
 	// First, detect oklch in original element
-	detectOklchUsage(element);
+	//detectOklchUsage(element);
 
 	// Clone the element to avoid modifying the original
 	const clonedElement = element.cloneNode(true) as HTMLElement;

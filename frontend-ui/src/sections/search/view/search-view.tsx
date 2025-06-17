@@ -5,7 +5,6 @@
 import { RelatedProfiles } from "@/sections/search/related-profiles";
 import { ProfileGallery } from "@/sections/search/top-profiles";
 import { SAMPLE_PROFILES } from "@/actions/profiles";
-import { CONFIG } from "@/global-config";
 import { useEffect, useState } from "react";
 import { aiSearch } from "@/actions/search";
 import { useSearchParams } from "next/navigation";

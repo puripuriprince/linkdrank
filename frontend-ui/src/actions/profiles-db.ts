@@ -1,6 +1,6 @@
 "use server";
 
-import { eq, ilike, or, count, desc, asc } from 'drizzle-orm';
+import { eq, ilike, or, count, desc, asc, and, inArray, exists } from 'drizzle-orm';
 import { db } from '@/lib/db/client';
 import { 
   profiles, 
@@ -22,6 +22,8 @@ import {
 } from '@/lib/db/schema';
 import type { ProfileWithRelations } from '@/lib/db/types';
 import type { ProfileForComponents } from '@/types/profile-components';
+import type { RelatedProfileTagsSQLParams, SearchParams } from '@/app/search/types';
+import { buildMainQueryConditions, buildRelatedProfileConditions } from '@/lib/db/query-builders';
 
 export interface ProfileSearchParams {
   query?: string;
@@ -29,6 +31,198 @@ export interface ProfileSearchParams {
   limit?: number;
   sortBy?: 'name' | 'connections' | 'followers';
   sortOrder?: 'asc' | 'desc';
+}
+
+// Enhanced function to get profiles using SearchParams mainQuery
+export async function getProfilesWithMainQuery({
+  mainQuery,
+  page = 1,
+  limit = 10,
+  sortBy = 'followers',
+  sortOrder = 'desc'
+}: {
+  mainQuery: SearchParams['mainQuery'];
+  page?: number;
+  limit?: number;
+  sortBy?: 'name' | 'connections' | 'followers';
+  sortOrder?: 'asc' | 'desc';
+}) {
+  try {
+    const offset = (page - 1) * limit;
+    
+    // Build the query conditions from mainQuery
+    const queryConditions = buildMainQueryConditions(mainQuery);
+
+    // Build sort condition using correct column names
+    const sortColumn = sortBy === 'connections' ? profiles.connectionsCount :
+                      sortBy === 'followers' ? profiles.followersCount :
+                      profiles.firstName;
+    
+    const orderBy = sortOrder === 'desc' ? desc(sortColumn) : asc(sortColumn);
+
+    // Execute the query
+    const profilesData = await db
+      .select({
+        linkedinId: profiles.linkedinId,
+        firstName: profiles.firstName,
+        lastName: profiles.lastName,
+        headline: profiles.headline,
+        profilePictureUrl: profiles.profilePictureUrl,
+      })
+      .from(profiles)
+      .leftJoin(location, eq(profiles.locationId, location.id))
+      .leftJoin(industry, eq(profiles.industryId, industry.id))
+      .where(queryConditions)
+      .orderBy(orderBy)
+      .limit(limit)
+      .offset(offset);
+
+    // Get total count for pagination
+    const totalCountResult = await db
+      .select({ count: count() })
+      .from(profiles)
+      .leftJoin(location, eq(profiles.locationId, location.id))
+      .leftJoin(industry, eq(profiles.industryId, industry.id))
+      .where(queryConditions);
+
+    const totalCount = totalCountResult[0]?.count || 0;
+
+    // For each profile, get the most recent company experience
+    const profilesWithCompany = await Promise.all(
+      profilesData.map(async (profile) => {
+        const mostRecentExperience = await db
+          .select({
+            organizationName: organization.name,
+            organizationLogo: organization.logoUrl,
+          })
+          .from(experience)
+          .innerJoin(organization, eq(experience.organizationId, organization.id))
+          .innerJoin(profiles, eq(experience.userId, profiles.id))
+          .where(eq(profiles.linkedinId, profile.linkedinId))
+          .orderBy(desc(experience.startDate))
+          .limit(1);
+
+        const currentCompany = mostRecentExperience[0] ? {
+          name: mostRecentExperience[0].organizationName,
+          logoUrl: mostRecentExperience[0].organizationLogo
+        } : null;
+
+        return {
+          ...profile,
+          currentCompany
+        };
+      })
+    );
+
+    return {
+      profiles: profilesWithCompany,
+      pagination: {
+        totalCount,
+        currentPage: page,
+        pageSize: limit,
+        totalPages: Math.ceil(totalCount / limit),
+      }
+    };
+  } catch (error) {
+    console.error('Error fetching profiles with main query:', error);
+    throw new Error('Failed to fetch profiles with main query');
+  }
+}
+
+// Enhanced function to get profiles using RelatedProfile tag sqlParams
+export async function getProfilesWithRelatedTag({
+  sqlParams,
+  page = 1,
+  limit = 10,
+  sortBy = 'followers',
+  sortOrder = 'desc'
+}: {
+  sqlParams: SearchParams['relatedProfileTags'][0]['sqlParams'];
+  page?: number;
+  limit?: number;
+  sortBy?: 'name' | 'connections' | 'followers';
+  sortOrder?: 'asc' | 'desc';
+}) {
+  try {
+    const offset = (page - 1) * limit;
+    
+    // Build the query conditions from sqlParams
+    const queryConditions = buildRelatedProfileConditions(sqlParams);
+
+    // Build sort condition using correct column names
+    const sortColumn = sortBy === 'connections' ? profiles.connectionsCount :
+                      sortBy === 'followers' ? profiles.followersCount :
+                      profiles.firstName;
+    
+    const orderBy = sortOrder === 'desc' ? desc(sortColumn) : asc(sortColumn);
+
+    // Execute the query
+    const profilesData = await db
+      .select({
+        linkedinId: profiles.linkedinId,
+        firstName: profiles.firstName,
+        lastName: profiles.lastName,
+        headline: profiles.headline,
+        profilePictureUrl: profiles.profilePictureUrl,
+      })
+      .from(profiles)
+      .leftJoin(location, eq(profiles.locationId, location.id))
+      .leftJoin(industry, eq(profiles.industryId, industry.id))
+      .where(queryConditions)
+      .orderBy(orderBy)
+      .limit(limit)
+      .offset(offset);
+
+    // Get total count for pagination
+    const totalCountResult = await db
+      .select({ count: count() })
+      .from(profiles)
+      .leftJoin(location, eq(profiles.locationId, location.id))
+      .leftJoin(industry, eq(profiles.industryId, industry.id))
+      .where(queryConditions);
+
+    const totalCount = totalCountResult[0]?.count || 0;
+
+    // For each profile, get the most recent company experience
+    const profilesWithCompany = await Promise.all(
+      profilesData.map(async (profile) => {
+        const mostRecentExperience = await db
+          .select({
+            organizationName: organization.name,
+            organizationLogo: organization.logoUrl,
+          })
+          .from(experience)
+          .innerJoin(organization, eq(experience.organizationId, organization.id))
+          .innerJoin(profiles, eq(experience.userId, profiles.id))
+          .where(eq(profiles.linkedinId, profile.linkedinId))
+          .orderBy(desc(experience.startDate))
+          .limit(1);
+
+        const currentCompany = mostRecentExperience[0] ? {
+          name: mostRecentExperience[0].organizationName,
+          logoUrl: mostRecentExperience[0].organizationLogo
+        } : null;
+
+        return {
+          ...profile,
+          currentCompany
+        };
+      })
+    );
+
+    return {
+      profiles: profilesWithCompany,
+      pagination: {
+        totalCount,
+        currentPage: page,
+        pageSize: limit,
+        totalPages: Math.ceil(totalCount / limit),
+      }
+    };
+  } catch (error) {
+    console.error('Error fetching profiles with related tag:', error);
+    throw new Error('Failed to fetch profiles with related tag');
+  }
 }
 
 // Minimal profile data for profile previews (home page, browse page, components)
@@ -655,7 +849,8 @@ export async function getProfileForComponents(linkedinId: string): Promise<Profi
         organization: {
           id: item.organization?.id || 0,
           name: item.organization?.name || 'Unknown Organization',
-          logoUrl: item.organization?.logoUrl || null
+          logoUrl: item.organization?.logoUrl || null,
+          linkedinUrl: item.organization?.linkedinUrl || null
         }
       })),
              publications: publicationsData.map(pub => ({

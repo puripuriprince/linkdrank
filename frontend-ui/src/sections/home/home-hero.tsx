@@ -26,12 +26,22 @@ export function HomeHero() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
+  const slugifyQuery = (text: string) => {
+		return text
+			.toLowerCase()
+			.trim()
+			.replace(/[^\w\s-]/g, "")
+			.replace(/[\s_-]+/g, "-")
+			.replace(/^-+|-+$/g, "");
+	};
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
     
     setLoading(true);
-    router.push(paths.search.details(input));
+    const slugifiedQuery = slugifyQuery(input);
+    router.push(paths.search.details(slugifiedQuery));
     setLoading(false);
   };
 
