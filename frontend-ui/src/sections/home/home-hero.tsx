@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 import Image from "next/image";
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { paths } from "@/routes/paths";
 import { useRouter } from "@/routes/hooks";
 import { CanvasWaveAnimation } from "@/components/canvas-wave-animation";
+import { useSpeechToText } from "@/hooks/use-speech-to-text";
+import { toast } from "sonner";
 
 export function HomeHero() {
   const {
@@ -19,12 +21,20 @@ export function HomeHero() {
   } = useAutoResizeTextarea();
 
   const [loading, setLoading] = useState(false);
-  const [isRecording, setIsRecording] = useState(false);
-  const [isTranscribing, setIsTranscribing] = useState(false);
-  const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
   const router = useRouter();
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const { isRecording, isProcessing, startRecording, stopRecording, cancelRecording, mediaStream} =
+		useSpeechToText({
+			onResult: (text) => setInput(text),
+			onError: setError,
+		});
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   const slugifyQuery = (text: string) => {
 		return text
@@ -43,64 +53,6 @@ export function HomeHero() {
     const slugifiedQuery = slugifyQuery(input);
     router.push(paths.search.details(slugifiedQuery));
     setLoading(false);
-  };
-
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
-      
-      mediaRecorderRef.current = mediaRecorder;
-      audioChunksRef.current = [];
-      setMediaStream(stream);
-
-      mediaRecorder.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);
-      };
-
-      mediaRecorder.start();
-      setIsRecording(true);
-
-      mediaRecorder.onstop = () => {
-        stream.getTracks().forEach(track => track.stop());
-        setMediaStream(null);
-      };
-
-    } catch (error) {
-      console.error('Error accessing microphone:', error);
-      alert('Unable to access microphone. Please check your permissions.');
-    }
-  };
-
-  const cancelRecording = () => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-      audioChunksRef.current = [];
-    }
-  };
-
-  const confirmRecording = () => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-      setIsTranscribing(true);
-
-      // Mock transcription - simulate processing
-      setTimeout(() => {
-        const mockTranscriptions = [
-          "Who are the senior software engineers with React experience from top universities?",
-          "Find product managers in fintech who have startup experience",
-          "Looking for data scientists specializing in machine learning and AI research",
-          "Who are the marketing professionals with B2B SaaS experience?",
-          "Find UX designers who have worked on successful mobile applications"
-        ];
-        
-        const randomTranscription = mockTranscriptions[Math.floor(Math.random() * mockTranscriptions.length)];
-        setInput(randomTranscription);
-        setIsTranscribing(false);
-      }, 1000);
-    }
   };
 
   const suggestions = [
@@ -142,7 +94,7 @@ export function HomeHero() {
         onSubmit={handleSubmit}
         className="min-h-28 w-full max-w-2xl border bg-black/[0.06] dark:bg-white/[0.08] backdrop-blur-xl backdrop-saturate-200 rounded-2xl"
       >
-        {isTranscribing ? (
+        {isProcessing ? (
           <div className="flex items-center justify-center h-full h-full px-4 py-3">
             <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
               <Icon
@@ -176,13 +128,16 @@ export function HomeHero() {
 
         <div className="relative w-full flex flex-row flex-nowrap items-center justify-between gap-1 overflow-x-auto">
           <span aria-hidden="true" className="inline-block h-10" />
-          {!isTranscribing && (
+          {!isProcessing && (
             <div className="flex gap-2 mr-1">
               {isRecording ? (
                 <>
                   <Button
                     type="button"
-                    onClick={cancelRecording}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      cancelRecording()
+                    }}
                     variant="outline"
                     size="icon"
                     className="rounded-full shrink-0"
@@ -191,7 +146,10 @@ export function HomeHero() {
                   </Button>
                   <Button
                     type="button"
-                    onClick={confirmRecording}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      stopRecording();
+                    }}
                     variant="default"
                     size="icon"
                     className="rounded-full shrink-0"

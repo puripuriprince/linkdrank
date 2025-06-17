@@ -3,7 +3,7 @@ import { generateObject } from "ai";
 import { redis } from "@/lib/redis";
 import { openai } from "@ai-sdk/openai";
 import { z } from "zod";
-import { SearchParams, ProficiencyLevel } from "./types";
+import { SearchParams } from "./types";
 
 const mainQuerySchema = z.object({
 	// Profile basic fields
