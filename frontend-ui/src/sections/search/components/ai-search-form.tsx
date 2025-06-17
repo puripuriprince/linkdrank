@@ -1,91 +1,45 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Icon } from "@iconify/react";
 import { paths } from "@/routes/paths";
 import { useRouter } from "@/routes/hooks/use-router";
 import { CanvasWaveAnimation } from "@/components/canvas-wave-animation";
+import { slugifyQuery } from "@/lib/utils";
+import { useSpeechToText } from "@/hooks/use-speech-to-text";
+import { toast } from "sonner";
 
 export const AISearchForm: React.FC = () => {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isRecording, setIsRecording] = useState(false);
-  const [isTranscribing, setIsTranscribing] = useState(false);
-  const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
   const router = useRouter();
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const { isRecording, isProcessing, startRecording, stopRecording, cancelRecording, mediaStream} =
+		useSpeechToText({
+			onResult: (text) => setDescription(text),
+			onError: setError,
+		});
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!description.trim()) return;
     
     setLoading(true);
-    router.push(paths.search.details(description));
+    const slugifiedQuery = slugifyQuery(description);
+    router.push(paths.search.details(slugifiedQuery));
     setLoading(false);
-  };
-
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
-      
-      mediaRecorderRef.current = mediaRecorder;
-      audioChunksRef.current = [];
-      setMediaStream(stream);
-
-      mediaRecorder.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);
-      };
-
-      mediaRecorder.start();
-      setIsRecording(true);
-
-      mediaRecorder.onstop = () => {
-        stream.getTracks().forEach(track => track.stop());
-        setMediaStream(null);
-      };
-
-    } catch (error) {
-      console.error('Error accessing microphone:', error);
-      alert('Unable to access microphone. Please check your permissions.');
-    }
-  };
-
-  const cancelRecording = () => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-      audioChunksRef.current = [];
-    }
-  };
-
-  const confirmRecording = () => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-      setIsTranscribing(true);
-
-      // Mock transcription - simulate processing
-      setTimeout(() => {
-        const mockTranscriptions = [
-          "Find me senior software engineers with React experience who graduated from top universities",
-          "Looking for product managers in fintech with experience at startups",
-          "Search for data scientists specializing in machine learning and AI",
-          "Find marketing professionals with experience in B2B SaaS companies",
-          "Looking for UX designers who have worked on mobile applications"
-        ];
-        
-        const randomTranscription = mockTranscriptions[Math.floor(Math.random() * mockTranscriptions.length)];
-        setDescription(randomTranscription);
-        setIsTranscribing(false);
-      }, 1000);
-    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
-      {isTranscribing ? (
+      {isProcessing ? (
         <div className="flex items-center justify-center h-16 px-4 py-3 border rounded-md bg-black/[0.06] dark:bg-white/[0.08] backdrop-blur-xl backdrop-saturate-200">
           <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
             <Icon
@@ -116,7 +70,7 @@ export const AISearchForm: React.FC = () => {
       )}
       
       <div className="flex gap-2">
-        {isTranscribing ? (
+        {isProcessing ? (
           <div className="flex-1 flex items-center justify-center py-2">
             <span className="text-sm text-gray-500 dark:text-gray-400">Processing your audio...</span>
           </div>
@@ -124,7 +78,10 @@ export const AISearchForm: React.FC = () => {
           <>
             <Button
               type="button"
-              onClick={cancelRecording}
+              onClick={(e) => {
+                e.preventDefault();
+                cancelRecording()
+              }}
               variant="outline"
               className="flex-1"
             >
@@ -133,7 +90,10 @@ export const AISearchForm: React.FC = () => {
             </Button>
             <Button
               type="button"
-              onClick={confirmRecording}
+              onClick={(e) => {
+                e.preventDefault();
+                stopRecording();
+              }}
               variant="default"
               className="flex-1"
             >

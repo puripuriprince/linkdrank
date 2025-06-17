@@ -13,3 +13,12 @@ export function getHandeFromLinkedInURL(url: string) {
   const normalizedUrl = url.replace(/\/$/, "");
   return normalizedUrl.split("/").pop();
 }
+
+export const slugifyQuery = (text: string) => {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};

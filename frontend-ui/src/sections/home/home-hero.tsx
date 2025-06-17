@@ -10,6 +10,7 @@ import { useRouter } from "@/routes/hooks";
 import { CanvasWaveAnimation } from "@/components/canvas-wave-animation";
 import { useSpeechToText } from "@/hooks/use-speech-to-text";
 import { toast } from "sonner";
+import { slugifyQuery } from "@/lib/utils";
 
 export function HomeHero() {
   const {
@@ -35,15 +36,6 @@ export function HomeHero() {
       toast.error(error);
     }
   }, [error]);
-
-  const slugifyQuery = (text: string) => {
-		return text
-			.toLowerCase()
-			.trim()
-			.replace(/[^\w\s-]/g, "")
-			.replace(/[\s_-]+/g, "-")
-			.replace(/^-+|-+$/g, "");
-	};
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
