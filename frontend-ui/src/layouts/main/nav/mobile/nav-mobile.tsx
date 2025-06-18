@@ -113,7 +113,9 @@ export const MobileNav: FC<DesktopHeaderProps> = ({
         className,
       )}
     >
-      {data.map(({ title, href, icon }) =>
+      {data
+      .filter(({ href }) => href !== paths.cv.edit)
+      .map(({ title, href, icon }) =>
         href === paths.search.root ? (
           <AIDialogOpener key={title} />
         ) : href === paths.people.root ? (

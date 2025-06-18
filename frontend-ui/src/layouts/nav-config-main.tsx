@@ -21,6 +21,11 @@ export const navData: NavMainProps["data"] = [
     icon: "mdi:magnify",
   },
   {
+    title: "CV Editor",
+    href: paths.cv.edit,
+    icon: "mdi:file-edit",
+  },
+  {
     title: "Add Profile",
     icon: "material-symbols:account-circle",
     href: paths.people.root,

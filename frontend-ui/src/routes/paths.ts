@@ -9,6 +9,10 @@ const ROOTS = {
 // ----------------------------------------------------------------------
 
 export const paths = {
+  cv: {
+    root: "/cv",
+    edit: "/cv/edit",
+  },
   compare: {
     root: "/compare",
     details: (usernames: string | undefined) =>

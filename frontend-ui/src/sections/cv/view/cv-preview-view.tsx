@@ -6,7 +6,7 @@ import { CV_PRESETS } from "@/_mock";
 import { cn } from "@/lib/utils";
 
 export function CVPreviewView() {
-	const demoCV = CV_PRESETS["anthony-cueva"];
+	const demoCV = CV_PRESETS["jake-ryan"];
 	const cv = demoCV; // TODO: get cv from user
 
 	return (

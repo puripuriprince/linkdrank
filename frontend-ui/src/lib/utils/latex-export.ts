@@ -42,67 +42,84 @@ function formatLatexUrl(url: string, displayText?: string): string {
 	const formattedUrl = url.startsWith("http") ? url : `https://${url}`;
 	const display = displayText || url;
 	
-	return `\\href{${formattedUrl}}{${escapeLatex(display)}}`;
+	return `\\href{${formattedUrl}}{\\underline{${escapeLatex(display)}}}`;
 }
 
 /**
  * Generates LaTeX document preamble based on template and options
  */
-function generatePreamble(options: LaTeXExportOptions): string {
-	const { template = "modern", fontSize = "11pt", margins = "normal", colorScheme = "blue" } = options;
-	
-	const marginSettings = {
-		narrow: "margin=0.5in",
-		normal: "margin=0.75in",
-		wide: "margin=1in"
-	};
-	
-	const colorSettings = {
-		blue: "\\definecolor{accent}{RGB}{0,102,204}",
-		black: "\\definecolor{accent}{RGB}{0,0,0}",
-		green: "\\definecolor{accent}{RGB}{0,128,0}",
-		red: "\\definecolor{accent}{RGB}{178,34,34}"
-	};
-	
-	return `\\documentclass[${fontSize},letterpaper]{article}
+function generatePreamble(_options: LaTeXExportOptions): string {
+	return `\\documentclass[letterpaper,11pt]{article}
 
-% Packages
-\\usepackage[${marginSettings[margins]}]{geometry}
+\\usepackage{latexsym}
+\\usepackage[empty]{fullpage}
 \\usepackage{titlesec}
-\\usepackage{titling}
+\\usepackage{marvosym}
+\\usepackage[usenames,dvipsnames]{color}
+\\usepackage{verbatim}
 \\usepackage{enumitem}
-\\usepackage{xcolor}
-\\usepackage{microtype}
-\\usepackage{parskip}
-\\usepackage[hidelinks,colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black]{hyperref}
+\\usepackage[hidelinks]{hyperref}
+\\usepackage{fancyhdr}
+\\usepackage[english]{babel}
+\\usepackage{tabularx}
+\\input{glyphtounicode}
 
-% Color scheme
-${colorSettings[colorScheme]}
+\\pagestyle{fancy}
+\\fancyhf{} % clear all header and footer fields
+\\fancyfoot{}
+\\renewcommand{\\headrulewidth}{0pt}
+\\renewcommand{\\footrulewidth}{0pt}
 
-% Font settings (compatible with pdfLaTeX)
-\\usepackage{lmodern}
-\\usepackage[T1]{fontenc}
-\\usepackage[utf8]{inputenc}
+% Adjust margins
+\\addtolength{\\oddsidemargin}{-0.5in}
+\\addtolength{\\evensidemargin}{-0.5in}
+\\addtolength{\\textwidth}{1in}
+\\addtolength{\\topmargin}{-.5in}
+\\addtolength{\\textheight}{1.0in}
 
+\\urlstyle{same}
+
+\\raggedbottom
+\\raggedright
+\\setlength{\\tabcolsep}{0in}
+
+% Sections formatting
+\\titleformat{\\section}{
+  \\vspace{-4pt}\\scshape\\raggedright\\large
+}{}{0em}{}[\\color{black}\\titlerule \\vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\\pdfgentounicode=1
+
+%-------------------------
 % Custom commands
-\\newcommand{\\cvheader}[1]{\\textbf{\\Large #1}}
-\\newcommand{\\cvsection}[1]{\\textbf{\\textcolor{accent}{\\MakeUppercase{#1}}}\\vspace{0.5em}\\hrule\\vspace{0.5em}}
-\\newcommand{\\cvsubsection}[4]{\\textbf{#1} \\hfill \\textit{#2} \\\\ \\textit{#3} \\hfill #4}
-\\newcommand{\\cvitem}[2]{\\textbf{#1}: #2}
+\\newcommand{\\resumeItem}[1]{
+  \\item\\small{
+    {#1 \\vspace{-2pt}}
+  }
+}
 
-% Section formatting
-\\titleformat{\\section}{\\large\\bfseries\\textcolor{accent}}{}{0em}{}[\\titlerule]
-\\titlespacing{\\section}{0pt}{12pt}{6pt}
+\\newcommand{\\resumeSubheading}[4]{
+  \\vspace{-2pt}\\item
+    \\begin{tabular*}{0.97\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}
+      \\textbf{#1} & #2 \\\\
+      \\textit{\\small#3} & \\textit{\\small #4} \\\\
+    \\end{tabular*}\\vspace{-7pt}
+}
 
-% Remove page numbers
-\\pagestyle{empty}
+\\newcommand{\\resumeProjectHeading}[2]{
+    \\item
+    \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}
+      \\small#1 & #2 \\\\
+    \\end{tabular*}\\vspace{-7pt}
+}
 
-% Reduce spacing
-\\setlength{\\parindent}{0pt}
-\\setlength{\\itemsep}{0pt}
-\\setlength{\\parsep}{0pt}
-\\setlength{\\topsep}{0pt}
-\\setlength{\\partopsep}{0pt}
+\\renewcommand\\labelitemii{$\\vcenter{\\hbox{\\tiny$\\bullet$}}$}
+
+\\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0.15in, label={}]}
+\\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}}
+\\newcommand{\\resumeItemListStart}{\\begin{itemize}}
+\\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}
 
 \\begin{document}`;
 }
@@ -111,40 +128,35 @@ ${colorSettings[colorScheme]}
  * Generates LaTeX for CV header section
  */
 function generateHeader(cvData: PersistentCurriculumVitae): string {
-	const { fullName, email, phone, location, websiteUrl, linkedInHandle, githubHandle } = cvData;
+	const { fullName, email, phone, websiteUrl, linkedInHandle, githubHandle } = cvData;
 	
 	let header = "";
 	
 	if (fullName) {
 		header += `\\begin{center}
-\\cvheader{${escapeLatex(fullName)}}
-\\end{center}
-
+    \\textbf{\\Huge \\scshape ${escapeLatex(fullName)}} \\\\ \\vspace{1pt}
 `;
 	}
 	
 	// Contact information
 	const contactInfo = [];
-	if (email) contactInfo.push(formatLatexUrl(`mailto:${email}`, email));
-	if (phone) contactInfo.push(formatLatexUrl(`tel:${phone}`, phone));
-	if (location) contactInfo.push(escapeLatex(location));
 	if (websiteUrl) contactInfo.push(formatLatexUrl(websiteUrl));
+	if (phone) contactInfo.push(escapeLatex(phone));
+	if (email) contactInfo.push(`\\href{mailto:${email}}{\\underline{${escapeLatex(email)}}}`);
 	if (linkedInHandle) {
-		const linkedinUrl = linkedInHandle.startsWith("http") ? linkedInHandle : `https://linkedin.com/${linkedInHandle.startsWith("in/") ? linkedInHandle : `in/${linkedInHandle}`}`;
-		contactInfo.push(formatLatexUrl(linkedinUrl, linkedInHandle));
+		const handle = linkedInHandle.replace(/^(https?:\/\/)?(www\.)?linkedin\.com\/in\//, "").replace(/\/$/, "");
+		contactInfo.push(`\\href{https://linkedin.com/in/${handle}}{\\underline{linkedin.com/in/${escapeLatex(handle)}}}`);
 	}
 	if (githubHandle) {
-		const githubUrl = githubHandle.startsWith("http") ? githubHandle : `https://github.com/${githubHandle}`;
-		contactInfo.push(formatLatexUrl(githubUrl, githubHandle));
+		const handle = githubHandle.replace(/^(https?:\/\/)?(www\.)?github\.com\//, "").replace(/\/$/, "");
+		contactInfo.push(`\\href{https://github.com/${handle}}{\\underline{github.com/${escapeLatex(handle)}}}`);
 	}
 	
 	if (contactInfo.length > 0) {
-		header += `\\begin{center}
-${contactInfo.join(" \\textbar{} ")}
-\\end{center}
-
-`;
+		header += `    \\small ${contactInfo.join(" $|$ ")}\n`;
 	}
+	
+	header += `\\end{center}\n\n`;
 	
 	return header;
 }
@@ -154,8 +166,8 @@ ${contactInfo.join(" \\textbar{} ")}
  */
 function generateSummary(summary: string): string {
 	if (!summary) return "";
-	
-	return `\\cvsection{Summary}
+
+	return `\\section{Summary}
 ${escapeLatex(summary)}
 
 `;
@@ -167,33 +179,39 @@ ${escapeLatex(summary)}
 function generateExperience(experience: PersistentCurriculumVitae["experience"]): string {
 	if (!experience || experience.length === 0) return "";
 	
-	let latex = "\\cvsection{Experience}\n\n";
+	let latex = "\\section{Experience}\n";
+	latex += "\\resumeSubHeadingListStart\n";
 	
 	experience.forEach((exp) => {
 		const { title, company, location, dateRangeFrom, dateRangeTo, bullets, techStack } = exp;
 		
-		// Job header
-		latex += `\\cvsubsection{${escapeLatex(title || "")}}{${escapeLatex(company || "")}}{${escapeLatex(location || "")}}{${escapeLatex(dateRangeFrom || "")} -- ${escapeLatex(dateRangeTo || "")}}
+		const from = dateRangeFrom ? escapeLatex(dateRangeFrom) : "";
+		const to = dateRangeTo ? escapeLatex(dateRangeTo) : "Present";
+		const dateRange = from && to ? `${from} -- ${to}` : "";
 
+		// Job header
+		latex += `\\resumeSubheading
+      {${escapeLatex(title || "")}}{${dateRange}}
+      {${escapeLatex(company || "")}}{${escapeLatex(location || "")}}
 `;
 		
 		// Bullets
 		if (bullets && bullets.length > 0) {
-			latex += "\\begin{itemize}[leftmargin=*,noitemsep]\n";
+			latex += "\\resumeItemListStart\n";
 			bullets.forEach((bullet) => {
-				latex += `\\item ${escapeLatex(bullet.content)}\n`;
+				latex += `\\resumeItem{${escapeLatex(bullet.content)}}\n`;
 			});
-			latex += "\\end{itemize}\n\n";
+			latex += "\\resumeItemListEnd\n";
 		}
 		
-		// Tech stack
+		// Tech stack (optional, not in the example but good to have)
 		if (techStack && techStack.length > 0) {
 			const techList = techStack.map(tech => escapeLatex(tech.content)).join(", ");
-			latex += `\\textbf{Technologies:} ${techList}
-
-`;
+			latex += `\\resumeItem{\\textbf{Technologies:} ${techList}}\n\\vspace{2pt}\n`;
 		}
 	});
+	
+	latex += "\\resumeSubHeadingListEnd\n\n";
 	
 	return latex;
 }
@@ -204,15 +222,22 @@ function generateExperience(experience: PersistentCurriculumVitae["experience"])
 function generateEducation(education: PersistentCurriculumVitae["education"]): string {
 	if (!education || education.length === 0) return "";
 	
-	let latex = "\\cvsection{Education}\n\n";
+	let latex = "\\section{Education}\n";
+	latex += "\\resumeSubHeadingListStart\n";
 	
 	education.forEach((edu) => {
 		const { degree, institution, location, dateRangeFrom, dateRangeTo } = edu;
+		const from = dateRangeFrom ? escapeLatex(dateRangeFrom) : "";
+		const to = dateRangeTo ? escapeLatex(dateRangeTo) : "Present";
+		const dateRange = from && to ? `${from} -- ${to}` : "";
 		
-		latex += `\\cvsubsection{${escapeLatex(degree || "")}}{${escapeLatex(institution || "")}}{${escapeLatex(location || "")}}{${escapeLatex(dateRangeFrom || "")} -- ${escapeLatex(dateRangeTo || "")}}
-
+		latex += `\\resumeSubheading
+      {${escapeLatex(institution || "")}}{${escapeLatex(location || "")}}
+      {${escapeLatex(degree || "")}}{${dateRange}}
 `;
 	});
+	
+	latex += "\\resumeSubHeadingListEnd\n\n";
 	
 	return latex;
 }
@@ -223,32 +248,29 @@ function generateEducation(education: PersistentCurriculumVitae["education"]): s
 function generateProjects(projects: PersistentCurriculumVitae["projects"]): string {
 	if (!projects || projects.length === 0) return "";
 	
-	let latex = "\\cvsection{Projects}\n\n";
+	let latex = "\\section{Projects}\n";
+	latex += "\\resumeSubHeadingListStart\n";
 	
 	projects.forEach((project) => {
 		const { name, bullets, techStack } = project;
 		
-		latex += `\\textbf{${escapeLatex(name || "")}}
-
+		const techList = (techStack || []).map(tech => escapeLatex(tech.content)).join(", ");
+		
+		latex += `\\resumeProjectHeading
+          {\\textbf{${escapeLatex(name || "")}} $|$ \\emph{${techList}}}{}
 `;
 		
 		// Bullets
 		if (bullets && bullets.length > 0) {
-			latex += "\\begin{itemize}[leftmargin=*,noitemsep]\n";
+			latex += "\\resumeItemListStart\n";
 			bullets.forEach((bullet) => {
-				latex += `\\item ${escapeLatex(bullet.content)}\n`;
+				latex += `\\resumeItem{${escapeLatex(bullet.content)}}\n`;
 			});
-			latex += "\\end{itemize}\n\n";
-		}
-		
-		// Tech stack
-		if (techStack && techStack.length > 0) {
-			const techList = techStack.map(tech => escapeLatex(tech.content)).join(", ");
-			latex += `\\textbf{Technologies:} ${techList}
-
-`;
+			latex += "\\resumeItemListEnd\n";
 		}
 	});
+	
+	latex += "\\resumeSubHeadingListEnd\n\n";
 	
 	return latex;
 }
@@ -259,10 +281,12 @@ function generateProjects(projects: PersistentCurriculumVitae["projects"]): stri
 function generateSkills(skills: PersistentCurriculumVitae["skills"]): string {
 	if (!skills || skills.length === 0) return "";
 	
-	const skillsList = skills.map(skill => escapeLatex(skill.content)).join(", ");
+	const skillsList = skills.map((skill) => escapeLatex(skill.content)).join(", ");
 	
-	return `\\cvsection{Skills}
-${skillsList}
+	return `\\section{Skills}
+ \\begin{itemize}[leftmargin=0.15in, label={}]
+    \\small{\\item{${skillsList}}}
+ \\end{itemize}
 
 `;
 }
@@ -273,10 +297,12 @@ ${skillsList}
 function generateInterests(interests: PersistentCurriculumVitae["interests"]): string {
 	if (!interests || interests.length === 0) return "";
 	
-	const interestsList = interests.map(interest => escapeLatex(interest.content)).join(", ");
+	const interestsList = interests.map((interest) => escapeLatex(interest.content)).join(", ");
 	
-	return `\\cvsection{Interests}
-${interestsList}
+	return `\\section{Interests}
+ \\begin{itemize}[leftmargin=0.15in, label={}]
+    \\small{\\item{${interestsList}}}
+ \\end{itemize}
 
 `;
 }
@@ -295,11 +321,11 @@ export function convertCVToLatex(cvData: PersistentCurriculumVitae, options: LaT
 		latex += generateSummary(cvData.summary);
 	}
 	
-	// Experience
-	latex += generateExperience(cvData.experience);
-	
 	// Education
 	latex += generateEducation(cvData.education);
+	
+	// Experience
+	latex += generateExperience(cvData.experience);
 	
 	// Projects
 	latex += generateProjects(cvData.projects);
