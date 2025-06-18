@@ -2,33 +2,50 @@
 
 import { Button } from "@/components/ui/button";
 import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { Check, Download, FileText, Link, Loader2, Share2 } from "lucide-react";
+import { Check, ChevronDown, Download, FileText, Link, Loader2, Share2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 interface ExportShareToolbarProps {
-	onExportPDF?: () => void;
+	onExportLatex?: () => void;
+	onExportLatexPDF?: () => void;
+	onExportDocx?: () => void;
+	onExportLatexSource?: () => void;
 	onShareLink?: () => void;
 	onCopyLink?: () => void;
 	shareUrl?: string;
 	isExporting?: boolean;
+	isExportingLatex?: boolean;
+	latexExportMethod?: "source" | "server" | "client" | null;
 	isGeneratingLink?: boolean;
 	className?: string;
 	position?: "bottom" | "top";
 }
 
 export function ExportShareToolbar({
-	onExportPDF,
+	onExportLatex,
+	onExportLatexPDF,
+	onExportDocx,
+	onExportLatexSource,
 	onShareLink,
 	onCopyLink,
 	shareUrl,
 	isExporting = false,
+	isExportingLatex = false,
+	latexExportMethod = null,
 	isGeneratingLink = false,
 	className,
 	position = "bottom",
@@ -82,6 +99,24 @@ export function ExportShareToolbar({
 		top: "top-4",
 	};
 
+	const getExportButtonText = () => {
+		if (isExporting) return "Exporting...";
+		if (isExportingLatex) {
+			if (latexExportMethod === "source") return "Generating...";
+			if (latexExportMethod === "server") return "Compiling...";
+			if (latexExportMethod === "client") return "Processing...";
+			return "Processing...";
+		}
+		return "Export";
+	};
+
+	const getExportButtonIcon = () => {
+		if (isExporting || isExportingLatex) {
+			return <Loader2 className="size-4 animate-spin" />;
+		}
+		return <Download className="size-4" />;
+	};
+
 	return (
 		<TooltipProvider delayDuration={200}>
 			<div
@@ -92,52 +127,67 @@ export function ExportShareToolbar({
 				)}
 			>
 				<div className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 shadow-lg backdrop-blur-sm">
-					{/* Export PDF */}
-					<Tooltip>
-						<TooltipTrigger asChild>
+					{/* Export Dropdown */}
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
 							<Button
 								variant="ghost"
 								size="sm"
 								className="hidden h-8 rounded-full px-3 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 sm:flex dark:hover:bg-blue-950/20"
-								onClick={onExportPDF}
-								disabled={isExporting}
+								disabled={isExporting || isExportingLatex}
 							>
-								{isExporting ? (
-									<Loader2 className="size-4 animate-spin" />
-								) : (
-									<Download className="size-4" />
-								)}
+								{getExportButtonIcon()}
 								<span className="font-medium text-sm">
-									{isExporting ? "Exporting..." : "Export PDF"}
+									{getExportButtonText()}
 								</span>
+								<ChevronDown className="ml-1 size-3" />
 							</Button>
-						</TooltipTrigger>
-						<TooltipContent side={position === "bottom" ? "top" : "bottom"}>
-							<p>Download CV as PDF</p>
-						</TooltipContent>
-					</Tooltip>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="center">
+							<DropdownMenuItem onClick={onExportLatexPDF} disabled={isExporting || isExportingLatex}>
+								<FileText className="mr-2 size-4" />
+								Export as PDF
+							</DropdownMenuItem>
+							<DropdownMenuItem onClick={onExportDocx} disabled={isExporting || isExportingLatex}>
+								<FileText className="mr-2 size-4" />
+								Export as DOCX
+							</DropdownMenuItem>
+							<DropdownMenuSeparator />
+							<DropdownMenuItem onClick={onExportLatexSource} disabled={isExporting || isExportingLatex}>
+								<Download className="mr-2 size-4" />
+								Download LaTeX Source
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 
-					{/* Mobile Export PDF */}
-					<Tooltip>
-						<TooltipTrigger asChild>
+					{/* Mobile Export Dropdown */}
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
 							<Button
 								variant="ghost"
 								size="sm"
 								className="h-8 w-8 rounded-full p-0 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 sm:hidden dark:hover:bg-blue-950/20"
-								onClick={onExportPDF}
-								disabled={isExporting}
+								disabled={isExporting || isExportingLatex}
 							>
-								{isExporting ? (
-									<Loader2 className="size-4 animate-spin" />
-								) : (
-									<Download className="size-4" />
-								)}
+								{getExportButtonIcon()}
 							</Button>
-						</TooltipTrigger>
-						<TooltipContent side={position === "bottom" ? "top" : "bottom"}>
-							<p>Export PDF</p>
-						</TooltipContent>
-					</Tooltip>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="center">
+							<DropdownMenuItem onClick={onExportLatexPDF} disabled={isExporting || isExportingLatex}>
+								<FileText className="mr-2 size-4" />
+								Export as PDF
+							</DropdownMenuItem>
+							<DropdownMenuItem onClick={onExportDocx} disabled={isExporting || isExportingLatex}>
+								<FileText className="mr-2 size-4" />
+								Export as DOCX
+							</DropdownMenuItem>
+							<DropdownMenuSeparator />
+							<DropdownMenuItem onClick={onExportLatexSource} disabled={isExporting || isExportingLatex}>
+								<Download className="mr-2 size-4" />
+								Download LaTeX Source
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 
 					{/* Share Button */}
 					<Tooltip>
@@ -232,3 +282,5 @@ export function ExportShareToolbar({
 		</TooltipProvider>
 	);
 }
+
+

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Download, Edit, Share } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { Edit } from "lucide-react";
 import { CVPreview } from "../components/cv-preview";
 import { CV_PRESETS } from "@/_mock";
 import { cn } from "@/lib/utils";

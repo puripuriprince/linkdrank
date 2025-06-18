@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { ExportShareToolbar } from "./export-share-toolbar";
 import { PersistentCurriculumVitae } from "@/types/cv";
-import { usePDFExport } from "@/hooks/use-pdf-export";
+import { useLatexExport } from "@/hooks/use-latex-export";
+import { useDocxExport } from "@/hooks/use-docx-export";
+
 interface CVPreviewProps {
 	cvData: PersistentCurriculumVitae;
 	className?: string;
@@ -20,29 +22,57 @@ export function CVPreview({
 	const [isGeneratingLink, setIsGeneratingLink] = useState(false);
 	const cvRef = useRef<HTMLDivElement>(null);
 
-	const { exportPDF, isExporting } = usePDFExport({
-		onSuccess: () => {
-			// Optional: Add analytics or other success actions
+	const {
+		exportLatexPDF,
+		exportLatexSource,
+		isExporting: isExportingLatex,
+		exportMethod: latexExportMethod,
+	} = useLatexExport({
+		onSuccess: (method: string) => {
+			console.log(`LaTeX export successful using method: ${method}`);
 		},
 		onError: (error: Error) => {
-			console.error("PDF export failed:", error);
+			console.error("LaTeX export failed:", error);
+		},
+		defaultOptions: {
+			template: "modern",
+			fontSize: "11pt",
+			margins: "normal",
+			colorScheme: "blue",
+		},
+	});
+
+	const { exportDocx, isExporting: isExportingDocx } = useDocxExport({
+		onSuccess: () => {
+			console.log("DOCX export successful");
+		},
+		onError: (error: Error) => {
+			console.error("DOCX export failed:", error);
 		},
 	});
 
 	useEffect(() => {
-		// Set the current page URL as the share URL when component mounts
 		if (typeof window !== "undefined") {
 			setShareUrl(window.location.href);
 		}
 	}, []);
 
-	const handleExportPDF = async () => {
-		if (!cvRef.current) {
-			toast.error("CV content not found");
-			return;
-		}
+	const handleExportLatexPDF = async () => {
+		await exportLatexPDF(cvData, {
+			filename: `${cvData.fullName || "CV"}.pdf`,
+		});
+	};
 
-		await exportPDF(cvRef.current, cvData.fullName || "CV");
+	const handleExportDocx = async () => {
+		await exportDocx(cvData, {
+			filename: `${cvData.fullName || "CV"}.docx`,
+		});
+	};
+
+	const handleExportLatexSource = async () => {
+		await exportLatexSource(cvData, {
+			filename: `${cvData.fullName || "CV"}.tex`,
+		});
 	};
 
 	const handleGenerateLink = async () => {
@@ -86,7 +116,7 @@ export function CVPreview({
 								<>
 									<a
 										href={`mailto:${cvData.email}`}
-										className="text-[#2300A7] underline dark:text-[#75A9FF]"
+										className="text-blue-600 underline dark:text-blue-400"
 									>
 										{cvData.email}
 									</a>
@@ -97,7 +127,7 @@ export function CVPreview({
 								<>
 									<a
 										href={`tel:${cvData.phone}`}
-										className="text-[#2300A7] underline dark:text-[#75A9FF]"
+										className="text-blue-600 underline dark:text-blue-400"
 									>
 										{cvData.phone}
 									</a>
@@ -114,7 +144,7 @@ export function CVPreview({
 										}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-[#2300A7] underline dark:text-[#75A9FF]"
+										className="text-blue-600 underline dark:text-blue-400"
 									>
 										{cvData.websiteUrl}
 									</a>
@@ -127,7 +157,7 @@ export function CVPreview({
 										href={`https://linkedin.com/${cvData.linkedInHandle.startsWith("in/") ? cvData.linkedInHandle : `in/${cvData.linkedInHandle}`}`}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-[#2300A7] underline dark:text-[#75A9FF]"
+										className="text-blue-600 underline dark:text-blue-400"
 									>
 										{cvData.linkedInHandle}
 									</a>
@@ -140,7 +170,7 @@ export function CVPreview({
 										href={`https://${cvData.githubHandle.startsWith("github.com/") ? cvData.githubHandle : `github.com/${cvData.githubHandle}`}`}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-[#2300A7] underline dark:text-[#75A9FF]"
+										className="text-blue-600 underline dark:text-blue-400"
 									>
 										{cvData.githubHandle}
 									</a>
@@ -266,7 +296,7 @@ export function CVPreview({
 												href={project.link}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="text-[#2300A7] italic underline dark:text-[#75A9FF]"
+												className="text-blue-600 italic underline dark:text-blue-400"
 											>
 												{project.link}
 											</a>
@@ -335,10 +365,15 @@ export function CVPreview({
 			{showToolbar && (
 				<div className="ignore-pdf">
 					<ExportShareToolbar
-						onExportPDF={handleExportPDF}
+						onExportLatexPDF={handleExportLatexPDF}
+						onExportDocx={handleExportDocx}
+						onExportLatexSource={handleExportLatexSource}
+						onShareLink={handleGenerateLink}
 						onCopyLink={handleGenerateLink}
 						shareUrl={shareUrl}
-						isExporting={isExporting}
+						isExporting={isExportingLatex || isExportingDocx}
+						isExportingLatex={isExportingLatex}
+						latexExportMethod={latexExportMethod}
 						isGeneratingLink={isGeneratingLink}
 					/>
 				</div>
