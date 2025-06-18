@@ -86,7 +86,7 @@ export function CVPreview({
 								<>
 									<a
 										href={`mailto:${cvData.email}`}
-										className="text-blue-600 underline dark:text-blue-400"
+										className="text-[#2300A7] underline dark:text-[#75A9FF]"
 									>
 										{cvData.email}
 									</a>
@@ -97,7 +97,7 @@ export function CVPreview({
 								<>
 									<a
 										href={`tel:${cvData.phone}`}
-										className="text-blue-600 underline dark:text-blue-400"
+										className="text-[#2300A7] underline dark:text-[#75A9FF]"
 									>
 										{cvData.phone}
 									</a>
@@ -114,7 +114,7 @@ export function CVPreview({
 										}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-blue-600 underline dark:text-blue-400"
+										className="text-[#2300A7] underline dark:text-[#75A9FF]"
 									>
 										{cvData.websiteUrl}
 									</a>
@@ -127,7 +127,7 @@ export function CVPreview({
 										href={`https://linkedin.com/${cvData.linkedInHandle.startsWith("in/") ? cvData.linkedInHandle : `in/${cvData.linkedInHandle}`}`}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-blue-600 underline dark:text-blue-400"
+										className="text-[#2300A7] underline dark:text-[#75A9FF]"
 									>
 										{cvData.linkedInHandle}
 									</a>
@@ -140,7 +140,7 @@ export function CVPreview({
 										href={`https://${cvData.githubHandle.startsWith("github.com/") ? cvData.githubHandle : `github.com/${cvData.githubHandle}`}`}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-blue-600 underline dark:text-blue-400"
+										className="text-[#2300A7] underline dark:text-[#75A9FF]"
 									>
 										{cvData.githubHandle}
 									</a>
@@ -266,7 +266,7 @@ export function CVPreview({
 												href={project.link}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="text-blue-600 italic underline dark:text-blue-400"
+												className="text-[#2300A7] italic underline dark:text-[#75A9FF]"
 											>
 												{project.link}
 											</a>

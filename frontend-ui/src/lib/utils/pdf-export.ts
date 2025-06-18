@@ -99,21 +99,16 @@ function prepareElementForPDF(element: HTMLElement): HTMLElement {
 	console.log("🔧 Preparing element for PDF export...");
 
 	// First, detect oklch in original element
-	//detectOklchUsage(element);
+	detectOklchUsage(element);
 
 	// Clone the element to avoid modifying the original
 	const clonedElement = element.cloneNode(true) as HTMLElement;
 
-	// Generate a unique ID for this PDF export to isolate styles
-	const pdfExportId = `pdf-export-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-	clonedElement.id = pdfExportId;
-
-	// Create a comprehensive style element to override ALL CSS, but scope it to this specific element
+	// Create a comprehensive style element to override ALL CSS
 	const style = document.createElement("style");
-	style.setAttribute("data-pdf-export", pdfExportId);
 	style.textContent = `
-		/* Override CSS custom properties ONLY for this PDF export element */
-		#${pdfExportId} {
+		/* Override ALL CSS custom properties that might contain oklch */
+		:root {
 			--background: #ffffff !important;
 			--foreground: #000000 !important;
 			--muted-foreground: #6b7280 !important;
@@ -133,14 +128,10 @@ function prepareElementForPDF(element: HTMLElement): HTMLElement {
 			--destructive-foreground: #ffffff !important;
 			--ring: #000000 !important;
 			--radius: 0.5rem !important;
-			
-			/* Force white background and black text on root */
-			background-color: #ffffff !important;
-			color: #000000 !important;
 		}
 		
-		/* Reset all colors to safe values - ONLY within the PDF export element */
-		#${pdfExportId} *, #${pdfExportId} *::before, #${pdfExportId} *::after {
+		/* Reset all colors to safe values */
+		*, *::before, *::after {
 			color: #000000 !important;
 			background-color: transparent !important;
 			border-color: #e5e7eb !important;
@@ -149,40 +140,44 @@ function prepareElementForPDF(element: HTMLElement): HTMLElement {
 			caret-color: #000000 !important;
 		}
 		
-		/* Specific overrides for common classes - ONLY within the PDF export element */
-		#${pdfExportId} .text-muted-foreground {
+		/* Specific overrides for common classes */
+		.text-muted-foreground {
 			color: #6b7280 !important;
 		}
-		#${pdfExportId} .text-foreground {
+		.text-foreground {
 			color: #000000 !important;
 		}
-		#${pdfExportId} a, #${pdfExportId} a:visited, #${pdfExportId} a:hover, #${pdfExportId} a:active {
+		a, a:visited, a:hover, a:active {
 			color: #2563eb !important;
 			text-decoration: underline !important;
 		}
-		#${pdfExportId} .border-border {
+		.border-border {
 			border-color: #e5e7eb !important;
 		}
-		#${pdfExportId} h1, #${pdfExportId} h2, #${pdfExportId} h3, #${pdfExportId} h4, #${pdfExportId} h5, #${pdfExportId} h6 {
+		h1, h2, h3, h4, h5, h6 {
 			color: #000000 !important;
 		}
 		
-		/* Container backgrounds - ONLY within the PDF export element */
-		#${pdfExportId} [data-cv-content] {
+		/* Container backgrounds */
+		[data-cv-content] {
 			background-color: #ffffff !important;
 		}
-		#${pdfExportId} .bg-background {
+		.bg-background {
 			background-color: #ffffff !important;
 		}
 		
-		/* Force all backgrounds to be safe - ONLY within the PDF export element */
-		#${pdfExportId} div, #${pdfExportId} section, #${pdfExportId} article, #${pdfExportId} main, #${pdfExportId} header, #${pdfExportId} footer, #${pdfExportId} span, #${pdfExportId} p {
+		/* Force all backgrounds to be safe */
+		div, section, article, main, header, footer, span, p {
 			background-color: transparent !important;
 		}
 	`;
 
 	// Add the style to the cloned element
 	clonedElement.appendChild(style);
+
+	// Force white background and black text on root
+	clonedElement.style.setProperty("background-color", "#ffffff", "important");
+	clonedElement.style.setProperty("color", "#000000", "important");
 
 	// Override CSS variables directly on the cloned element
 	clonedElement.style.setProperty("--background", "#ffffff", "important");
@@ -301,14 +296,8 @@ export async function exportToPDF(
 		preparedElement.style.position = "absolute";
 		preparedElement.style.left = "-9999px";
 		preparedElement.style.top = "-9999px";
-		preparedElement.style.zIndex = "-1000";
-		preparedElement.style.pointerEvents = "none";
-		preparedElement.style.visibility = "hidden";
 		document.body.appendChild(preparedElement);
 		console.log("✅ Element added to DOM");
-
-		// Force layout recalculation to ensure styles are applied
-		preparedElement.offsetHeight;
 
 		// Get the element's dimensions
 		const rect = preparedElement.getBoundingClientRect();
@@ -384,42 +373,23 @@ export async function exportToPDF(
 		// Save the PDF
 		pdf.save(filename);
 
-		console.log("✅ PDF exported successfully");
-	} catch (error) {
-		console.error("❌ Error generating PDF:", error);
-		throw new Error("Failed to generate PDF. Please try again.");
-	} finally {
-		// CRITICAL: Always clean up the temporary element, even if there are errors
-		if (preparedElement) {
-			try {
-				if (document.body.contains(preparedElement)) {
-					document.body.removeChild(preparedElement);
-					console.log("🧹 Temporary element cleaned up successfully");
-				}
-			} catch (cleanupError) {
-				console.warn("⚠️ Failed to cleanup temporary element:", cleanupError);
-				// Try to force remove by ID if regular removal fails
-				try {
-					const elementById = document.getElementById(preparedElement.id);
-					if (elementById && elementById.parentNode) {
-						elementById.parentNode.removeChild(elementById);
-						console.log("🧹 Forced cleanup by ID successful");
-					}
-				} catch (forceCleanupError) {
-					console.error("❌ Failed to force cleanup temporary element:", forceCleanupError);
-				}
-			}
+		// Clean up: remove the temporary element
+		if (document.body.contains(preparedElement)) {
+			document.body.removeChild(preparedElement);
 		}
-		
-		// Additional cleanup: remove any orphaned PDF export styles
-		const orphanedStyles = document.querySelectorAll('style[data-pdf-export]');
-		orphanedStyles.forEach(style => {
-			try {
-				style.remove();
-			} catch (styleCleanupError) {
-				console.warn("⚠️ Failed to cleanup orphaned style:", styleCleanupError);
+	} catch (error) {
+		console.error("Error generating PDF:", error);
+
+		// Clean up on error too
+		try {
+			if (preparedElement && document.body.contains(preparedElement)) {
+				document.body.removeChild(preparedElement);
 			}
-		});
+		} catch (cleanupError) {
+			console.warn("Failed to cleanup temporary element:", cleanupError);
+		}
+
+		throw new Error("Failed to generate PDF. Please try again.");
 	}
 }
 
@@ -439,37 +409,4 @@ export async function exportCVToPDF(
 		format: "a4",
 		margin: 15,
 	});
-}
-
-// Utility function to clean up any lingering PDF export elements and styles
-export function cleanupPDFExportArtifacts(): void {
-	console.log("🧹 Cleaning up PDF export artifacts...");
-	
-	// Remove any elements with PDF export IDs
-	const pdfElements = document.querySelectorAll('[id^="pdf-export-"]');
-	pdfElements.forEach(element => {
-		try {
-			element.remove();
-			console.log(`🧹 Removed PDF export element: ${element.id}`);
-		} catch (error) {
-			console.warn("⚠️ Failed to remove PDF export element:", error);
-		}
-	});
-	
-	// Remove any PDF export styles
-	const pdfStyles = document.querySelectorAll('style[data-pdf-export]');
-	pdfStyles.forEach(style => {
-		try {
-			style.remove();
-			console.log(`🧹 Removed PDF export style: ${style.getAttribute('data-pdf-export')}`);
-		} catch (error) {
-			console.warn("⚠️ Failed to remove PDF export style:", error);
-		}
-	});
-	
-	if (pdfElements.length === 0 && pdfStyles.length === 0) {
-		console.log("✅ No PDF export artifacts found");
-	} else {
-		console.log(`✅ Cleaned up ${pdfElements.length} elements and ${pdfStyles.length} styles`);
-	}
 }
