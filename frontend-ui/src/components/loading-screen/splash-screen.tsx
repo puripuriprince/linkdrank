@@ -12,11 +12,13 @@ export type SplashScreenProps = {
 export function SplashScreen({ portal = true }: SplashScreenProps) {
   const content = (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <DotLottieReact
-        src={`${CONFIG.assetsDir}/logo/logo.json`}
-        loop
-        autoplay
-      />
+      <div className="w-52 h-52">
+        <DotLottieReact
+          src={`${CONFIG.assetsDir}/logo/logo.json`}
+          loop
+          autoplay
+        />
+      </div>
     </div>
   );
 
