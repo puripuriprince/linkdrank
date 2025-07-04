@@ -135,7 +135,7 @@ export const resetPassword = async ({
   { data: object; error: null } | { data: null; error: AuthError }
 > => {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${window.location.origin}${paths.auth.supabase.updatePassword}`,
+    redirectTo: `${window.location.origin}${paths.auth.signIn}`, // TODO: change to the correct path
   });
 
   if (error) {

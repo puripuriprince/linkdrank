@@ -18,11 +18,7 @@ type AuthGuardProps = {
 };
 
 const signInPaths = {
-  jwt: paths.auth.jwt.signIn,
-  auth0: paths.auth.auth0.signIn,
-  amplify: paths.auth.amplify.signIn,
-  firebase: paths.auth.firebase.signIn,
-  supabase: paths.auth.supabase.signIn,
+  supabase: paths.auth.signIn,
 };
 
 export function AuthGuard({ children }: AuthGuardProps) {

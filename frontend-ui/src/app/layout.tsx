@@ -11,16 +11,11 @@ import { BrowseProvider } from "@/sections/browse/context";
 
 import { CONFIG } from "@/global-config";
 
-import { AuthProvider as JwtAuthProvider } from "@/auth/context/jwt";
-import { AuthProvider as SupabaseAuthProvider } from "@/auth/context/supabase";
+import { AuthProvider } from "@/auth/context";
 
 import { PosthogProvider } from "@/analytics/posthog-provider";
 
 // ----------------------------------------------------------------------
-
-const AuthProvider =
-  (CONFIG.auth.method === "supabase" && SupabaseAuthProvider) ||
-  JwtAuthProvider;
 
 export const viewport: Viewport = {
   width: "device-width",

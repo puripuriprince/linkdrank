@@ -11,7 +11,7 @@ export type ConfigValue = {
   assetsDir: string;
   isStaticExport: boolean;
   auth: {
-    method: "supabase" | "jwt";
+    method: "supabase";
     skip: boolean;
     redirectPath: string;
   };
@@ -40,10 +40,10 @@ export const CONFIG: ConfigValue = {
   isStaticExport: JSON.parse(`${process.env.BUILD_STATIC_EXPORT ?? false}`),
   /**
    * Auth
-   * @method jwt | supabase
+   * @method supabase
    */
   auth: {
-    method: "jwt",
+    method: "supabase",
     skip: false,
     redirectPath: paths.search.root,
   },

@@ -6,9 +6,9 @@ import axios from "@/lib/axios";
 import { useSetState } from "@/hooks";
 import { supabase } from "@/lib/supabase";
 
-import { AuthContext } from "../auth-context";
+import { AuthContext } from "./auth-context";
 
-import type { AuthState } from "../../types";
+import type { AuthState } from "../types";
 
 // ----------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ export function AuthProvider({ children }: Props) {
             ...state.user,
             id: state.user?.id,
             accessToken: state.user?.access_token,
-            displayName: `${state.user?.user_metadata.display_name}`,
+            displayName: `${state.user?.user_metadata?.display_name}`,
             role: state.user?.role ?? "admin",
           }
         : null,
