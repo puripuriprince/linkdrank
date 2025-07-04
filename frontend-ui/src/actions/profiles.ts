@@ -10,7 +10,7 @@ import {
 } from './profiles-db';
 
 // Configuration flag - set to true when you want to use the database
-const USE_DATABASE = process.env.NODE_ENV === 'production' || process.env.USE_DATABASE === 'true';
+const USE_DATABASE = true;
 
 // Helper function to transform ProfileWithRelations to ProfilePreviewData
 function transformToProfilePreviewData(profile: ProfileWithRelations): ProfilePreviewData {

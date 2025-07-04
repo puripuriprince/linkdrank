@@ -6,33 +6,74 @@ import { InfiniteScroll } from "@/components/infinite-scroll";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ProfilePreviewData } from "@/lib/db/types";
+import { ProfilePreviewData, ProfileWithRelations } from "@/lib/db/types";
 import { paths } from "@/routes/paths";
 import { useRouter } from "@/routes/hooks";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getProfilesByRelatedTag, SearchResult } from "@/app/search/get-users";
+import { SearchParams } from "@/app/search/types";
 
 interface RelatedProfilesProps {
   relatedTags: { id: string; label: string }[];
   isLoading?: boolean;
+  searchParams?: SearchParams;
 }
 
 const PAGE_SIZE = 15;
 export function RelatedProfiles({
   relatedTags,
   isLoading,
+  searchParams,
 }: RelatedProfilesProps) {
-  const [profiles, setProfiles] = useState<ProfilePreviewData[]>([]);
+  const [profiles, setProfiles] = useState<ProfileWithRelations[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [tagSwitching, setTagSwitching] = useState(false);
   const router = useRouter();
 
   const fetchNextPage = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
     try {
-      const newProfiles = await getProfilesPreview(page, PAGE_SIZE);
+      let newProfiles: ProfileWithRelations[] = [];
+      
+      if (selectedTag && searchParams) {
+        // Use tag-based search for next page
+        const result = await getProfilesByRelatedTag(selectedTag, searchParams, page);
+        newProfiles = result.profiles;
+      } else {
+        // Fallback to preview profiles
+        const previewProfiles = await getProfilesPreview(page, PAGE_SIZE);
+        newProfiles = previewProfiles?.map(p => ({
+          id: 0,
+          linkedinId: p.linkedinId,
+          firstName: p.firstName,
+          lastName: p.lastName,
+          headline: p.headline,
+          summary: null,
+          profilePictureUrl: p.profilePictureUrl,
+          backgroundImageUrl: null,
+          locationId: null,
+          industryId: null,
+          connectionsCount: 0,
+          followersCount: 0,
+          lastUpdated: null,
+          location: undefined,
+          industry: undefined,
+          educations: [],
+          experiences: [],
+          certifications: [],
+          skills: [],
+          languages: [],
+          volunteers: [],
+          publications: [],
+          awards: [],
+          projects: [],
+        })) || [];
+      }
+      
       if (!newProfiles?.length) {
         setHasMore(false);
       } else {
@@ -46,7 +87,7 @@ export function RelatedProfiles({
     } finally {
       setLoading(false);
     }
-  }, [page, loading, hasMore]);
+  }, [page, loading, hasMore, selectedTag, searchParams]);
 
   // Handle initial load and tag changes with proper state management
   useEffect(() => {
@@ -55,7 +96,43 @@ export function RelatedProfiles({
       
       setLoading(true);
       try {
-        const newProfiles = await getProfilesPreview(1, PAGE_SIZE);
+        let newProfiles: ProfileWithRelations[] = [];
+        
+        if (selectedTag && searchParams) {
+          // Use tag-based search - simplified approach for better performance
+          const result = await getProfilesByRelatedTag(selectedTag, searchParams, 1);
+          newProfiles = result.profiles;
+        } else {
+          // Fallback to preview profiles when no tag is selected
+          const previewProfiles = await getProfilesPreview(1, PAGE_SIZE);
+          newProfiles = previewProfiles?.map(p => ({
+            id: 0,
+            linkedinId: p.linkedinId,
+            firstName: p.firstName,
+            lastName: p.lastName,
+            headline: p.headline,
+            summary: null,
+            profilePictureUrl: p.profilePictureUrl,
+            backgroundImageUrl: null,
+            locationId: null,
+            industryId: null,
+            connectionsCount: 0,
+            followersCount: 0,
+            lastUpdated: null,
+            location: undefined,
+            industry: undefined,
+            educations: [],
+            experiences: [],
+            certifications: [],
+            skills: [],
+            languages: [],
+            volunteers: [],
+            publications: [],
+            awards: [],
+            projects: [],
+          })) || [];
+        }
+        
         if (!newProfiles?.length) {
           setProfiles([]);
           setHasMore(false);
@@ -70,6 +147,7 @@ export function RelatedProfiles({
         setHasMore(false);
       } finally {
         setLoading(false);
+        setTagSwitching(false); // Clear tag switching state
       }
     };
 
@@ -78,7 +156,12 @@ export function RelatedProfiles({
     setPage(1);
     setHasMore(true);
     fetchInitialData();
-  }, [selectedTag]);
+  }, [selectedTag, searchParams]);
+
+  const handleTagClick = (tagId: string) => {
+    setTagSwitching(true);
+    setSelectedTag(tagId);
+  };
 
   const renderSkeletons = () =>
     Array(PAGE_SIZE)
@@ -114,14 +197,16 @@ export function RelatedProfiles({
                       key={tag.id}
                       variant="outline"
                       className={cn(
-                        "capitalize px-4 py-2 text-sm font-semibold",
+                        "capitalize px-4 py-2 text-sm font-semibold transition-all duration-200",
                         selectedTag === tag.id
                           ? "bg-zinc-200 dark:bg-zinc-700"
                           : "bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700",
+                        tagSwitching && selectedTag === tag.id && "opacity-70"
                       )}
-                      onClick={() => setSelectedTag(tag.id)}
+                      onClick={() => handleTagClick(tag.id)}
+                      disabled={tagSwitching && selectedTag === tag.id}
                     >
-                      {tag.label}
+                      {tagSwitching && selectedTag === tag.id ? "Loading..." : tag.label}
                     </Button>
                   ))}
                 </>
@@ -131,7 +216,7 @@ export function RelatedProfiles({
           </ScrollArea>
         )}
       </div>
-      {isLoading ? (
+      {(isLoading || tagSwitching) ? (
         <div className="grid grid-cols-1 min-[30rem]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
           {renderSkeletons()}
         </div>
@@ -151,9 +236,19 @@ export function RelatedProfiles({
                   className="flex justify-center hover:cursor-pointer rounded-xl"
                 >
                   <ProfilePreview
-                    profile={profile}
+                    profile={{
+                      linkedinId: profile.linkedinId,
+                      firstName: profile.firstName,
+                      lastName: profile.lastName,
+                      headline: profile.headline,
+                      profilePictureUrl: profile.profilePictureUrl,
+                      currentCompany: profile.experiences?.[0] ? {
+                        name: profile.experiences[0].organization.name,
+                        logoUrl: profile.experiences[0].organization.logoUrl || "",
+                      } : null,
+                    }}
                     onClick={() =>
-                      router.push(paths.people.details(`https://www.linkedin.com/in/${profile.linkedinId}`))
+                      router.push(paths.people.details(profile.linkedinId))
                     }
                   />
                 </div>

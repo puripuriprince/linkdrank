@@ -249,3 +249,42 @@ export const userLanguageRelations = relations(userLanguage, ({ one }) => ({
     references: [language.id],
   }),
 }));
+
+export const certificationRelations = relations(certification, ({ one }) => ({
+  profile: one(profiles, {
+    fields: [certification.userId],
+    references: [profiles.id],
+  }),
+}));
+
+export const volunteerRelations = relations(volunteer, ({ one }) => ({
+  profile: one(profiles, {
+    fields: [volunteer.userId],
+    references: [profiles.id],
+  }),
+  organization: one(organization, {
+    fields: [volunteer.organizationId],
+    references: [organization.id],
+  }),
+}));
+
+export const publicationRelations = relations(publication, ({ one }) => ({
+  profile: one(profiles, {
+    fields: [publication.userId],
+    references: [profiles.id],
+  }),
+}));
+
+export const awardRelations = relations(award, ({ one }) => ({
+  profile: one(profiles, {
+    fields: [award.userId],
+    references: [profiles.id],
+  }),
+}));
+
+export const projectRelations = relations(project, ({ one }) => ({
+  profile: one(profiles, {
+    fields: [project.userId],
+    references: [profiles.id],
+  }),
+}));

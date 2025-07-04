@@ -1,4 +1,4 @@
-import { eq, ilike, or, and, exists } from 'drizzle-orm';
+import { eq, ilike, or, and, exists, gte, lte } from 'drizzle-orm';
 import { db } from '@/lib/db/client';
 import { 
   profiles, 
@@ -43,51 +43,87 @@ export function buildMainQueryConditions(mainQuery: SearchParams['mainQuery']) {
     conditions.push(ilike(profiles.lastName, `%${mainQuery.lastName}%`));
   }
 
-  // Industry filtering
+  // Industry filtering - use exists with subquery
   if (mainQuery.industries?.length) {
     const industryConditions = mainQuery.industries.map(ind => 
-      ilike(industry.name, `%${ind}%`)
+      exists(
+        db.select()
+          .from(industry)
+          .where(
+            and(
+              eq(industry.id, profiles.industryId),
+              ilike(industry.name, `%${ind}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...industryConditions));
   }
 
-  // Location filtering
+  // Location filtering - use exists with subquery
   if (mainQuery.location?.countries?.length) {
     const countryConditions = mainQuery.location.countries.map(country => 
-      ilike(location.country, `%${country}%`)
+      exists(
+        db.select()
+          .from(location)
+          .where(
+            and(
+              eq(location.id, profiles.locationId),
+              ilike(location.country, `%${country}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...countryConditions));
   }
 
   if (mainQuery.location?.states?.length) {
     const stateConditions = mainQuery.location.states.map(state => 
-      ilike(location.state, `%${state}%`)
+      exists(
+        db.select()
+          .from(location)
+          .where(
+            and(
+              eq(location.id, profiles.locationId),
+              ilike(location.state, `%${state}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...stateConditions));
   }
 
   if (mainQuery.location?.cities?.length) {
     const cityConditions = mainQuery.location.cities.map(city => 
-      ilike(location.city, `%${city}%`)
+      exists(
+        db.select()
+          .from(location)
+          .where(
+            and(
+              eq(location.id, profiles.locationId),
+              ilike(location.city, `%${city}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...cityConditions));
   }
 
   // Connection/follower metrics
   if (mainQuery.minConnections) {
-    conditions.push(eq(profiles.connectionsCount, mainQuery.minConnections));
+    conditions.push(gte(profiles.connectionsCount, mainQuery.minConnections));
   }
 
   if (mainQuery.maxConnections) {
-    conditions.push(eq(profiles.connectionsCount, mainQuery.maxConnections));
+    conditions.push(lte(profiles.connectionsCount, mainQuery.maxConnections));
   }
 
   if (mainQuery.minFollowers) {
-    conditions.push(eq(profiles.followersCount, mainQuery.minFollowers));
+    conditions.push(gte(profiles.followersCount, mainQuery.minFollowers));
   }
 
   if (mainQuery.maxFollowers) {
-    conditions.push(eq(profiles.followersCount, mainQuery.maxFollowers));
+    conditions.push(lte(profiles.followersCount, mainQuery.maxFollowers));
   }
 
   // Skills filtering - requires exists query due to junction table
@@ -295,51 +331,87 @@ export function buildRelatedProfileConditions(sqlParams: RelatedProfileTagsSQLPa
     conditions.push(or(...lastNameConditions));
   }
 
-  // Industry filtering
+  // Industry filtering - use exists with subquery
   if (sqlParams.industries?.length) {
     const industryConditions = sqlParams.industries.map(ind => 
-      ilike(industry.name, `%${ind}%`)
+      exists(
+        db.select()
+          .from(industry)
+          .where(
+            and(
+              eq(industry.id, profiles.industryId),
+              ilike(industry.name, `%${ind}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...industryConditions));
   }
 
-  // Location filtering
+  // Location filtering - use exists with subquery
   if (sqlParams.location?.countries?.length) {
     const countryConditions = sqlParams.location.countries.map(country => 
-      ilike(location.country, `%${country}%`)
+      exists(
+        db.select()
+          .from(location)
+          .where(
+            and(
+              eq(location.id, profiles.locationId),
+              ilike(location.country, `%${country}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...countryConditions));
   }
 
   if (sqlParams.location?.states?.length) {
     const stateConditions = sqlParams.location.states.map(state => 
-      ilike(location.state, `%${state}%`)
+      exists(
+        db.select()
+          .from(location)
+          .where(
+            and(
+              eq(location.id, profiles.locationId),
+              ilike(location.state, `%${state}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...stateConditions));
   }
 
   if (sqlParams.location?.cities?.length) {
     const cityConditions = sqlParams.location.cities.map(city => 
-      ilike(location.city, `%${city}%`)
+      exists(
+        db.select()
+          .from(location)
+          .where(
+            and(
+              eq(location.id, profiles.locationId),
+              ilike(location.city, `%${city}%`)
+            )
+          )
+      )
     );
     conditions.push(or(...cityConditions));
   }
 
   // Metrics filtering
   if (sqlParams.metrics?.minConnections) {
-    conditions.push(eq(profiles.connectionsCount, sqlParams.metrics.minConnections));
+    conditions.push(gte(profiles.connectionsCount, sqlParams.metrics.minConnections));
   }
 
   if (sqlParams.metrics?.maxConnections) {
-    conditions.push(eq(profiles.connectionsCount, sqlParams.metrics.maxConnections));
+    conditions.push(lte(profiles.connectionsCount, sqlParams.metrics.maxConnections));
   }
 
   if (sqlParams.metrics?.minFollowers) {
-    conditions.push(eq(profiles.followersCount, sqlParams.metrics.minFollowers));
+    conditions.push(gte(profiles.followersCount, sqlParams.metrics.minFollowers));
   }
 
   if (sqlParams.metrics?.maxFollowers) {
-    conditions.push(eq(profiles.followersCount, sqlParams.metrics.maxFollowers));
+    conditions.push(lte(profiles.followersCount, sqlParams.metrics.maxFollowers));
   }
 
   // Skills filtering for related profiles
@@ -510,6 +582,86 @@ export function buildRelatedProfileConditions(sqlParams: RelatedProfileTagsSQLPa
     );
     conditions.push(or(...profConditions));
   }
+
+  return conditions.length > 0 ? and(...conditions) : undefined;
+}
+
+// Simplified query builder for tag-based searches (faster performance)
+export function buildSimplifiedTagConditions(sqlParams: RelatedProfileTagsSQLParams) {
+  const conditions = [];
+
+  // Prioritize the most common and fastest filters first
+  
+  // Core profile fields (fastest - direct column searches)
+  if (sqlParams.headline?.length) {
+    const headlineConditions = sqlParams.headline.map(keyword => 
+      ilike(profiles.headline, `%${keyword}%`)
+    );
+    conditions.push(or(...headlineConditions));
+  }
+
+  if (sqlParams.summary?.length) {
+    const summaryConditions = sqlParams.summary.map(keyword => 
+      ilike(profiles.summary, `%${keyword}%`)
+    );
+    conditions.push(or(...summaryConditions));
+  }
+
+  // For tag searches, limit to just the most important relations to keep queries fast
+  // Only include education schools and experience organizations for better performance
+  
+  if (sqlParams.education?.schools?.length) {
+    const schoolConditions = sqlParams.education.schools.map(schoolName =>
+      exists(
+        db.select()
+          .from(education)
+          .innerJoin(school, eq(education.schoolId, school.id))
+          .where(
+            and(
+              eq(education.userId, profiles.id),
+              ilike(school.name, `%${schoolName}%`)
+            )
+          )
+      )
+    );
+    conditions.push(or(...schoolConditions));
+  }
+
+  if (sqlParams.experience?.organizations?.length) {
+    const companyConditions = sqlParams.experience.organizations.map(companyName =>
+      exists(
+        db.select()
+          .from(experience)
+          .innerJoin(organization, eq(experience.organizationId, organization.id))
+          .where(
+            and(
+              eq(experience.userId, profiles.id),
+              ilike(organization.name, `%${companyName}%`)
+            )
+          )
+      )
+    );
+    conditions.push(or(...companyConditions));
+  }
+
+  if (sqlParams.experience?.titles?.length) {
+    const roleConditions = sqlParams.experience.titles.map(title =>
+      exists(
+        db.select()
+          .from(experience)
+          .where(
+            and(
+              eq(experience.userId, profiles.id),
+              ilike(experience.title, `%${title}%`)
+            )
+          )
+      )
+    );
+    conditions.push(or(...roleConditions));
+  }
+
+  // Skip complex relations like skills, languages, certifications for tag queries
+  // to improve performance - these can be added back if needed
 
   return conditions.length > 0 ? and(...conditions) : undefined;
 } 

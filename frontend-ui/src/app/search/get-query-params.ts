@@ -1,3 +1,5 @@
+"use server";
+
 import { generateObject } from "ai";
 
 import { redis } from "@/lib/redis";
@@ -156,62 +158,75 @@ export async function getQueryParams(query: string): Promise<SearchParams> {
 
 	if (!searchParams) {
 		const results = await generateObject({
-			model: openai("gpt-4o-mini"),
+			model: openai("gpt-4o"),
 			schema: z.object({
 				mainQuery: mainQuerySchema,
 				relatedProfileTags: z.array(relatedProfileTagSchema),
 			}),
-			prompt: `Extract LinkedIn profile search parameters from the following query based on this database schema:
+			prompt: `You are a LinkedIn profile search parameter extraction expert. Extract search parameters from the query and generate related profile tags.
 
-TABLES AVAILABLE:
+QUERY: "${query}"
+
+DATABASE SCHEMA:
 - profiles: linkedin_id, first_name, last_name, headline, summary, profile_picture_url, connections_count, followers_count
 - location: city, state, country
-- industry: name
+- industry: name (e.g., "Technology", "Finance", "Healthcare")
 - education: degree_name, field_of_study, start_date, end_date + school(name)
 - experience: title, description, start_date, end_date + organization(name) + location
 - skill: name (via user_skill junction table)
 - certification: name, authority, start_date, end_date
 - language: name (via user_language with proficiency levels)
-- volunteer: role, cause + organization(name)
-- publication: name, publisher, pub_date
-- award: title, issuer, award_date
-- project: title, description, start_date, end_date
 
-1. Main Query Parameters (for ProfileGallery):
-   Extract relevant search criteria from the query that match the database schema:
-   - Profile fields: headline keywords, summary terms, names
-   - Location: cities, states, countries from the location table
-   - Industries: from the industry table
-   - Skills: from the skill table (accessed via user_skill junction)
-   - Education: school names, degree names, fields of study
-   - Experience: organization names, job titles
-   - Certifications: certification names, authorities
-   - Languages: language names, proficiency levels
-   - Metrics: connection/follower counts if mentioned
+EXTRACTION RULES:
 
-2. Related Profile Tags (generate 6-8 diverse tags):
-   Create tags that help users discover related profiles using database fields:
+1. MAIN QUERY PARAMETERS:
+   - headline: Extract role-related keywords (e.g., "co-founder", "founder", "CEO", "startup", "entrepreneur")
+   - summary: Extract broader context keywords (e.g., "startup", "entrepreneurship", "innovation")
+   - education.schools: Extract school names (e.g., "Concordia", "Stanford", "MIT")
+   - experience.organizations: Extract company names (e.g., "Meta", "Google", "Apple")
+   - experience.titles: Extract job titles and roles (e.g., "Co-founder", "Founder", "CEO", "CTO")
+   - industries: Infer industries from context (e.g., "Technology", "Software", "Internet")
+   - skills: Infer relevant skills from context (e.g., "Entrepreneurship", "Leadership", "Product Management")
+
+2. KEYWORD EXTRACTION STRATEGY:
+   - Look for company names, school names, job titles, and role descriptors
+   - Extract both exact matches and related terms
+   - For "startup" context, include terms like "entrepreneur", "founder", "co-founder"
+   - For company names, use both current and previous company filters
+   - For schools, always extract the exact school name mentioned
+
+3. RELATED PROFILE TAGS (Generate 6-8 diverse tags with ACTUAL VALUES):
    
-   Examples based on query analysis:
-   - "Similar Role" → headline keywords from experience titles
-   - "Same Industry" → industry table values
-   - "Alumni Network" → education school names
-   - "Company Peers" → experience organization names
-   - "Similar Skills" → skill table values
-   - "Same Location" → location table values (city, state, country)
-   - "Language Speakers" → language table values
-   - "Certification Holders" → certification names/authorities
-   - "Experience Level" → metrics ranges
-   - "Publication Authors" → publication fields
-   - "Award Winners" → award fields
+   Based on the query, generate tags like:
+   - "Co-founders" → experience.titles: ["Co-founder", "Founder", "CEO"]
+   - "Startup Experience" → headline: ["startup", "entrepreneur"] + experience.titles: ["Founder", "Co-founder"]
+   - "[School] Alumni" → education.schools: ["extracted_school_name"]
+   - "[Company] Alumni" → experience.organizations: ["extracted_company_name"]
+   - "Tech Entrepreneurs" → industries: ["Technology"] + headline: ["startup", "entrepreneur"]
+   - "Similar Background" → combine education + experience filters
+   - "Industry Leaders" → experience.titles: ["CEO", "CTO", "VP"] + industries: ["Technology"]
+   - "Innovation Focus" → headline: ["innovation", "product", "startup"] + skills: ["Product Management", "Innovation"]
 
-   Each tag should have SQL parameters that target specific database tables and fields.
-   Use year ranges for date-based filtering (education, experience, certifications, etc.).
+4. EXAMPLES:
+   Query: "concordia-alumni-who-co-founded-a-startup-and-work-at-meta"
+   Should extract:
+   - education.schools: ["Concordia"]
+   - experience.organizations: ["Meta"]
+   - experience.titles: ["Co-founder"]
+   - headline: ["co-founder", "startup", "entrepreneur"]
+   - industries: ["Technology"]
+   - skills: ["Entrepreneurship", "Leadership"]
 
-Query to analyze: "${query}"
+5. TAG GENERATION RULES:
+   - Always fill in actual values, not empty arrays
+   - Make labels specific to the extracted content
+   - Ensure each tag targets different aspects of the profile
+   - Use database field names exactly as specified in the schema
 
-Generate parameters that directly map to the database schema fields.`,
+Generate parameters that directly map to database schema fields with meaningful values.`,
 		});
+
+		console.log(JSON.stringify(results.object, null, 2));
 
 		searchParams = {
 			mainQuery: results.object.mainQuery,
