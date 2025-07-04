@@ -11,12 +11,11 @@ import {
 	useSensors,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-// import { FileText } from "lucide-react";
 import { toast } from "sonner";
 
 
 
-import { CV_PRESETS, type PresetKey } from "@/_mock"
+import { CV_PRESETS } from "@/_mock"
 
 import { useCVHistoryStore } from "@/stores/cv-history-store";
 import { useActionState, useEffect, useState } from "react";
@@ -27,8 +26,9 @@ import { HeaderSection } from "./header-section";
 import { InterestsSection } from "./interests-section";
 import { ProjectsSection } from "./projects-section";
 import { SkillsSection } from "./skills-section";
-import { PersistentCurriculumVitae, PersistentCurriculumVitaeSchema } from "@/types/cv";
+import { PersistentCurriculumVitae } from "@/types/cv";
 import { updateCurriculumVitaeAction } from "@/actions/update-curriculum-vitae";
+import {paths} from "@/routes/paths";
 
 interface CVEditorFormProps {
 	initialData?: PersistentCurriculumVitae;
@@ -52,9 +52,6 @@ export function CVEditorForm({ initialData }: CVEditorFormProps) {
 		undefined,
 	);
 
-	const user = {
-		username: "test"
-	}
 	const { updateCV, getCurrentCV, reset } = useCVHistoryStore();
 
 	// Initialize the store with initial data
@@ -109,11 +106,6 @@ export function CVEditorForm({ initialData }: CVEditorFormProps) {
 			coordinateGetter: sortableKeyboardCoordinates,
 		}),
 	);
-
-	const loadPreset = (presetKey: PresetKey) => {
-		const preset = CV_PRESETS[presetKey];
-		updateCV(() => preset);
-	};
 
 	const handleHeaderUpdate = (
 		field: keyof PersistentCurriculumVitae,
@@ -482,7 +474,7 @@ export function CVEditorForm({ initialData }: CVEditorFormProps) {
 			{/* Floating Toolbar */}
 			<FloatingCVToolbar
 				onPreview={() =>
-					window.open(`/developer/${user?.username}/cv`, "_blank")
+					window.open(paths.cv.root, "_blank")
 				}
 				onSave={() => {
 					// Update the hidden form with current CV data and submit

@@ -177,10 +177,10 @@ export function ExportShareToolbar({
 								<FileText className="mr-2 size-4" />
 								Export as PDF
 							</DropdownMenuItem>
-							<DropdownMenuItem onClick={onExportDocx} disabled={isExporting || isExportingLatex}>
+							{/*<DropdownMenuItem onClick={onExportDocx} disabled={isExporting || isExportingLatex}>
 								<FileText className="mr-2 size-4" />
 								Export as DOCX
-							</DropdownMenuItem>
+							</DropdownMenuItem>*/}
 							<DropdownMenuSeparator />
 							<DropdownMenuItem onClick={onExportLatexSource} disabled={isExporting || isExportingLatex}>
 								<Download className="mr-2 size-4" />

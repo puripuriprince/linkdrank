@@ -31,20 +31,30 @@ export function HeaderSection({
 	return (
 		<div className="space-y-6">
 			{/* Header */}
-			<div className="relative">
-				<div className="absolute top-0 right-0 text-muted-foreground text-sm">
-					https://githunter.dev
-				</div>
-				<div className="space-y-4">
+			<div className="flex flex-col items-center justify-between space-y-4">
 					<Textarea
 						value={data.fullName}
 						onChange={(e) => onUpdate("fullName", e.target.value)}
-						className="!text-4xl !bg-transparent hover:!bg-muted/50 min-h-auto resize-none rounded-none border-none p-0 font-bold shadow-none focus-visible:ring-0"
+						className="!text-4xl !bg-transparent hover:!bg-muted/50 min-h-auto resize-none rounded-none border-none p-0 font-bold shadow-none focus-visible:ring-0 text-center"
 						placeholder="Your Name"
 						rows={1}
 					/>
 
 					<div className="flex flex-wrap gap-2 text-sm">
+						{visibility?.phone !== false && (
+							<>
+								<Textarea
+									value={data.phone}
+									onChange={(e) => onUpdate("phone", e.target.value)}
+									className={cn(
+										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 shadow-none [field-sizing:content] focus-visible:ring-0",
+									)}
+									placeholder="123-456-7890"
+									rows={1}
+								/>
+								<span className="text-muted-foreground">•</span>
+							</>
+						)}
 						{visibility?.email !== false && (
 							<>
 								<Textarea
@@ -55,21 +65,6 @@ export function HeaderSection({
 										data.email && "underline",
 									)}
 									placeholder="youremail@gmail.com"
-									rows={1}
-								/>
-								<span className="text-muted-foreground">•</span>
-							</>
-						)}
-						{visibility?.phone !== false && (
-							<>
-								<Textarea
-									value={data.phone}
-									onChange={(e) => onUpdate("phone", e.target.value)}
-									className={cn(
-										"!bg-transparent hover:!bg-muted/50 min-h-auto w-auto resize-none rounded-none border-none p-0 text-blue-600 shadow-none [field-sizing:content] focus-visible:ring-0 dark:text-blue-400",
-										data.phone && "underline",
-									)}
-									placeholder="123-456-7890"
 									rows={1}
 								/>
 								<span className="text-muted-foreground">•</span>
@@ -119,7 +114,6 @@ export function HeaderSection({
 						)}
 					</div>
 				</div>
-			</div>
 
 			{/* Summary */}
 			{visibility?.summary !== false && (

@@ -1,6 +1,6 @@
 import { ProfilePreviewSkeleton } from "@/components/profile-preview";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 import { getProfilesPreview } from "@/actions/profiles";
 import { ProfilePreview } from "@/components/profile-preview";
@@ -11,9 +11,9 @@ import { useRouter } from "@/routes/hooks";
 
 export function HomeProfiles() {
   const [profiles, setProfiles] = useState<ProfilePreviewData[]>([]);
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const pageRef = useRef(1);
   const router = useRouter();
 
   const fetchNextPage = useCallback(async () => {
@@ -22,13 +22,22 @@ export function HomeProfiles() {
     setLoading(true);
 
     try {
-      const newProfiles = await getProfilesPreview(page);
+      const currentPage = pageRef.current;
+      const newProfiles = await getProfilesPreview(currentPage);
 
       if (!newProfiles?.length) {
         setHasMore(false);
       } else {
-        setProfiles((prev) => [...prev, ...newProfiles]);
-        setPage((prev) => prev + 1);
+        setProfiles((prev) => {
+          const existingIds = new Set(prev.map(p => p.linkedinId));
+          const uniqueNewProfiles = newProfiles.filter(p => !existingIds.has(p.linkedinId));
+          if (uniqueNewProfiles.length > 0) {
+            return [...prev, ...uniqueNewProfiles];
+          }
+          return prev;
+        });
+        
+        pageRef.current = currentPage + 1;
       }
     } catch (error) {
       console.error("Failed to fetch profiles:", error);
@@ -36,12 +45,12 @@ export function HomeProfiles() {
     } finally {
       setLoading(false);
     }
-  }, [page, loading, hasMore]);
+  }, [loading, hasMore]);
 
   // Load initial data
   useEffect(() => {
     fetchNextPage();
-  }, []);
+  }, [fetchNextPage]);
 
   const renderSkeletons = (count: number = 10) =>
     Array(count)

@@ -1075,7 +1075,7 @@ export const SAMPLE_PROFILES: ProfileWithRelations[] = [
   }
 ];
 
-export async function getProfilesPreview(page: number = 1, limit: number = 10): Promise<ProfilePreviewData[]> {
+export async function getProfilesPreview(page: number = 1, limit: number = 30): Promise<ProfilePreviewData[]> {
   if (USE_DATABASE) {
     try {
       const result = await getProfilesPreviewFromDB(page, limit);
