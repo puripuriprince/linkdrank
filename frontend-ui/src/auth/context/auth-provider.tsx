@@ -12,12 +12,6 @@ import type { AuthState } from "../types";
 
 // ----------------------------------------------------------------------
 
-/**
- * NOTE:
- * We only build demo at basic level.
- * Customer will need to do some extra handling yourself if you want to extend the logic and other features...
- */
-
 type Props = {
   children: React.ReactNode;
 };
@@ -44,7 +38,14 @@ export function AuthProvider({ children }: Props) {
       if (session) {
         const accessToken = session?.access_token;
 
-        setState({ user: { ...session, ...session?.user }, loading: false });
+        setState({ 
+          user: { 
+            ...session.user, 
+            access_token: accessToken,
+            role: session.user.role ?? "admin"
+          }, 
+          loading: false 
+        });
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
       } else {
         setState({ user: null, loading: false });
@@ -58,6 +59,31 @@ export function AuthProvider({ children }: Props) {
 
   useEffect(() => {
     checkUserSession();
+
+    // Listen to auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === 'SIGNED_OUT') {
+          setState({ user: null, loading: false });
+          delete axios.defaults.headers.common.Authorization;
+        } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+          if (session) {
+            const accessToken = session?.access_token;
+            setState({ 
+              user: { 
+                ...session.user, 
+                access_token: accessToken,
+                role: session.user.role ?? "admin"
+              }, 
+              loading: false 
+            });
+            axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+          }
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,7 +100,7 @@ export function AuthProvider({ children }: Props) {
             ...state.user,
             id: state.user?.id,
             accessToken: state.user?.access_token,
-            displayName: `${state.user?.user_metadata?.display_name}`,
+            displayName: state.user?.user_metadata?.display_name || state.user?.email || '',
             role: state.user?.role ?? "admin",
           }
         : null,

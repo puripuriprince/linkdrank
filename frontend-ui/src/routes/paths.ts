@@ -9,6 +9,7 @@ const ROOTS = {
 // ----------------------------------------------------------------------
 
 export const paths = {
+  home: "/",
   cv: {
     root: "/cv",
     edit: "/cv/edit",
